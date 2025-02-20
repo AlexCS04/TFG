@@ -34,7 +34,7 @@ public class Grid<TGridObject>
         if (x >= 0 && y >= 0 && x < width && y < height) {
             return gridArray[x, y];
         } else {
-            return default(TGridObject);
+            return default;
         }
     }
     public TGridObject GetGridObject(Vector3 worldPosition) { // objeto en x,y del grid usando coordenadas globales

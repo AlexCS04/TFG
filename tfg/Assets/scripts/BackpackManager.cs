@@ -19,25 +19,17 @@ public class BackpackManager : MonoBehaviour
     void Update()
     {
         if(invItem!=null){
-            /*
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, Input.mousePosition, null, out Vector2 targetPosition);
 
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, Input.mousePosition, null, out Vector2 targetPosition);
             targetPosition += new Vector2(-mouseDragAnchoredPositionOffset.x, -mouseDragAnchoredPositionOffset.y);
-            targetPosition /=  cellSize;
-            targetPosition = new Vector2(Mathf.Floor(targetPosition.x), Mathf.Floor(targetPosition.y));
-            targetPosition *= cellSize;
+            //targetPosition.x = Mathf.Floor(targetPosition.x  / cellSize) * cellSize;
+            //targetPosition.y = Mathf.Floor(targetPosition.y / cellSize) * cellSize;
 
 
             invItem.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(invItem.GetComponent<RectTransform>().anchoredPosition, targetPosition, Time.deltaTime * 20f);
-            invItem.transform.rotation = Quaternion.Lerp(invItem.transform.rotation, Quaternion.Euler(0, 0, -invItem.GetRotationAngle(invItem.GetDir())), Time.deltaTime * 15f);
-            */
-
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, Input.mousePosition, null, out Vector2 targetPosition);
-            targetPosition.x = Mathf.Floor(targetPosition.x  / cellSize) * cellSize;
-            targetPosition.y = Mathf.Floor(targetPosition.y / cellSize) * cellSize;
+            
 
 
-            invItem.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(invItem.GetComponent<RectTransform>().anchoredPosition, targetPosition, Time.deltaTime * 20f);
         }   
     }
 
@@ -49,6 +41,19 @@ public class BackpackManager : MonoBehaviour
         invItem=item;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, Input.mousePosition, null, out Vector2 anchoredPos);
         mouseDragAnchoredPositionOffset = anchoredPos - invItem.GetComponent<RectTransform>().anchoredPosition;
+
+    }
+    public void EndDrag(InvItem item,Backpack fromBackpack){
+        invItem=null;
+        Vector3 mousePos=Input.mousePosition;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(fromBackpack.GetComponent<RectTransform>(), mousePos, null, out Vector2 anchoredPosition);
+        fromBackpack.RemoveItemAt(anchoredPosition);
+
+        
+
+
+
+
 
     }
 

@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class InvItem : MonoBehaviour, IBeginDragHandler, IDragHandler
+public class InvItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     
     public ItemSO itemSO;
     private Dir dir;
     private CanvasGroup canvasGroup;
+    public Backpack myBackpack;
 
     void Awake()
     {
@@ -18,6 +19,13 @@ public class InvItem : MonoBehaviour, IBeginDragHandler, IDragHandler
         canvasGroup.alpha=.7f;
         canvasGroup.blocksRaycasts=false;
         BackpackManager.instance.StartDrag(this);
+
+    }
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        canvasGroup.alpha = 1f;
+        canvasGroup.blocksRaycasts = true;
+        BackpackManager.instance.EndDrag(this, myBackpack);
     }
     public Dir GetDir(){
         return dir;
@@ -53,6 +61,8 @@ public class InvItem : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
-        
+        //ok
     }
+
+    
 }
