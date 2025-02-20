@@ -36,6 +36,9 @@ public class BackpackManager : MonoBehaviour
     public bool HasItem(){
         return invItem!=null;
     }
+    public InvItem SelItem(){
+        return invItem;
+    }
 
     public void StartDrag(InvItem item){
         invItem=item;
@@ -43,11 +46,9 @@ public class BackpackManager : MonoBehaviour
         mouseDragAnchoredPositionOffset = anchoredPos - invItem.GetComponent<RectTransform>().anchoredPosition;
 
     }
-    public void EndDrag(InvItem item,Backpack fromBackpack){
+    public void EndDrag(){
         invItem=null;
-        Vector3 mousePos=Input.mousePosition;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(fromBackpack.GetComponent<RectTransform>(), mousePos, null, out Vector2 anchoredPosition);
-        fromBackpack.RemoveItemAt(anchoredPosition);
+
 
         
 

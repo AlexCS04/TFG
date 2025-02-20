@@ -10,12 +10,14 @@ public class Backpack : MonoBehaviour
     [SerializeField] private float cellSize;
 
     public Grid<InvItem> backpackContent; 
+    private RectTransform canvasRect;
+
+    private float peso;
 
     [SerializeField] private GameObject slotPrefab;
 
     private void Awake(){
-        backpackContent = new Grid<InvItem>(width, height, cellSize, transform.position);
-
+        
         
     }
     private void Start(){
@@ -29,6 +31,8 @@ public class Backpack : MonoBehaviour
         GetComponent<GridLayoutGroup>().cellSize = new Vector2(cellSize, cellSize);
 
         GetComponent<RectTransform>().sizeDelta = new Vector2(width, height) * cellSize;
+        canvasRect= GetComponentInParent<Canvas>().rootCanvas.GetComponent<RectTransform>();
+        backpackContent = new Grid<InvItem>(width, height, cellSize, GetComponent<RectTransform>().pivot);
 
         //GetComponent<RectTransform>().width = new Vector2(width, height) * cellSize;
 
@@ -37,9 +41,9 @@ public class Backpack : MonoBehaviour
         backpackContent.GetXY(worldPos, out int x, out int y);
         return new Vector2(x,y);
     }
-    public bool TryPutItem(InvItem invItem, Vector3 worldPos){
+    public bool TryPutItem(InvItem invItem, Vector2 gridPos){
 
-        Vector2 XY = GetGridPos(worldPos);
+        Vector2 XY = GetGridPos(gridPos);
         bool canFit=true;
         for (int i = 0; i < invItem.itemSO.sizeX; i++)
         {
@@ -75,6 +79,22 @@ public class Backpack : MonoBehaviour
         Debug.Log(XY);
 
     }
+    public void TwoItems(InvItem selected, InvItem reciving){
+        if(selected.itemSO!=reciving.itemSO){return;}//devolver selected
+        else{return;} //modificar cantidad
+    }
+    void Update()
+    {
+        if(Input.GetMouseButtonDown(0)){
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, Input.mousePosition, null, out Vector2 anchoredPos);
+            Vector2 relativePos = new Vector2(anchoredPos.x / canvasRect.rect.width, anchoredPos.y / canvasRect.rect.height);
 
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(GetComponent<RectTransform>(), anchoredPos, null, out Vector2 aa);
+            Debug.Log("Sin GG: "+ relativePos);
+            RemoveItemAt(aa);
+
+
+        }
+    }
 }
 

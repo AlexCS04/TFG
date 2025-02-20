@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class InvItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class InvItem : MonoBehaviour, IPointerDownHandler
 {
     
     public ItemSO itemSO;
@@ -14,19 +14,7 @@ public class InvItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         canvasGroup = GetComponent<CanvasGroup>();   
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        canvasGroup.alpha=.7f;
-        canvasGroup.blocksRaycasts=false;
-        BackpackManager.instance.StartDrag(this);
 
-    }
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        canvasGroup.alpha = 1f;
-        canvasGroup.blocksRaycasts = true;
-        BackpackManager.instance.EndDrag(this, myBackpack);
-    }
     public Dir GetDir(){
         return dir;
     }
@@ -59,10 +47,20 @@ public class InvItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         }
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
-        //ok
-    }
+        if(!BackpackManager.instance.HasItem()){
+            canvasGroup.alpha = .7f;
+            canvasGroup.blocksRaycasts = false;
+            BackpackManager.instance.StartDrag(this);
+        }
+        else{
+            canvasGroup.alpha = 1f;
+            canvasGroup.blocksRaycasts = true;
+            myBackpack.TwoItems(BackpackManager.instance.SelItem(), this);
+            BackpackManager.instance.EndDrag();
+        }
 
-    
+            
+    }
 }
