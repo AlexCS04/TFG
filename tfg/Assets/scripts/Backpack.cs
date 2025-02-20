@@ -32,6 +32,10 @@ public class Backpack : MonoBehaviour
         //GetComponent<RectTransform>().width = new Vector2(width, height) * cellSize;
 
     }
+    public Vector2 GetGridPos(Vector3 worldPos){
+        backpackContent.GetXY(worldPos, out int x, out int y);
+        return new Vector2(x,y);
+    }
     
 
     
