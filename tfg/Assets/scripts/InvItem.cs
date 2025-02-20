@@ -6,7 +6,7 @@ public class InvItem : MonoBehaviour, IPointerDownHandler
     
     public ItemSO itemSO;
     private Dir dir;
-    private CanvasGroup canvasGroup;
+    public CanvasGroup canvasGroup;
     public Backpack myBackpack;
 
     void Awake()
@@ -55,8 +55,8 @@ public class InvItem : MonoBehaviour, IPointerDownHandler
             BackpackManager.instance.StartDrag(this);
         }
         else{
-            canvasGroup.alpha = 1f;
-            canvasGroup.blocksRaycasts = true;
+            BackpackManager.instance.SelItem().canvasGroup.alpha = 1f;
+            BackpackManager.instance.SelItem().canvasGroup.blocksRaycasts = true;
             myBackpack.TwoItems(BackpackManager.instance.SelItem(), this);
             BackpackManager.instance.EndDrag();
         }
