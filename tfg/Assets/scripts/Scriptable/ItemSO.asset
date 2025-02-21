@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 157bd1b694e878443a0ad87ef8b01ab4, type: 3}
-  m_Name: ItemSO 2
+  m_Name: ItemSO
   m_EditorClassIdentifier: 
-  sizeX: 5
+  sizeX: 2
   sizeY: 2
   shape:
     rows:
+    - array: 0101000000000000
     - array: 0100000000000000
-    - array: 0000000000000000
     - array: 0000000000000000
     - array: 0000000000000000
     - array: 0000000000000000

@@ -15,14 +15,15 @@ public class Slot : MonoBehaviour, IPointerDownHandler
         mybackpack = b;
     }
 
-    public Vector2 Location(){
-        return new Vector2(xPos,yPos);
+    public Vector2Int Location(){
+        return new Vector2Int(xPos,yPos);
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         if(BackpackManager.instance.HasItem()){
-            mybackpack.TryPutItem(BackpackManager.instance.SelItem(), Location());
+            // mybackpack.TryPutItem(BackpackManager.instance.SelItem(), Location());
+            BackpackManager.instance.EndDrag(Location(), mybackpack);
         }
     }
 }

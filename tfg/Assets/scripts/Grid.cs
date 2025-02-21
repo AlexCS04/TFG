@@ -49,6 +49,9 @@ public class Grid<TGridObject>
             TriggerGridObjectChanged(x,y);
         }
     }
+    public void RemoveObjectAt(int x, int y){
+        SetGridObject(x,y,default);
+    }
 
     public void SetGridObject(Vector3 worldPosition, TGridObject value) {
         GetXY(worldPosition, out int x, out int y);
@@ -57,5 +60,11 @@ public class Grid<TGridObject>
 
     public void TriggerGridObjectChanged(int x, int y) {
         OnGridObjectChanged?.Invoke(this, new OnGridObjectChangedEventArgs { x = x, y = y });
+    }
+    public bool ValidPosition(int x, int y){
+        if (x >= 0 && y >= 0 && x < width && y < height) {
+           return true;
+        }   
+        return false;
     }
 }

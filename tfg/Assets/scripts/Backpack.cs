@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,46 +38,67 @@ public class Backpack : MonoBehaviour
         backpackContent.GetXY(worldPos, out int x, out int y);
         return new Vector2(x,y);
     }
-    public bool TryPutItem(InvItem invItem, Vector2 gridPos){
+    public bool TryPutItem(InvItem invItem, Vector2Int gridPos){
 
         bool canFit=true;
-        for (int i = 0; i < invItem.itemSO.sizeX; i++)
+        List<Vector2Int> invList = invItem.GetListPos(gridPos); //lista de posiciones del objeto en la grid
+
+        foreach (Vector2Int pos in invList)
         {
-            for (int j = 0; j < invItem.itemSO.sizeY; j++)
+            if (!backpackContent.ValidPosition(pos.x, pos.y))
             {
-                if(invItem.itemSO.shape.rows[i].array[j]){
-                    if(backpackContent.GetGridObject((int)gridPos.x+i, (int)gridPos.y+j)==null){}
-                    else if(backpackContent.GetGridObject((int)gridPos.x+i, (int)gridPos.y+j).itemSO!=invItem.itemSO){
-                        canFit=false;
-                        goto End;
-                    }
-                    else 
-                    {
-                        // manejo de cantidad
-                    }
-
-                }
-
+                canFit=false;
+                Debug.Log(pos);
+                Debug.Log("Invalid Pos");
+                break;
+            }
+            if(backpackContent.GetGridObject(pos.x,pos.y)==null){}
+            else if (backpackContent.GetGridObject(pos.x,pos.y).itemSO!=invItem.itemSO) {
+                canFit=false;
+                Debug.Log("Collide Diff Items");
+                break;
+            }
+            else{
+                // manejo cantidad
+                Debug.Log("Collide Items");
+                canFit=false;
+                break;
             }
         }
+        if(canFit){//añadirlo al grid
+            bool first=true;
+            foreach (Vector2Int pos in invList)
+            {
+                if(first){
+                    invItem.SetGridPos(pos.x,pos.y);
+                    first=false;
+                }
+                backpackContent.SetGridObject(pos.x,pos.y, invItem);
 
-
-        End:
-        if(canFit){
-            return true;//añadirlo al grid
+            }
+            
+            invItem.myBackpack=this;
+            invItem.transform.parent=transform.parent;
+            return true;
         }
+
         return false;
     }
 
-    public void RemoveItemAt(Vector3 worldPos){
-        Vector2 XY = GetGridPos(worldPos);
-        InvItem remItem=backpackContent.GetGridObject((int)XY.x, (int)XY.y);
+    public void RemoveItemAt(Vector2Int XY){
         Debug.Log(XY);
+        InvItem remItem=backpackContent.GetGridObject(XY.x, XY.y);
+        List<Vector2Int> invList =remItem.GetListPos(XY);
+        foreach (Vector2Int item in invList)
+        {
+            backpackContent.RemoveObjectAt(item.x,item.y);
+        }
+        //Debug.Log(XY);
 
     }
-    public void TwoItems(InvItem selected, InvItem reciving){
-        if(selected.itemSO!=reciving.itemSO){return;}//devolver selected
-        else{return;} //modificar cantidad
+    public bool TwoItems(InvItem selected, InvItem reciving){
+        if(selected.itemSO!=reciving.itemSO){return false;}//devolver selected
+        else{return false;} //modificar cantidad
     }
     void Update()
     {

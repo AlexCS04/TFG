@@ -13,10 +13,11 @@ public class ItemSO : ScriptableObject
 }
 public enum Dir
 {
-    Up,
     Right,
     Down,
-    Left
+    Left,
+    Up
+
 }
 [System.Serializable]
 public class BoolArray2D

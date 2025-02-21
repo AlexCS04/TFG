@@ -120,7 +120,13 @@ TextureImporter:
       pivot: {x: 0.25, y: 0.75}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -100, y: -100}
+        - {x: 0, y: -100}
+        - {x: 0, y: -7}
+        - {x: 100, y: -7}
+        - {x: 100, y: 100}
+        - {x: -100, y: 100}
       physicsShape:
       - - {x: -100, y: -100}
         - {x: 0, y: -100}

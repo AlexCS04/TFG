@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,6 +9,10 @@ public class InvItem : MonoBehaviour, IPointerDownHandler
     private Dir dir;
     public CanvasGroup canvasGroup;
     public Backpack myBackpack;
+
+    private Vector2Int gridPos;
+
+
 
     void Awake()
     {
@@ -37,30 +42,84 @@ public class InvItem : MonoBehaviour, IPointerDownHandler
                 break;
         }
     }
+    public List<Vector2Int> GetListPos(Vector2Int offset){
+        List<Vector2Int> gridPositionList = new List<Vector2Int>();
+        switch (dir)
+        {
+            
+            default:
+            case Dir.Up:
+                for (int x = 0; x < itemSO.sizeY; x++) {
+                    for (int y = 0; y < itemSO.sizeX; y++) {
+                        if (itemSO.shape.rows[y].array[x])
+                            gridPositionList.Add(offset + new Vector2Int(x, -y));
+                    }
+                }
+                break;
+            
+            case Dir.Right:
+                for (int x = 0; x < itemSO.sizeX; x++) {
+                    for (int y = 0; y < itemSO.sizeY; y++) {
+                        if (itemSO.shape.rows[x].array[y]){
+                            gridPositionList.Add(offset + new Vector2Int(x, y));
+                            Debug.Log(offset + new Vector2Int(x, y));
+                            }
+                    }
+                }
+                break;
+            
+            case Dir.Down:
+                for (int x = 0; x < itemSO.sizeY; x++) {
+                    for (int y = 0; y < itemSO.sizeX; y++) {
+                        if (itemSO.shape.rows[y].array[x])
+                            gridPositionList.Add(offset + new Vector2Int(-x, y));
+                    }
+                }
+                break;
+            
+            case Dir.Left:
+                for (int x = 0; x < itemSO.sizeX; x++) {
+                    for (int y = 0; y < itemSO.sizeY; y++) {
+                        if (itemSO.shape.rows[x].array[y])
+                            gridPositionList.Add(offset + new Vector2Int(-x, -y));
+                    }
+                }
+
+            break;
+            
+        }
+        return gridPositionList;
+    }
     public int GetRotationAngle(Dir dir) {
         switch (dir) {
             default:
-            case Dir.Down:  return 180;
-            case Dir.Left:  return 270;
-            case Dir.Up:    return 0;
-            case Dir.Right: return 90;
+            case Dir.Down:  return 90;
+            case Dir.Left:  return 180;
+            case Dir.Up:    return 270;
+            case Dir.Right: return 0;
         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         if(!BackpackManager.instance.HasItem()){
-            canvasGroup.alpha = .7f;
-            canvasGroup.blocksRaycasts = false;
             BackpackManager.instance.StartDrag(this);
         }
         else{
-            BackpackManager.instance.SelItem().canvasGroup.alpha = 1f;
-            BackpackManager.instance.SelItem().canvasGroup.blocksRaycasts = true;
             myBackpack.TwoItems(BackpackManager.instance.SelItem(), this);
-            BackpackManager.instance.EndDrag();
+            BackpackManager.instance.EndDrag(gridPos, myBackpack);
         }
 
-            
+
+    }
+    // void OnMouseDown()
+    // {
+    //     Debug.Log("mouse");
+    // }
+    public void SetGridPos(int x, int y){
+        gridPos=new Vector2Int(x,y);
+    }
+    public Vector2Int GetGridPos(){
+        return gridPos;
     }
 }
