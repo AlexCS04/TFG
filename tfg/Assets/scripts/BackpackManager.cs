@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BackpackManager : MonoBehaviour
 {
     public static BackpackManager instance {get; private set;}
 
     public float cellSize;
-    private InvItem invItem;
+    public InvItem invItem;
 
     // public RectTransform rect;
 

@@ -4,6 +4,10 @@ using UnityEngine;
 public class FloorBackpack: Backpack
 {
     [SerializeField] private GameObject itemPrefab;
+    void Start()
+    {
+        Debug.Log("A");
+    }
     public void PutItems(List<ItemSO> listItems){
         DeleteI();
         foreach (ItemSO item in listItems)
@@ -30,10 +34,10 @@ public class FloorBackpack: Backpack
     public void Bigger(ItemSO item){
         // int tHeight=height;
         height+=item.sizeY;
-        Debug.Log(height);
-        Debug.Log(backpackContent.GetHeight());
+        // Debug.Log(height);
+        // Debug.Log(backpackContent.GetHeight());
         backpackContent.MoreRoomY(height);
-        Debug.Log(backpackContent.GetHeight());
+        // Debug.Log(backpackContent.GetHeight());
         for (int i = transform.childCount-1; i >= 0; i--)
         {
             Destroy(transform.GetChild(i).gameObject);
@@ -60,7 +64,7 @@ public class FloorBackpack: Backpack
     private void DeleteI(){
         for (int i = 1; i < transform.parent.childCount; i++)
         {
-            Destroy(transform.parent.GetChild(i).gameObject);
+            DestroyImmediate(transform.parent.GetChild(i).gameObject);
         }
         backpackContent=new Grid<InvItem>(width, height, cellSize, GetComponent<RectTransform>().pivot);
 

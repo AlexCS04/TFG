@@ -22,6 +22,11 @@ public class Backpack : MonoBehaviour
     private string test;
 
     private void Start(){
+        
+        SetUp();
+
+    }
+    protected void SetUp(){
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
@@ -36,8 +41,6 @@ public class Backpack : MonoBehaviour
         canvasRect= GetComponentInParent<Canvas>().rootCanvas.GetComponent<RectTransform>();
         backpackContent = new Grid<InvItem>(width, height, cellSize, GetComponent<RectTransform>().pivot);
         GetComponentInParent<AdditionalBP>().ReSize();
-
-
     }
     public Vector2 GetGridPos(Vector3 worldPos){
         backpackContent.GetXY(worldPos, out int x, out int y);
