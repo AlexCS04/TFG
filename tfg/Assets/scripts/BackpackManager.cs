@@ -58,23 +58,16 @@ public class BackpackManager : MonoBehaviour
         invItem.canvasGroup.blocksRaycasts = true;
         if(b!=null){
             if(b.TryPutItem(invItem, pos)){
-                Debug.Log("posicionado");
+                // Debug.Log("posicionado");
                 //correct posicion
             }
             else{
-                Debug.Log("NOOO");
+                // Debug.Log("NOOO");
             }
         }
 
+
         invItem=null;
-
-
-
-        
-
-
-
-
 
     }
 

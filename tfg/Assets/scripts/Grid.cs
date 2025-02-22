@@ -48,9 +48,7 @@ public class Grid<TGridObject>
             gridArray[x,y] = value;
             TriggerGridObjectChanged(x,y);
         }
-        else{
-            Debug.Log("Out");
-        }
+
     }
     public void RemoveObjectAt(int x, int y){
         SetGridObject(x,y,default);

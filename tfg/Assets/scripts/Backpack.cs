@@ -50,20 +50,20 @@ public class Backpack : MonoBehaviour
             {
                 canFit=false;
                 Debug.Log(pos);
-                Debug.Log("Invalid Pos");
+                // Debug.Log("Invalid Pos");
                 break;
             }
             if(backpackContent.GetGridObject(pos.x,pos.y)==null){
-                Debug.Log("Nada");
+                // Debug.Log("Nada");
             }
             else if (backpackContent.GetGridObject(pos.x,pos.y).itemSO!=invItem.itemSO) {
                 canFit=false;
-                Debug.Log("Collide Diff Items");
+                // Debug.Log("Collide Diff Items");
                 break;
             }
             else{
                 // manejo cantidad
-                Debug.Log("Collide Items");
+                // Debug.Log("Collide Items");
                 canFit=false;
                 tt=TwoItems(invItem, backpackContent.GetGridObject(pos.x,pos.y));
                 break;
@@ -115,9 +115,7 @@ public class Backpack : MonoBehaviour
                 backpackContent.RemoveObjectAt(item.x,item.y);
             }
         }
-        else{
-            
-        }
+
 
     }
     public bool TwoItems(InvItem selected, InvItem reciving){
