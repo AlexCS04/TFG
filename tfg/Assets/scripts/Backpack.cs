@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class Backpack : MonoBehaviour
 {
-    [SerializeField] private int width;
-    [SerializeField] private int height;
-    [SerializeField] private float cellSize;
+    [SerializeField] protected int width;
+    [SerializeField] protected int height;
+    [SerializeField] protected float cellSize;
 
     [SerializeField] private bool floor;
 
@@ -17,7 +17,7 @@ public class Backpack : MonoBehaviour
 
     private float peso;
 
-    [SerializeField] private GameObject slotPrefab;
+    [SerializeField] protected GameObject slotPrefab;
 
     private string test;
 
@@ -91,14 +91,15 @@ public class Backpack : MonoBehaviour
             invItem.GetComponent<RectTransform>().anchoredPosition=  new Vector2((invItem.GetGridPos().x+invItem.GetRotationOffset().x)*cellSize,-(invItem.GetGridPos().y+invItem.GetRotationOffset().y)*cellSize);
             return true;
         }else{
-            if (!tt)
+            if (tt)
             {
-                ReturnItem(invItem, iDir);
-                //devolver item
+                // ReturnItem(invItem, iDir); !tt
+                return true;
+               
             }
         }
-        
 
+        //devolver item
         return false;
     }
 
@@ -177,7 +178,7 @@ public class Backpack : MonoBehaviour
             });
 
         }
-
+        Debug.Log(test);
         return JsonUtility.ToJson(new ListSaveItem { listSaveItems = addItemTetrisList });
     }
     public void LoadBContent(string json){
@@ -187,6 +188,13 @@ public class Backpack : MonoBehaviour
             TryPutItem(InvItemAssets.instance.GetItemSO(addItemTetris.itemTetrisSOName, addItemTetris.dir), addItemTetris.gridPosition, addItemTetris.dir);
         }
     }
+
+
+
+
+
+
+    
 }
 [Serializable]
 public struct SaveItem{

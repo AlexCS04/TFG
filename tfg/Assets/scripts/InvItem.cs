@@ -25,6 +25,9 @@ public class InvItem : MonoBehaviour, IPointerDownHandler
     }
     void Start()
     {
+        SetUp();
+    }
+    public void SetUp(){
         GetComponent<Image>().sprite = itemSO.sprite;
         GetComponent<RectTransform>().anchorMax= new Vector2(0,1);
         GetComponent<RectTransform>().anchorMin=new Vector2(0,1);
@@ -33,7 +36,6 @@ public class InvItem : MonoBehaviour, IPointerDownHandler
         GetComponent<RectTransform>().rotation= Quaternion.Euler(0,0,-GetRotationAngle());
         equipType=itemSO.equipType;
     }
-
 
     public Dir GetDir(){
         return dir;

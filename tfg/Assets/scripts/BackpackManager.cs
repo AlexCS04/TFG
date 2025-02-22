@@ -7,9 +7,9 @@ public class BackpackManager : MonoBehaviour
     public float cellSize;
     private InvItem invItem;
 
-    public RectTransform rect;
+    // public RectTransform rect;
 
-    private Vector3 mouseDragAnchoredPositionOffset;
+    // private Vector3 mouseDragAnchoredPositionOffset;
 
     void Awake()
     {
@@ -20,11 +20,11 @@ public class BackpackManager : MonoBehaviour
     {
         if(invItem!=null){
 
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, Input.mousePosition, null, out Vector2 targetPosition);
+            // RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, Input.mousePosition, null, out Vector2 targetPosition);
             // targetPosition += new Vector2(-mouseDragAnchoredPositionOffset.x, -mouseDragAnchoredPositionOffset.y);
             //targetPosition.x = Mathf.Floor(targetPosition.x  / cellSize) * cellSize;
             //targetPosition.y = Mathf.Floor(targetPosition.y / cellSize) * cellSize;
-            targetPosition=Input.mousePosition;
+            Vector2 targetPosition=Input.mousePosition;
 
             // invItem.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(invItem.GetComponent<RectTransform>().anchoredPosition, targetPosition, Time.deltaTime * 20f);
             invItem.transform.position = Vector3.Lerp(invItem.transform.position, targetPosition, Time.deltaTime*20f);
@@ -54,8 +54,8 @@ public class BackpackManager : MonoBehaviour
         invItem.GetComponent<RectTransform>().sizeDelta=new Vector2(invItem.itemSO.sizeX*cellSize,invItem.itemSO.sizeY*cellSize);
 
 
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, Input.mousePosition, null, out Vector2 anchoredPos);
-        mouseDragAnchoredPositionOffset = anchoredPos - invItem.GetComponent<RectTransform>().anchoredPosition;
+        // RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, Input.mousePosition, null, out Vector2 anchoredPos);
+        // mouseDragAnchoredPositionOffset = anchoredPos - invItem.GetComponent<RectTransform>().anchoredPosition;
 
         invItem.myBackpack.RemoveItemAt(invItem.GetGridPos());
         
@@ -72,6 +72,7 @@ public class BackpackManager : MonoBehaviour
             }
             else{
                 // Debug.Log("NOOO");
+                b.ReturnItem(invItem, invItem.inictialDir);
             }
         }
 

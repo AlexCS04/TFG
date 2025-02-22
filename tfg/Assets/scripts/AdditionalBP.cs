@@ -7,7 +7,7 @@ public class AdditionalBP : MonoBehaviour
 
 
     public void ReSize(){
-        sonRect= transform.GetChild(transform.childCount-1) as RectTransform;
+        sonRect= transform.GetChild(0) as RectTransform;
         rect = GetComponent<RectTransform>();
         rect.sizeDelta=sonRect.sizeDelta;
 

@@ -68,4 +68,19 @@ public class Grid<TGridObject>
         }   
         return false;
     }
+    public void MoreRoomY(int y){
+        height=y;
+        TGridObject[,] temp = new TGridObject[width,height];
+        for (int i = 0; i < gridArray.GetLongLength(0); i++)
+        {
+            for (int j = 0; j < gridArray.GetLongLength(1); j++)
+            {
+                temp[i,j]=gridArray[i,j];
+            }
+        }
+        gridArray=temp;
+    }
+    public int GetHeight(){
+        return height;
+    }
 }
