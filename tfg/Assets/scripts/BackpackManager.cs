@@ -28,7 +28,11 @@ public class BackpackManager : MonoBehaviour
 
             // invItem.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(invItem.GetComponent<RectTransform>().anchoredPosition, targetPosition, Time.deltaTime * 20f);
             invItem.transform.position = Vector3.Lerp(invItem.transform.position, targetPosition, Time.deltaTime*20f);
-
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                invItem.NextDir();
+                invItem.GetComponent<RectTransform>().rotation= Quaternion.Euler(0,0,-invItem.GetRotationAngle());
+            }
 
         }   
     }
@@ -57,7 +61,7 @@ public class BackpackManager : MonoBehaviour
         invItem.canvasGroup.alpha = 1f;
         invItem.canvasGroup.blocksRaycasts = true;
         if(b!=null){
-            if(b.TryPutItem(invItem, pos)){
+            if(b.TryPutItem(invItem, pos, invItem.inictialDir)){
                 // Debug.Log("posicionado");
                 //correct posicion
             }

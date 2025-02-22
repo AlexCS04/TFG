@@ -38,7 +38,7 @@ public class Backpack : MonoBehaviour
         backpackContent.GetXY(worldPos, out int x, out int y);
         return new Vector2(x,y);
     }
-    public bool TryPutItem(InvItem invItem, Vector2Int gridPos){
+    public bool TryPutItem(InvItem invItem, Vector2Int gridPos, Dir iDir){
 
         bool canFit=true;
         bool tt= false;
@@ -49,7 +49,7 @@ public class Backpack : MonoBehaviour
             if (!backpackContent.ValidPosition(pos.x, pos.y))
             {
                 canFit=false;
-                Debug.Log(pos);
+                // Debug.Log(pos);
                 // Debug.Log("Invalid Pos");
                 break;
             }
@@ -83,13 +83,15 @@ public class Backpack : MonoBehaviour
             
             invItem.myBackpack=this;
             invItem.transform.SetParent(transform.parent);
-            invItem.GetComponent<RectTransform>().anchoredPosition=  new Vector2(invItem.GetGridPos().x*cellSize,-invItem.GetGridPos().y*cellSize);
+            invItem.GetComponent<RectTransform>().anchoredPosition=  new Vector2((invItem.GetGridPos().x+invItem.GetRotationOffset().x)*cellSize,-(invItem.GetGridPos().y+invItem.GetRotationOffset().y)*cellSize);
             return true;
         }else{
             if (!tt)
             {
                 invItem.transform.SetParent(invItem.myBackpack.transform.parent);
-                invItem.GetComponent<RectTransform>().anchoredPosition=  new Vector2(invItem.GetGridPos().x*cellSize,-invItem.GetGridPos().y*cellSize);
+                invItem.SetDir(iDir);
+                invItem.GetComponent<RectTransform>().rotation= Quaternion.Euler(0,0,-invItem.GetRotationAngle());
+                invItem.GetComponent<RectTransform>().anchoredPosition=  new Vector2((invItem.GetGridPos().x+invItem.GetRotationOffset().x)*cellSize,-(invItem.GetGridPos().y+invItem.GetRotationOffset().y)*cellSize);
                 invList=invItem.GetListPos(invItem.GetGridPos());
                 foreach (Vector2Int pos in invList)
                 {

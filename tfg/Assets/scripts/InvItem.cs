@@ -9,6 +9,7 @@ public class InvItem : MonoBehaviour, IPointerDownHandler
 
     public int cantidad=1;
     private Dir dir;
+    public Dir inictialDir;
     public CanvasGroup canvasGroup;
     public Backpack myBackpack;
 
@@ -92,7 +93,7 @@ public class InvItem : MonoBehaviour, IPointerDownHandler
         }
         return gridPositionList;
     }
-    public int GetRotationAngle(Dir dir) {
+    public int GetRotationAngle() {
         switch (dir) {
             default:
             case Dir.Down:  return 90;
@@ -101,10 +102,22 @@ public class InvItem : MonoBehaviour, IPointerDownHandler
             case Dir.Right: return 0;
         }
     }
-
+    public Vector2Int GetRotationOffset() {
+        switch (dir) {
+            default:
+            case Dir.Right:  return new Vector2Int(0, 0);
+            case Dir.Up:  return new Vector2Int(0, 1);
+            case Dir.Left:    return new Vector2Int(1, 1);
+            case Dir.Down: return new Vector2Int(1, 0);
+        }
+    }
+    public void SetDir(Dir d){
+        dir=d;
+    }
     public void OnPointerDown(PointerEventData eventData)
     {
         if(!BackpackManager.instance.HasItem()){
+            inictialDir=dir;
             BackpackManager.instance.StartDrag(this);
         }
         else{

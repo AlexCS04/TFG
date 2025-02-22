@@ -16,7 +16,10 @@ public class Equipment : MonoBehaviour, IPointerDownHandler
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        
+        if (BackpackManager.instance.HasItem())
+        {
+            
+        }
     }
 }
 public enum EquipType{
