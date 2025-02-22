@@ -49,6 +49,11 @@ public class BackpackManager : MonoBehaviour
         invItem.canvasGroup.alpha = .7f;
         invItem.canvasGroup.blocksRaycasts = false;
         invItem.transform.SetParent(transform.root);
+        invItem.GetComponent<RectTransform>().anchorMax= new Vector2(0,1);
+        invItem.GetComponent<RectTransform>().anchorMin=new Vector2(0,1);
+        invItem.GetComponent<RectTransform>().sizeDelta=new Vector2(invItem.itemSO.sizeX*cellSize,invItem.itemSO.sizeY*cellSize);
+
+
         RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, Input.mousePosition, null, out Vector2 anchoredPos);
         mouseDragAnchoredPositionOffset = anchoredPos - invItem.GetComponent<RectTransform>().anchoredPosition;
 
@@ -73,6 +78,26 @@ public class BackpackManager : MonoBehaviour
 
         invItem=null;
 
+    }
+    public void EndDrag(Equipment slot){
+        invItem.canvasGroup.alpha = 1f;
+        invItem.canvasGroup.blocksRaycasts = true;
+        if(slot.equipType.Equals(invItem.equipType)){
+            invItem.SetDir(Dir.Right);
+            invItem.GetComponent<RectTransform>().rotation= Quaternion.Euler(0,0,-invItem.GetRotationAngle());
+            invItem.transform.SetParent(slot.transform);
+            invItem.GetComponent<RectTransform>().anchorMax= new Vector2(1,1);
+            invItem.GetComponent<RectTransform>().anchorMin=new Vector2(0,0);
+            invItem.GetComponent<RectTransform>().anchoredPosition=new Vector3(0,0,0);
+            invItem.GetComponent<RectTransform>().sizeDelta=new Vector2(0,0);
+
+
+        }
+        else{
+            invItem.myBackpack.ReturnItem(invItem,invItem.inictialDir);
+            
+        }
+        invItem=null;
     }
 
 }

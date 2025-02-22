@@ -25,3 +25,5 @@ MonoBehaviour:
     - array: 0000000000000000
     - array: 0000000000000000
     - array: 0000000000000000
+  sprite: {fileID: 8819742045820206849, guid: 4c67e9a2727caae4781f8b413028725e, type: 3}
+  equipType: 5

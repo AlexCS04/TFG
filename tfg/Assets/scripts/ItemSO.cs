@@ -8,6 +8,9 @@ public class ItemSO : ScriptableObject
     public int maxStack;
     public BoolArray2D shape = new BoolArray2D(8);
 
+    public Sprite sprite;
+
+    public EquipType equipType;
     
     
     //public MultiDimensionalBool[] myBoolArray;

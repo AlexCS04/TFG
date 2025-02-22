@@ -18,7 +18,7 @@ public class Equipment : MonoBehaviour, IPointerDownHandler
     {
         if (BackpackManager.instance.HasItem())
         {
-            
+            BackpackManager.instance.EndDrag(this);
         }
     }
 }

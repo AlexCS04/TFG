@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class InvItem : MonoBehaviour, IPointerDownHandler
 {
     
     public ItemSO itemSO;
-
+    public EquipType equipType;
     public int cantidad=1;
     private Dir dir;
     public Dir inictialDir;
@@ -20,6 +21,15 @@ public class InvItem : MonoBehaviour, IPointerDownHandler
     void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();   
+        
+    }
+    void Start()
+    {
+        GetComponent<RectTransform>().anchorMax= new Vector2(0,1);
+        GetComponent<RectTransform>().anchorMin=new Vector2(0,1);
+        GetComponent<RectTransform>().sizeDelta=new Vector2(itemSO.sizeX*BackpackManager.instance.cellSize,itemSO.sizeY*BackpackManager.instance.cellSize);
+        GetComponent<Image>().sprite = itemSO.sprite;
+        equipType=itemSO.equipType;
     }
 
 
@@ -116,21 +126,22 @@ public class InvItem : MonoBehaviour, IPointerDownHandler
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        if(!BackpackManager.instance.HasItem()){
-            inictialDir=dir;
-            BackpackManager.instance.StartDrag(this);
-        }
-        else{
-            //myBackpack.TwoItems(BackpackManager.instance.SelItem(), this);
-            BackpackManager.instance.EndDrag(gridPos, myBackpack);
+        if (eventData.button.Equals(PointerEventData.InputButton.Left))
+        {
+
+            
+            if(!BackpackManager.instance.HasItem()){
+                inictialDir=dir;
+                BackpackManager.instance.StartDrag(this);
+            }
+            else{
+                //myBackpack.TwoItems(BackpackManager.instance.SelItem(), this);
+                BackpackManager.instance.EndDrag(gridPos, myBackpack);
+            }
         }
 
 
     }
-    // void OnMouseDown()
-    // {
-    //     Debug.Log("mouse");
-    // }
     public void SetGridPos(int x, int y){
         gridPos=new Vector2Int(x,y);
     }

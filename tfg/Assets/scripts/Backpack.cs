@@ -88,16 +88,7 @@ public class Backpack : MonoBehaviour
         }else{
             if (!tt)
             {
-                invItem.transform.SetParent(invItem.myBackpack.transform.parent);
-                invItem.SetDir(iDir);
-                invItem.GetComponent<RectTransform>().rotation= Quaternion.Euler(0,0,-invItem.GetRotationAngle());
-                invItem.GetComponent<RectTransform>().anchoredPosition=  new Vector2((invItem.GetGridPos().x+invItem.GetRotationOffset().x)*cellSize,-(invItem.GetGridPos().y+invItem.GetRotationOffset().y)*cellSize);
-                invList=invItem.GetListPos(invItem.GetGridPos());
-                foreach (Vector2Int pos in invList)
-                {
-                    invItem.myBackpack.backpackContent.SetGridObject(pos.x,pos.y, invItem);
-
-                }
+                ReturnItem(invItem, iDir);
                 //devolver item
             }
         }
@@ -119,6 +110,17 @@ public class Backpack : MonoBehaviour
         }
 
 
+    }
+    public void ReturnItem(InvItem invItem, Dir iDir){
+        invItem.transform.SetParent(invItem.myBackpack.transform.parent);
+        invItem.SetDir(iDir);
+        invItem.GetComponent<RectTransform>().rotation= Quaternion.Euler(0,0,-invItem.GetRotationAngle());
+        invItem.GetComponent<RectTransform>().anchoredPosition=  new Vector2((invItem.GetGridPos().x+invItem.GetRotationOffset().x)*cellSize,-(invItem.GetGridPos().y+invItem.GetRotationOffset().y)*cellSize);
+        List<Vector2Int> invList= invItem.GetListPos(invItem.GetGridPos());
+        foreach (Vector2Int pos in invList)
+        {
+            invItem.myBackpack.backpackContent.SetGridObject(pos.x,pos.y, invItem);
+        }
     }
     public bool TwoItems(InvItem selected, InvItem reciving){
         if(selected.itemSO!=reciving.itemSO){return false;}//devolver selected
