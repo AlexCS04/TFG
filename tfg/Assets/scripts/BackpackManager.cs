@@ -44,7 +44,7 @@ public class BackpackManager : MonoBehaviour
         invItem=item;
         invItem.canvasGroup.alpha = .7f;
         invItem.canvasGroup.blocksRaycasts = false;
-        invItem.transform.parent=transform.root;
+        invItem.transform.SetParent(transform.root);
         RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, Input.mousePosition, null, out Vector2 anchoredPos);
         mouseDragAnchoredPositionOffset = anchoredPos - invItem.GetComponent<RectTransform>().anchoredPosition;
 

@@ -5,7 +5,9 @@ public class ItemSO : ScriptableObject
 {
     public int sizeX;
     public int sizeY;
+    public int maxStack;
     public BoolArray2D shape = new BoolArray2D(8);
+
     
     
     //public MultiDimensionalBool[] myBoolArray;

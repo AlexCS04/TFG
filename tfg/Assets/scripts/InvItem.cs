@@ -6,6 +6,8 @@ public class InvItem : MonoBehaviour, IPointerDownHandler
 {
     
     public ItemSO itemSO;
+
+    public int cantidad=1;
     private Dir dir;
     public CanvasGroup canvasGroup;
     public Backpack myBackpack;
@@ -62,7 +64,7 @@ public class InvItem : MonoBehaviour, IPointerDownHandler
                     for (int y = 0; y < itemSO.sizeY; y++) {
                         if (itemSO.shape.rows[x].array[y]){
                             gridPositionList.Add(offset + new Vector2Int(x, y));
-                            Debug.Log(offset + new Vector2Int(x, y));
+                            // Debug.Log(offset + new Vector2Int(x, y));
                             }
                     }
                 }
@@ -106,7 +108,7 @@ public class InvItem : MonoBehaviour, IPointerDownHandler
             BackpackManager.instance.StartDrag(this);
         }
         else{
-            myBackpack.TwoItems(BackpackManager.instance.SelItem(), this);
+            //myBackpack.TwoItems(BackpackManager.instance.SelItem(), this);
             BackpackManager.instance.EndDrag(gridPos, myBackpack);
         }
 

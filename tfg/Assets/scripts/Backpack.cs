@@ -41,6 +41,7 @@ public class Backpack : MonoBehaviour
     public bool TryPutItem(InvItem invItem, Vector2Int gridPos){
 
         bool canFit=true;
+        bool tt= false;
         List<Vector2Int> invList = invItem.GetListPos(gridPos); //lista de posiciones del objeto en la grid
 
         foreach (Vector2Int pos in invList)
@@ -52,7 +53,9 @@ public class Backpack : MonoBehaviour
                 Debug.Log("Invalid Pos");
                 break;
             }
-            if(backpackContent.GetGridObject(pos.x,pos.y)==null){}
+            if(backpackContent.GetGridObject(pos.x,pos.y)==null){
+                Debug.Log("Nada");
+            }
             else if (backpackContent.GetGridObject(pos.x,pos.y).itemSO!=invItem.itemSO) {
                 canFit=false;
                 Debug.Log("Collide Diff Items");
@@ -62,6 +65,7 @@ public class Backpack : MonoBehaviour
                 // manejo cantidad
                 Debug.Log("Collide Items");
                 canFit=false;
+                tt=TwoItems(invItem, backpackContent.GetGridObject(pos.x,pos.y));
                 break;
             }
         }
@@ -78,27 +82,62 @@ public class Backpack : MonoBehaviour
             }
             
             invItem.myBackpack=this;
-            invItem.transform.parent=transform.parent;
+            invItem.transform.SetParent(transform.parent);
+            invItem.GetComponent<RectTransform>().anchoredPosition=  new Vector2(invItem.GetGridPos().x*cellSize,-invItem.GetGridPos().y*cellSize);
             return true;
+        }else{
+            if (!tt)
+            {
+                invItem.transform.SetParent(invItem.myBackpack.transform.parent);
+                invItem.GetComponent<RectTransform>().anchoredPosition=  new Vector2(invItem.GetGridPos().x*cellSize,-invItem.GetGridPos().y*cellSize);
+                invList=invItem.GetListPos(invItem.GetGridPos());
+                foreach (Vector2Int pos in invList)
+                {
+                    invItem.myBackpack.backpackContent.SetGridObject(pos.x,pos.y, invItem);
+
+                }
+                //devolver item
+            }
         }
+        
 
         return false;
     }
 
     public void RemoveItemAt(Vector2Int XY){
-        Debug.Log(XY);
+        
         InvItem remItem=backpackContent.GetGridObject(XY.x, XY.y);
-        List<Vector2Int> invList =remItem.GetListPos(XY);
-        foreach (Vector2Int item in invList)
+        if (remItem!=null)
         {
-            backpackContent.RemoveObjectAt(item.x,item.y);
+            List<Vector2Int> invList =remItem.GetListPos(XY);
+            foreach (Vector2Int item in invList)
+            {
+                backpackContent.RemoveObjectAt(item.x,item.y);
+            }
         }
-        //Debug.Log(XY);
+        else{
+            
+        }
 
     }
     public bool TwoItems(InvItem selected, InvItem reciving){
         if(selected.itemSO!=reciving.itemSO){return false;}//devolver selected
-        else{return false;} //modificar cantidad
+        else{//modificar cantidad
+
+            int dar = reciving.itemSO.maxStack - (selected.cantidad + reciving.cantidad);
+            if (dar <= 0) dar = reciving.itemSO.maxStack - reciving.cantidad;
+            else dar = selected.cantidad;
+            reciving.cantidad += dar;
+            selected.cantidad -= dar;
+            if (selected.cantidad <= 0)
+            {
+                Destroy(selected.gameObject);
+                return true;
+            }            
+            
+            
+            return false;
+        } 
     }
     void Update()
     {
