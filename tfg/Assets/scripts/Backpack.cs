@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,9 @@ public class Backpack : MonoBehaviour
     [SerializeField] private int height;
     [SerializeField] private float cellSize;
 
+    [SerializeField] private bool floor;
+
+    public bool isFloor(){return floor;}
     public Grid<InvItem> backpackContent; 
     private RectTransform canvasRect;
 
@@ -15,6 +19,7 @@ public class Backpack : MonoBehaviour
 
     [SerializeField] private GameObject slotPrefab;
 
+    private string test;
 
     private void Start(){
         for (int i = 0; i < width; i++)
@@ -143,7 +148,54 @@ public class Backpack : MonoBehaviour
     }
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.S)){
+            test=SaveBContent();
+            Debug.Log(test);
+        }
+        if(Input.GetKeyDown(KeyCode.L)){
+            LoadBContent(test);
+        }
 
     }
-}
+    public string SaveBContent(){
+        List<InvItem> placedObjectList = new List<InvItem>();
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                if (backpackContent.GetGridObject(x, y)!=null) {
+                    placedObjectList.Remove(backpackContent.GetGridObject(x, y));
+                    placedObjectList.Add(backpackContent.GetGridObject(x, y));
+                }
+            }
+        }
 
+        List<SaveItem> addItemTetrisList = new List<SaveItem>();
+        foreach (InvItem placedObject in placedObjectList) {
+            addItemTetrisList.Add(new SaveItem {
+                dir = placedObject.GetDir(),
+                gridPosition = placedObject.GetGridPos(),
+                itemTetrisSOName = placedObject.itemSO.name,
+            });
+
+        }
+
+        return JsonUtility.ToJson(new ListSaveItem { listSaveItems = addItemTetrisList });
+    }
+    public void LoadBContent(string json){
+        ListSaveItem listAddItemTetris = JsonUtility.FromJson<ListSaveItem>(json);
+
+        foreach (SaveItem addItemTetris in listAddItemTetris.listSaveItems) {
+            TryPutItem(InvItemAssets.instance.GetItemSO(addItemTetris.itemTetrisSOName, addItemTetris.dir), addItemTetris.gridPosition, addItemTetris.dir);
+        }
+    }
+}
+[Serializable]
+public struct SaveItem{
+
+    public string itemTetrisSOName;
+    public Vector2Int gridPosition;
+    public Dir dir;
+}
+[Serializable]
+public struct ListSaveItem{
+    public List<SaveItem> listSaveItems;
+}

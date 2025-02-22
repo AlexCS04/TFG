@@ -25,10 +25,12 @@ public class InvItem : MonoBehaviour, IPointerDownHandler
     }
     void Start()
     {
+        GetComponent<Image>().sprite = itemSO.sprite;
         GetComponent<RectTransform>().anchorMax= new Vector2(0,1);
         GetComponent<RectTransform>().anchorMin=new Vector2(0,1);
         GetComponent<RectTransform>().sizeDelta=new Vector2(itemSO.sizeX*BackpackManager.instance.cellSize,itemSO.sizeY*BackpackManager.instance.cellSize);
-        GetComponent<Image>().sprite = itemSO.sprite;
+        GetComponent<RectTransform>().localScale=new Vector3(1,1,1);
+        GetComponent<RectTransform>().rotation= Quaternion.Euler(0,0,-GetRotationAngle());
         equipType=itemSO.equipType;
     }
 
