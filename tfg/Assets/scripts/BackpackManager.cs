@@ -47,8 +47,7 @@ public class BackpackManager : MonoBehaviour
 
     public void StartDrag(InvItem item){
         invItem=item;
-        invItem.canvasGroup.alpha = .7f;
-        invItem.canvasGroup.blocksRaycasts = false;
+        SetCanvas(0.7f, false);
         invItem.transform.SetParent(transform.root);
         invItem.GetComponent<RectTransform>().anchorMax= new Vector2(0,1);
         invItem.GetComponent<RectTransform>().anchorMin=new Vector2(0,1);
@@ -64,8 +63,7 @@ public class BackpackManager : MonoBehaviour
     }
     public void EndDrag(Vector2Int pos, Backpack b){
 
-        invItem.canvasGroup.alpha = 1f;
-        invItem.canvasGroup.blocksRaycasts = true;
+        SetCanvas(1f, true);
         if(b!=null){
             if(b.TryPutItem(invItem, pos, invItem.inictialDir)){
                 // Debug.Log("posicionado");
@@ -81,9 +79,16 @@ public class BackpackManager : MonoBehaviour
         invItem=null;
 
     }
+    private void SetCanvas(float alpha, bool raycast)
+    {
+        invItem.canvasGroup.alpha = alpha;
+        for (int i = 0; i < invItem.transform.childCount; i++)
+        {
+            invItem.transform.GetChild(i).GetComponent<CanvasGroup>().blocksRaycasts = raycast;   
+        }
+    }
     public void EndDrag(Equipment slot){
-        invItem.canvasGroup.alpha = 1f;
-        invItem.canvasGroup.blocksRaycasts = true;
+        SetCanvas(1f, true);
         if(slot.equipType.Equals(invItem.equipType)){
             invItem.SetDir(Dir.Right);
             invItem.GetComponent<RectTransform>().rotation= Quaternion.Euler(0,0,-invItem.GetRotationAngle());

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InvItem : MonoBehaviour, IPointerDownHandler
+public class InvItem : MonoBehaviour//, IPointerDownHandler
 {
     
     public ItemSO itemSO;
@@ -13,6 +13,7 @@ public class InvItem : MonoBehaviour, IPointerDownHandler
     public Dir inictialDir;
     public CanvasGroup canvasGroup;
     public Backpack myBackpack;
+    [SerializeField] private GameObject sonPrefab;
 
     private Vector2Int gridPos;
 
@@ -35,6 +36,14 @@ public class InvItem : MonoBehaviour, IPointerDownHandler
         GetComponent<RectTransform>().localScale=new Vector3(1,1,1);
         GetComponent<RectTransform>().rotation= Quaternion.Euler(0,0,-GetRotationAngle());
         equipType=itemSO.equipType;
+        List<Vector2Int> list = GetListPos(new Vector2Int(0,0));
+        foreach (Vector2Int item in list)
+        {
+            GameObject g = Instantiate(sonPrefab,transform);
+            g.GetComponent<RectTransform>().localPosition = new Vector3(item.y * BackpackManager.instance.cellSize, -item.x * BackpackManager.instance.cellSize, 0);
+            g.GetComponent<RectTransform>().sizeDelta = new Vector2(BackpackManager.instance.cellSize, BackpackManager.instance.cellSize);
+        }
+
     }
 
     public Dir GetDir(){
@@ -128,24 +137,24 @@ public class InvItem : MonoBehaviour, IPointerDownHandler
     public void SetDir(Dir d){
         dir=d;
     }
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        if (eventData.button.Equals(PointerEventData.InputButton.Left))
-        {
+    //public void OnPointerDown(PointerEventData eventData)
+    //{
+    //    if (eventData.button.Equals(PointerEventData.InputButton.Left))
+    //    {
 
             
-            if(!BackpackManager.instance.HasItem()){
-                inictialDir=dir;
-                BackpackManager.instance.StartDrag(this);
-            }
-            else{
-                //myBackpack.TwoItems(BackpackManager.instance.SelItem(), this);
-                BackpackManager.instance.EndDrag(gridPos, myBackpack);
-            }
-        }
+    //        if(!BackpackManager.instance.HasItem()){
+    //            inictialDir=dir;
+    //            BackpackManager.instance.StartDrag(this);
+    //        }
+    //        else{
+    //            //myBackpack.TwoItems(BackpackManager.instance.SelItem(), this);
+    //            BackpackManager.instance.EndDrag(gridPos, myBackpack);
+    //        }
+    //    }
 
 
-    }
+    //}
     public void SetGridPos(int x, int y){
         gridPos=new Vector2Int(x,y);
     }
