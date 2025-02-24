@@ -6,10 +6,11 @@ public class FloorBackpack: Backpack
     [SerializeField] private GameObject itemPrefab;
     void Start()
     {
-        Debug.Log("A");
+        //Debug.Log("A");
     }
     public void PutItems(List<ItemSO> listItems){
         DeleteI();
+        stack= false; 
         foreach (ItemSO item in listItems)
         {
             GameObject invItem = Instantiate(itemPrefab);
@@ -30,6 +31,7 @@ public class FloorBackpack: Backpack
             goto TryAgain;
             Next:;
         }
+        stack = true;
     }
     public void Bigger(ItemSO item){
         // int tHeight=height;
@@ -69,4 +71,5 @@ public class FloorBackpack: Backpack
         backpackContent=new Grid<InvItem>(width, height, cellSize, GetComponent<RectTransform>().pivot);
 
     }
+
 }

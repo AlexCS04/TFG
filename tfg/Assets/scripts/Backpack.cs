@@ -11,6 +11,8 @@ public class Backpack : MonoBehaviour
 
     [SerializeField] private bool floor;
 
+    protected bool stack=true;
+
     public bool isFloor(){return floor;}
     public Grid<InvItem> backpackContent; 
     private RectTransform canvasRect;
@@ -132,23 +134,28 @@ public class Backpack : MonoBehaviour
         }
     }
     public bool TwoItems(InvItem selected, InvItem reciving){
-        if(selected.itemSO!=reciving.itemSO){return false;}//devolver selected
-        else{//modificar cantidad
+        if (stack)
+        {
+            if (selected.itemSO != reciving.itemSO) { return false; }//devolver selected
+            else
+            {//modificar cantidad
 
-            int dar = reciving.itemSO.maxStack - (selected.cantidad + reciving.cantidad);
-            if (dar <= 0) dar = reciving.itemSO.maxStack - reciving.cantidad;
-            else dar = selected.cantidad;
-            reciving.cantidad += dar;
-            selected.cantidad -= dar;
-            if (selected.cantidad <= 0)
-            {
-                Destroy(selected.gameObject);
-                return true;
-            }            
-            
-            
-            return false;
-        } 
+                int dar = reciving.itemSO.maxStack - (selected.cantidad + reciving.cantidad);
+                if (dar <= 0) dar = reciving.itemSO.maxStack - reciving.cantidad;
+                else dar = selected.cantidad;
+                reciving.cantidad += dar;
+                selected.cantidad -= dar;
+                if (selected.cantidad <= 0)
+                {
+                    Destroy(selected.gameObject);
+                    return true;
+                }
+
+
+                return false;
+            }
+        }
+        else return false;
     }
     void Update()
     {
@@ -191,10 +198,6 @@ public class Backpack : MonoBehaviour
             TryPutItem(InvItemAssets.instance.GetItemSO(addItemTetris.itemTetrisSOName, addItemTetris.dir), addItemTetris.gridPosition, addItemTetris.dir);
         }
     }
-
-
-
-
 
 
     
