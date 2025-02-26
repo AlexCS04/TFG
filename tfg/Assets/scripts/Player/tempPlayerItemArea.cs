@@ -6,7 +6,7 @@ public class tempPlayerItemArea : MonoBehaviour
     
     [SerializeField] private GameObject inv;
     [SerializeField] private FloorBackpack floor;
-    [SerializeField] private List<ItemSO> itemsArea;
+    [SerializeField] private List<GrounItemtest> itemsArea;
     [SerializeField] private ItemSO teset;
 
     void Start()
@@ -29,14 +29,14 @@ public class tempPlayerItemArea : MonoBehaviour
     {
         if (collision.tag.Equals("GroundItem"))
         {
-            itemsArea.Add(collision.GetComponent<GrounItemtest>().itemSO);
+            itemsArea.Add(collision.GetComponent<GrounItemtest>());
         }   
     }
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag.Equals("GroundItem"))
         {
-            itemsArea.Remove(collision.GetComponent<GrounItemtest>().itemSO);
+            itemsArea.Remove(collision.GetComponent<GrounItemtest>());
         }  
     }
     private void OpenInv(){

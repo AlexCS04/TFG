@@ -8,16 +8,18 @@ public class ItemSon : MonoBehaviour, IPointerDownHandler
         if (eventData.button.Equals(PointerEventData.InputButton.Left))
         {
 
-            Debug.Log("meeee");
+            //Debug.Log("meeee");
             if (!BackpackManager.instance.HasItem())
             {
                 transform.parent.GetComponent<InvItem>().inictialDir = transform.parent.GetComponent<InvItem>().GetDir();
-                BackpackManager.instance.StartDrag(transform.parent.GetComponent<InvItem>());
+                transform.parent.GetComponent<InvItem>().PickUp();
+                // BackpackManager.instance.StartDrag(transform.parent.GetComponent<InvItem>());
             }
             else
             {
                 //myBackpack.TwoItems(BackpackManager.instance.SelItem(), this);
-                BackpackManager.instance.EndDrag(transform.parent.GetComponent<InvItem>().GetGridPos(), transform.parent.GetComponent<InvItem>().myBackpack);
+                transform.parent.GetComponent<InvItem>().Drop();
+                // BackpackManager.instance.EndDrag(transform.parent.GetComponent<InvItem>().GetGridPos(), transform.parent.GetComponent<InvItem>().myBackpack);
             }
         }
 

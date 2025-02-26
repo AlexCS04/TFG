@@ -11,6 +11,8 @@ public class ItemSO : ScriptableObject
     public Sprite sprite;
 
     public EquipType equipType;
+
+    public int peso;
     
     
     //public MultiDimensionalBool[] myBoolArray;

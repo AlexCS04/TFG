@@ -6,7 +6,11 @@ public class BackpackManager : MonoBehaviour
     public static BackpackManager instance {get; private set;}
 
     public float cellSize;
-    public InvItem invItem;
+    [HideInInspector]public InvItem invItem;
+
+    public GameObject groundItemPrefb;
+
+    public Transform playerTransform;
 
     // public RectTransform rect;
 
@@ -56,8 +60,8 @@ public class BackpackManager : MonoBehaviour
 
         // RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, Input.mousePosition, null, out Vector2 anchoredPos);
         // mouseDragAnchoredPositionOffset = anchoredPos - invItem.GetComponent<RectTransform>().anchoredPosition;
-
-        invItem.myBackpack.RemoveItemAt(invItem.GetGridPos());
+        if(invItem.myBackpack!=null)
+            invItem.myBackpack.RemoveItemAt(invItem.GetGridPos());
         
 
     }
@@ -73,7 +77,7 @@ public class BackpackManager : MonoBehaviour
                 // Debug.Log("NOOO");
                 b.ReturnItem(invItem, invItem.inictialDir);
             }
-        }
+        }else invItem.myBackpack.ReturnItem(invItem, invItem.inictialDir);
 
 
         invItem=null;
@@ -89,8 +93,11 @@ public class BackpackManager : MonoBehaviour
     }
     public void EndDrag(Equipment slot){
         SetCanvas(1f, true);
-        if(slot.equipType.Equals(invItem.equipType)){
+        if(slot.equipType.Equals(invItem.equipType)&&!slot.ocupado){
+            slot.ocupado=true;
             invItem.SetDir(Dir.Right);
+            invItem.equipmentSlot=slot;
+            invItem.myBackpack=null;
             invItem.GetComponent<RectTransform>().rotation= Quaternion.Euler(0,0,-invItem.GetRotationAngle());
             invItem.transform.SetParent(slot.transform);
             invItem.GetComponent<RectTransform>().anchorMax= new Vector2(1,1);

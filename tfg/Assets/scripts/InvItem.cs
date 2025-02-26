@@ -8,14 +8,19 @@ public class InvItem : MonoBehaviour//, IPointerDownHandler
     
     public ItemSO itemSO;
     public EquipType equipType;
-    public int cantidad=1;
+    private int cantidad=1;
     private Dir dir;
     public Dir inictialDir;
     public CanvasGroup canvasGroup;
     public Backpack myBackpack;
     [SerializeField] private GameObject sonPrefab;
 
+    public GrounItemtest groundItem;
+
+    public Equipment equipmentSlot;
+
     private Vector2Int gridPos;
+
 
 
 
@@ -40,14 +45,24 @@ public class InvItem : MonoBehaviour//, IPointerDownHandler
         foreach (Vector2Int item in list)
         {
             GameObject g = Instantiate(sonPrefab,transform);
-            g.GetComponent<RectTransform>().localPosition = new Vector3(item.y * BackpackManager.instance.cellSize, -item.x * BackpackManager.instance.cellSize, 0);
+            g.GetComponent<RectTransform>().localPosition = new Vector3(item.x * BackpackManager.instance.cellSize, -item.y * BackpackManager.instance.cellSize, 0);
             g.GetComponent<RectTransform>().sizeDelta = new Vector2(BackpackManager.instance.cellSize, BackpackManager.instance.cellSize);
         }
 
     }
-
+    public void PickUp(){
+        if(groundItem!=null) Destroy(groundItem.gameObject);
+        if(equipmentSlot!=null) {equipmentSlot.ocupado=false; equipmentSlot=null;}
+        BackpackManager.instance.StartDrag(this);
+    }
+    public void Drop(){
+        BackpackManager.instance.EndDrag(gridPos, myBackpack);
+    }
     public Dir GetDir(){
         return dir;
+    }
+    public int GetPeso(){
+        return itemSO.peso*cantidad;
     }
     public void NextDir(){
         switch (dir)
@@ -160,5 +175,15 @@ public class InvItem : MonoBehaviour//, IPointerDownHandler
     }
     public Vector2Int GetGridPos(){
         return gridPos;
+    }
+    public int GetCantidad(){
+        return cantidad;
+    }
+    public void SetCantidad(int c){
+        cantidad=c;
+    }
+    public void AddCantidad(int c){
+        if(groundItem!=null) groundItem.AddCantidad(c);
+        cantidad += c;
     }
 }

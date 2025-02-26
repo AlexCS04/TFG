@@ -5,6 +5,8 @@ public class Equipment : MonoBehaviour, IPointerDownHandler
 {
 
     public EquipType equipType;
+
+    public bool ocupado;
     void Start()
     {
         
@@ -19,8 +21,10 @@ public class Equipment : MonoBehaviour, IPointerDownHandler
         if (BackpackManager.instance.HasItem())
         {
             BackpackManager.instance.EndDrag(this);
+
         }
     }
+
 }
 public enum EquipType{
 

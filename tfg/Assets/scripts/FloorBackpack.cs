@@ -7,27 +7,31 @@ public class FloorBackpack: Backpack
     void Start()
     {
         //Debug.Log("A");
+        floor = true;
     }
-    public void PutItems(List<ItemSO> listItems){
+    public void PutItems(List<GrounItemtest> listItems){
         DeleteI();
         stack= false; 
-        foreach (ItemSO item in listItems)
+        foreach (GrounItemtest item in listItems)
         {
             GameObject invItem = Instantiate(itemPrefab);
             invItem.GetComponent<InvItem>().SetDir(Dir.Right);
-            invItem.GetComponent<InvItem>().itemSO=item;
+            invItem.GetComponent<InvItem>().itemSO=item.itemSO;
+            invItem.GetComponent<InvItem>().groundItem=item;
+            invItem.GetComponent<InvItem>().SetCantidad(item.GetCantidad());
             TryAgain:;
-            for (int x = 0; x < width; x++)
+            for (int y = 0; y < height; y++)
             {
-                for (int y = 0; y < height; y++)
+                for (int x = 0; x < width; x++)
                 {
+                    // Debug.Log(x+", "+y);
                     bool f = TryPutItem(invItem.GetComponent<InvItem>(), new Vector2Int(x,y), Dir.Right);
                     if(f){
                         goto Next;
                     }
                 }
             }
-            Bigger(item);
+            Bigger(item.itemSO);
             goto TryAgain;
             Next:;
         }
@@ -66,7 +70,7 @@ public class FloorBackpack: Backpack
     private void DeleteI(){
         for (int i = 1; i < transform.parent.childCount; i++)
         {
-            DestroyImmediate(transform.parent.GetChild(i).gameObject);
+            Destroy(transform.parent.GetChild(i).gameObject);
         }
         backpackContent=new Grid<InvItem>(width, height, cellSize, GetComponent<RectTransform>().pivot);
 

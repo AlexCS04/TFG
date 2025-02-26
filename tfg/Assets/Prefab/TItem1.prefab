@@ -61,7 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -84,10 +84,10 @@ CanvasGroup:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6878688575902872337}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &-5977455724023752494
 MonoBehaviour:
@@ -103,8 +103,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSO: {fileID: 11400000, guid: cd714bf1c4e64194a9fd2e0c47eea6fb, type: 2}
   equipType: 0
-  cantidad: 1
   inictialDir: 0
   canvasGroup: {fileID: 0}
   myBackpack: {fileID: 0}
   sonPrefab: {fileID: 1043217444553511400, guid: 0743993d98d84674583592d078fe1e99, type: 3}
+  groundItem: {fileID: 0}

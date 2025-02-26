@@ -9,7 +9,7 @@ public class Backpack : MonoBehaviour
     [SerializeField] protected int height;
     [SerializeField] protected float cellSize;
 
-    [SerializeField] private bool floor;
+    [SerializeField] protected bool floor;
 
     protected bool stack=true;
 
@@ -94,17 +94,26 @@ public class Backpack : MonoBehaviour
             invItem.myBackpack=this;
             invItem.transform.SetParent(transform.parent);
             invItem.GetComponent<RectTransform>().anchoredPosition=  new Vector2((invItem.GetGridPos().x+invItem.GetRotationOffset().x)*cellSize,-(invItem.GetGridPos().y+invItem.GetRotationOffset().y)*cellSize);
+            if(floor && stack){
+                GameObject gI = Instantiate(BackpackManager.instance.groundItemPrefb, BackpackManager.instance.playerTransform.position, Quaternion.identity);
+                gI.GetComponent<GrounItemtest>().itemSO=invItem.itemSO;
+                gI.GetComponent<GrounItemtest>().SetCantidad(invItem.GetCantidad());
+                invItem.groundItem=gI.GetComponent<GrounItemtest>();
+            }
+            ActualizarPeso();
             return true;
         }else{
             if (tt)
             {
                 // ReturnItem(invItem, iDir); !tt
+                ActualizarPeso();
                 return true;
                
             }
         }
 
         //devolver item
+        ActualizarPeso();
         return false;
     }
 
@@ -113,12 +122,14 @@ public class Backpack : MonoBehaviour
         InvItem remItem=backpackContent.GetGridObject(XY.x, XY.y);
         if (remItem!=null)
         {
+            // peso-=remItem.GetPeso();
             List<Vector2Int> invList =remItem.GetListPos(XY);
             foreach (Vector2Int item in invList)
             {
                 backpackContent.RemoveObjectAt(item.x,item.y);
             }
         }
+        ActualizarPeso();
 
 
     }
@@ -132,6 +143,13 @@ public class Backpack : MonoBehaviour
         {
             invItem.myBackpack.backpackContent.SetGridObject(pos.x,pos.y, invItem);
         }
+        if(floor) {
+            GameObject gI = Instantiate(BackpackManager.instance.groundItemPrefb, BackpackManager.instance.playerTransform.position, Quaternion.identity);
+            gI.GetComponent<GrounItemtest>().itemSO=invItem.itemSO;
+            gI.GetComponent<GrounItemtest>().SetCantidad(invItem.GetCantidad());
+            invItem.groundItem=gI.GetComponent<GrounItemtest>();
+        }
+        ActualizarPeso();
     }
     public bool TwoItems(InvItem selected, InvItem reciving){
         if (stack)
@@ -140,12 +158,12 @@ public class Backpack : MonoBehaviour
             else
             {//modificar cantidad
 
-                int dar = reciving.itemSO.maxStack - (selected.cantidad + reciving.cantidad);
-                if (dar <= 0) dar = reciving.itemSO.maxStack - reciving.cantidad;
-                else dar = selected.cantidad;
-                reciving.cantidad += dar;
-                selected.cantidad -= dar;
-                if (selected.cantidad <= 0)
+                int dar = reciving.itemSO.maxStack - (selected.GetCantidad() + reciving.GetCantidad());
+                if (dar <= 0) dar = reciving.itemSO.maxStack - reciving.GetCantidad();
+                else dar = selected.GetCantidad();
+                reciving.AddCantidad(dar);
+                selected.AddCantidad(-dar);
+                if (selected.GetCantidad() <= 0)
                 {
                     Destroy(selected.gameObject);
                     return true;
@@ -185,17 +203,34 @@ public class Backpack : MonoBehaviour
                 dir = placedObject.GetDir(),
                 gridPosition = placedObject.GetGridPos(),
                 itemTetrisSOName = placedObject.itemSO.name,
+                cantidad =placedObject.GetCantidad(),
             });
 
         }
         Debug.Log(test);
         return JsonUtility.ToJson(new ListSaveItem { listSaveItems = addItemTetrisList });
     }
+    protected void ActualizarPeso(){
+        List<InvItem> placedObjectList = new List<InvItem>();
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                if (backpackContent.GetGridObject(x, y)!=null) {
+                    placedObjectList.Remove(backpackContent.GetGridObject(x, y));
+                    placedObjectList.Add(backpackContent.GetGridObject(x, y));
+                }
+            }
+        }
+        peso = 0;
+        foreach (InvItem item in placedObjectList)
+        {
+            peso+=item.GetPeso();
+        }
+    }
     public void LoadBContent(string json){
         ListSaveItem listAddItemTetris = JsonUtility.FromJson<ListSaveItem>(json);
 
         foreach (SaveItem addItemTetris in listAddItemTetris.listSaveItems) {
-            TryPutItem(InvItemAssets.instance.GetItemSO(addItemTetris.itemTetrisSOName, addItemTetris.dir), addItemTetris.gridPosition, addItemTetris.dir);
+            TryPutItem(InvItemAssets.instance.GetItemSO(addItemTetris.itemTetrisSOName, addItemTetris.dir, addItemTetris.cantidad), addItemTetris.gridPosition, addItemTetris.dir);
         }
     }
 
@@ -208,6 +243,8 @@ public struct SaveItem{
     public string itemTetrisSOName;
     public Vector2Int gridPosition;
     public Dir dir;
+
+    public int cantidad;
 }
 [Serializable]
 public struct ListSaveItem{
