@@ -29,6 +29,7 @@ public class Backpack : MonoBehaviour
 
     }
     protected void SetUp(){
+        cellSize=BackpackManager.instance.cellSize;
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
@@ -98,6 +99,7 @@ public class Backpack : MonoBehaviour
                 GameObject gI = Instantiate(BackpackManager.instance.groundItemPrefb, BackpackManager.instance.playerTransform.position, Quaternion.identity);
                 gI.GetComponent<GrounItemtest>().itemSO=invItem.itemSO;
                 gI.GetComponent<GrounItemtest>().SetCantidad(invItem.GetCantidad());
+                gI.GetComponent<GrounItemtest>().SetLevel(invItem.level);
                 invItem.groundItem=gI.GetComponent<GrounItemtest>();
             }
             ActualizarPeso();
@@ -155,25 +157,22 @@ public class Backpack : MonoBehaviour
         if (stack)
         {
             if (selected.itemSO != reciving.itemSO) { return false; }//devolver selected
-            else
-            {//modificar cantidad
-
-                int dar = reciving.itemSO.maxStack - (selected.GetCantidad() + reciving.GetCantidad());
-                if (dar <= 0) dar = reciving.itemSO.maxStack - reciving.GetCantidad();
-                else dar = selected.GetCantidad();
-                reciving.AddCantidad(dar);
-                selected.AddCantidad(-dar);
-                if (selected.GetCantidad() <= 0)
-                {
-                    Destroy(selected.gameObject);
-                    return true;
-                }
-
-
-                return false;
+            if (selected.level != reciving.level) { return false; }//devolver selected
+            //modificar cantidad
+            int dar = reciving.itemSO.maxStack - (selected.GetCantidad() + reciving.GetCantidad());
+            if (dar <= 0) dar = reciving.itemSO.maxStack - reciving.GetCantidad();
+            else dar = selected.GetCantidad();
+            reciving.AddCantidad(dar);
+            selected.AddCantidad(-dar);
+            if (selected.GetCantidad() <= 0)
+            {
+                Destroy(selected.gameObject);
+                return true;
             }
+            return false;
+            
         }
-        else return false;
+        return false;
     }
     void Update()
     {
@@ -184,9 +183,20 @@ public class Backpack : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.L)){
             LoadBContent(test);
         }
+        if(Input.GetKeyDown(KeyCode.K)){
+            DeleteI();
+        }
 
     }
-    public string SaveBContent(){
+    protected void DeleteI(){
+        for (int i = 1; i < transform.parent.childCount; i++)
+        {
+            Destroy(transform.parent.GetChild(i).gameObject);
+        }
+        backpackContent=new Grid<InvItem>(width, height, cellSize, GetComponent<RectTransform>().pivot);
+
+    }
+    public virtual string SaveBContent(){
         List<InvItem> placedObjectList = new List<InvItem>();
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
@@ -204,6 +214,7 @@ public class Backpack : MonoBehaviour
                 gridPosition = placedObject.GetGridPos(),
                 itemTetrisSOName = placedObject.itemSO.name,
                 cantidad =placedObject.GetCantidad(),
+                level=placedObject.level,
             });
 
         }
@@ -226,11 +237,13 @@ public class Backpack : MonoBehaviour
             peso+=item.GetPeso();
         }
     }
-    public void LoadBContent(string json){
+    public virtual void LoadBContent(string json){
         ListSaveItem listAddItemTetris = JsonUtility.FromJson<ListSaveItem>(json);
 
         foreach (SaveItem addItemTetris in listAddItemTetris.listSaveItems) {
-            TryPutItem(InvItemAssets.instance.GetItemSO(addItemTetris.itemTetrisSOName, addItemTetris.dir, addItemTetris.cantidad), addItemTetris.gridPosition, addItemTetris.dir);
+            if(!TryPutItem(InvItemAssets.instance.GetItemSO(addItemTetris.itemTetrisSOName, addItemTetris.dir, addItemTetris.cantidad, addItemTetris.level), addItemTetris.gridPosition, addItemTetris.dir)){
+                BackpackManager.instance.floor.PutItem(InvItemAssets.instance.GetItemSO(addItemTetris.itemTetrisSOName, addItemTetris.dir, addItemTetris.cantidad, addItemTetris.level));
+            }
         }
     }
 
@@ -243,8 +256,8 @@ public struct SaveItem{
     public string itemTetrisSOName;
     public Vector2Int gridPosition;
     public Dir dir;
-
     public int cantidad;
+    public int level;
 }
 [Serializable]
 public struct ListSaveItem{

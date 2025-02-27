@@ -12,6 +12,8 @@ public class BackpackManager : MonoBehaviour
 
     public Transform playerTransform;
 
+    public FloorBackpack floor;
+
     // public RectTransform rect;
 
     // private Vector3 mouseDragAnchoredPositionOffset;

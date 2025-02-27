@@ -9,6 +9,7 @@ public class InvItem : MonoBehaviour//, IPointerDownHandler
     public ItemSO itemSO;
     public EquipType equipType;
     private int cantidad=1;
+    public int level=1;
     private Dir dir;
     public Dir inictialDir;
     public CanvasGroup canvasGroup;

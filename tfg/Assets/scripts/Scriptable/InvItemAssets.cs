@@ -13,13 +13,14 @@ public class InvItemAssets : MonoBehaviour
         instance=this;
     }
 
-    public InvItem GetItemSO(string itemName, Dir dir, int c){
+    public InvItem GetItemSO(string itemName, Dir dir, int c, int l){
         foreach (ItemSO itemTetrisSO in listItemAsets) {
             if (itemTetrisSO.name == itemName) {
                 GameObject invItem = Instantiate(itemPrefab);
                 invItem.GetComponent<InvItem>().SetDir(dir);
                 invItem.GetComponent<InvItem>().itemSO=itemTetrisSO;
                 invItem.GetComponent<InvItem>().SetCantidad(c);
+                invItem.GetComponent<InvItem>().level=l;
                 return invItem.GetComponent<InvItem>();
             }
         }
