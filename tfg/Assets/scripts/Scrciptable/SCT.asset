@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb8e3f46b0c50ed4b82596c498ab1c7d, type: 3}
+  m_Name: SCT
+  m_EditorClassIdentifier: 
+  sprite: {fileID: -7205218644840326792, guid: b6c11e2a44396b843a9d5042d8c27880, type: 3}
+  equipType: 0
+  maxStack: 7
+  peso: 5
+  sizeX: 3
+  sizeY: 1
+  shape:
+    rows:
+    - array: 0100000000000000
+    - array: 0100000000000000
+    - array: 0100000000000000
+    - array: 0000000000000000
+    - array: 0000000000000000
+    - array: 0000000000000000
+    - array: 0000000000000000
+    - array: 0000000000000000
