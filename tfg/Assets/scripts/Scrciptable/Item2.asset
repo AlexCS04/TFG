@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Item2
   m_EditorClassIdentifier: 
   sprite: {fileID: -4819290565171530376, guid: 4c67e9a2727caae4781f8b413028725e, type: 3}
-  equipType: 0
+  equipType: 4
   maxStack: 3
   peso: 7
   sizeX: 2

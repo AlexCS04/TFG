@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SCT
   m_EditorClassIdentifier: 
   sprite: {fileID: -7205218644840326792, guid: b6c11e2a44396b843a9d5042d8c27880, type: 3}
-  equipType: 0
+  equipType: 3
   maxStack: 7
   peso: 5
   sizeX: 3

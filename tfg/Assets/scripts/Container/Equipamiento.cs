@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Equipamiento:Container
 {
-
-
+    public Equipamiento(){
+        width=1;
+        height=1;
+    }
     protected override void PutItem(Item item, Vector2Int gridPos, Dir dir)
     {
         item.dir=dir;
@@ -11,11 +14,12 @@ public class Equipamiento:Container
         item.gridPos=gridPos;
         contents.SetGridObject(0,0,item);
         item.container=this;
-        item.transform.SetParent(transform.parent);
+        item.transform.SetParent(transform);
         item.GetComponent<RectTransform>().anchorMax= new Vector2(1,1);
         item.GetComponent<RectTransform>().anchorMin=new Vector2(0,0);
         item.GetComponent<RectTransform>().anchoredPosition=new Vector3(0,0,0);
         item.GetComponent<RectTransform>().sizeDelta=new Vector2(0,0);
+        item.GetComponent<Image>().raycastTarget=true;
         ActualizarPeso(item.sct.peso*item.GetCantidad());
         
     }
@@ -27,4 +31,10 @@ public class Equipamiento:Container
     {
         return equipType==et;
     }
+    
+    protected override void ReSize()
+    {
+        transform.GetChild(0).GetComponent<RectTransform>().sizeDelta=GetComponent<RectTransform>().sizeDelta;
+    }
+    public void Resize(){ReSize();}
 }

@@ -27,14 +27,12 @@ public class PlayerControls : MonoBehaviour
 
     void Update()
     {
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+
+
+        m_Movement.Set(horizontal, vertical);
         if(!openInv){ //inventario cerrado
-            float horizontal = Input.GetAxisRaw("Horizontal");
-            float vertical = Input.GetAxisRaw("Vertical");
-
-
-            m_Movement.Set(horizontal, vertical);
-            // m_Movement.Normalize();
-
             if(Input.GetAxisRaw("Fire1")!=0){
                 StartCoroutine("Attack");
             }
@@ -47,7 +45,9 @@ public class PlayerControls : MonoBehaviour
     }
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + m_Movement * speed*Time.fixedDeltaTime);
+        if(!openInv){
+            rb.MovePosition(rb.position + m_Movement * speed*Time.fixedDeltaTime);
+        }
     }
     private IEnumerator Attack(){
         if(!attacking){
@@ -61,12 +61,11 @@ public class PlayerControls : MonoBehaviour
     private void OpenInv(){
         if (ContainerManager.instance.inventario.activeSelf)
         {
-            ContainerManager.instance.inventario.SetActive(false);
+            ContainerManager.instance.CloseInventory();
             openInv=false;
         }else
         {
-            ContainerManager.instance.inventario.SetActive(true);
-            ContainerManager.instance.floor.GetComponent<Suelo>().OpenFloor(itemsArea);
+            ContainerManager.instance.OpenInventory(itemsArea);
             openInv=true;
         }
         

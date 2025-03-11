@@ -32,14 +32,14 @@ public class Container : MonoBehaviour
                 slot.GetComponent<Slot>().valores(i, j, this);
             }
         }
-
-        GetComponent<GridLayoutGroup>().cellSize = new Vector2(cellsize, cellsize);
+        if(GetComponent<GridLayoutGroup>())
+            GetComponent<GridLayoutGroup>().cellSize = new Vector2(cellsize, cellsize);
         GetComponent<RectTransform>().sizeDelta = new Vector2(width, height) * cellsize;
         canvasRect= GetComponentInParent<Canvas>().rootCanvas.GetComponent<RectTransform>();
         contents = new Grid<Item>(width, height, cellsize, GetComponent<RectTransform>().pivot);
         ReSize();
     }
-    protected void ReSize(){
+    protected virtual void ReSize(){
         RectTransform rect=transform.parent.GetComponent<RectTransform>();
         rect.sizeDelta=GetComponent<RectTransform>().sizeDelta; 
     }
@@ -144,6 +144,7 @@ public class Container : MonoBehaviour
         if(reciving.gItem!=null) reciving.gItem.stack+=dar;
         if (selected.GetCantidad() <= 0)
         {
+            if(selected.gItem!=null) Destroy(selected.gItem.gameObject);
             Destroy(selected.gameObject);
             return;
         }

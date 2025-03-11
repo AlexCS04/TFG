@@ -54,6 +54,30 @@ public class Suelo:Container
         stack=true;
 
     }
+    public void DropOnFloor(Item item){
+        stack=false;
+        GameObject gItem = Instantiate(ContainerManager.instance.groundItemPrefab,ContainerManager.instance.player.transform.position,Quaternion.identity);
+        gItem.GetComponent<GroundItem>().sct=item.sct;
+        gItem.GetComponent<GroundItem>().lvl=item.lvl;
+        gItem.GetComponent<GroundItem>().stack=item.stack;
+        item.gItem=gItem.GetComponent<GroundItem>();
+        TryAgain:;
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                //Debug.Log(x+", "+y);
+                bool f = TryPutItem(item,item.dir, new Vector2Int(x,y), item.GetListPos(new Vector2Int(x,y)));
+                if(f){
+                    goto Next;
+                }
+            }
+        }
+        Bigger(item.sct);
+        goto TryAgain;
+        Next:;
+        stack=true;
+    }
 
     private void Bigger(SCT item){
         height+=item.sizeY;

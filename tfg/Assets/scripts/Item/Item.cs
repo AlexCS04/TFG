@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Item : MonoBehaviour
+public class Item : MonoBehaviour, IPointerDownHandler
 {
     public SCT sct;
     public Dir dir;
@@ -21,6 +22,10 @@ public class Item : MonoBehaviour
         SetUp();
     }
     public void SetUp(){
+        for (int i = transform.childCount-1; i >=0; i--)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
         GetComponent<Image>().sprite = sct.sprite;
         GetComponent<RectTransform>().anchorMax= new Vector2(0,1);
         GetComponent<RectTransform>().anchorMin=new Vector2(0,1);
@@ -147,7 +152,23 @@ public class Item : MonoBehaviour
 
     }
     
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (eventData.button.Equals(PointerEventData.InputButton.Left))
+        {
+            if (!ContainerManager.instance.HasItem())
+            {
+                initialDir = dir;
+                initialPos = gridPos;
+                PickUp();
+            }
+            else
+            {
+                Drop();
+            }
+        }
 
+    }
 
 }
 public enum Dir{

@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ContainerManager : MonoBehaviour
 {
@@ -17,7 +19,7 @@ public class ContainerManager : MonoBehaviour
     public GameObject player;
     public GameObject mochila;
     public GameObject floor;
-    public GameObject equipment;
+    public List<Equipamiento> equipment;
 
     public GameObject inventario;
 
@@ -40,17 +42,21 @@ public class ContainerManager : MonoBehaviour
     }
     public void EndDrag(Vector2Int gPos, Container c){
         ItemCanvasG(1f,true);
-        if(c is not Equipamiento){
+        if(c is not Equipamiento && c != null){
             c.TryPutItem(itemMov, itemMov.dir, gPos, itemMov.GetListPos(gPos));
         }
-        else{
+        else if(c is Equipamiento){
             c.TryPutItem(itemMov, Dir.Right, gPos, new List<Vector2Int>{Vector2Int.zero});
+        }
+        else{
+            floor.GetComponent<Suelo>().DropOnFloor(itemMov);
         }
         itemMov=null;
     }
 
-    private void ItemCanvasG(float a, bool raycast){
+    public void ItemCanvasG(float a, bool raycast){
         itemMov.GetComponent<CanvasGroup>().alpha=a;
+        itemMov.GetComponent<Image>().raycastTarget=false;
         for (int i = 0; i < itemMov.transform.childCount; i++)
         {
             itemMov.transform.GetChild(i).GetComponent<CanvasGroup>().blocksRaycasts = raycast;   
@@ -70,5 +76,20 @@ public class ContainerManager : MonoBehaviour
             }
 
         } 
+    }
+    public void OpenInventory(List<GroundItem> itemsArea){
+        inventario.SetActive(true);
+        floor.GetComponent<Suelo>().OpenFloor(itemsArea);
+        StartCoroutine("Resizing");
+    }
+    public void CloseInventory(){
+        inventario.SetActive(false);
+    }
+    private IEnumerator Resizing(){
+        yield return null;
+        foreach (Equipamiento item in equipment)
+        {
+            item.Resize();
+        }
     }
 }
