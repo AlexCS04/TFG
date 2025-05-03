@@ -827,13 +827,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57d3a339e283ac40b14a41570dde48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seed: 0
+  seed: 2
   setseed: 1
   wagonCount: 0
   vagonVacio: {fileID: 2312246010301773940, guid: a45aa639b80c4a0419adc84c9637df71, type: 3}
   tematica: {fileID: 0}
   tematicas:
   - {fileID: 11400000, guid: e4f120a8e8388bc4c96d22dd6c85a5a2, type: 2}
+  - {fileID: 11400000, guid: fa4c4d4d01f0c3349b103b0bf0d801b2, type: 2}
 --- !u!1 &327712960
 GameObject:
   m_ObjectHideFlags: 0
@@ -1833,7 +1834,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000e9908c1e870ab245
+  m_ApplyToSortingLayers: 00000000e9908c1e870ab245e1dc65f7
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -2363,9 +2364,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -144319263
+  m_SortingLayer: 2
+  m_SortingOrder: 5
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2851,6 +2852,30 @@ PrefabInstance:
     - target: {fileID: 4979463407414952644, guid: a6a74bd2f86c4d946832ed4671e5d6c8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356949052530766586, guid: a6a74bd2f86c4d946832ed4671e5d6c8, type: 3}
+      propertyPath: m_SpriteTilingProperty.border.w
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356949052530766586, guid: a6a74bd2f86c4d946832ed4671e5d6c8, type: 3}
+      propertyPath: m_SpriteTilingProperty.border.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356949052530766586, guid: a6a74bd2f86c4d946832ed4671e5d6c8, type: 3}
+      propertyPath: m_SpriteTilingProperty.border.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356949052530766586, guid: a6a74bd2f86c4d946832ed4671e5d6c8, type: 3}
+      propertyPath: m_SpriteTilingProperty.border.z
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356949052530766586, guid: a6a74bd2f86c4d946832ed4671e5d6c8, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.984375
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356949052530766586, guid: a6a74bd2f86c4d946832ed4671e5d6c8, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.984375
       objectReference: {fileID: 0}
     - target: {fileID: 8442051182424118539, guid: a6a74bd2f86c4d946832ed4671e5d6c8, type: 3}
       propertyPath: m_Name

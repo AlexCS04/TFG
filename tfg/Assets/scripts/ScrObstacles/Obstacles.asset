@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 482d4678476bc1d4c9669de097e2eef5, type: 3}
+  m_Name: Obstacles
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 2312246010301773940, guid: a45aa639b80c4a0419adc84c9637df71, type: 3}
+  sprites:
+  - {fileID: -1829563497, guid: 66f8590ae29ded44b84dd7e7d1ba396b, type: 3}
+  minPosition: {x: 6, y: 3}
+  maxPosition: {x: 8, y: 6}
+  minRotation: 0
+  maxRotation: 0
+  distanciaObjetos: 0

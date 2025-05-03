@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: c2
+  m_Name: c3
   m_EditorClassIdentifier: Assembly-CSharp::Conjunto
-  nombre: c2
+  nombre: 
   obstacles:
-  - {fileID: 11400000, guid: af9769205f33a744a9be02e2838cc657, type: 2}
+  - {fileID: 11400000, guid: 88e3722377554294cb1ea8044b0a6779, type: 2}
   enemies:
   - {fileID: 2312246010301773940, guid: a45aa639b80c4a0419adc84c9637df71, type: 3}

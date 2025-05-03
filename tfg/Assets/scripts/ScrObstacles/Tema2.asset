@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: test
+  m_Name: Tema2
   m_EditorClassIdentifier: Assembly-CSharp::Tematica
-  nombre: test
+  nombre: 
   siguientesTematicas:
-  - {fileID: 11400000, guid: fa4c4d4d01f0c3349b103b0bf0d801b2, type: 2}
+  - {fileID: 11400000, guid: e4f120a8e8388bc4c96d22dd6c85a5a2, type: 2}
+  - {fileID: 11400000}
   conjuntos:
-  - {fileID: 11400000, guid: 60f629a54be0d1c458440f7d910a63c3, type: 2}
-  - {fileID: 11400000, guid: ee391066e6972fa4491720d521c7901d, type: 2}
+  - {fileID: 11400000, guid: 68a313a0464d02444894852a1bf6bc57, type: 2}

@@ -46,6 +46,9 @@ TagManager:
   - name: Tiles
     uniqueID: 1169296007
     locked: 0
+  - name: ItemsFloor
+    uniqueID: 4150648033
+    locked: 0
   - name: Obstacles
     uniqueID: 512528617
     locked: 0

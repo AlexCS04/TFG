@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class RoomManager : MonoBehaviour
@@ -17,10 +18,7 @@ public class RoomManager : MonoBehaviour
     
     private GameObject[] wagonList= new GameObject[5];
     private List<Bounds> areasRestringidas= new List<Bounds>{
-        new Bounds(new Vector3(1, 4.5f, 0), new Vector3(2, 3, 0)), 
-        new Bounds(new Vector3(15, 4.5f, 0), new Vector3(2, 3, 0)), 
-        new Bounds(new Vector3(8, 0.5f, 0), new Vector3(2, 1, 0)), 
-        new Bounds(new Vector3(8, 8.5f, 0), new Vector3(2, 1, 0)), 
+        
     };
 
     const int WAGONS = 5;
@@ -46,27 +44,33 @@ public class RoomManager : MonoBehaviour
     
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            GenerarSala();
+        }
     }
     bool spwnEnemigos;
+    List<GameObject> obstColocados=new List<GameObject>();
     public void GenerarSala(){
         spwnEnemigos=true;
-        List<GameObject> obstColocados=new List<GameObject>();
+        obstColocados=new List<GameObject>();
         List<GameObject> obstaculosColocados=new List<GameObject>();
         Vector2 position = new Vector2(WAGON_WIDHT*(wagonCount%WAGONS), 0);
         GameObject v = Instantiate(vagonVacio, position, Quaternion.identity);
+        areasRestringidas= new List<Bounds>{
+            new Bounds(new Vector3(1+WAGON_WIDHT*(wagonCount%WAGONS), 4.5f, 0), new Vector3(2, 3, 0)), 
+            new Bounds(new Vector3(15+WAGON_WIDHT*(wagonCount%WAGONS), 4.5f, 0), new Vector3(2, 3, 0)), 
+            new Bounds(new Vector3(8+WAGON_WIDHT*(wagonCount%WAGONS), 0.5f, 0), new Vector3(2, 1, 0)), 
+            new Bounds(new Vector3(8+WAGON_WIDHT*(wagonCount%WAGONS), 8.5f, 0), new Vector3(2, 1, 0)), 
+        };
 
         Destroy(wagonList[wagonCount%WAGONS]);
         wagonList[wagonCount%WAGONS]=v;
-
         CambioTematica();
         Conjunto c = SeleccionConjunto();
-        Debug.Log(obstaculosColocados);
-        SalaEspecial(obstaculosColocados);
-        Debug.Log(obstaculosColocados);
-        ColocarObstaculos(c, obstaculosColocados);
-        Debug.Log(obstaculosColocados);
-        if(spwnEnemigos) GenerarEnemigos(c, obstaculosColocados);
+        SalaEspecial();
+        ColocarObstaculos(c);
+        if(spwnEnemigos) GenerarEnemigos(c);
 
         wagonCount++;
 
@@ -81,17 +85,17 @@ public class RoomManager : MonoBehaviour
     private Conjunto SeleccionConjunto(){
         return tematica.conjuntos[random.Next(tematica.conjuntos.Count)];
     }
-    private void SalaEspecial(List<GameObject>oC){
+    private void SalaEspecial(){
 
         if(wagonCount==0){
             VagonInicial();
             spwnEnemigos=false;
         }
-        else if(wagonCount%seed==0){}//base para las salas especiales
+        else if(wagonCount%seed==0){}//base para las salas especiales, seed esta para que no de error la sintaxis
 
 
     }
-    private void ColocarObstaculos(Conjunto c, List<GameObject>oC){
+    private void ColocarObstaculos(Conjunto c){
         List<RulesObs> obstColocar=c.obstacles;
         int obstCount= random.Next(6,10);
         
@@ -103,28 +107,28 @@ public class RoomManager : MonoBehaviour
             do
             {
                 position=new Vector3(
-                    random.Next(obst.minPosition.x,obst.maxPosition.x),
+                    random.Next(obst.minPosition.x,obst.maxPosition.x)+WAGON_WIDHT*(wagonCount%WAGONS),
                     random.Next(obst.minPosition.y,obst.maxPosition.y),
                     0
 
                 );
                 intentos++;
-            } while ((!PosicionValida(position,oC) || EnAreaRestringida(position, areasRestringidas)) && intentos<100);
+            } while ((!PosicionValida(position, obst.prefab) || EnAreaRestringida(position)) && intentos<100);
             if(intentos<100){
 
                 Quaternion rotation = Quaternion.Euler(0,0,random.Next(obst.minRotation,obst.maxRotation));
                 GameObject temp = Instantiate(obst.prefab, position, rotation);
                 temp.GetComponent<SpriteRenderer>().sprite=obst.sprites[random.Next(obst.sprites.Count)];
-                temp.transform.localScale=new Vector3(1,1,1);
+                //temp.transform.localScale=new Vector3(1,1,1);
                 temp.transform.parent=wagonList[wagonCount%WAGONS].transform;
-                oC.Add(temp);
+                obstColocados.Add(temp);
             }
 
         }
 
 
     }
-    private void GenerarEnemigos(Conjunto c, List<GameObject>oC){
+    private void GenerarEnemigos(Conjunto c){
         List<GameObject> enemColocar=c.enemies;
         int enemCount= random.Next(6,10);
         
@@ -136,31 +140,56 @@ public class RoomManager : MonoBehaviour
             do
             {
                 position=new Vector3(
-                    random.Next(WAGON_WIDHT),
+                    random.Next(WAGON_WIDHT)+WAGON_WIDHT*(wagonCount%WAGONS),
                     random.Next(WAGON_HEIGHT),
                     0
 
                 );
                 intentos++;
-            } while ((!PosicionValida(position,oC) || EnAreaRestringida(position, areasRestringidas)) && intentos<100);
+            } while ((!PosicionValida(position, enem) || EnAreaRestringida(position)) && intentos<100);
             if(intentos<100){
                 
+                GameObject e =Instantiate(enem, position, Quaternion.identity);
+                e.transform.parent=wagonList[wagonCount%WAGONS].transform;
             }
 
         }
     }
 
-    private bool PosicionValida(Vector3 position, List<GameObject> oC){
+    private bool PosicionValida(Vector3 position, GameObject obst){
         
+        //Debug.Log("pos: "+ position);
+        //Debug.Log("size: "+ obst.GetComponent<Collider2D>().bounds.size);       
+        float x1=position.x-obst.GetComponent<Collider2D>().bounds.size.x/2;
+        float y1=position.y-obst.GetComponent<Collider2D>().bounds.size.y/2;
+        float x2=position.x+obst.GetComponent<Collider2D>().bounds.size.x/2;
+        float y2=position.y+obst.GetComponent<Collider2D>().bounds.size.y/2;
+        foreach (GameObject item in obstColocados)
+        {
+            //Debug.Log("Opos: "+ item.transform.position);
+            //Debug.Log("Osize: "+ item.GetComponent<Collider2D>().bounds.size);    
+            float a1=item.transform.position.x-item.GetComponent<Collider2D>().bounds.size.x/2;
+            float b1=item.transform.position.y-item.GetComponent<Collider2D>().bounds.size.y/2;
+            float a2=item.transform.position.x+item.GetComponent<Collider2D>().bounds.size.x/2;
+            float b2=item.transform.position.y+item.GetComponent<Collider2D>().bounds.size.y/2;
+            
+            if(a2>x1)
+                if (a1<x2)
+                    if(b2>y1)
+                        if (b1<y2)
+                            return false;
+            
+        }
+
+
         return true;
     }
-    private bool EnAreaRestringida(Vector3 position, List<Bounds> aR){
+    private bool EnAreaRestringida(Vector3 position){
         
-        foreach (Bounds area in aR)
+        foreach (Bounds area in areasRestringidas)
         {
             if (area.Contains(position))
             {
-                Debug.Log(position);
                 return true;
             }
         }

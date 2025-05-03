@@ -8,8 +8,6 @@ public class RulesObs : ScriptableObject
     public List<Sprite> sprites;
     public Vector2Int minPosition;
     public Vector2Int maxPosition;
-    public int width;
-    public int height;
 
     [Space]
     public int minRotation;
