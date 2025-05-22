@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -12,17 +13,22 @@ public class RoomManager : MonoBehaviour
     public bool setseed;
 
     public int wagonCount;
+    public int actualWagon;
     public GameObject vagonVacio;
+
+    public CinemachineConfiner2D confiner;
     public Tematica tematica;
     [SerializeField] private List<Tematica> tematicas;
     
     private GameObject[] wagonList= new GameObject[5];
+    public BoxCollider2D[] wagonCameraBounds= new BoxCollider2D[5];
     private List<Bounds> areasRestringidas= new List<Bounds>{
         
     };
 
-    const int WAGONS = 5;
-    const int WAGON_WIDHT = 16;
+    public const int WAGONS = 5;
+    public int numWagons;
+    public const int WAGON_WIDHT = 16;
     const int WAGON_HEIGHT = 9;
 
     const int CAMBIO_TEAMATICA=8;
@@ -32,22 +38,29 @@ public class RoomManager : MonoBehaviour
         instance=this;
         
     }
-    
+
     void Start()
     {
-        if(setseed) random = new System.Random(seed);
+        if (setseed) random = new System.Random(seed);
         tematica = tematicas[random.Next(tematicas.Count)];
         GenerarSala();
+        //GenerarSala();
+        confiner.BoundingShape2D = wagonCameraBounds[0];
 
     }
 
-    
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.N))
         {
             GenerarSala();
         }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            ClearedRoom();
+        }
+
     }
     bool spwnEnemigos;
     List<GameObject> obstColocados=new List<GameObject>();
@@ -57,15 +70,24 @@ public class RoomManager : MonoBehaviour
         List<GameObject> obstaculosColocados=new List<GameObject>();
         Vector2 position = new Vector2(WAGON_WIDHT*(wagonCount%WAGONS), 0);
         GameObject v = Instantiate(vagonVacio, position, Quaternion.identity);
-        areasRestringidas= new List<Bounds>{
+        if (numWagons < WAGONS) numWagons += 1;
+        areasRestringidas = new List<Bounds>{
             new Bounds(new Vector3(1+WAGON_WIDHT*(wagonCount%WAGONS), 4.5f, 0), new Vector3(2, 3, 0)), 
             new Bounds(new Vector3(15+WAGON_WIDHT*(wagonCount%WAGONS), 4.5f, 0), new Vector3(2, 3, 0)), 
             new Bounds(new Vector3(8+WAGON_WIDHT*(wagonCount%WAGONS), 0.5f, 0), new Vector3(2, 1, 0)), 
             new Bounds(new Vector3(8+WAGON_WIDHT*(wagonCount%WAGONS), 8.5f, 0), new Vector3(2, 1, 0)), 
         };
 
+        BoxCollider2D b = v.GetComponentInChildren<BoxCollider2D>();
+        v.transform.GetChild(1).transform.position=new Vector3(WAGON_WIDHT*(wagonCount%WAGONS), 4.5f, 0);
+        v.transform.GetChild(2).transform.position=new Vector3(WAGON_WIDHT+WAGON_WIDHT*(wagonCount%WAGONS), 4.5f, 0);
+        v.transform.GetChild(2).GetComponent<Doors>().SetRoomDoor(true);
+        b.size = new Vector2(WAGON_WIDHT, WAGON_HEIGHT);
+        b.offset = new Vector2(WAGON_WIDHT, WAGON_HEIGHT)/2;
         Destroy(wagonList[wagonCount%WAGONS]);
         wagonList[wagonCount%WAGONS]=v;
+        Destroy(wagonCameraBounds[wagonCount%WAGONS]);
+        wagonCameraBounds[wagonCount%WAGONS]=b;
         CambioTematica();
         Conjunto c = SeleccionConjunto();
         SalaEspecial();
@@ -198,7 +220,15 @@ public class RoomManager : MonoBehaviour
     }
 
 
-    private void VagonInicial(){}
+    private void VagonInicial()
+    {
+        ClearedRoom();
+    }
+    public void ClearedRoom()
+    {
+        wagonList[actualWagon].transform.GetChild(1).GetComponent<Doors>().SetRoomClear(true);
+        wagonList[actualWagon].transform.GetChild(2).GetComponent<Doors>().SetRoomClear(true);
+    }
 
 void OnDrawGizmos()
     {
