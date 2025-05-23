@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -54,10 +55,17 @@ public class Doors : MonoBehaviour
 
                 }
                 collision.gameObject.transform.position = newPos;
+                StartCoroutine("PincheCineMachine");
             }
         }
     }
-    public void SetRoomDoor(bool b){ lastRoom = b; }
+    IEnumerator PincheCineMachine()
+    {
+        confiner.gameObject.SetActive(false);
+        yield return null;
+        confiner.gameObject.SetActive(true);
+    }
+    public void SetRoomDoor(bool b) { lastRoom = b; }
     public void SetRoomClear(bool b){ roomClear = b; }
 }
 public enum Direction

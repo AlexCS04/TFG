@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Obstacles", menuName = "Scriptable Objects/Obstacles")]
+[CreateAssetMenu(fileName = "Obstacles", menuName = "Scriptable Objects/Obstacles")][System.Serializable]
 public class RulesObs : ScriptableObject
 {
     public GameObject prefab;
@@ -15,7 +15,7 @@ public class RulesObs : ScriptableObject
     public float distanciaObjetos;
 
 }
-[CreateAssetMenu(fileName = "Tematicas", menuName = "Scriptable Tematicas/Tematica")]
+[CreateAssetMenu(fileName = "Tematicas", menuName = "Scriptable Tematicas/Tematica")][System.Serializable]
 public class Tematica: ScriptableObject{
 
     public string nombre;
@@ -25,7 +25,7 @@ public class Tematica: ScriptableObject{
     public List<Conjunto> conjuntos;
 
 }
-[CreateAssetMenu(fileName = "Tematicas", menuName = "Scriptable Tematicas/Conjunto")]
+[CreateAssetMenu(fileName = "Tematicas", menuName = "Scriptable Tematicas/Conjunto")][System.Serializable]
 public class Conjunto: ScriptableObject{
         public string nombre;
         public List<RulesObs> obstacles;
