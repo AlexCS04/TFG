@@ -2,16 +2,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Obstacles", menuName = "Scriptable Objects/Obstacles")][System.Serializable]
-public class RulesObs : ScriptableObject
+public class RulesObs : ScriptableObject //obstaculos
 {
     public GameObject prefab;
     public List<Sprite> sprites;
-    public Vector2Int minPosition;
-    public Vector2Int maxPosition;
+    public Vector2 minPosition;
+    public Vector2 maxPosition;
 
     [Space]
-    public int minRotation;
-    public int maxRotation;
+    public float minRotation;
+    public float maxRotation;
     public float distanciaObjetos;
 
 }

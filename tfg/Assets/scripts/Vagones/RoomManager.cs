@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Unity.Cinemachine;
-using Unity.Mathematics;
+// using Unity.Mathematics;
 using UnityEngine;
 
 public class RoomManager : MonoBehaviour
@@ -8,8 +8,9 @@ public class RoomManager : MonoBehaviour
 
     public static RoomManager instance{get; private set;}
 
-    public static System.Random random= new System.Random();
-    public int seed;
+    //public static UnityEngine.Random random= UnityEngine.Random;
+    public string seed;
+    private string rSeed;
     public bool setseed;
 
     public int wagonCount;
@@ -36,13 +37,28 @@ public class RoomManager : MonoBehaviour
     void Awake()
     {
         instance=this;
-        
+        GenerateRandomSeed();
+    }
+    private void GenerateRandomSeed()
+    {
+        int tSeed = (int)System.DateTime.Now.Ticks;
+        rSeed = tSeed.ToString();
+
+        Random.InitState(tSeed);
+    }
+    public void SetRandomSeed(string s = "")
+    {
+        seed = s;
+        int tSeed = 0;
+        if (int.TryParse(s, out int n)) { tSeed = System.Int32.Parse(s); }
+        else { tSeed = seed.GetHashCode(); }
+        Random.InitState(tSeed);
     }
 
     void Start()
     {
-        if (setseed) random = new System.Random(seed);
-        tematica = tematicas[random.Next(tematicas.Count)];
+        if (setseed) SetRandomSeed(seed);
+        tematica = tematicas[Random.Range(0,tematicas.Count)];
         GenerarSala();
         //GenerarSala();
         confiner.BoundingShape2D = wagonCameraBounds[0];
@@ -99,13 +115,13 @@ public class RoomManager : MonoBehaviour
     }
     private void CambioTematica(){
         if(wagonCount%CAMBIO_TEAMATICA==0){
-            tematica= tematica.siguientesTematicas[random.Next(tematica.siguientesTematicas.Count)];
+            tematica= tematica.siguientesTematicas[Random.Range(0,tematica.siguientesTematicas.Count)];
         }
 
 
     }
     private Conjunto SeleccionConjunto(){
-        return tematica.conjuntos[random.Next(tematica.conjuntos.Count)];
+        return tematica.conjuntos[Random.Range(0,tematica.conjuntos.Count)];
     }
     private void SalaEspecial(){
 
@@ -113,24 +129,24 @@ public class RoomManager : MonoBehaviour
             VagonInicial();
             spwnEnemigos=false;
         }
-        else if(wagonCount%seed==0){}//base para las salas especiales, seed esta para que no de error la sintaxis
+        else if(wagonCount%1==0){}//base para las salas especiales, 1 esta para que no de error la sintaxis
 
 
     }
     private void ColocarObstaculos(Conjunto c){
         List<RulesObs> obstColocar=c.obstacles;
-        int obstCount= random.Next(6,10);
+        int obstCount= Random.Range(6,10);
         
         for (int i = 0; i < obstCount; i++)
         {
-            RulesObs obst=c.obstacles[random.Next(c.obstacles.Count)];
+            RulesObs obst=c.obstacles[Random.Range(0,c.obstacles.Count)];
             int intentos=0;
             Vector3 position;
             do
             {
                 position=new Vector3(
-                    random.Next(obst.minPosition.x,obst.maxPosition.x)+WAGON_WIDHT*(wagonCount%WAGONS),
-                    random.Next(obst.minPosition.y,obst.maxPosition.y),
+                    Random.Range(obst.minPosition.x,obst.maxPosition.x)+WAGON_WIDHT*(wagonCount%WAGONS),
+                    Random.Range(obst.minPosition.y,obst.maxPosition.y),
                     0
 
                 );
@@ -138,9 +154,9 @@ public class RoomManager : MonoBehaviour
             } while ((!PosicionValida(position, obst.prefab) || EnAreaRestringida(position)) && intentos<100);
             if(intentos<100){
 
-                Quaternion rotation = Quaternion.Euler(0,0,random.Next(obst.minRotation,obst.maxRotation));
+                Quaternion rotation = Quaternion.Euler(0,0,Random.Range(obst.minRotation,obst.maxRotation));
                 GameObject temp = Instantiate(obst.prefab, position, rotation);
-                temp.GetComponent<SpriteRenderer>().sprite=obst.sprites[random.Next(obst.sprites.Count)];
+                temp.GetComponent<SpriteRenderer>().sprite=obst.sprites[Random.Range(0,obst.sprites.Count)];
                 //temp.transform.localScale=new Vector3(1,1,1);
                 temp.transform.parent=wagonList[wagonCount%WAGONS].transform;
                 obstColocados.Add(temp);
@@ -152,18 +168,18 @@ public class RoomManager : MonoBehaviour
     }
     private void GenerarEnemigos(Conjunto c){
         List<GameObject> enemColocar=c.enemies;
-        int enemCount= random.Next(6,10);
+        int enemCount= Random.Range(6,10);
         
         for (int i = 0; i < enemCount; i++)
         {
-            GameObject enem=c.enemies[random.Next(c.enemies.Count)];
+            GameObject enem=c.enemies[Random.Range(0,c.enemies.Count)];
             int intentos=0;
             Vector3 position;
             do
             {
                 position=new Vector3(
-                    random.Next(WAGON_WIDHT)+WAGON_WIDHT*(wagonCount%WAGONS),
-                    random.Next(WAGON_HEIGHT),
+                    Random.Range(WAGON_WIDHT*(wagonCount%WAGONS),(float)WAGON_WIDHT+WAGON_WIDHT*(wagonCount%WAGONS)),
+                    Random.Range(0.0f,WAGON_HEIGHT),
                     0
 
                 );
@@ -180,27 +196,32 @@ public class RoomManager : MonoBehaviour
 
     private bool PosicionValida(Vector3 position, GameObject obst){
         
-        //Debug.Log("pos: "+ position);
-        //Debug.Log("size: "+ obst.GetComponent<Collider2D>().bounds.size);       
-        float x1=position.x-obst.GetComponent<Collider2D>().bounds.size.x/2;
-        float y1=position.y-obst.GetComponent<Collider2D>().bounds.size.y/2;
-        float x2=position.x+obst.GetComponent<Collider2D>().bounds.size.x/2;
-        float y2=position.y+obst.GetComponent<Collider2D>().bounds.size.y/2;
+        GameObject e =Instantiate(obst, position, Quaternion.identity);
+        Debug.Log("pos: "+ position);
+        Debug.Log("size: "+ e.GetComponent<Collider2D>().bounds.size);       
+        float x1=position.x-e.GetComponent<Collider2D>().bounds.size.x/2;
+        float y1=position.y-e.GetComponent<Collider2D>().bounds.size.y/2;
+        float x2=position.x+e.GetComponent<Collider2D>().bounds.size.x/2;
+        float y2=position.y+e.GetComponent<Collider2D>().bounds.size.y/2;
+        Destroy(e);
         foreach (GameObject item in obstColocados)
         {
-            //Debug.Log("Opos: "+ item.transform.position);
-            //Debug.Log("Osize: "+ item.GetComponent<Collider2D>().bounds.size);    
-            float a1=item.transform.position.x-item.GetComponent<Collider2D>().bounds.size.x/2;
-            float b1=item.transform.position.y-item.GetComponent<Collider2D>().bounds.size.y/2;
-            float a2=item.transform.position.x+item.GetComponent<Collider2D>().bounds.size.x/2;
-            float b2=item.transform.position.y+item.GetComponent<Collider2D>().bounds.size.y/2;
-            
-            if(a2>x1)
-                if (a1<x2)
-                    if(b2>y1)
-                        if (b1<y2)
+            Debug.Log("Opos: " + item.transform.position);
+            Debug.Log("Osize: " + item.GetComponent<Collider2D>().bounds.size);
+            float a1 = item.transform.position.x - item.GetComponent<Collider2D>().bounds.size.x / 2;
+            float b1 = item.transform.position.y - item.GetComponent<Collider2D>().bounds.size.y / 2;
+            float a2 = item.transform.position.x + item.GetComponent<Collider2D>().bounds.size.x / 2;
+            float b2 = item.transform.position.y + item.GetComponent<Collider2D>().bounds.size.y / 2;
+
+            if (a2 > x1)
+                if (a1 < x2)
+                    if (b2 > y1)
+                        if (b1 < y2)
+                        {
+                            Debug.Log("Try again");
                             return false;
-            
+                        }
+
         }
 
 
