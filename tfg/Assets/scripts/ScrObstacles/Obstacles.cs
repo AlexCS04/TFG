@@ -9,6 +9,10 @@ public class RulesObs : ScriptableObject //obstaculos
     public Vector2 minPosition;
     public Vector2 maxPosition;
 
+    public bool porcentajePos;
+    public Vector2 minPerPos;
+    public Vector2 maxPerPos;
+
     [Space]
     public float minRotation;
     public float maxRotation;
@@ -26,7 +30,8 @@ public class Tematica: ScriptableObject{
 
 }
 [CreateAssetMenu(fileName = "Tematicas", menuName = "Scriptable Tematicas/Conjunto")][System.Serializable]
-public class Conjunto: ScriptableObject{
+public class Conjunto: ScriptableObject
+{
         public string nombre;
         public List<RulesObs> obstacles;
 

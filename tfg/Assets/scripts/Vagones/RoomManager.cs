@@ -27,10 +27,10 @@ public class RoomManager : MonoBehaviour
         
     };
 
-    public const int WAGONS = 5;
+    public const int WAGONS = 6;
     public int numWagons;
-    public const int WAGON_WIDHT = 16;
-    const int WAGON_HEIGHT = 9;
+    public const int WAGON_WIDHT = 24;
+    public const int WAGON_HEIGHT = 12;
 
     const int CAMBIO_TEAMATICA=8;
 
@@ -88,15 +88,15 @@ public class RoomManager : MonoBehaviour
         GameObject v = Instantiate(vagonVacio, position, Quaternion.identity);
         if (numWagons < WAGONS) numWagons += 1;
         areasRestringidas = new List<Bounds>{
-            new Bounds(new Vector3(1+WAGON_WIDHT*(wagonCount%WAGONS), 4.5f, 0), new Vector3(2, 3, 0)), 
-            new Bounds(new Vector3(15+WAGON_WIDHT*(wagonCount%WAGONS), 4.5f, 0), new Vector3(2, 3, 0)), 
-            new Bounds(new Vector3(8+WAGON_WIDHT*(wagonCount%WAGONS), 0.5f, 0), new Vector3(2, 1, 0)), 
-            new Bounds(new Vector3(8+WAGON_WIDHT*(wagonCount%WAGONS), 8.5f, 0), new Vector3(2, 1, 0)), 
+            new Bounds(new Vector3(1+WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT/2f, 0), new Vector3(2, 3, 0)), 
+            new Bounds(new Vector3((WAGON_WIDHT-1)+WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT/2f, 0), new Vector3(2, 3, 0)), 
+            new Bounds(new Vector3((WAGON_WIDHT/2)+WAGON_WIDHT*(wagonCount%WAGONS), 0.5f, 0), new Vector3(2, 1, 0)), 
+            new Bounds(new Vector3((WAGON_WIDHT/2)+WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT-0.5f, 0), new Vector3(2, 1, 0)), 
         };
 
         BoxCollider2D b = v.GetComponentInChildren<BoxCollider2D>();
-        v.transform.GetChild(1).transform.position=new Vector3(WAGON_WIDHT*(wagonCount%WAGONS), 4.5f, 0);
-        v.transform.GetChild(2).transform.position=new Vector3(WAGON_WIDHT+WAGON_WIDHT*(wagonCount%WAGONS), 4.5f, 0);
+        v.transform.GetChild(1).transform.position=new Vector3(WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT/2f, 0);
+        v.transform.GetChild(2).transform.position=new Vector3(WAGON_WIDHT+WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT/2f, 0);
         v.transform.GetChild(2).GetComponent<Doors>().SetRoomDoor(true);
         b.size = new Vector2(WAGON_WIDHT, WAGON_HEIGHT);
         b.offset = new Vector2(WAGON_WIDHT, WAGON_HEIGHT)/2;
@@ -144,9 +144,17 @@ public class RoomManager : MonoBehaviour
             Vector3 position;
             do
             {
-                position=new Vector3(
+                if(!obst.porcentajePos)
+                position =new Vector3(
                     Random.Range(obst.minPosition.x,obst.maxPosition.x)+WAGON_WIDHT*(wagonCount%WAGONS),
                     Random.Range(obst.minPosition.y,obst.maxPosition.y),
+                    0
+
+                );
+                else
+                position =new Vector3(
+                    Random.Range(WAGON_WIDHT*obst.minPerPos.x,WAGON_WIDHT*obst.maxPerPos.x)+WAGON_WIDHT*(wagonCount%WAGONS),
+                    Random.Range(WAGON_WIDHT*obst.minPerPos.y,WAGON_WIDHT*obst.maxPerPos.y),
                     0
 
                 );
@@ -172,7 +180,7 @@ public class RoomManager : MonoBehaviour
         
         for (int i = 0; i < enemCount; i++)
         {
-            GameObject enem=c.enemies[Random.Range(0,c.enemies.Count)];
+            GameObject enem=enemColocar[Random.Range(0,enemColocar.Count)];
             int intentos=0;
             Vector3 position;
             do
@@ -197,8 +205,8 @@ public class RoomManager : MonoBehaviour
     private bool PosicionValida(Vector3 position, GameObject obst){
         
         GameObject e =Instantiate(obst, position, Quaternion.identity);
-        Debug.Log("pos: "+ position);
-        Debug.Log("size: "+ e.GetComponent<Collider2D>().bounds.size);       
+        // Debug.Log("pos: "+ position);
+        // Debug.Log("size: "+ e.GetComponent<Collider2D>().bounds.size);       
         float x1=position.x-e.GetComponent<Collider2D>().bounds.size.x/2;
         float y1=position.y-e.GetComponent<Collider2D>().bounds.size.y/2;
         float x2=position.x+e.GetComponent<Collider2D>().bounds.size.x/2;
@@ -206,8 +214,8 @@ public class RoomManager : MonoBehaviour
         Destroy(e);
         foreach (GameObject item in obstColocados)
         {
-            Debug.Log("Opos: " + item.transform.position);
-            Debug.Log("Osize: " + item.GetComponent<Collider2D>().bounds.size);
+            // Debug.Log("Opos: " + item.transform.position);
+            // Debug.Log("Osize: " + item.GetComponent<Collider2D>().bounds.size);
             float a1 = item.transform.position.x - item.GetComponent<Collider2D>().bounds.size.x / 2;
             float b1 = item.transform.position.y - item.GetComponent<Collider2D>().bounds.size.y / 2;
             float a2 = item.transform.position.x + item.GetComponent<Collider2D>().bounds.size.x / 2;
@@ -218,7 +226,7 @@ public class RoomManager : MonoBehaviour
                     if (b2 > y1)
                         if (b1 < y2)
                         {
-                            Debug.Log("Try again");
+                            // Debug.Log("Try again");
                             return false;
                         }
 

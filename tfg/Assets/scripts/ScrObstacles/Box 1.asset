@@ -17,8 +17,9 @@ MonoBehaviour:
   - {fileID: -7205218644840326792, guid: b6c11e2a44396b843a9d5042d8c27880, type: 3}
   minPosition: {x: 2, y: 2}
   maxPosition: {x: 13, y: 6}
-  width: 1
-  height: 1
+  porcentajePos: 1
+  minPerPos: {x: 45.8, y: 12}
+  maxPerPos: {x: 53.9, y: 32}
   minRotation: -5
   maxRotation: 5
   distanciaObjetos: 0
