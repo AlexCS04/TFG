@@ -22,6 +22,6 @@ public class MenuButtons : MonoBehaviour
     }
     public void GoToGame(string file)
     {
-        SceneManager.LoadScene("Dungeon");
+        SceneManager.LoadScene("Intermidium");
     }
 }

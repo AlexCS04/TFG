@@ -36,8 +36,14 @@ public class RoomManager : MonoBehaviour
 
     void Awake()
     {
-        instance=this;
+        instance = this;
         GenerateRandomSeed();
+        ReadSeed();
+    }
+    private void ReadSeed()
+    {
+        seed = PlayerPrefs.GetString("Seed");
+        if (PlayerPrefs.GetInt("RandomSeed") == 1) setseed = true;
     }
     private void GenerateRandomSeed()
     {
@@ -154,7 +160,7 @@ public class RoomManager : MonoBehaviour
                 else
                 position =new Vector3(
                     Random.Range(WAGON_WIDHT*obst.minPerPos.x,WAGON_WIDHT*obst.maxPerPos.x)+WAGON_WIDHT*(wagonCount%WAGONS),
-                    Random.Range(WAGON_WIDHT*obst.minPerPos.y,WAGON_WIDHT*obst.maxPerPos.y),
+                    Random.Range(WAGON_HEIGHT*obst.minPerPos.y,WAGON_HEIGHT*obst.maxPerPos.y),
                     0
 
                 );
@@ -186,8 +192,8 @@ public class RoomManager : MonoBehaviour
             do
             {
                 position=new Vector3(
-                    Random.Range(WAGON_WIDHT*(wagonCount%WAGONS),(float)WAGON_WIDHT+WAGON_WIDHT*(wagonCount%WAGONS)),
-                    Random.Range(0.0f,WAGON_HEIGHT),
+                    Random.Range(WAGON_WIDHT*(wagonCount%WAGONS),.9f*WAGON_WIDHT+WAGON_WIDHT*(wagonCount%WAGONS)),
+                    Random.Range(0.25f,WAGON_HEIGHT*.9f),
                     0
 
                 );

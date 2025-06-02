@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: c1
-  m_EditorClassIdentifier: Assembly-CSharp::Conjunto
+  m_Script: {fileID: 11500000, guid: e92e105936dab7640834658aab90fa1c, type: 3}
+  m_Name: Conjunto 1
+  m_EditorClassIdentifier: 
   nombre: c1
   obstacles:
   - {fileID: 11400000, guid: 45177cd0aa8d044429e320c7e056b67c, type: 2}

@@ -19,8 +19,8 @@ MonoBehaviour:
   minPosition: {x: 2, y: 2}
   maxPosition: {x: 13, y: 6}
   porcentajePos: 1
-  minPerPos: {x: 10, y: 10}
-  maxPerPos: {x: 80, y: 80}
+  minPerPos: {x: 0.1, y: 0.1}
+  maxPerPos: {x: 0.8, y: 0.8}
   minRotation: -5
   maxRotation: 5
   distanciaObjetos: 0

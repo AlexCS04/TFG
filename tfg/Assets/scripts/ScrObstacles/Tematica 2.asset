@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Tema2
-  m_EditorClassIdentifier: Assembly-CSharp::Tematica
-  nombre: 
+  m_Script: {fileID: 11500000, guid: 544d13522f8378c42bccbfd00e7ac446, type: 3}
+  m_Name: Tematica 2
+  m_EditorClassIdentifier: 
+  nombre: t2
   siguientesTematicas:
-  - {fileID: 11400000, guid: e4f120a8e8388bc4c96d22dd6c85a5a2, type: 2}
+  - {fileID: 11400000, guid: 88c8c66b86f870545b213f46b49cffb7, type: 2}
   - {fileID: 11400000}
   conjuntos:
-  - {fileID: 11400000, guid: 68a313a0464d02444894852a1bf6bc57, type: 2}
+  - {fileID: 11400000, guid: 11dd0b8d146d0a644a373f3f432632cd, type: 2}
