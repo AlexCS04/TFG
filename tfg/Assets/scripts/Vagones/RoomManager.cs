@@ -74,10 +74,6 @@ public class RoomManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            GenerarSala();
-        }
         if (Input.GetKeyDown(KeyCode.M))
         {
             ClearedRoom();
@@ -257,7 +253,7 @@ public class RoomManager : MonoBehaviour
 
     private void VagonInicial()
     {
-        
+
         ClearedRoom();
     }
     public void ClearedRoom()
