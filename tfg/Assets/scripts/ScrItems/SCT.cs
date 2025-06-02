@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SCT", menuName = "Scriptable Objects/SCT")]
 public class SCT : ScriptableObject
 {
-    
+
     public Sprite sprite;
 
     public EquipType equipType;
@@ -11,7 +11,9 @@ public class SCT : ScriptableObject
     public int peso;
     public int sizeX;
     public int sizeY;
+    public Vector2Int spwnQuantity;
     public BoolArray2D shape = new BoolArray2D(8);
+
 }
 [System.Serializable]
 public class BoolArray2D

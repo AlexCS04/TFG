@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d2aae623d52aeb4d9d8936d6501b635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveP: 1
+  moveP: 1.2
   dir: 3
 --- !u!1 &6640665835430138280
 GameObject:
@@ -513,7 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d2aae623d52aeb4d9d8936d6501b635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveP: 1
+  moveP: 1.2
   dir: 2
 --- !u!1 &6925840400000702704
 GameObject:

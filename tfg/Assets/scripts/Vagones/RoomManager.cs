@@ -257,6 +257,7 @@ public class RoomManager : MonoBehaviour
 
     private void VagonInicial()
     {
+        
         ClearedRoom();
     }
     public void ClearedRoom()

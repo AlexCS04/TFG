@@ -11,6 +11,7 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float attackSpeed;
     [SerializeField] private float healindSpeed;
+    [SerializeField] private List<SCT> testItemSpawn;
 
     private bool openInv;
     public float regenHealth;
@@ -40,6 +41,10 @@ public class PlayerControls : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.I)){
             OpenInv();
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            ItemSpwnManager.instance.SpawnItem(testItemSpawn, transform.position);
         }
 
     }

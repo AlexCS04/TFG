@@ -18,6 +18,7 @@ MonoBehaviour:
   peso: 5
   sizeX: 3
   sizeY: 1
+  spwnQuantity: {x: 2, y: 5}
   shape:
     rows:
     - array: 0100000000000000
