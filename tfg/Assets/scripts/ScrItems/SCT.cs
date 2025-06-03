@@ -35,7 +35,7 @@ public class MultiDimensionalBool
 public enum EquipType{
 
     PrimaryWeapon,
-    SecondaryWeapon,
+    SecondaryWeapon, //tal vez no
     Ring, 
     Consumable,
     Helmet,

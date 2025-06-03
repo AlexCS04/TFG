@@ -7,15 +7,11 @@ public class PlayerControls : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Vector2 m_Movement;
-    private bool attacking;
     [SerializeField] private float speed;
-    [SerializeField] private float attackSpeed;
-    [SerializeField] private float healindSpeed;
     [SerializeField] private List<SCT> testItemSpawn;
 
     private bool openInv;
-    public float regenHealth;
-    public float trueHealth;
+
 
     public List<GroundItem> itemsArea;
 
@@ -33,12 +29,7 @@ public class PlayerControls : MonoBehaviour
 
 
         m_Movement.Set(horizontal, vertical);
-        if(!openInv){ //inventario cerrado
-            if(Input.GetAxisRaw("Fire1")!=0){
-                StartCoroutine("Attack");
-            }
 
-        }
         if(Input.GetKeyDown(KeyCode.I)){
             OpenInv();
         }
@@ -54,15 +45,7 @@ public class PlayerControls : MonoBehaviour
             rb.MovePosition(rb.position + m_Movement * speed*Time.fixedDeltaTime);
         }
     }
-    private IEnumerator Attack(){
-        if(!attacking){
-        attacking=true;
-        Debug.Log("Attack");
-        yield return new WaitForSeconds(attackSpeed);
-        attacking=false;
-        }else yield return null;
 
-    }
     private void OpenInv(){
         if (ContainerManager.instance.inventario.activeSelf)
         {
