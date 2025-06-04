@@ -65,8 +65,28 @@ public class Doors : MonoBehaviour
         yield return null;
         confiner.gameObject.SetActive(true);
     }
-    public void SetRoomDoor(bool b) { lastRoom = b; }
-    public void SetRoomClear(bool b){ roomClear = b; }
+    public void SetRoomDoor(bool b) { lastRoom = b; }  //The door that triggers a new wagon
+    public void SetRoomClear(bool b) { roomClear = b; }
+
+    public void PlaceDoor()
+    {
+        switch (dir)
+        {
+            case Direction.Up:
+                transform.localPosition = new Vector3(RoomManager.WAGON_WIDHT/2f, RoomManager.WAGON_HEIGHT, 0);
+                break;
+            case Direction.Down:
+                transform.localPosition = new Vector3(RoomManager.WAGON_WIDHT/2f, 0, 0);
+                break;
+            case Direction.Left:
+                transform.localPosition = new Vector3(0, RoomManager.WAGON_HEIGHT / 2f, 0);
+                break;
+            case Direction.Right:
+                transform.localPosition = new Vector3(RoomManager.WAGON_WIDHT, RoomManager.WAGON_HEIGHT / 2f, 0);
+                break;
+        }
+        
+    }
 }
 public enum Direction
 {

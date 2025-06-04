@@ -8,7 +8,8 @@ public class PlayerControls : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Vector2 m_Movement;
-    [SerializeField] private float speed;
+    public float speed;
+    public float currentSpeed;
     [SerializeField] private List<SCT> testItemSpawn;
 
     private bool openInv;
@@ -19,7 +20,8 @@ public class PlayerControls : MonoBehaviour
 
     void Start()
     {
-        rb=GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
+        currentSpeed = speed;
     }
 
 
@@ -42,10 +44,7 @@ public class PlayerControls : MonoBehaviour
         }
         if (Input.GetButtonDown("Fire1"))
         {
-            if (GetComponent<Attack>())
-            {
-                GetComponent<Attack>().AttackAction();
-            }
+            Attack();
         }
         if (Input.GetKeyDown(KeyCode.V))
         {
@@ -57,20 +56,28 @@ public class PlayerControls : MonoBehaviour
     {
         if (!openInv)
         {
-            rb.MovePosition(rb.position + m_Movement * speed * Time.fixedDeltaTime);
+            rb.MovePosition(rb.position + m_Movement * currentSpeed * Time.fixedDeltaTime);
         }
     }
 
-    private void OpenInv(){
+    private void OpenInv()
+    {
         if (ContainerManager.instance.inventario.activeSelf)
         {
             ContainerManager.instance.CloseInventory();
-            openInv=false;
-        }else
+            openInv = false;
+        }
+        else
         {
             ContainerManager.instance.OpenInventory(itemsArea);
-            openInv=true;
+            openInv = true;
         }
-        
+
+    }
+    private void Attack()
+    {
+        if (!GetComponent<Attack>()) return;
+        GetComponent<Attack>().AttackAction();
+
     }
 }

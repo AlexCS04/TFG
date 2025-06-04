@@ -21,13 +21,13 @@ public class RoomManager : MonoBehaviour
     public Tematica tematica;
     [SerializeField] private List<Tematica> tematicas;
     
-    private GameObject[] wagonList= new GameObject[5];
-    public BoxCollider2D[] wagonCameraBounds= new BoxCollider2D[5];
+    private GameObject[] wagonList= new GameObject[WAGONS];
+    public BoxCollider2D[] wagonCameraBounds= new BoxCollider2D[WAGONS];
     private List<Bounds> areasRestringidas= new List<Bounds>{
         
     };
 
-    public const int WAGONS = 6;
+    public const int WAGONS = 5;
     public int numWagons;
     public const int WAGON_WIDHT = 24;
     public const int WAGON_HEIGHT = 12;
@@ -37,6 +37,8 @@ public class RoomManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        wagonList= new GameObject[WAGONS];
+        wagonCameraBounds= new BoxCollider2D[WAGONS];
         GenerateRandomSeed();
         ReadSeed();
     }
@@ -97,8 +99,8 @@ public class RoomManager : MonoBehaviour
         };
 
         BoxCollider2D b = v.GetComponentInChildren<BoxCollider2D>();
-        v.transform.GetChild(1).transform.position=new Vector3(WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT/2f, 0);
-        v.transform.GetChild(2).transform.position=new Vector3(WAGON_WIDHT+WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT/2f, 0);
+        v.transform.GetChild(1).GetComponent<Doors>().PlaceDoor();
+        v.transform.GetChild(2).GetComponent<Doors>().PlaceDoor();
         v.transform.GetChild(2).GetComponent<Doors>().SetRoomDoor(true);
         b.size = new Vector2(WAGON_WIDHT, WAGON_HEIGHT);
         b.offset = new Vector2(WAGON_WIDHT, WAGON_HEIGHT)/2;

@@ -8,7 +8,7 @@ public class Attack : MonoBehaviour
     public float damage; //change
     [SerializeField] protected LayerMask attackLayer;
     public AttackType attackType;
-    public GameObject weapon;
+    public GameObject weapon; 
     protected float timeSinceAttack;
 
 
