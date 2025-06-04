@@ -2486,7 +2486,9 @@ GameObject:
   - component: {fileID: 853741644}
   - component: {fileID: 853741643}
   - component: {fileID: 853741645}
-  m_Layer: 0
+  - component: {fileID: 853741647}
+  - component: {fileID: 853741646}
+  m_Layer: 9
   m_Name: Triangle
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2562,6 +2564,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1328019330}
+  - {fileID: 1478312402}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &853741643
@@ -2656,6 +2659,46 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 27b7033bda9c0e04ea86c35b4464f85f, type: 2}
   - {fileID: 11400000, guid: c69b7caebece93741acca9c7a34879d1, type: 2}
   itemsArea: []
+--- !u!114 &853741646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853741639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 277b79daced8f9d4d9c56be9edaf5e48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackSpeed: 2
+  attackPoint: {fileID: 1478312402}
+  attackRange: 3
+  damage: 1
+  attackLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  attackType: 0
+  weapon: {fileID: 0}
+--- !u!114 &853741647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853741639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53772e783b99ddd4a93bddc9fb40f075, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
+  currentHealth: 0
+  regenHealth: 0
+  invuFrames: 0
+  invuFramesCount: 2
+  healthSlider: {fileID: 1222913118}
+  healthSlider2: {fileID: 921551172}
 --- !u!1 &867582880
 GameObject:
   m_ObjectHideFlags: 0
@@ -3901,6 +3944,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6a74bd2f86c4d946832ed4671e5d6c8, type: 3}
+--- !u!1 &1478312401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1478312402}
+  m_Layer: 0
+  m_Name: attackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1478312402
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478312401}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.76, y: 0.16, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 853741641}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1539128418
 GameObject:
   m_ObjectHideFlags: 0
