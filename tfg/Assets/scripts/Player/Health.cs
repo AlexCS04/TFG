@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEditor.UI;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour
@@ -7,7 +6,7 @@ public class Health : MonoBehaviour
     [SerializeField] protected float maxHealth;
     [SerializeField] protected float currentHealth;
     [SerializeField] protected float regenHealth;
-    [SerializeField] protected float invuFrames;
+    protected float invuFrames;
     [SerializeField] protected float invuFramesCount;
     [SerializeField] protected Slider healthSlider;
     [SerializeField] protected Slider healthSlider2;
@@ -21,7 +20,7 @@ public class Health : MonoBehaviour
     public virtual void TakeDamage(float tHealth, float rHealth)
     {
         if (invuFrames > 0) return;
-        Debug.Log("damage");
+        // Debug.Log("damage");
         currentHealth -= tHealth;
         regenHealth -= rHealth;
         if (healthSlider != null) healthSlider.value = Mathf.InverseLerp(0,maxHealth,currentHealth);
@@ -31,7 +30,7 @@ public class Health : MonoBehaviour
     }
     public virtual void Die()
     {
-        //Death
+        Destroy(gameObject);
     }
     void Update()
     {

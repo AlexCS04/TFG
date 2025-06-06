@@ -1,16 +1,14 @@
 using System.Collections.Generic;
 using Unity.Cinemachine;
-// using Unity.Mathematics;
 using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
 
     public static RoomManager instance{get; private set;}
+    public Transform player;
 
-    //public static UnityEngine.Random random= UnityEngine.Random;
     public string seed;
-    private string rSeed;
     public bool setseed;
 
     public int wagonCount;
@@ -50,22 +48,21 @@ public class RoomManager : MonoBehaviour
     private void GenerateRandomSeed()
     {
         int tSeed = (int)System.DateTime.Now.Ticks;
-        rSeed = tSeed.ToString();
-
         Random.InitState(tSeed);
     }
-    public void SetRandomSeed(string s = "")
+    public void SetSeed()
     {
-        seed = s;
-        int tSeed = 0;
-        if (int.TryParse(s, out int n)) { tSeed = System.Int32.Parse(s); }
+        int tSeed;
+        if (int.TryParse(seed, out int n)) { tSeed = System.Int32.Parse(seed); }
         else { tSeed = seed.GetHashCode(); }
         Random.InitState(tSeed);
     }
 
     void Start()
     {
-        if (setseed) SetRandomSeed(seed);
+        if (setseed) SetSeed();
+        PlayerPrefs.SetString("Seed", "");
+        PlayerPrefs.SetInt("RandomSeed", 0);
         tematica = tematicas[Random.Range(0,tematicas.Count)];
         GenerarSala();
         //GenerarSala();

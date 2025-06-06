@@ -8,7 +8,7 @@ public class Attack : MonoBehaviour
     public float damage; //change
     [SerializeField] protected LayerMask attackLayer;
     public AttackType attackType;
-    public GameObject weapon; 
+    public GameObject weapon;
     protected float timeSinceAttack;
 
 
@@ -26,7 +26,7 @@ public class Attack : MonoBehaviour
     }
     private void AttackRanged()
     {
-        
+
     }
     private void AttackMelee()
     {
@@ -35,6 +35,10 @@ public class Attack : MonoBehaviour
         {
             item.GetComponent<Health>().TakeDamage(damage, damage);
         }
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
 }
