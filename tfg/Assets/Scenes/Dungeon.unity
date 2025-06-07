@@ -828,8 +828,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 853741641}
-  seed: 
-  setseed: 0
+  seed: da
+  setseed: 1
   wagonCount: 0
   actualWagon: 0
   vagonVacio: {fileID: 4855131846647677107, guid: c38be918d179073408f4de9f3dfc3dd2, type: 3}
@@ -2675,15 +2675,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 277b79daced8f9d4d9c56be9edaf5e48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpeed: 2
+  attackSpeed: 1
   attackPoint: {fileID: 1478312402}
   attackRange: 1.4
   damage: 1
   attackLayer:
     serializedVersion: 2
     m_Bits: 256
-  attackType: 0
-  weapon: {fileID: 0}
+  attackType: 1
+  weapon: {fileID: 1117003242370999814, guid: 665117b98217f0a4f84e28200bcfd887, type: 3}
+  bSpeed: 12
 --- !u!114 &853741647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5718,6 +5719,18 @@ PrefabInstance:
     - target: {fileID: 7121104543559135807, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
       propertyPath: m_Name
       value: EnemyBase
+      objectReference: {fileID: 0}
+    - target: {fileID: 7121104543559135807, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7121104543559135807, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7121104543559135807, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7910968052479206142, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
       propertyPath: m_Constraints

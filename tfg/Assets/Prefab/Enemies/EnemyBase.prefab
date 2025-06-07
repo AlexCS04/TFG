@@ -208,6 +208,7 @@ MonoBehaviour:
     m_Bits: 512
   attackType: 0
   weapon: {fileID: 0}
+  bSpeed: 0
 --- !u!50 &7910968052479206142
 Rigidbody2D:
   serializedVersion: 5

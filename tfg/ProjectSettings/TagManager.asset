@@ -6,6 +6,8 @@ TagManager:
   tags:
   - GroundItem
   - Obstacle
+  - Wall
+  - Enemies
   layers:
   - Default
   - TransparentFX

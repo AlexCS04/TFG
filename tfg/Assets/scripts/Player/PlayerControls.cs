@@ -39,7 +39,7 @@ public class PlayerControls : MonoBehaviour
         {
             ItemSpwnManager.instance.SpawnItem(testItemSpawn, transform.position);
         }
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1"))
         {
             Attack();
         }
