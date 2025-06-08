@@ -26,22 +26,25 @@ public class EnemyBehaviour : MonoBehaviour
     }
     void FixedUpdate()
     {
+        rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity=0f;
         state.FixedDo();
     }
     private void SelectState()
     {
         // state = new EnemyIdle();
-        if (Vector3.Distance(player.position, transform.position) > chaseDistance)
+        if (Vector3.Distance(player.position, transform.position) >= chaseDistance)
         {
             state = chaseState;
             Debug.Log("Chasing");
+            Debug.Log(Vector3.Distance(player.position, transform.position));
         }
         else if (Vector3.Distance(player.position, transform.position) < retrieveDistance)
         {
             state = retrieveState;
             Debug.Log("Retriving");
         }
-        else
+        else 
         {
             state = attackState;
             Debug.Log("Attacking");

@@ -8,6 +8,7 @@ public class RoomManager : MonoBehaviour
     public static RoomManager instance{get; private set;}
     public Transform player;
 
+    public System.Random roomRandom;
     public string seed;
     public bool setseed;
 
@@ -48,14 +49,14 @@ public class RoomManager : MonoBehaviour
     private void GenerateRandomSeed()
     {
         int tSeed = (int)System.DateTime.Now.Ticks;
-        Random.InitState(tSeed);
+        roomRandom=new System.Random(tSeed);
     }
     public void SetSeed()
     {
         int tSeed;
         if (int.TryParse(seed, out int n)) { tSeed = System.Int32.Parse(seed); }
         else { tSeed = seed.GetHashCode(); }
-        Random.InitState(tSeed);
+        roomRandom=new System.Random(tSeed);
     }
 
     void Start()
@@ -63,7 +64,8 @@ public class RoomManager : MonoBehaviour
         if (setseed) SetSeed();
         PlayerPrefs.SetString("Seed", "");
         PlayerPrefs.SetInt("RandomSeed", 0);
-        tematica = tematicas[Random.Range(0,tematicas.Count)];
+        // tematica = tematicas[Random.Range(0,tematicas.Count)];
+        tematica = tematicas[roomRandom.Next(0, tematicas.Count)];
         GenerarSala();
         //GenerarSala();
         confiner.BoundingShape2D = wagonCameraBounds[0];
@@ -115,14 +117,18 @@ public class RoomManager : MonoBehaviour
 
     }
     private void CambioTematica(){
-        if(wagonCount%CAMBIO_TEAMATICA==0){
-            tematica= tematica.siguientesTematicas[Random.Range(0,tematica.siguientesTematicas.Count)];
+        if (wagonCount % CAMBIO_TEAMATICA == 0)
+        {
+            // tematica = tematica.siguientesTematicas[Random.Range(0, tematica.siguientesTematicas.Count)];
+            tematica = tematica.siguientesTematicas[roomRandom.Next(0, tematica.siguientesTematicas.Count)];
         }
 
 
     }
-    private Conjunto SeleccionConjunto(){
-        return tematica.conjuntos[Random.Range(0,tematica.conjuntos.Count)];
+    private Conjunto SeleccionConjunto()
+    {
+        // return tematica.conjuntos[Random.Range(0, tematica.conjuntos.Count)];
+        return tematica.conjuntos[roomRandom.Next(0, tematica.conjuntos.Count)];
     }
     private void SalaEspecial(){
 
@@ -136,26 +142,32 @@ public class RoomManager : MonoBehaviour
     }
     private void ColocarObstaculos(Conjunto c){
         List<RulesObs> obstColocar=c.obstacles;
-        int obstCount= Random.Range(6,10);
+        int obstCount= roomRandom.Next(6,11);
+        
         
         for (int i = 0; i < obstCount; i++)
         {
-            RulesObs obst=c.obstacles[Random.Range(0,c.obstacles.Count)];
+            RulesObs obst=c.obstacles[roomRandom.Next(0,c.obstacles.Count)];
             int intentos=0;
             Vector3 position;
             do
             {
                 if(!obst.porcentajePos)
                 position =new Vector3(
-                    Random.Range(obst.minPosition.x,obst.maxPosition.x)+WAGON_WIDHT*(wagonCount%WAGONS),
-                    Random.Range(obst.minPosition.y,obst.maxPosition.y),
+                    // Random.Range(obst.minPosition.x,obst.maxPosition.x)+WAGON_WIDHT*(wagonCount%WAGONS),
+                    // Random.Range(obst.minPosition.y,obst.maxPosition.y),
+                    (float)(roomRandom.NextDouble()*(obst.maxPosition.x-obst.minPosition.x)+obst.minPosition.x)+WAGON_WIDHT*(wagonCount%WAGONS),
+                    (float)(roomRandom.NextDouble()*(obst.maxPosition.y-obst.minPosition.y)+obst.minPosition.y),
                     0
 
                 );
                 else
                 position =new Vector3(
-                    Random.Range(WAGON_WIDHT*obst.minPerPos.x,WAGON_WIDHT*obst.maxPerPos.x)+WAGON_WIDHT*(wagonCount%WAGONS),
-                    Random.Range(WAGON_HEIGHT*obst.minPerPos.y,WAGON_HEIGHT*obst.maxPerPos.y),
+                    // Random.Range(WAGON_WIDHT*obst.minPerPos.x,WAGON_WIDHT*obst.maxPerPos.x)+WAGON_WIDHT*(wagonCount%WAGONS),
+                    // Random.Range(WAGON_HEIGHT*obst.minPerPos.y,WAGON_HEIGHT*obst.maxPerPos.y),
+                    (float)(roomRandom.NextDouble()*(WAGON_WIDHT*obst.maxPerPos.x-WAGON_WIDHT*obst.minPerPos.x)+WAGON_WIDHT*obst.minPerPos.x)+WAGON_WIDHT*(wagonCount%WAGONS),
+                    (float)(roomRandom.NextDouble()*(WAGON_HEIGHT*obst.maxPerPos.y-WAGON_HEIGHT*obst.minPerPos.y)+WAGON_HEIGHT*obst.minPerPos.y),
+
                     0
 
                 );
@@ -163,9 +175,9 @@ public class RoomManager : MonoBehaviour
             } while ((!PosicionValida(position, obst.prefab) || EnAreaRestringida(position)) && intentos<100);
             if(intentos<100){
 
-                Quaternion rotation = Quaternion.Euler(0,0,Random.Range(obst.minRotation,obst.maxRotation));
+                Quaternion rotation = Quaternion.Euler(0,0,(float)(roomRandom.NextDouble()*(obst.maxRotation-obst.minRotation)+obst.minRotation));
                 GameObject temp = Instantiate(obst.prefab, position, rotation);
-                temp.GetComponent<SpriteRenderer>().sprite=obst.sprites[Random.Range(0,obst.sprites.Count)];
+                temp.GetComponent<SpriteRenderer>().sprite=obst.sprites[roomRandom.Next(0,obst.sprites.Count)];
                 //temp.transform.localScale=new Vector3(1,1,1);
                 temp.transform.parent=wagonList[wagonCount%WAGONS].transform;
                 obstColocados.Add(temp);
@@ -177,18 +189,21 @@ public class RoomManager : MonoBehaviour
     }
     private void GenerarEnemigos(Conjunto c){
         List<GameObject> enemColocar=c.enemies;
-        int enemCount= Random.Range(6,10);
+        int enemCount= roomRandom.Next(6,11);
         
         for (int i = 0; i < enemCount; i++)
         {
-            GameObject enem=enemColocar[Random.Range(0,enemColocar.Count)];
+            GameObject enem=enemColocar[roomRandom.Next(0,enemColocar.Count)];
             int intentos=0;
             Vector3 position;
             do
             {
                 position=new Vector3(
-                    Random.Range(WAGON_WIDHT*(wagonCount%WAGONS),.9f*WAGON_WIDHT+WAGON_WIDHT*(wagonCount%WAGONS)),
-                    Random.Range(0.25f,WAGON_HEIGHT*.9f),
+                    // Random.Range(WAGON_WIDHT*(wagonCount%WAGONS),.9f*WAGON_WIDHT+WAGON_WIDHT*(wagonCount%WAGONS)),
+                    // Random.Range(0.25f,WAGON_HEIGHT*.9f),
+                    (float)(roomRandom.NextDouble()*(.9f*WAGON_WIDHT+WAGON_WIDHT*(wagonCount%WAGONS)-WAGON_WIDHT*(wagonCount%WAGONS))+WAGON_WIDHT*(wagonCount%WAGONS)),
+                    (float)(roomRandom.NextDouble()*(WAGON_HEIGHT*.9f*(wagonCount%WAGONS)-0.25f)+0.25f),
+
                     0
 
                 );

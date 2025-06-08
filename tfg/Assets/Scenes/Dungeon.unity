@@ -2475,6 +2475,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 779830169}
   m_CullTransparentMesh: 1
+--- !u!1 &806200844
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 806200845}
+  m_Layer: 0
+  m_Name: RoomGridsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &806200845
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806200844}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &853741639
 GameObject:
   m_ObjectHideFlags: 0
@@ -5634,7 +5665,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1249613593823965146, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1249613593823965146, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
       propertyPath: m_UsedByEffector
@@ -5686,11 +5717,11 @@ PrefabInstance:
       objectReference: {fileID: 5568006721105201031}
     - target: {fileID: 1519861666243907404, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
       propertyPath: chaseDistance
-      value: 3
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 1519861666243907404, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
       propertyPath: retrieveDistance
-      value: 1
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 1770373923438921292, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
       propertyPath: speed
@@ -5698,10 +5729,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1770373923438921292, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
       propertyPath: chaseDistance
-      value: 3
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 3647829498886226282, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
       propertyPath: retrieveDistance
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149932431544238528, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
+      propertyPath: maxHealth
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149932431544238528, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
+      propertyPath: invuFramesCount
+      value: 1.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7064630582580712559, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
+      propertyPath: bSpeed
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7064630582580712559, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
@@ -5710,7 +5753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7064630582580712559, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
       propertyPath: attackRange
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7064630582580712559, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
       propertyPath: attackSpeed
@@ -5731,6 +5774,10 @@ PrefabInstance:
     - target: {fileID: 7121104543559135807, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 7910968052479206142, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
+      propertyPath: m_BodyType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7910968052479206142, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
       propertyPath: m_Constraints
@@ -5764,3 +5811,4 @@ SceneRoots:
   - {fileID: 436031914}
   - {fileID: 1875844908}
   - {fileID: 5568006721105201030}
+  - {fileID: 806200845}

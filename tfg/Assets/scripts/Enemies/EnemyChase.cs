@@ -12,11 +12,12 @@ public class EnemyChase : EnemyState
     }
     public override void Do()
     {
-        if (Vector3.Distance(player.position, transform.position) > chaseDistance)
+        completed = false;
+        if (Vector3.Distance(player.position, transform.position) >= chaseDistance)
         {
-            destination = player.position;
-            if (player.position.x > transform.position.x) transform.eulerAngles = new Vector3(0, 180, 0);
-            else transform.eulerAngles = new Vector3(0, 0, 0);
+            Vector3 randomOffset = Random.insideUnitSphere * 2f;
+            destination = player.position + randomOffset;
+            FacePlayer();
         }
         else
         {
@@ -30,6 +31,14 @@ public class EnemyChase : EnemyState
     }
     public override void Exit()
     {
+        // Debug.Log("exit");
+        
+        // destination = transform.position;
         completed = true;
+    }
+    private void FacePlayer()
+    {
+        if (player.position.x > transform.position.x) transform.eulerAngles = new Vector3(0, 180, 0);
+        else transform.eulerAngles = new Vector3(0, 0, 0);
     }
 }
