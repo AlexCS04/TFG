@@ -844,6 +844,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  wagonGrid:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   numWagons: 0
 --- !u!1 &327712960
 GameObject:
@@ -5694,7 +5700,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1770373923438921292, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
       propertyPath: speed
-      value: 2
+      value: 2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1770373923438921292, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
+      propertyPath: followType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1770373923438921292, guid: 96baba238c38aac42ad422272e8ffdb9, type: 3}
       propertyPath: chaseDistance

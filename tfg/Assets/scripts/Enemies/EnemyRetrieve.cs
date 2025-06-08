@@ -16,4 +16,5 @@ public class EnemyRetrieve : EnemyState
     {
         completed = true;
     }
+    //destination = new Vector2(player.position.x > transform.position.x ? transform.position.x-2:transform.position.x+5,player.position.y > transform.position.y ? transform.position.y-2:transform.position.y+5);
 }

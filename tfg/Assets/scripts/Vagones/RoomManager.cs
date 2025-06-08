@@ -22,6 +22,7 @@ public class RoomManager : MonoBehaviour
     
     private GameObject[] wagonList= new GameObject[WAGONS];
     public BoxCollider2D[] wagonCameraBounds= new BoxCollider2D[WAGONS];
+    public RoomGrid[] wagonGrid= new RoomGrid[WAGONS];
     private List<Bounds> areasRestringidas= new List<Bounds>{
         
     };
@@ -79,6 +80,10 @@ public class RoomManager : MonoBehaviour
         {
             ClearedRoom();
         }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            
+        }
 
     }
     bool spwnEnemigos;
@@ -101,12 +106,13 @@ public class RoomManager : MonoBehaviour
         v.transform.GetChild(1).GetComponent<Doors>().PlaceDoor();
         v.transform.GetChild(2).GetComponent<Doors>().PlaceDoor();
         v.transform.GetChild(2).GetComponent<Doors>().SetRoomDoor(true);
+        v.transform.GetChild(4).GetComponent<RoomGrid>().GenerateGrid();
         b.size = new Vector2(WAGON_WIDHT, WAGON_HEIGHT);
         b.offset = new Vector2(WAGON_WIDHT, WAGON_HEIGHT)/2;
         Destroy(wagonList[wagonCount%WAGONS]);
         wagonList[wagonCount%WAGONS]=v;
-        Destroy(wagonCameraBounds[wagonCount%WAGONS]);
         wagonCameraBounds[wagonCount%WAGONS]=b;
+        wagonGrid[wagonCount % WAGONS] = v.transform.GetChild(4).GetComponent<RoomGrid>();
         CambioTematica();
         Conjunto c = SeleccionConjunto();
         SalaEspecial();
@@ -202,7 +208,7 @@ public class RoomManager : MonoBehaviour
                     // Random.Range(WAGON_WIDHT*(wagonCount%WAGONS),.9f*WAGON_WIDHT+WAGON_WIDHT*(wagonCount%WAGONS)),
                     // Random.Range(0.25f,WAGON_HEIGHT*.9f),
                     (float)(roomRandom.NextDouble()*(.9f*WAGON_WIDHT+WAGON_WIDHT*(wagonCount%WAGONS)-WAGON_WIDHT*(wagonCount%WAGONS))+WAGON_WIDHT*(wagonCount%WAGONS)),
-                    (float)(roomRandom.NextDouble()*(WAGON_HEIGHT*.9f*(wagonCount%WAGONS)-0.25f)+0.25f),
+                    (float)(roomRandom.NextDouble()*(WAGON_HEIGHT*.9f-0.25f)+0.25f),
 
                     0
 
