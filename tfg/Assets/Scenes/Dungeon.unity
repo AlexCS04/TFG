@@ -2662,6 +2662,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  mochilaMaxPeso: 0
+  mochilaPeso: 0
   currentSpeed: 0
   testItemSpawn:
   - {fileID: 11400000, guid: c69b7caebece93741acca9c7a34879d1, type: 2}
@@ -2689,7 +2691,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   attackType: 1
-  weapon: {fileID: 1117003242370999814, guid: 665117b98217f0a4f84e28200bcfd887, type: 3}
+  bullet: {fileID: 0}
+  player: 1
   bSpeed: 12
 --- !u!114 &853741647
 MonoBehaviour:
@@ -2706,6 +2709,10 @@ MonoBehaviour:
   maxHealth: 5
   currentHealth: 0
   regenHealth: 0
+  bDefense: 0
+  cDefense: 0
+  rTime: 0
+  rQuant: 0
   invuFramesCount: 2
   healthSlider: {fileID: 1222913118}
   healthSlider2: {fileID: 921551172}

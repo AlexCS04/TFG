@@ -2,14 +2,16 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    public float attackSpeed; //get from weapon
+    public float attackSpeed; //modify from weapon
     [SerializeField] protected Transform attackPoint; //get from weapon maybe
-    public float attackRange; //get from weapon
-    public float damage; //change get from weapon
+    public float attackRange; //modify from weapon
+    public float damage; //modify from weapon
     [SerializeField] protected LayerMask attackLayer;
     public AttackType attackType; //get from weapon
-    public GameObject weapon; //change  Weapon holding
+    public GameObject bullet; //change  Weapon holding
     protected float timeSinceAttack;
+
+    [SerializeField] private bool player;
 
     public float bSpeed; //change get from weapon
 
@@ -18,19 +20,19 @@ public class Attack : MonoBehaviour
     {
         if (timeSinceAttack > 0) timeSinceAttack -= Time.deltaTime;
     }
-    public virtual void AttackAction()
+    public virtual void AttackAction(Vector3 target)
     {
         if (timeSinceAttack > 0) return;
 
         timeSinceAttack = attackSpeed;
-        if (attackType == AttackType.ranged) AttackRanged();
+        if (attackType == AttackType.ranged) AttackRanged(target);
         else AttackMelee();
     }
-    private void AttackRanged()
+    private void AttackRanged(Vector3 target)
     {
-        GameObject temp = Instantiate(weapon, transform.position, Quaternion.identity);
+        GameObject temp = Instantiate(bullet, transform.position, Quaternion.identity);
         temp.GetComponent<Bullet>().Born(attackLayer, bSpeed, damage);
-        temp.GetComponent<Bullet>().Shoot(Input.mousePosition);
+        temp.GetComponent<Bullet>().Shoot(target, player);
     }
     private void AttackMelee()
     {

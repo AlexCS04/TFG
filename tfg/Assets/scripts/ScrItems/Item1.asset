@@ -13,12 +13,33 @@ MonoBehaviour:
   m_Name: Item1
   m_EditorClassIdentifier: 
   sprite: {fileID: -5738547799210225554, guid: 314ec396027f72444b0bcb912bb095ba, type: 3}
+  Name: Gun1
   equipType: 0
-  maxStack: 5
-  peso: 2
+  maxStack: 1
+  peso: 8
   sizeX: 1
   sizeY: 1
   spwnQuantity: {x: 1, y: 3}
+  iDamage: 0
+  eDamage: 8
+  mDamage: 0
+  iAttackSpeed: 0
+  eAttackSpeed: 1.1
+  mAttackSpeed: 0
+  iSpeed: 0
+  eSpeed: 0
+  mSpeed: -0.1
+  iAttackRange: 0
+  eAttackRange: 0
+  iHealth: 1
+  eHealth: 0
+  iDefense: 0
+  eDefense: 1
+  mDefense: 0.04
+  attackType: 1
+  bSpeed: 3.2
+  bPiercing: 2
+  bBounce: 1
   shape:
     rows:
     - array: 0100000000000000

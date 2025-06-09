@@ -5,6 +5,7 @@ public class SCT : ScriptableObject
 {
 
     public Sprite sprite;
+    public string Name;
 
     public EquipType equipType;
     public int maxStack;
@@ -12,6 +13,36 @@ public class SCT : ScriptableObject
     public int sizeX;
     public int sizeY;
     public Vector2Int spwnQuantity;
+
+    public float iDamage;
+    public float eDamage;
+    public float mDamage;
+    public float iAttackSpeed;
+    public float eAttackSpeed;
+    public float mAttackSpeed;
+    public float iSpeed;
+    public float eSpeed;
+    public float mSpeed;
+
+    public float iAttackRange;
+    public float eAttackRange;
+
+    public float iHealth;
+    public float eHealth;
+
+    public float iDefense;
+    public float eDefense;
+    public float mDefense;
+    public AttackType attackType;
+
+    public float bSpeed;
+
+    public int bPiercing;
+
+    public bool bBounce;
+
+
+
     public BoolArray2D shape = new BoolArray2D(8);
 
 }
@@ -32,11 +63,12 @@ public class MultiDimensionalBool
 {
         public bool[] boolArray;
 }
-public enum EquipType{
+public enum EquipType
+{
 
     PrimaryWeapon,
     SecondaryWeapon, //tal vez no
-    Ring, 
+    Ring,
     Consumable,
     Helmet,
     Chestplate,

@@ -6,6 +6,9 @@ public class PlayerControls : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 m_Movement;
     public float speed;
+
+    public float mochilaMaxPeso;
+    public float mochilaPeso;
     public float currentSpeed;
     [SerializeField] private List<SCT> testItemSpawn;
 
@@ -74,7 +77,7 @@ public class PlayerControls : MonoBehaviour
     private void Attack()
     {
         if (!GetComponent<Attack>()) return;
-        GetComponent<Attack>().AttackAction();
+        GetComponent<Attack>().AttackAction(Input.mousePosition);
 
     }
 }

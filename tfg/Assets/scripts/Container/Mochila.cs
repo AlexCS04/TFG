@@ -10,8 +10,10 @@ public class Mochila : Container
     // }
     private void RevisarPeso()
     {
-        if (peso >= .8f * maxPeso) player.GetComponent<PlayerControls>().currentSpeed = player.GetComponent<PlayerControls>().speed / 2;
-        else player.GetComponent<PlayerControls>().currentSpeed = player.GetComponent<PlayerControls>().speed;
+        // if (peso >= .8f * maxPeso) player.GetComponent<PlayerControls>().currentSpeed = player.GetComponent<PlayerControls>().speed / 2;
+        // else player.GetComponent<PlayerControls>().currentSpeed = player.GetComponent<PlayerControls>().speed;
+        player.GetComponent<PlayerControls>().mochilaMaxPeso = maxPeso;
+        player.GetComponent<PlayerControls>().mochilaPeso = peso;
 
     }
 

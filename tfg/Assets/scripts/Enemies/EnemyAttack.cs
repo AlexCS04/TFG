@@ -9,7 +9,7 @@ public class EnemyAttack : EnemyState
     }
     public override void Do()
     {
-        attack.AttackAction();
+        attack.AttackAction(player.position);
         Exit();
     }
     public override void Exit()

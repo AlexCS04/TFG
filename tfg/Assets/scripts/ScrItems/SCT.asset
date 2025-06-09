@@ -13,12 +13,33 @@ MonoBehaviour:
   m_Name: SCT
   m_EditorClassIdentifier: 
   sprite: {fileID: -7205218644840326792, guid: b6c11e2a44396b843a9d5042d8c27880, type: 3}
+  Name: rectAple
   equipType: 3
   maxStack: 7
-  peso: 5
+  peso: 2
   sizeX: 3
   sizeY: 1
-  spwnQuantity: {x: 2, y: 5}
+  spwnQuantity: {x: 2, y: 4}
+  iDamage: 0
+  eDamage: 0
+  mDamage: 0
+  iAttackSpeed: 0
+  eAttackSpeed: 0
+  mAttackSpeed: 0
+  iSpeed: 0
+  eSpeed: 0
+  mSpeed: 0
+  iAttackRange: 0
+  eAttackRange: 0
+  iHealth: 0
+  eHealth: 0
+  iDefense: 0
+  eDefense: 0
+  mDefense: 0
+  attackType: 0
+  bSpeed: 0
+  bPiercing: 0
+  bBounce: 0
   shape:
     rows:
     - array: 0100000000000000

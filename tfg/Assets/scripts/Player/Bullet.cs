@@ -25,11 +25,11 @@ public class Bullet : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         damage = _damage;
     }
-    public void Shoot(Vector2 vectorB)
+    public void Shoot(Vector2 targetPos, bool player)
     {
         Vector2 vectorA = transform.position;
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(vectorB);
-        Vector2 direction = new Vector2(mousePos.x - vectorA.x, mousePos.y - vectorA.y);
+        if(player)targetPos = Camera.main.ScreenToWorldPoint(targetPos);
+        Vector2 direction = new Vector2(targetPos.x - vectorA.x, targetPos.y - vectorA.y);
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
         float max = Mathf.Abs(direction.x) + Mathf.Abs(direction.y);
@@ -54,7 +54,12 @@ public class Bullet : MonoBehaviour
     {
         Destroy(gameObject);
     }
-    private void Bounce() { }
+    private void Bounce()
+    {
+        transform.Rotate(new Vector3(0, 0, 180));
+
+
+    }
     void Update()
     {
         if (time > 2) KillBullet();

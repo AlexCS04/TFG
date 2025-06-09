@@ -13,6 +13,10 @@ public class PlayerBackpack : MonoBehaviour
     [SerializeField] private Item weapon;
     [SerializeField] private List<Item> rings;
     [SerializeField] private List<Item> consumables;
+    private PlayerControls playerControls;
+    private PlayerHealth playerHealth;
+    private Attack playerAttack;
+    
 
     void OnEnable()
     {
@@ -48,6 +52,12 @@ public class PlayerBackpack : MonoBehaviour
         }
         contents.Remove(key);
         ActualizarStats();
+    }
+    void Start()
+    {
+        playerControls = gameObject.GetComponent<PlayerControls>();
+        playerAttack = gameObject.GetComponent<Attack>();
+        playerHealth = gameObject.GetComponent<PlayerHealth>();
     }
     void Update()
     {
@@ -130,10 +140,23 @@ public class PlayerBackpack : MonoBehaviour
     }
     private void ActualizarStats()
     {
+        
+        if (playerControls.mochilaPeso >= .8f * playerControls.mochilaMaxPeso) playerControls.currentSpeed = playerControls.speed / 2f;
+        else playerControls.currentSpeed = playerControls.speed;
+        playerAttack.damage = 1;
+        playerAttack.attackRange=1.5f;
+        playerAttack.attackSpeed=2.3f;
+        playerAttack.attackType=AttackType.melee;
+        playerHealth.maxHealth=15;
         foreach (var item in contents)
         {
             Debug.Log(item.Value.stack);
-            
+
+
+
+
+
+
         }
 
 
