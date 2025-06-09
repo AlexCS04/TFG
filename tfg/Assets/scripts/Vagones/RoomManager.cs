@@ -26,6 +26,7 @@ public class RoomManager : MonoBehaviour
     private List<Bounds> areasRestringidas= new List<Bounds>{
         
     };
+    private int enemiesInRoom;
 
     public const int WAGONS = 5;
     public int numWagons;
@@ -33,6 +34,20 @@ public class RoomManager : MonoBehaviour
     public const int WAGON_HEIGHT = 12;
 
     const int CAMBIO_TEAMATICA=8;
+
+    void OnEnable()
+    {
+        Eventmanager.EnemyDeathEvent += EnemyDeath;
+    }
+    void OnDisable()
+    {
+        Eventmanager.EnemyDeathEvent -= EnemyDeath;
+    }
+    private void EnemyDeath()
+    {
+        enemiesInRoom -= 1;
+        if (enemiesInRoom <= 0) ClearedRoom();
+    }
 
     void Awake()
     {
@@ -215,10 +230,12 @@ public class RoomManager : MonoBehaviour
                 );
                 intentos++;
             } while ((!PosicionValida(position, enem) || EnAreaRestringida(position)) && intentos<100);
-            if(intentos<100){
-                
-                GameObject e =Instantiate(enem, position, Quaternion.identity);
-                e.transform.parent=wagonList[wagonCount%WAGONS].transform;
+            if (intentos < 100)
+            {
+
+                GameObject e = Instantiate(enem, position, Quaternion.identity);
+                e.transform.parent = wagonList[wagonCount % WAGONS].transform;
+                enemiesInRoom++;
             }
 
         }

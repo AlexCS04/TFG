@@ -141,7 +141,7 @@ public class Container : MonoBehaviour
             {
                 contents.RemoveObjectAt(item.x, item.y);
             }
-            ActualizarPeso(-remItem.sct.peso * remItem.GetCantidad());
+            ActualizarPeso(-remItem.sct.peso * remItem.GetCantidad()); 
         }
     }
     protected virtual bool HayStack()

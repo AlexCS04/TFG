@@ -4,10 +4,10 @@ using UnityEngine;
 public class Mochila : Container
 {
     [SerializeField] private GameObject player;
-    protected override void GroundItem(Item item)
-    {
-        player.GetComponent<PlayerBackpack>().PutItem(item, item.gridPos);
-    }
+    // protected override void GroundItem(Item item)
+    // {
+    //     player.GetComponent<PlayerBackpack>().PutItem(item, item.gridPos);
+    // }
     private void RevisarPeso()
     {
         if (peso >= .8f * maxPeso) player.GetComponent<PlayerControls>().currentSpeed = player.GetComponent<PlayerControls>().speed / 2;
@@ -35,5 +35,10 @@ public class Mochila : Container
             ActualizarPeso(-remItem.sct.peso * remItem.GetCantidad());
 
         }
+    }
+    protected override void PutItem(Item item, Vector2Int gridPos, Dir dir)
+    {
+        base.PutItem(item, gridPos, dir);
+        Eventmanager.OnItemPut(item, gridPos);
     }
 }
