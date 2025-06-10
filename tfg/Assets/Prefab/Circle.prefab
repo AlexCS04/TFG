@@ -140,6 +140,10 @@ MonoBehaviour:
   maxHealth: 3
   currentHealth: 0
   regenHealth: 0
+  bDefense: 0
+  cDefense: 0
+  rTime: 0
+  rQuant: 0
   invuFramesCount: 2
   healthSlider: {fileID: 0}
   healthSlider2: {fileID: 0}

@@ -2683,7 +2683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 277b79daced8f9d4d9c56be9edaf5e48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpeed: 1
+  attackSpeed: 0.1
   attackPoint: {fileID: 1478312402}
   attackRange: 1.4
   damage: 1
@@ -2691,7 +2691,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   attackType: 1
-  bullet: {fileID: 0}
+  bullet: {fileID: 1117003242370999814, guid: 665117b98217f0a4f84e28200bcfd887, type: 3}
   player: 1
   bSpeed: 12
 --- !u!114 &853741647

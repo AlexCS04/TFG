@@ -16,6 +16,8 @@ public class Bullet : MonoBehaviour
     private float startTime;
     public float time => Time.time - startTime;
 
+    [SerializeField] private Transform help;
+
 
     public void Born(LayerMask _layer, float speed, float _damage)
     {
@@ -47,18 +49,20 @@ public class Bullet : MonoBehaviour
             piercing -= 1;
             if (piercing <= 0) KillBullet();
         }
-        else if (collision.tag.Equals("Wall") && bouncer) Bounce();
+        else if (collision.tag.Equals("Wall") && bouncer)Bounce(collision.ClosestPoint(help.position));
         else if (collision.tag.Equals("Wall")) KillBullet();
+
     }
     private void KillBullet()
     {
         Destroy(gameObject);
     }
-    private void Bounce()
+    private void Bounce(Vector2 contactPoint)
     {
-        transform.Rotate(new Vector3(0, 0, 180));
 
-
+        Vector2 normal = ((Vector2)help.position - contactPoint).normalized;
+        Vector2 newdir = Vector2.Reflect(rb.linearVelocity.normalized, normal);
+        rb.linearVelocity = newdir * bSpeed;
     }
     void Update()
     {
