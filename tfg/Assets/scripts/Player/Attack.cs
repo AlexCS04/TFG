@@ -11,7 +11,7 @@ public class Attack : MonoBehaviour
     public GameObject bullet; //change  Weapon holding
     protected float timeSinceAttack;
 
-    [SerializeField] private bool player;
+    [SerializeField] private bool isPlayer;
 
     public float bSpeed; //change get from weapon
 
@@ -32,7 +32,7 @@ public class Attack : MonoBehaviour
     {
         GameObject temp = Instantiate(bullet, transform.position, Quaternion.identity);
         temp.GetComponent<Bullet>().Born(attackLayer, bSpeed, damage);
-        temp.GetComponent<Bullet>().Shoot(target, player);
+        temp.GetComponent<Bullet>().Shoot(target, isPlayer);
     }
     private void AttackMelee()
     {
