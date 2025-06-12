@@ -61,10 +61,8 @@ public class Item : MonoBehaviour, IPointerDownHandler
             case Dir.Right:
                 for (int x = 0; x < sct.sizeX; x++) {
                     for (int y = 0; y < sct.sizeY; y++) {
-                        if (sct.shape.rows[x].array[y]){
+                        if (sct.shape.rows[x].array[y])
                             gridPositionList.Add(offset + new Vector2Int(x, y));
-                            // Debug.Log(offset + new Vector2Int(x, y));
-                            }
                     }
                 }
                 break;

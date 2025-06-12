@@ -77,6 +77,7 @@ public class PlayerControls : MonoBehaviour
     private void Attack()
     {
         if (!GetComponent<Attack>()) return;
+        if (openInv) return;
         GetComponent<Attack>().AttackAction(Input.mousePosition);
 
     }
