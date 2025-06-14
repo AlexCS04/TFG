@@ -7,7 +7,6 @@ public class EnemyChase : EnemyState
     private Vector2 destination;
     public float speed;
     public FollowType followType;
-    public float curveHeight;
     private float startTime;
     public float time => Time.time - startTime;
     public override void Enter(Transform p, Rigidbody2D rb)

@@ -16,7 +16,11 @@ public class PlayerBackpack : MonoBehaviour
     private PlayerControls playerControls;
     private PlayerHealth playerHealth;
     private Attack playerAttack;
-    
+    private float mDamage = 1;
+    private float mAttackSpeed = 1;
+    private float mSpeed = 1;
+    private float mDefense = 1;
+
 
     void OnEnable()
     {
@@ -70,6 +74,8 @@ public class PlayerBackpack : MonoBehaviour
                 Debug.Log(item.Value.stack);
             }
         }
+        if(Input.GetKeyDown(KeyCode.Alpha1)&& consumables[0]!=null) {}
+        if(Input.GetKeyDown(KeyCode.Alpha2)&& consumables[0]!=null){}
     }
 
     private void PutEquip(Item item)
@@ -140,27 +146,96 @@ public class PlayerBackpack : MonoBehaviour
     }
     private void ActualizarStats()
     {
-        
+
         if (playerControls.mochilaPeso >= .8f * playerControls.mochilaMaxPeso) playerControls.currentSpeed = playerControls.speed / 2f;
         else playerControls.currentSpeed = playerControls.speed;
         playerAttack.damage = 1;
-        playerAttack.attackRange=1.5f;
-        playerAttack.attackSpeed=2.3f;
-        playerAttack.attackType=AttackType.melee;
-        playerHealth.maxHealth=15;
+        mDamage = 1;
+        mAttackSpeed = 1;
+        mSpeed = 1;
+        mDefense = 1;
+        playerAttack.attackRange = 1.5f;
+        playerAttack.attackSpeed = 2f;
+        playerAttack.attackType = AttackType.melee;
+        playerHealth.maxHealth = 15;
+        playerHealth.cDefense = playerHealth.bDefense;
+        WeaponEquip(weapon);
         foreach (var item in contents)
         {
             Debug.Log(item.Value.stack);
 
-
-
-
-
-
+            SCT sct = item.Value.sct;
+            int stack = item.Value.stack;
+            int lvl = Mathf.CeilToInt(item.Value.lvl / 10f);
+            playerAttack.damage += sct.iDamage * stack * lvl;
+            mDamage += sct.mDamage * lvl;
+            playerAttack.attackSpeed += sct.iAttackSpeed * stack * lvl;
+            mAttackSpeed += sct.mAttackSpeed * lvl;
+            playerAttack.attackRange += sct.iAttackRange * stack * lvl;
+            playerControls.currentSpeed += sct.iSpeed * stack * lvl;
+            mSpeed += sct.mSpeed * lvl;
+            playerHealth.maxHealth += sct.iHealth * stack * lvl;
+            playerHealth.cDefense += sct.iDefense * stack * lvl;
+            mDefense += sct.mDefense * lvl;
         }
+        Equipment(helmet);
+        Equipment(chest);
+        Equipment(pants);
+        Equipment(boots);
+        WeaponEquip(weapon);
+        Equipment(rings);
+
+        playerAttack.damage *= mDamage;
+        playerAttack.attackSpeed *= mAttackSpeed;
+        playerControls.currentSpeed *= mSpeed;
+        playerHealth.cDefense *= mDefense;
+
+        // revisar stats
+        if (playerAttack.damage < 0.5f) playerAttack.damage = 0.5f;
+        if (playerControls.currentSpeed <= 3f) playerControls.currentSpeed = 3f;
+        if (playerHealth.cDefense < 0) playerHealth.cDefense = 0f;
+        if (playerHealth.maxHealth < 1) playerHealth.maxHealth = 1f;
+        if (playerHealth.regenHealth > playerHealth.maxHealth) playerHealth.regenHealth = playerHealth.maxHealth;
+        if (playerHealth.currentHealth > playerHealth.maxHealth)
+        {
+            playerHealth.currentHealth = playerHealth.maxHealth;
+            playerHealth.regenHealth = playerHealth.maxHealth;
+        }
+        playerHealth.ActHealthVisual();
 
 
 
-
+    }
+    private void Equipment(Item item)
+    {
+        if (item == null) return;
+        int stack = item.stack;
+        int lvl =Mathf.CeilToInt(item.lvl / 10f);
+        playerAttack.damage += item.sct.eDamage*stack*lvl;
+        mDamage += item.sct.mDamage*lvl;
+        playerAttack.attackSpeed += item.sct.eAttackSpeed*stack*lvl;
+        mAttackSpeed += item.sct.mAttackSpeed*lvl;
+        playerAttack.attackRange += item.sct.eAttackRange*stack*lvl;
+        playerControls.currentSpeed += item.sct.eSpeed*stack*lvl;
+        mSpeed += item.sct.mSpeed*lvl;
+        playerHealth.maxHealth += item.sct.eHealth*stack*lvl;
+        playerHealth.cDefense += item.sct.eDefense*stack*lvl;
+        mDefense += item.sct.mDefense*lvl;
+    }
+    private void Equipment(List<Item> items)
+    {
+        foreach (Item item in items)
+        {
+            Equipment(item);
+        }
+    }
+    private void WeaponEquip(Item wep)
+    {
+        if (wep == null) return;
+        playerAttack.attackType = wep.sct.attackType;
+        playerAttack.attackSpeed = wep.sct.eAttackSpeed;
+        playerAttack.bSpeed = wep.sct.bSpeed;
+        playerAttack.bPiercing = wep.sct.bPiercing;
+        playerAttack.bBounce = wep.sct.bBounce;
     }
 }

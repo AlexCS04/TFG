@@ -128,12 +128,12 @@ public class RoomManager : MonoBehaviour
         wagonList[wagonCount%WAGONS]=v;
         wagonCameraBounds[wagonCount%WAGONS]=b;
         wagonGrid[wagonCount % WAGONS] = v.transform.GetChild(4).GetComponent<RoomGrid>();
-        CambioTematica();
         Conjunto c = SeleccionConjunto();
         SalaEspecial();
         ColocarObstaculos(c);
         if(spwnEnemigos) GenerarEnemigos(c);
 
+        CambioTematica();
         wagonCount++;
 
     }
@@ -299,14 +299,14 @@ public class RoomManager : MonoBehaviour
         wagonList[actualWagon].transform.GetChild(2).GetComponent<Doors>().SetRoomClear(true);
     }
 
-void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red; // Color para las áreas prohibidas
-        foreach (Bounds area in areasRestringidas)
-        {
-            Gizmos.DrawWireCube(area.center, area.size);
-        }
-    }
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red; // Color para las áreas prohibidas
+        foreach (Bounds area in areasRestringidas)
+        {
+            Gizmos.DrawWireCube(area.center, area.size);
+        }
+    }
 
 
 }

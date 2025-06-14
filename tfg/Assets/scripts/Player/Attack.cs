@@ -8,12 +8,14 @@ public class Attack : MonoBehaviour
     public float damage; //modify from weapon
     [SerializeField] protected LayerMask attackLayer;
     public AttackType attackType; //get from weapon
-    public GameObject bullet; //change  Weapon holding
+    public GameObject bullet; //change  Weapon holding. maybe
     protected float timeSinceAttack;
 
     [SerializeField] private bool isPlayer;
 
     public float bSpeed; //change get from weapon
+    public int bPiercing=1;
+    public bool bBounce;
 
 
     void Update()
@@ -31,7 +33,7 @@ public class Attack : MonoBehaviour
     private void AttackRanged(Vector3 target)
     {
         GameObject temp = Instantiate(bullet, transform.position, Quaternion.identity);
-        temp.GetComponent<Bullet>().Born(attackLayer, bSpeed, damage);
+        temp.GetComponent<Bullet>().Born(attackLayer, bSpeed, damage, bPiercing, bBounce);
         temp.GetComponent<Bullet>().Shoot(target, isPlayer);
     }
     private void AttackMelee()

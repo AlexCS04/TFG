@@ -4,8 +4,8 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
     public float maxHealth;
-    [SerializeField] protected float currentHealth;
-    [SerializeField] protected float regenHealth;
+    public float currentHealth;
+    public float regenHealth;
     protected float invuFrames;
     public float bDefense;
     public float cDefense;

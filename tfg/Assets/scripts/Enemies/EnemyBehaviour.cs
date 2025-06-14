@@ -9,6 +9,7 @@ public class EnemyBehaviour : MonoBehaviour
     public EnemyState chaseState;
     public EnemyState attackState;
     public EnemyState retrieveState;
+    public EnemyState idleState;
 
     [SerializeField] private float chaseDistance;
     [SerializeField] private float retrieveDistance;
@@ -16,8 +17,9 @@ public class EnemyBehaviour : MonoBehaviour
     void Start()
     {
         player = RoomManager.instance.player;
-        SetUpStates();
-        SelectState();
+        // SelectState();
+        state = idleState;
+        SetUpState();
     }
     void Update()
     {
@@ -44,16 +46,17 @@ public class EnemyBehaviour : MonoBehaviour
             state = retrieveState;
             Debug.Log("Retriving");
         }
-        else 
+        else
         {
             state = attackState;
             Debug.Log("Attacking");
         }
+        SetUpState();
 
     }
-    private void SetUpStates()
+    private void SetUpState()
     {
-        chaseState.Enter(player, rb);
+        state.Enter(player, rb);
     }
 
 

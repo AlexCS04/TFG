@@ -14,32 +14,32 @@ public class SCT : ScriptableObject
     public int sizeY;
     public Vector2Int spwnQuantity;
 
-    public float iDamage;
-    public float eDamage;
-    public float mDamage;
-    public float iAttackSpeed;
-    public float eAttackSpeed;
-    public float mAttackSpeed;
-    public float iSpeed;
-    public float eSpeed;
-    public float mSpeed;
+    public float iDamage;//
+    public float eDamage;//
+    public float mDamage;//
+    public float iAttackSpeed;//
+    public float eAttackSpeed;//
+    public float mAttackSpeed;//
+    public float iSpeed;//
+    public float eSpeed;//
+    public float mSpeed;//
 
-    public float iAttackRange;
-    public float eAttackRange;
+    public float iAttackRange;//
+    public float eAttackRange;//
 
-    public float iHealth;
-    public float eHealth;
+    public float iHealth;//
+    public float eHealth;//
 
-    public float iDefense;
-    public float eDefense;
-    public float mDefense;
-    public AttackType attackType;
+    public float iDefense;//
+    public float eDefense;//
+    public float mDefense;//
+    public AttackType attackType;//
 
-    public float bSpeed;
+    public float bSpeed;//
 
-    public int bPiercing;
+    public int bPiercing;//
 
-    public bool bBounce;
+    public bool bBounce;//
 
 
 
