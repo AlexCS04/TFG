@@ -7,8 +7,9 @@ public class Eventmanager
 
     public static event Action<Item, Vector2Int> PutItemEvent;
     public static event Action<Vector2Int> RemoveItemEvent;
-    public static event Action<Item> PutEquipEvent;
+    public static event Action<Item, int> PutEquipEvent;
     public static event Action<Item> RemoveEquipEvent;
+
 
 
 
@@ -25,12 +26,13 @@ public class Eventmanager
     {
         RemoveItemEvent?.Invoke(key);
     }
-    public static void OnEquipPut(Item item)
+    public static void OnEquipPut(Item item, int place)
     {
-        PutEquipEvent?.Invoke(item);
+        PutEquipEvent?.Invoke(item, place);
     }
     public static void OnEquipRemoved(Item item)
     {
         RemoveEquipEvent?.Invoke(item);
     }
+
 }

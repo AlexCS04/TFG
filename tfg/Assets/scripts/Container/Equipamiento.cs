@@ -3,9 +3,11 @@ using UnityEngine.UI;
 
 public class Equipamiento:Container
 {
-    public Equipamiento(){
-        width=1;
-        height=1;
+    public int place;
+    public Equipamiento()
+    {
+        width = 1;
+        height = 1;
     }
     protected override void PutItem(Item item, Vector2Int gridPos, Dir dir)
     {
@@ -21,7 +23,7 @@ public class Equipamiento:Container
         item.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
         item.GetComponent<Image>().raycastTarget = true;
         ActualizarPeso(item.sct.peso * item.GetCantidad());
-        Eventmanager.OnEquipPut(item);
+        Eventmanager.OnEquipPut(item, place);
         
     }
     public override void ActualizarPeso(int p)

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -158,6 +159,8 @@ public class Container : MonoBehaviour
         ActualizarPeso(dar * reciving.sct.peso);
         selected.AddCantidad(-dar);
         if (reciving.gItem != null) reciving.gItem.stack += dar;
+        selected.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = selected.GetCantidad().ToString();
+        reciving.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = reciving.GetCantidad().ToString();
         if (selected.GetCantidad() <= 0)
         {
             if (selected.gItem != null) Destroy(selected.gItem.gameObject);

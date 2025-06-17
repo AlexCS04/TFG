@@ -84,8 +84,10 @@ public class ContainerManager : MonoBehaviour
         floor.GetComponent<Suelo>().OpenFloor(itemsArea);
         StartCoroutine("Resizing");
     }
-    public void CloseInventory(){
+    public void CloseInventory()
+    {
         inventario.SetActive(false);
+        Descriptor.instance.Off();
     }
     private IEnumerator Resizing(){
         yield return null;

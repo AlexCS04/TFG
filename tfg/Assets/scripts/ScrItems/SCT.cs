@@ -74,6 +74,7 @@ public enum EquipType
     Chestplate,
     Pants,
     Boots,
-    Backpack
+    Backpack, 
+    Extra
 
 }
