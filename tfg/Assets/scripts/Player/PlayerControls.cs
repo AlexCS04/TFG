@@ -13,6 +13,7 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] private List<SCT> testItemSpawn;
 
     private bool openInv;
+    private Animator animator;
 
 
     public List<GroundItem> itemsArea;
@@ -22,6 +23,7 @@ public class PlayerControls : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         currentSpeed = speed;
+        animator = GetComponent<Animator>();
     }
 
 
@@ -34,6 +36,8 @@ public class PlayerControls : MonoBehaviour
         m_Movement.Set(horizontal, vertical);
         if (m_Movement.x > 0) transform.eulerAngles = new Vector3(0, 0, 0);
         else if (m_Movement.x < 0) transform.eulerAngles = new Vector3(0, 180, 0);
+        if (horizontal != 0 || vertical != 0) animator.SetBool("Running", true);
+        else animator.SetBool("Running", false);
         if (Input.GetKeyDown(KeyCode.I))
         {
             OpenInv();

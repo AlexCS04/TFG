@@ -41,7 +41,7 @@ public class Attack : MonoBehaviour
         Collider2D[] c = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, attackLayer);
         foreach (Collider2D item in c)
         {
-            item.GetComponent<Health>().TakeDamage(damage, damage);
+            item.GetComponent<Health>().TakeDamage(damage, damage*.8f);
         }
     }
     void OnDrawGizmos()
