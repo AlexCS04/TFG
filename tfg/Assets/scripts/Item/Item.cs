@@ -148,7 +148,7 @@ public class Item : MonoBehaviour, IPointerDownHandler
 
     public bool IgualQueYo(Item item2)
     {
-        if (item2.sct == sct && item2.lvl == lvl)
+        if (item2.sct == sct && Mathf.CeilToInt(item2.lvl/10f) == Mathf.CeilToInt(lvl / 10f) )
         {
             return true;
         }

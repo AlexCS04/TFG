@@ -982,6 +982,12 @@ MonoBehaviour:
   tematicas:
   - {fileID: 11400000, guid: 88c8c66b86f870545b213f46b49cffb7, type: 2}
   - {fileID: 11400000, guid: 522d2ad4019e86b4f967ab16fa11f585, type: 2}
+  wagonList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   wagonCameraBounds:
   - {fileID: 0}
   - {fileID: 0}
@@ -1792,7 +1798,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2809,7 +2815,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  mochilaMaxPeso: 0
+  mochilaMaxPeso: 25
   mochilaPeso: 0
   currentSpeed: 0
   testItemSpawn:
@@ -2861,11 +2867,13 @@ MonoBehaviour:
   regenHealth: 0
   bDefense: 0
   cDefense: 0
-  rTime: 0
-  rQuant: 0
+  rQuant: 1
   invuFramesCount: 2
   healthSlider: {fileID: 1222913118}
   healthSlider2: {fileID: 921551172}
+  regenTimer: 3
+  foodTimer: 0
+  pool: []
 --- !u!114 &853741648
 MonoBehaviour:
   m_ObjectHideFlags: 0

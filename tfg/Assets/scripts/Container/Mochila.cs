@@ -17,7 +17,7 @@ public class Mochila : Container
 
     }
 
-    public override void ActualizarPeso(int p)
+    public override void ActualizarPeso(float p)
     {
         base.ActualizarPeso(p);
         RevisarPeso();

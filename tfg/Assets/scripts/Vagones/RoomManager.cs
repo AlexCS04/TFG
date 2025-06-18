@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -20,7 +21,7 @@ public class RoomManager : MonoBehaviour
     public Tematica tematica;
     [SerializeField] private List<Tematica> tematicas;
     
-    private GameObject[] wagonList= new GameObject[WAGONS];
+    public GameObject[] wagonList= new GameObject[WAGONS];
     public BoxCollider2D[] wagonCameraBounds= new BoxCollider2D[WAGONS];
     public RoomGrid[] wagonGrid= new RoomGrid[WAGONS];
     private List<Bounds> areasRestringidas= new List<Bounds>{
@@ -101,40 +102,48 @@ public class RoomManager : MonoBehaviour
         }
 
     }
+    public IEnumerator PincheCineMachine()
+    {
+        confiner.gameObject.SetActive(false);
+        yield return null;
+        confiner.gameObject.SetActive(true);
+    }
     bool spwnEnemigos;
     List<GameObject> obstColocados=new List<GameObject>();
-    public void GenerarSala(){
-        spwnEnemigos=true;
-        obstColocados=new List<GameObject>();
-        List<GameObject> obstaculosColocados=new List<GameObject>();
-        Vector2 position = new Vector2(WAGON_WIDHT*(wagonCount%WAGONS), 0);
+    public void GenerarSala()
+    {
+        spwnEnemigos = true;
+        obstColocados = new List<GameObject>();
+        List<GameObject> obstaculosColocados = new List<GameObject>();
+        Vector2 position = new Vector2(WAGON_WIDHT * (wagonCount % WAGONS), 0);
         GameObject v = Instantiate(vagonVacio, position, Quaternion.identity);
         if (numWagons < WAGONS) numWagons += 1;
         areasRestringidas = new List<Bounds>{
-            new Bounds(new Vector3(1+WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT/2f, 0), new Vector3(2, 3, 0)), 
-            new Bounds(new Vector3((WAGON_WIDHT-1)+WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT/2f, 0), new Vector3(2, 3, 0)), 
-            new Bounds(new Vector3((WAGON_WIDHT/2)+WAGON_WIDHT*(wagonCount%WAGONS), 0.5f, 0), new Vector3(2, 1, 0)), 
-            new Bounds(new Vector3((WAGON_WIDHT/2)+WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT-0.5f, 0), new Vector3(2, 1, 0)), 
+            new Bounds(new Vector3(1+WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT/2f, 0), new Vector3(2, 3, 0)),
+            new Bounds(new Vector3((WAGON_WIDHT-1)+WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT/2f, 0), new Vector3(2, 3, 0)),
+            new Bounds(new Vector3((WAGON_WIDHT/2)+WAGON_WIDHT*(wagonCount%WAGONS), 0.5f, 0), new Vector3(2, 1, 0)),
+            new Bounds(new Vector3((WAGON_WIDHT/2)+WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT-0.5f, 0), new Vector3(2, 1, 0)),
         };
 
-        BoxCollider2D b = v.GetComponentInChildren<BoxCollider2D>();
+        BoxCollider2D b = v.transform.GetChild(0).GetComponent<BoxCollider2D>();
         v.transform.GetChild(1).GetComponent<Doors>().PlaceDoor();
         v.transform.GetChild(2).GetComponent<Doors>().PlaceDoor();
         v.transform.GetChild(2).GetComponent<Doors>().SetRoomDoor(true);
         v.transform.GetChild(4).GetComponent<RoomGrid>().GenerateGrid();
-        b.size = new Vector2(WAGON_WIDHT, WAGON_HEIGHT);
-        b.offset = new Vector2(WAGON_WIDHT, WAGON_HEIGHT)/2;
-        Destroy(wagonList[wagonCount%WAGONS]);
-        wagonList[wagonCount%WAGONS]=v;
-        wagonCameraBounds[wagonCount%WAGONS]=b;
+        b.size = new Vector2(WAGON_WIDHT + 0.5f, WAGON_HEIGHT + 2f);
+        b.offset = new Vector2(WAGON_WIDHT, WAGON_HEIGHT+1f) / 2;
+        Destroy(wagonList[wagonCount % WAGONS]);
+        wagonList[wagonCount % WAGONS] = v;
+        wagonCameraBounds[wagonCount % WAGONS] = b;
         wagonGrid[wagonCount % WAGONS] = v.transform.GetChild(4).GetComponent<RoomGrid>();
         Conjunto c = SeleccionConjunto();
         SalaEspecial();
         ColocarObstaculos(c);
-        if(spwnEnemigos) GenerarEnemigos(c);
+        if (spwnEnemigos) GenerarEnemigos(c);
 
         CambioTematica();
         wagonCount++;
+        
 
     }
     private void CambioTematica(){
@@ -199,6 +208,8 @@ public class RoomManager : MonoBehaviour
                 Quaternion rotation = Quaternion.Euler(0,0,(float)(roomRandom.NextDouble()*(obst.maxRotation-obst.minRotation)+obst.minRotation));
                 GameObject temp = Instantiate(obst.prefab, position, rotation);
                 temp.GetComponent<SpriteRenderer>().sprite=obst.sprites[roomRandom.Next(0,obst.sprites.Count)];
+                temp.GetComponent<Health>().pool = obst.pool;
+                temp.GetComponent<Health>().maxHealth = obst.health;
                 //temp.transform.localScale=new Vector3(1,1,1);
                 temp.transform.parent=wagonList[wagonCount%WAGONS].transform;
                 obstColocados.Add(temp);

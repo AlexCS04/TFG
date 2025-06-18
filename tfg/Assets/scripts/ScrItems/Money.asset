@@ -16,10 +16,10 @@ MonoBehaviour:
   Name: Money
   equipType: 9
   maxStack: 99
-  peso: 1
+  peso: 0.1
   sizeX: 1
   sizeY: 1
-  spwnQuantity: {x: 1, y: 25}
+  spwnQuantity: {x: 1, y: 9}
   iDamage: 0
   eDamage: 0
   mDamage: 0

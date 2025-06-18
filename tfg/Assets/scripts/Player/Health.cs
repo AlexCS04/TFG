@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,6 @@ public class Health : MonoBehaviour
     protected float invuFrames;
     public float bDefense;
     public float cDefense;
-    public float rTime;
     public float rQuant;
     [SerializeField] protected float invuFramesCount;
     [SerializeField] protected Slider healthSlider;
@@ -21,6 +21,11 @@ public class Health : MonoBehaviour
 
     public float RegenTime => Time.time - startRegenTime;
     public float FoodTime => Time.time - startFoodTime;
+
+    public float regenTimer;
+    public float foodTimer;
+
+    public List<SCT> pool;
 
 
     void Start()
@@ -45,12 +50,15 @@ public class Health : MonoBehaviour
     }
     public virtual void Die()
     {
+        ItemSpwnManager.instance.SpawnItem(pool, transform.position);
         Destroy(gameObject);
     }
     void Update()
     {
         if (invuFrames > 0) invuFrames -= Time.deltaTime;
-        if (RegenTime > 3.4f) Regen();
+        if (RegenTime > regenTimer) Regen();
+        if (FoodTime > foodTimer) Hungry();
+        if(currentHealth==regenHealth) startRegenTime = Time.time;
     }
     public void Heal(float tHealth, float rHealth)
     {
@@ -65,6 +73,13 @@ public class Health : MonoBehaviour
     }
     private void Regen()
     {
+        currentHealth = Mathf.Clamp(rQuant + currentHealth, currentHealth, regenHealth);
+        startRegenTime = Time.time;
+        ActHealthVisual();
+    }
+    private void Hungry()
+    {
         
     }
+
 }

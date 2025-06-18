@@ -18,8 +18,10 @@ MonoBehaviour:
   minPosition: {x: 2, y: 2}
   maxPosition: {x: 13, y: 6}
   porcentajePos: 1
-  minPerPos: {x: 0.45, y: 0.12}
-  maxPerPos: {x: 0.539, y: 0.32}
+  minPerPos: {x: 0.13, y: 0.12}
+  maxPerPos: {x: 0.539, y: 0.66}
   minRotation: -5
   maxRotation: 5
   distanciaObjetos: 0
+  health: 3
+  pool: []

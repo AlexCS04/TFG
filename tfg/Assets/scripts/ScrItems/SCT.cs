@@ -9,7 +9,7 @@ public class SCT : ScriptableObject
 
     public EquipType equipType;
     public int maxStack;
-    public int peso;
+    public float peso;
     public int sizeX;
     public int sizeY;
     public Vector2Int spwnQuantity;

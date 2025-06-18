@@ -46,7 +46,7 @@ public class Bullet : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if ((1 << collision.gameObject.layer) == layer.value) //bit thingy. Move 1 coll.layers to the right and compare it with layer.value. coll.layer has a singular one on its bit form
+        if ((1 << collision.gameObject.layer) == layer.value || collision.tag.Equals("Obstacle")) //bit thingy. Move 1 coll.layers to the right and compare it with layer.value. coll.layer has a singular one on its bit form
         {
             collision.GetComponent<Health>().TakeDamage(damage, damage);
             piercing -= 1;

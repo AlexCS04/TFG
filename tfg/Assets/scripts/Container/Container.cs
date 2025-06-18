@@ -170,7 +170,7 @@ public class Container : MonoBehaviour
         selected.container.PutItem(selected, selected.initialPos, selected.initialDir);
     }
     protected virtual void GroundItem(Item item) { }
-    public virtual void ActualizarPeso(int p)
+    public virtual void ActualizarPeso(float p)
     {
         peso += p;
 

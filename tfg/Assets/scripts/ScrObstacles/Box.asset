@@ -24,3 +24,6 @@ MonoBehaviour:
   minRotation: -5
   maxRotation: 5
   distanciaObjetos: 0
+  health: 5
+  pool:
+  - {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}

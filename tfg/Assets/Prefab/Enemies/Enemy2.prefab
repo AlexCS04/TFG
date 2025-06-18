@@ -201,11 +201,16 @@ MonoBehaviour:
   regenHealth: 0
   bDefense: 1
   cDefense: 1
-  rTime: 0
   rQuant: 0
   invuFramesCount: 0
   healthSlider: {fileID: 0}
   healthSlider2: {fileID: 0}
+  regenTimer: 0
+  foodTimer: 0
+  pool:
+  - {fileID: 11400000, guid: f0a7ea1ebb73db14fbdadc8ad53e0d52, type: 2}
+  - {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}
+  - {fileID: 0}
 --- !u!58 &5072215323696193377
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -65,6 +65,7 @@ public class PlayerBackpack : MonoBehaviour
         playerControls = gameObject.GetComponent<PlayerControls>();
         playerAttack = gameObject.GetComponent<Attack>();
         playerHealth = gameObject.GetComponent<PlayerHealth>();
+        ActualizarStats();
     }
     void Update()
     {

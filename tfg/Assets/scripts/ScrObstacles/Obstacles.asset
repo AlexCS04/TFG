@@ -17,9 +17,12 @@ MonoBehaviour:
   - {fileID: -1829563497, guid: 66f8590ae29ded44b84dd7e7d1ba396b, type: 3}
   minPosition: {x: 6, y: 3}
   maxPosition: {x: 8, y: 6}
-  porcentajePos: 0
-  minPerPos: {x: 0, y: 0}
-  maxPerPos: {x: 1, y: 1}
+  porcentajePos: 1
+  minPerPos: {x: 0.1, y: 0.1}
+  maxPerPos: {x: 0.9, y: 0.9}
   minRotation: 0
   maxRotation: 0
   distanciaObjetos: 0
+  health: 1
+  pool:
+  - {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}

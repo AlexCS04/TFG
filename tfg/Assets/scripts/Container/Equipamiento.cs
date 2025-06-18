@@ -26,7 +26,7 @@ public class Equipamiento:Container
         Eventmanager.OnEquipPut(item, place);
         
     }
-    public override void ActualizarPeso(int p)
+    public override void ActualizarPeso(float p)
     {
         ContainerManager.instance.mochila.GetComponent<Mochila>().ActualizarPeso(p / 2);
         

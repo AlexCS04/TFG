@@ -7,6 +7,8 @@ public class Doors : MonoBehaviour
 
     private CinemachineConfiner2D confiner;
     [SerializeField] private float moveP;
+    [SerializeField] private Sprite openDoor;
+    [SerializeField] private Sprite closeDoor;
 
     private bool lastRoom;
     private bool roomClear;
@@ -36,7 +38,7 @@ public class Doors : MonoBehaviour
                         if (RoomManager.instance.actualWagon == 0) RoomManager.instance.actualWagon = RoomManager.instance.numWagons;
                         RoomManager.instance.actualWagon -= 1;
                         confiner.BoundingShape2D = RoomManager.instance.wagonCameraBounds[RoomManager.instance.actualWagon];
-                        newPos.x = RoomManager.WAGON_WIDHT + RoomManager.WAGON_WIDHT * (RoomManager.instance.actualWagon % RoomManager.WAGONS) - moveP;
+                        newPos.x = RoomManager.WAGON_WIDHT + RoomManager.WAGON_WIDHT * (RoomManager.instance.actualWagon % RoomManager.WAGONS) - 2*moveP;
                         break;
                     case Direction.Right:
                         RoomManager.instance.actualWagon += 1;
@@ -54,19 +56,24 @@ public class Doors : MonoBehaviour
 
 
                 }
+                for (int i = 0; i < RoomManager.instance.numWagons; i++)
+                {
+                    if (RoomManager.instance.actualWagon == i) RoomManager.instance.wagonList[i].SetActive(true);
+                    else RoomManager.instance.wagonList[i].SetActive(false);
+                }
                 collision.gameObject.transform.position = newPos;
-                StartCoroutine("PincheCineMachine");
+                RoomManager.instance.StartCoroutine("PincheCineMachine");
             }
         }
     }
-    IEnumerator PincheCineMachine()
-    {
-        confiner.gameObject.SetActive(false);
-        yield return null;
-        confiner.gameObject.SetActive(true);
-    }
+    
     public void SetRoomDoor(bool b) { lastRoom = b; }  //The door that triggers a new wagon
-    public void SetRoomClear(bool b) { roomClear = b; }
+    public void SetRoomClear(bool b)
+    {
+        roomClear = b;
+        if (b) GetComponent<SpriteRenderer>().sprite = openDoor;
+        else GetComponent<SpriteRenderer>().sprite = closeDoor;
+    }
 
     public void PlaceDoor()
     {
@@ -82,7 +89,7 @@ public class Doors : MonoBehaviour
                 transform.localPosition = new Vector3(0, RoomManager.WAGON_HEIGHT / 2f, 0);
                 break;
             case Direction.Right:
-                transform.localPosition = new Vector3(RoomManager.WAGON_WIDHT, RoomManager.WAGON_HEIGHT / 2f, 0);
+                transform.localPosition = new Vector3(RoomManager.WAGON_WIDHT-.5f, RoomManager.WAGON_HEIGHT / 2f, 0);
                 break;
         }
         

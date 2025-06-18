@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Obstacles", menuName = "Scriptable Objects/Obstacles")][System.Serializable]
+[CreateAssetMenu(fileName = "Obstacles", menuName = "Scriptable Objects/Obstacles")]
+[System.Serializable]
 public class RulesObs : ScriptableObject //obstaculo
 {
     public GameObject prefab;
@@ -17,5 +18,9 @@ public class RulesObs : ScriptableObject //obstaculo
     public float minRotation;
     public float maxRotation;
     public float distanciaObjetos;
+
+    public float health;
+
+    public List<SCT> pool;
 
 }

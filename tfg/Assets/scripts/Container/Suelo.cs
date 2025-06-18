@@ -11,7 +11,7 @@ public class Suelo:Container
     protected override void GroundItem(Item item)
     {
         if(stack){
-        GameObject gItem = Instantiate(ContainerManager.instance.groundItemPrefab,ContainerManager.instance.player.transform.position,Quaternion.identity);
+        GameObject gItem = Instantiate(ContainerManager.instance.groundItemPrefab,ContainerManager.instance.player.transform.position,Quaternion.identity, RoomManager.instance.wagonList[RoomManager.instance.actualWagon].transform);
         gItem.GetComponent<GroundItem>().sct=item.sct;
         gItem.GetComponent<GroundItem>().lvl=item.lvl;
         gItem.GetComponent<GroundItem>().stack=item.stack;
