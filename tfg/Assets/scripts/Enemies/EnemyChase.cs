@@ -16,46 +16,44 @@ public class EnemyChase : EnemyState
     }
     public override void Do()
     {
-        // completed = false;
-        switch (followType)
+        if (Vector3.Distance(player.position, transform.position) >= chaseDistance)
         {
-            case FollowType.straight:
-                StraightFollow();
-                break;
-            case FollowType.random:
-                RandomFollow();
-                break;
+            // completed = false;
+            switch (followType)
+            {
+                case FollowType.straight:
+                    StraightFollow();
+                    break;
+                case FollowType.random:
+                    RandomFollow();
+                    break;
+            }
         }
+        else Exit();
         
     }
     private void StraightFollow()
     {
-        if (Vector3.Distance(player.position, transform.position) >= chaseDistance)
-        {
-            Vector3 randomOffset = Random.insideUnitSphere * 2f;
-            destination = player.position + randomOffset;
-            FacePlayer();
-        }
-        else
-        {
-            Exit();
-        }
+        Vector3 randomOffset = Random.insideUnitSphere * 2f;
+        destination = player.position + randomOffset;
+        FacePlayer();
+
     }
     private void RandomFollow()
     {
-        if (Vector3.Distance(player.position, transform.position) >= chaseDistance)
+
+        if (time > 0.3f)
         {
-            if (time > 0.3f)
-            {
-                startTime = Time.time;
-                destination = new Vector2(
-                    player.position.x > transform.position.x ? transform.position.x+Random.Range(.5f,5) : transform.position.x+ Random.Range(-5,-.5f),
-                    player.position.y > transform.position.y ? transform.position.y +Random.Range(0.5f,4) : transform.position.y + Random.Range(-4,-.5f)
-                );
-            }
-            FacePlayer();
+            startTime = Time.time;
+            destination = new Vector2(
+                player.position.x > transform.position.x ? transform.position.x + Random.Range(.5f, 5) : transform.position.x + Random.Range(-5, -.5f),
+                player.position.y > transform.position.y ? transform.position.y + Random.Range(0.5f, 4) : transform.position.y + Random.Range(-4, -.5f)
+            );
+            Debug.Log(destination);
         }
-        else Exit();
+        FacePlayer();
+
+        
     }
     public override void FixedDo()
     {

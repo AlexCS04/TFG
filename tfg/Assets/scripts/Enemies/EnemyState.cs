@@ -11,6 +11,7 @@ public abstract class EnemyState : MonoBehaviour
     {
         player = p;
         rb = br;
+        completed = false;
     }
     public virtual void Do(){}
     public virtual void FixedDo(){}

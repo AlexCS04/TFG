@@ -118,6 +118,7 @@ MonoBehaviour:
   idleState: {fileID: -4019662768655817151}
   chaseDistance: 0.6
   retrieveDistance: 0
+  speed: 4
 --- !u!114 &2753779696260078678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,8 +131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e521a4e7da748547ba1acefcbfb76a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseDistance: 0.6
-  speed: 4
+  chaseDistance: 0
+  speed: 0
   followType: 0
 --- !u!114 &5485550064070428770
 MonoBehaviour:
@@ -146,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   retrieveDistance: 0
+  speed: 0
 --- !u!114 &3098517795123953118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,7 +181,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   attackType: 0
-  bullet: {fileID: 0}
+  bullet: {fileID: 1117003242370999814, guid: 665117b98217f0a4f84e28200bcfd887, type: 3}
   isPlayer: 0
   bSpeed: 0
   bPiercing: 1
@@ -201,11 +203,13 @@ MonoBehaviour:
   regenHealth: 0
   bDefense: 0
   cDefense: 0
-  rTime: 0
   rQuant: 0
   invuFramesCount: 0
   healthSlider: {fileID: 0}
   healthSlider2: {fileID: 0}
+  regenTimer: 0
+  foodTimer: 0
+  pool: []
 --- !u!58 &4511114420714806598
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -236,7 +240,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

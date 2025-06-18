@@ -28,7 +28,7 @@ public class ItemSpwnManager : MonoBehaviour
     {
         if (sct != null)
         {
-            GameObject gItem = Instantiate(groundIemPrefab, pos, Quaternion.identity);
+            GameObject gItem = Instantiate(groundIemPrefab, pos, Quaternion.identity, RoomManager.instance.wagonList[RoomManager.instance.actualWagon].transform);
             gItem.GetComponent<GroundItem>().sct = sct;
             gItem.GetComponent<GroundItem>().lvl = RoomManager.instance.wagonCount;
             gItem.GetComponent<GroundItem>().stack = stack;

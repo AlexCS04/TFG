@@ -6,19 +6,24 @@ public class EnemyBehaviour : MonoBehaviour
     public Transform player;
     [SerializeField]private Rigidbody2D rb;
 
-    public EnemyState chaseState;
-    public EnemyState attackState;
-    public EnemyState retrieveState;
-    public EnemyState idleState;
+    public EnemyChase chaseState;
+    public EnemyAttack attackState;
+    public EnemyRetrieve retrieveState;
+    public EnemyIdle idleState;
 
     [SerializeField] private float chaseDistance;
     [SerializeField] private float retrieveDistance;
+    [SerializeField] private float speed;
 
     void Start()
     {
         player = RoomManager.instance.player;
         // SelectState();
         state = idleState;
+        chaseState.speed = speed;
+        retrieveState.speed = speed;
+        chaseState.chaseDistance = chaseDistance;
+        retrieveState.retrieveDistance = retrieveDistance;
         SetUpState();
     }
     void Update()
@@ -39,7 +44,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             state = chaseState;
             Debug.Log("Chasing");
-            Debug.Log(Vector3.Distance(player.position, transform.position));
+            // Debug.Log(Vector3.Distance(player.position, transform.position));
         }
         else if (Vector3.Distance(player.position, transform.position) < retrieveDistance)
         {
