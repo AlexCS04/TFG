@@ -6,6 +6,7 @@ public class Tematica: ScriptableObject{
 
     public string nombre;
     public List<Tematica> siguientesTematicas;
+    public List<Sprite> enviromentSprites;
     
 
     public List<Conjunto> conjuntos;

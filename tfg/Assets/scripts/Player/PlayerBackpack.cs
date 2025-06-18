@@ -251,19 +251,24 @@ public class PlayerBackpack : MonoBehaviour
         playerAttack.bPiercing = wep.sct.bPiercing;
         playerAttack.bBounce = wep.sct.bBounce;
     }
-    private void Purchase(int stack)
+    public void Purchase(int stack)
     {
-        for (int index = 0; index < contents.Count; index++) {
+        Debug.Log(contents.Count);
+        for (int index = contents.Count - 1; index < 0; index--)
+        {
+            Debug.Log("hUH");
             var cont = contents.ElementAt(index);
             Item item = cont.Value;
+            Debug.Log(item.GetCantidad());
             if (item.sct.Name == "Money")
             {
-                int dar = stack - (item.GetCantidad() + stack);
+                int dar = stack - item.GetCantidad();
                 if (dar <= 0) dar = stack;
                 else dar = item.GetCantidad();
                 stack -= dar;
                 item.container.ActualizarPeso(-dar);
                 item.AddCantidad(-dar);
+                Debug.Log(item.GetCantidad());
                 item.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = item.GetCantidad().ToString();
                 if (item.GetCantidad() <= 0)
                 {
@@ -274,5 +279,6 @@ public class PlayerBackpack : MonoBehaviour
             }
             if (stack == 0) return;
         }
+        ActualizarStats();
     }
 }

@@ -20,6 +20,7 @@ public class RoomManager : MonoBehaviour
     public CinemachineConfiner2D confiner;
     public Tematica tematica;
     [SerializeField] private List<Tematica> tematicas;
+    [SerializeField] private List<SCT> shopPool;
     
     public GameObject[] wagonList= new GameObject[WAGONS];
     public BoxCollider2D[] wagonCameraBounds= new BoxCollider2D[WAGONS];
@@ -126,6 +127,7 @@ public class RoomManager : MonoBehaviour
         };
 
         BoxCollider2D b = v.transform.GetChild(0).GetComponent<BoxCollider2D>();
+        v.GetComponent<SpriteRenderer>().sprite =tematica.enviromentSprites[roomRandom.Next(0, tematica.enviromentSprites.Count)];
         v.transform.GetChild(1).GetComponent<Doors>().PlaceDoor();
         v.transform.GetChild(2).GetComponent<Doors>().PlaceDoor();
         v.transform.GetChild(2).GetComponent<Doors>().SetRoomDoor(true);
@@ -162,11 +164,16 @@ public class RoomManager : MonoBehaviour
     }
     private void SalaEspecial(){
 
-        if(wagonCount==0){
+        if (wagonCount == 0)
+        {
             VagonInicial();
-            spwnEnemigos=false;
+            spwnEnemigos = false;
         }
-        else if(wagonCount%1==0){}//base para las salas especiales, 1 esta para que no de error la sintaxis
+        else if (wagonCount % 3 == 0)
+        {
+            Shop();
+            spwnEnemigos = false;
+        }//base para las salas especiales, 1 esta para que no de error la sintaxis
 
 
     }
@@ -301,6 +308,16 @@ public class RoomManager : MonoBehaviour
 
     private void VagonInicial()
     {
+
+        ClearedRoom();
+    }
+    private void Shop()
+    {
+        areasRestringidas.Add( new Bounds(new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS), WAGON_HEIGHT/2f, 0), new Vector3(6, 3, 0)));
+        areasRestringidas.Add( new Bounds(new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS), WAGON_HEIGHT/2f+2.5f, 0), new Vector3(1, 2, 0)));
+        ItemSpwnManager.instance.SpawnShopItem(shopPool, new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS), WAGON_HEIGHT / 2f, 0));
+        ItemSpwnManager.instance.SpawnShopItem(shopPool, new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS)-2, WAGON_HEIGHT / 2f, 0));
+        ItemSpwnManager.instance.SpawnShopItem(shopPool, new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS)+2, WAGON_HEIGHT / 2f, 0));
 
         ClearedRoom();
     }

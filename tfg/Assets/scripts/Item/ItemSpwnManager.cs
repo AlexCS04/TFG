@@ -5,6 +5,7 @@ public class ItemSpwnManager : MonoBehaviour
 {
     public static ItemSpwnManager instance { get; private set; }
     [SerializeField] private GameObject groundIemPrefab;
+    [SerializeField] private GameObject shopItemPrefab;
     public System.Random itemRandom;
 
 
@@ -17,7 +18,7 @@ public class ItemSpwnManager : MonoBehaviour
         int tSeed;
         if (int.TryParse(RoomManager.instance.seed, out int n)) { tSeed = System.Int32.Parse(RoomManager.instance.seed); }
         else { tSeed = RoomManager.instance.seed.GetHashCode(); }
-        itemRandom=new System.Random(tSeed);
+        itemRandom = new System.Random(tSeed);
     }
 
     public void SpawnItem(SCT sct, Vector3 pos)
@@ -39,6 +40,23 @@ public class ItemSpwnManager : MonoBehaviour
     {
         if (sctList.Count == 0) return;
         SpawnItem(sctList[itemRandom.Next(0, sctList.Count)], pos);
+    }
+    public void SpawnShopItem(List<SCT> sctList, Vector3 pos)
+    {
+        if (sctList.Count == 0) return;
+        SpawnShopItem(sctList[itemRandom.Next(0, sctList.Count)], pos);
+    }
+    public void SpawnShopItem(SCT sct, Vector3 pos)
+    {
+        if (sct != null)
+        {
+            GameObject sItem = Instantiate(shopItemPrefab, pos, Quaternion.identity, RoomManager.instance.wagonList[RoomManager.instance.actualWagon].transform);
+            sItem.GetComponent<ShopItem>().sct = sct;
+            sItem.GetComponent<ShopItem>().lvl = RoomManager.instance.wagonCount;
+            sItem.GetComponent<ShopItem>().price = sct.price;
+            sItem.GetComponent<ShopItem>().SetUp();
+        }
+
     }
 
 }

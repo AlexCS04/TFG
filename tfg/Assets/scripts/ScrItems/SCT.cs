@@ -41,6 +41,8 @@ public class SCT : ScriptableObject
 
     public bool bBounce;//
 
+    public int price;
+
 
 
     public BoolArray2D shape = new BoolArray2D(8);

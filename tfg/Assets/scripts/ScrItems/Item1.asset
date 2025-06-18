@@ -40,6 +40,7 @@ MonoBehaviour:
   bSpeed: 13.2
   bPiercing: 2
   bBounce: 1
+  price: 5
   shape:
     rows:
     - array: 0100000000000000
