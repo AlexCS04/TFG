@@ -24,6 +24,8 @@ public class PlayerBackpack : MonoBehaviour
 
     public int money = 0;
 
+    public ShopItem shopItem;
+
 
     void OnEnable()
     {
@@ -80,11 +82,19 @@ public class PlayerBackpack : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha1) && consumables[0] != null)
         {
-            Purchase(2);    
+            Purchase(2);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) && consumables[1] != null)
         {
-            Purchase(4);    
+            Purchase(4);
+        }
+        if (Input.GetKeyDown(KeyCode.F) && shopItem != null)
+        {
+
+            Purchase(shopItem.price);
+            shopItem.Buy();
+            shopItem = null;
+            
         }
     }
 
@@ -179,15 +189,15 @@ public class PlayerBackpack : MonoBehaviour
             int stack = item.Value.stack;
             int lvl = Mathf.CeilToInt(item.Value.lvl / 10f);
             playerAttack.damage += sct.iDamage * stack * lvl;
-            mDamage += sct.mDamage * lvl;
+            if(sct.mDamage!=0)mDamage += sct.mDamage * lvl;
             playerAttack.attackSpeed += sct.iAttackSpeed * stack * lvl;
-            mAttackSpeed += sct.mAttackSpeed * lvl;
+            if(sct.mAttackSpeed!=0)mAttackSpeed += sct.mAttackSpeed * lvl;
             playerAttack.attackRange += sct.iAttackRange * stack * lvl;
             playerControls.currentSpeed += sct.iSpeed * stack * lvl;
-            mSpeed += sct.mSpeed * lvl;
+            if(sct.mSpeed!=0)mSpeed += sct.mSpeed * lvl;
             playerHealth.maxHealth += sct.iHealth * stack * lvl;
             playerHealth.cDefense += sct.iDefense * stack * lvl;
-            mDefense += sct.mDefense * lvl;
+            if(sct.mDefense!=0)mDefense += sct.mDefense * lvl;
             if (sct.Name == "Money") money += stack;
         }
         Equipment(helmet);
@@ -225,15 +235,15 @@ public class PlayerBackpack : MonoBehaviour
         int stack = item.stack;
         int lvl = Mathf.CeilToInt(item.lvl / 10f);
         playerAttack.damage += item.sct.eDamage * stack * lvl;
-        mDamage += item.sct.mDamage * lvl;
+        if(item.sct.mDamage!=0)mDamage += item.sct.mDamage * lvl;
         playerAttack.attackSpeed += item.sct.eAttackSpeed * stack * lvl;
-        mAttackSpeed += item.sct.mAttackSpeed * lvl;
+        if(item.sct.mAttackSpeed!=0)mAttackSpeed += item.sct.mAttackSpeed * lvl;
         playerAttack.attackRange += item.sct.eAttackRange * stack * lvl;
         playerControls.currentSpeed += item.sct.eSpeed * stack * lvl;
-        mSpeed += item.sct.mSpeed * lvl;
+        if(item.sct.mSpeed!=0)mSpeed += item.sct.mSpeed * lvl;
         playerHealth.maxHealth += item.sct.eHealth * stack * lvl;
         playerHealth.cDefense += item.sct.eDefense * stack * lvl;
-        mDefense += item.sct.mDefense * lvl;
+        if(item.sct.mDefense!=0)mDefense += item.sct.mDefense * lvl;
     }
     private void Equipment(List<Item> items)
     {
@@ -250,16 +260,17 @@ public class PlayerBackpack : MonoBehaviour
         playerAttack.bSpeed = wep.sct.bSpeed;
         playerAttack.bPiercing = wep.sct.bPiercing;
         playerAttack.bBounce = wep.sct.bBounce;
+        Equipment(wep);
     }
     public void Purchase(int stack)
     {
-        Debug.Log(contents.Count);
-        for (int index = contents.Count - 1; index < 0; index--)
+        // Debug.Log(contents.Count);
+        for (int index = contents.Count - 1; index >= 0; index--)
         {
-            Debug.Log("hUH");
+            // Debug.Log("hUH");
             var cont = contents.ElementAt(index);
             Item item = cont.Value;
-            Debug.Log(item.GetCantidad());
+            // Debug.Log(item.GetCantidad());
             if (item.sct.Name == "Money")
             {
                 int dar = stack - item.GetCantidad();

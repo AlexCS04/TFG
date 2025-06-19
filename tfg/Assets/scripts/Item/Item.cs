@@ -152,6 +152,10 @@ public class Item : MonoBehaviour, IPointerDownHandler
         {
             return true;
         }
+        if (item2.sct.Name == "Money" && sct.Name=="Money" )
+        {
+            return true;
+        }
 
         return false;
     }

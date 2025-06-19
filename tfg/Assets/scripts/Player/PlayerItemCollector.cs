@@ -16,7 +16,7 @@ public class PlayerItemCollector : MonoBehaviour
         {
             player.itemsArea.Add(collision.GetComponent<GroundItem>());
         }
-        if (collision.tag.Equals("ShopItem") && transform.parent.GetComponent<PlayerBackpack>().money >= collision.GetComponent<ShopItem>().price) { buying = true;  shopItem = collision.GetComponent<ShopItem>(); }
+        
     }
     void OnTriggerExit2D(Collider2D collision)
     {
@@ -24,21 +24,6 @@ public class PlayerItemCollector : MonoBehaviour
         {
             player.itemsArea.Remove(collision.GetComponent<GroundItem>());
         }
-        if (collision.tag.Equals("ShopItem"))
-        {
-            buying = false;
-            if (collision.GetComponent<ShopItem>() == shopItem) shopItem = null;
-        }
-    }
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F)&&buying)
-        {
-            if (shopItem != null)
-            {
-                transform.parent.GetComponent<PlayerBackpack>().Purchase(shopItem.price);
-                shopItem.Buy();
-            }
-        }
+
     }
 }

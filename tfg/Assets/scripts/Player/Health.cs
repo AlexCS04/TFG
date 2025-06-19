@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,11 +40,12 @@ public class Health : MonoBehaviour
     public virtual void TakeDamage(float tHealth, float rHealth) //tHealth >= rHealth
     {
         if (invuFrames > 0) return;
-        // Debug.Log("damage");
+        rHealth = tHealth * rHealth;
+        currentHealth = Mathf.Clamp(currentHealth - (tHealth - cDefense), 0, currentHealth);
+        // currentHealth -= tHealth
 
-        // Mathf.Clamp(tHealth, 0, maxHealth);
-        currentHealth -= tHealth;
-        regenHealth -= rHealth;
+        regenHealth = Mathf.Clamp(regenHealth - (rHealth - cDefense), 0, regenHealth);
+        // regenHealth -= rHealth;
         ActHealthVisual();
         invuFrames = invuFramesCount;
         if (currentHealth <= 0) Die();
@@ -55,10 +57,10 @@ public class Health : MonoBehaviour
     }
     void Update()
     {
-        if (invuFrames > 0) invuFrames -= Time.deltaTime;
+        if (invuFrames > 0) invuFrames -= Time.deltaTime; 
         if (RegenTime > regenTimer) Regen();
         if (FoodTime > foodTimer) Hungry();
-        if(currentHealth==regenHealth) startRegenTime = Time.time;
+        if (currentHealth == regenHealth) startRegenTime = Time.time;
     }
     public void Heal(float tHealth, float rHealth)
     {
@@ -79,7 +81,8 @@ public class Health : MonoBehaviour
     }
     private void Hungry()
     {
-        
+
     }
+    
 
 }

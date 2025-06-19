@@ -15,7 +15,7 @@ public class PlayerControls : MonoBehaviour
     private bool openInv;
     private Animator animator;
 
-
+    [SerializeField] GameObject pause;
     public List<GroundItem> itemsArea;
 
 
@@ -41,6 +41,11 @@ public class PlayerControls : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             OpenInv();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (openInv) OpenInv();
+            else OpenPause();
         }
         if (Input.GetKeyDown(KeyCode.J))
         {
@@ -75,6 +80,19 @@ public class PlayerControls : MonoBehaviour
         {
             ContainerManager.instance.OpenInventory(itemsArea);
             openInv = true;
+        }
+
+    }
+    private void OpenPause()
+    {
+        if (pause == null) return;
+        if (pause.activeSelf)
+        {
+            pause.GetComponent<Pause>().ClosePause();
+        }
+        else
+        {
+            pause.GetComponent<Pause>().OpenPause();
         }
 
     }

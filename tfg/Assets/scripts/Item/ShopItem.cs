@@ -19,7 +19,10 @@ public class ShopItem : MonoBehaviour
         if (collision.tag.Equals("Player"))
         {
             if (collision.GetComponent<PlayerBackpack>().money >= price)
+            {
                 aviso.SetActive(true);
+                collision.GetComponent<PlayerBackpack>().shopItem = this;
+            }
         }
     }
     void OnTriggerExit2D(Collider2D collision)
@@ -27,6 +30,7 @@ public class ShopItem : MonoBehaviour
         if (collision.tag.Equals("Player"))
         {
             aviso.SetActive(false);
+            collision.GetComponent<PlayerBackpack>().shopItem = null;
         }
     }
     public void Buy()

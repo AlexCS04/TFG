@@ -6,6 +6,7 @@ public class Attack : MonoBehaviour
     [SerializeField] protected Transform attackPoint; //get from weapon maybe
     public float attackRange; //modify from weapon
     public float damage; //modify from weapon
+    public float secDamage=1f; //regen attack
     [SerializeField] protected LayerMask attackLayer;
     public AttackType attackType; //get from weapon
     public GameObject bullet; //change  Weapon holding. maybe
@@ -25,6 +26,7 @@ public class Attack : MonoBehaviour
     public virtual void AttackAction(Vector3 target)
     {
         if (timeSinceAttack > 0) return;
+        if (Time.timeScale == 0) return;
 
         timeSinceAttack = attackSpeed;
         if (attackType == AttackType.ranged) AttackRanged(target);
@@ -41,7 +43,7 @@ public class Attack : MonoBehaviour
         Collider2D[] c = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, attackLayer);
         foreach (Collider2D item in c)
         {
-            item.GetComponent<Health>().TakeDamage(damage, damage * .8f);
+            item.GetComponent<Health>().TakeDamage(damage, secDamage);
         }
         Collider2D[] obs = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, LayerMask.GetMask("Obstacles"));
         foreach (Collider2D item in obs)
