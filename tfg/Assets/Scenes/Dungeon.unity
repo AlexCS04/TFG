@@ -616,7 +616,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: -150, y: -0.12161255}
-  m_SizeDelta: {x: 400, y: 100}
+  m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &153314439
 MonoBehaviour:
@@ -4149,7 +4149,6 @@ MonoBehaviour:
   regenHealth: 0
   bDefense: 0
   cDefense: 0
-  rQuant: 1
   healthSlider: {fileID: 1222913118}
   healthSlider2: {fileID: 921551172}
   pool: []
@@ -4157,6 +4156,7 @@ MonoBehaviour:
   foodSlider: {fileID: 210336883}
   regenTimer: 3
   foodTimer: 12
+  rQuant: 1
   invuFramesCount: 2
 --- !u!114 &853741648
 MonoBehaviour:
@@ -4181,6 +4181,11 @@ MonoBehaviour:
   - {fileID: 0}
   money: 0
   shopItem: {fileID: 0}
+  tempDamageMult: 1
+  tempSpeedMult: 1
+  tempDefenseMult: 1
+  tempRegenMult: 1
+  tempAttackSpeedMult: 1
 --- !u!95 &853741649
 Animator:
   serializedVersion: 7
@@ -4799,7 +4804,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "New Text \ndsf sds sd\nfsd\nef"
+  m_text: "New Text \nGrants a defense multiplier of\nfsd\nef"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

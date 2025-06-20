@@ -10,7 +10,7 @@ public class Health : MonoBehaviour
     public float regenHealth;
     public float bDefense;
     public float cDefense;
-    public float rQuant;
+    
     
     [SerializeField] protected Slider healthSlider;
     [SerializeField] protected Slider healthSlider2;
@@ -43,7 +43,7 @@ public class Health : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public virtual void Heal(float tHealth, float rHealth)
+    public virtual void Heal(float tHealth, float rHealth) //active heal
     {
         currentHealth = Mathf.Clamp(currentHealth+tHealth, 0, maxHealth);
         regenHealth = Mathf.Clamp(regenHealth+rHealth, 0, maxHealth);

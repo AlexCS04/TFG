@@ -26,6 +26,8 @@ public class SCT : ScriptableObject
 
     public float iAttackRange;//
     public float eAttackRange;//
+    public float iRQuant;//
+    public float eRQuant;//
 
     public float iHealth;//
     public float eHealth;//
@@ -46,7 +48,14 @@ public class SCT : ScriptableObject
     public float tHealth;
     public float rHealth;
     public float filling;
-    
+
+    public float consumableExtraTime;
+    public float tempDamageMult = 1; 
+    public float tempSpeedMult=1; 
+    public float tempDefenseMult=1; 
+    public float tempRegenMult=1; 
+    public float tempAttackSpeedMult=1; 
+
 
 
     public BoolArray2D shape = new BoolArray2D(8);

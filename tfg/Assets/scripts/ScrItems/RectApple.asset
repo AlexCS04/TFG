@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb8e3f46b0c50ed4b82596c498ab1c7d, type: 3}
-  m_Name: SCT
+  m_Name: RectApple
   m_EditorClassIdentifier: 
   sprite: {fileID: -7205218644840326792, guid: b6c11e2a44396b843a9d5042d8c27880, type: 3}
   Name: rectAple
@@ -31,6 +31,8 @@ MonoBehaviour:
   mSpeed: 0
   iAttackRange: 0
   eAttackRange: 0
+  iRQuant: 0
+  eRQuant: 0
   iHealth: 0
   eHealth: 0
   iDefense: 0
@@ -44,6 +46,12 @@ MonoBehaviour:
   tHealth: 6
   rHealth: 5
   filling: 2
+  consumableExtraTime: 20
+  tempDamageMult: 2
+  tempSpeedMult: 1
+  tempDefenseMult: 1
+  tempRegenMult: 1
+  tempAttackSpeedMult: 1
   shape:
     rows:
     - array: 0100000000000000

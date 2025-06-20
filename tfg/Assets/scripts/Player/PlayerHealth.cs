@@ -14,6 +14,7 @@ public class PlayerHealth : Health
     public float regenTimer;
     public float foodTimer;
     private float invuFrames;
+    public float rQuant;
     [SerializeField] protected float invuFramesCount;
     protected override void Start()
     {
@@ -61,12 +62,13 @@ public class PlayerHealth : Health
         if (FoodTime > foodTimer) Hungry();
         if (currentHealth == regenHealth) startRegenTime = Time.time;
     }
-    private void Regen()
+    private void Regen() //pasive heal
     {
         if (food < maxFood * .65f) return;
-        currentHealth = Mathf.Clamp(rQuant + currentHealth, currentHealth, regenHealth);
+        currentHealth = Mathf.Clamp(rQuant + currentHealth, 0, regenHealth);
         startRegenTime = Time.time;
         ActHealthVisual();
+        if (currentHealth == 0) Die();
     }
     private void Hungry()
     {

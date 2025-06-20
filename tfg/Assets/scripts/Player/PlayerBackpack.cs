@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -25,7 +26,14 @@ public class PlayerBackpack : MonoBehaviour
     public int money = 0;
 
     public ShopItem shopItem;
-
+    #region Temporal Mults
+    public float tempDamageMult=1; 
+    public float tempSpeedMult=1; 
+    public float tempDefenseMult=1; 
+    public float tempRegenMult=1; 
+    public float tempAttackSpeedMult=1; 
+    // public float tempMult=1; //por si se me ocurren más
+    #endregion
 
     void OnEnable()
     {
@@ -68,6 +76,7 @@ public class PlayerBackpack : MonoBehaviour
         playerAttack = gameObject.GetComponent<Attack>();
         playerHealth = gameObject.GetComponent<PlayerHealth>();
         ActualizarStats();
+        // damageThread = new Thread(TDamage(consumables[0].sct));
     }
     void Update()
     {
@@ -99,9 +108,10 @@ public class PlayerBackpack : MonoBehaviour
     }
     private void Consume(int cons)
     {
-        if (playerHealth.Consume(consumables[cons].sct.tHealth, consumables[cons].sct.rHealth, consumables[cons].sct.filling))
+        if (playerHealth.Consume(consumables[cons].sct.tHealth* Mathf.CeilToInt(consumables[cons].lvl / 10f), consumables[cons].sct.rHealth * Mathf.CeilToInt(consumables[cons].lvl / 10f), consumables[cons].sct.filling))
         {
             consumables[cons].AddCantidad(-1);
+            CheckMult(consumables[cons].sct);
             if (consumables[cons].GetCantidad() == 0)
             {
                 ContainerManager.instance.equipment[cons + 10].RemoveAt(consumables[cons].gridPos);
@@ -111,7 +121,76 @@ public class PlayerBackpack : MonoBehaviour
             }
         }
     }
+    #region TemporalFunctions
+    private void CheckMult(SCT sct)
+    {
+        if (sct.tempDamageMult != 1 && tempDamageMult <= sct.tempDamageMult)
+        {
+            StopCoroutine("TempDamage");
+            StartCoroutine(TempDamage(sct.tempDamageMult, sct.consumableExtraTime));
+        }
+        if (sct.tempDefenseMult != 1 && tempDefenseMult <= sct.tempDefenseMult)
+        {
+            StopCoroutine("TempDefense");
+            StartCoroutine(TempDefense(sct.tempDefenseMult, sct.consumableExtraTime));
+        }
+        if (sct.tempSpeedMult != 1 && tempSpeedMult <= sct.tempSpeedMult)
+        {
+            StopCoroutine("TempSpeed");
+            StartCoroutine(TempSpeed(sct.tempSpeedMult, sct.consumableExtraTime));
+        }
+        if (sct.tempRegenMult != 1 && tempRegenMult <= sct.tempRegenMult)
+        {
+            StopCoroutine("TempRegen");
+            StartCoroutine(TempRegen(sct.tempRegenMult, sct.consumableExtraTime));
+        }
+        if (sct.tempAttackSpeedMult != 1 && tempAttackSpeedMult <= sct.tempAttackSpeedMult)
+        {
+            StopCoroutine("TempAttackSpeed");
+            StartCoroutine(TempAttackSpeed(sct.tempAttackSpeedMult, sct.consumableExtraTime));
+        }
 
+        ActualizarStats();
+    }
+
+    IEnumerator TempDamage(float mult, float time)
+    {
+        tempDamageMult = mult;
+        yield return new WaitForSeconds(time);
+        tempDamageMult = 1;
+        ActualizarStats();
+    }
+    IEnumerator TempDefense(float mult, float time)
+    {
+        tempDefenseMult = mult;
+        yield return new WaitForSeconds(time);
+        tempDefenseMult = 1;
+        ActualizarStats();
+    }
+    IEnumerator TempSpeed(float mult, float time)
+    {
+        tempSpeedMult = mult;
+        yield return new WaitForSeconds(time);
+        tempSpeedMult = 1;
+        ActualizarStats();
+    }
+    IEnumerator TempRegen(float mult, float time)
+    {
+        tempRegenMult = mult;
+        yield return new WaitForSeconds(time);
+        tempRegenMult = 1;
+        ActualizarStats();
+    }
+    IEnumerator TempAttackSpeed(float mult, float time)
+    {
+        tempAttackSpeedMult = mult;
+        yield return new WaitForSeconds(time);
+        tempAttackSpeedMult = 1;
+        ActualizarStats();
+    }
+
+
+    #endregion
     private void PutEquip(Item item, int place)
     {
         switch (item.sct.equipType)
@@ -181,7 +260,7 @@ public class PlayerBackpack : MonoBehaviour
     private void ActualizarStats()
     {
 
-        
+
         playerControls.currentSpeed = playerControls.speed;
         playerAttack.damage = 1;
         mDamage = 1;
@@ -192,6 +271,7 @@ public class PlayerBackpack : MonoBehaviour
         playerAttack.attackSpeed = 2f;
         playerAttack.attackType = AttackType.melee;
         playerHealth.maxHealth = 15;
+        playerHealth.rQuant = 1;
         playerHealth.cDefense = playerHealth.bDefense;
         money = 0;
         WeaponEquip(weapon);
@@ -203,15 +283,16 @@ public class PlayerBackpack : MonoBehaviour
             int stack = item.Value.stack;
             int lvl = Mathf.CeilToInt(item.Value.lvl / 10f);
             playerAttack.damage += sct.iDamage * stack * lvl;
-            if(sct.mDamage!=0)mDamage += sct.mDamage * lvl;
+            if (sct.mDamage != 0) mDamage += sct.mDamage * lvl;
             playerAttack.attackSpeed += sct.iAttackSpeed * stack * lvl;
-            if(sct.mAttackSpeed!=0)mAttackSpeed += sct.mAttackSpeed * lvl;
+            if (sct.mAttackSpeed != 0) mAttackSpeed += sct.mAttackSpeed * lvl;
             playerAttack.attackRange += sct.iAttackRange * stack * lvl;
             playerControls.currentSpeed += sct.iSpeed * stack * lvl;
-            if(sct.mSpeed!=0)mSpeed += sct.mSpeed * lvl;
+            if (sct.mSpeed != 0) mSpeed += sct.mSpeed * lvl;
             playerHealth.maxHealth += sct.iHealth * stack * lvl;
+            playerHealth.rQuant += sct.iRQuant * stack * lvl;
             playerHealth.cDefense += sct.iDefense * stack * lvl;
-            if(sct.mDefense!=0)mDefense += sct.mDefense * lvl;
+            if (sct.mDefense != 0) mDefense += sct.mDefense * lvl;
             if (sct.Name == "Money") money += stack;
         }
         Equipment(helmet);
@@ -236,9 +317,13 @@ public class PlayerBackpack : MonoBehaviour
         if (playerHealth.currentHealth > playerHealth.maxHealth)
         {
             playerHealth.currentHealth = playerHealth.maxHealth;
-            playerHealth.regenHealth = playerHealth.maxHealth;
         }
         playerHealth.ActHealthVisual();
+        playerAttack.damage *= tempDamageMult;
+        playerControls.currentSpeed *= tempSpeedMult;
+        playerHealth.cDefense *= tempDefenseMult;
+        playerAttack.attackSpeed *= 1/tempAttackSpeedMult;
+        playerHealth.rQuant *= tempRegenMult;
 
 
 
@@ -256,6 +341,7 @@ public class PlayerBackpack : MonoBehaviour
         playerControls.currentSpeed += item.sct.eSpeed * stack * lvl;
         if(item.sct.mSpeed!=0)mSpeed += item.sct.mSpeed * lvl;
         playerHealth.maxHealth += item.sct.eHealth * stack * lvl;
+        playerHealth.rQuant += item.sct.eRQuant * stack * lvl;
         playerHealth.cDefense += item.sct.eDefense * stack * lvl;
         if(item.sct.mDefense!=0)mDefense += item.sct.mDefense * lvl;
     }

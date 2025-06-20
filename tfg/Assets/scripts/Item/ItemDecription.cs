@@ -14,7 +14,7 @@ public class ItemDecription : ISendDesc
         description += "Name: <color=#ff0000>" + sct.Name + "</color>\n";
 
         // description += "\n";
-        if (sct.equipType != EquipType.Extra)
+        if (sct.equipType != EquipType.Extra && sct.equipType != EquipType.Consumable)
         {
             #region Inv
             description += "<color=#005500>On inventory:</color>\n";
@@ -27,7 +27,7 @@ public class ItemDecription : ISendDesc
             if (sct.iAttackSpeed != 0)
             {
                 description += "Attack Speed: ";
-                description += PosOrNeg(sct.iAttackSpeed);
+                description += PosOrNeg(-sct.iAttackSpeed);
                 description += sct.iAttackSpeed * Mathf.CeilToInt(item.lvl / 10f) + "</color>\n";
             }
             if (sct.iDamage != 0)
@@ -48,6 +48,12 @@ public class ItemDecription : ISendDesc
                 description += PosOrNeg(sct.iHealth);
                 description += sct.iHealth * Mathf.CeilToInt(item.lvl / 10f) + "</color>\n";
             }
+            if (sct.iRQuant != 0)
+            {
+                description += "Regen Quantity: ";
+                description += PosOrNeg(sct.iRQuant);
+                description += sct.iRQuant * Mathf.CeilToInt(item.lvl / 10f) + "</color>\n";
+            }
             if (sct.iSpeed != 0)
             {
                 description += "Speed: ";
@@ -57,7 +63,7 @@ public class ItemDecription : ISendDesc
             #endregion
             #region Equip
             description += "<color=#005500>Equiped:</color>\n";
-            if (sct.attackType == AttackType.melee && sct.eAttackRange != 0)
+            if (sct.attackType != AttackType.ranged && sct.eAttackRange != 0)
             {
                 description += "Attack Range: ";
                 description += PosOrNeg(sct.eAttackRange);
@@ -66,7 +72,8 @@ public class ItemDecription : ISendDesc
             if (sct.eAttackSpeed != 0)
             {
                 description += "Attack Speed: ";
-                description += PosOrNeg(sct.eAttackSpeed);
+                if (sct.equipType == EquipType.PrimaryWeapon) description += PosOrNeg(sct.eAttackSpeed);
+                else description += PosOrNeg(-sct.eAttackSpeed);
                 description += sct.eAttackSpeed * Mathf.CeilToInt(item.lvl / 10f) + "</color>\n";
             }
             if (sct.eDamage != 0)
@@ -86,6 +93,12 @@ public class ItemDecription : ISendDesc
                 description += "Health: ";
                 description += PosOrNeg(sct.eHealth);
                 description += sct.eHealth * Mathf.CeilToInt(item.lvl / 10f) + "</color>\n";
+            }
+            if (sct.eRQuant != 0)
+            {
+                description += "Regen Quantity: ";
+                description += PosOrNeg(sct.eRQuant);
+                description += sct.eRQuant * Mathf.CeilToInt(item.lvl / 10f) + "</color>\n";
             }
             if (sct.eSpeed != 0)
             {
@@ -138,9 +151,67 @@ public class ItemDecription : ISendDesc
             }
             #endregion
         }
-        else
+        else if (sct.equipType == EquipType.Consumable)
         {
-
+            description += "When consumed:\n";
+            if (sct.tHealth != 0)
+            {
+                description += "Heals ";
+                description += PosOrNeg(sct.tHealth);
+                description += sct.tHealth * Mathf.CeilToInt(item.lvl / 10f) + "</color>";
+                description += " hp\n";
+            }
+            if (sct.rHealth != 0)
+            {
+                description += "Gives ";
+                description += PosOrNeg(sct.rHealth);
+                description += sct.rHealth * Mathf.CeilToInt(item.lvl / 10f) + "</color>";
+                description += " regen points\n";
+            }
+            description += "Fills ";
+            description += sct.tHealth;
+            description += " food points\n";
+            if (sct.tempDamageMult != 1)
+            {
+                description += "Grants a damage multiplier\nOf ";
+                description += PosOrNeg(sct.tempDamageMult - 1);
+                description += sct.tempDamageMult + "</color>";
+                description += " during ";
+                description += sct.consumableExtraTime + " seconds\n";
+            }
+            if (sct.tempDefenseMult != 1)
+            {
+                description += "Grants a defense multiplier\nOf ";
+                description += PosOrNeg(sct.tempDefenseMult - 1);
+                description += sct.tempDefenseMult + "</color>";
+                description += " during ";
+                description += sct.consumableExtraTime + " seconds\n";
+            }
+            if (sct.tempSpeedMult != 1)
+            {
+                description += "Grants a speed multiplier\nOf ";
+                description += PosOrNeg(sct.tempSpeedMult - 1);
+                description += sct.tempSpeedMult + "</color>";
+                description += " during ";
+                description += sct.consumableExtraTime + " seconds\n";
+            }
+            if (sct.tempRegenMult != 1)
+            {
+                description += "Grants a regen quantity multiplier\nOf ";
+                description += PosOrNeg(sct.tempRegenMult - 1);
+                description += sct.tempRegenMult + "</color>";
+                description += " during ";
+                description += sct.consumableExtraTime + " seconds\n";
+            }
+            if (sct.tempAttackSpeedMult != 1)
+            {
+                description += "Grants a attack speed multiplier\nOf ";
+                description += PosOrNeg(sct.tempAttackSpeedMult-1);
+                description += 1/sct.tempAttackSpeedMult + "</color>";
+                description += " during ";
+                description += sct.consumableExtraTime + " seconds\n";
+            }
+            
         }
 
         description += "Weight: ";
