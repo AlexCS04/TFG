@@ -82,11 +82,11 @@ public class PlayerBackpack : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha1) && consumables[0] != null)
         {
-            Purchase(2);
+            Consume(0);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) && consumables[1] != null)
         {
-            Purchase(4);
+            Consume(1);
         }
         if (Input.GetKeyDown(KeyCode.F) && shopItem != null)
         {
@@ -95,6 +95,20 @@ public class PlayerBackpack : MonoBehaviour
             shopItem.Buy();
             shopItem = null;
             
+        }
+    }
+    private void Consume(int cons)
+    {
+        if (playerHealth.Consume(consumables[cons].sct.tHealth, consumables[cons].sct.rHealth, consumables[cons].sct.filling))
+        {
+            consumables[cons].AddCantidad(-1);
+            if (consumables[cons].GetCantidad() == 0)
+            {
+                ContainerManager.instance.equipment[cons + 10].RemoveAt(consumables[cons].gridPos);
+                Destroy(consumables[cons].gameObject);
+                // consumables[cons] = null;
+                ActualizarStats();
+            }
         }
     }
 
@@ -118,10 +132,10 @@ public class PlayerBackpack : MonoBehaviour
                 weapon = item;
                 break;
             case EquipType.Ring:
-                rings.Insert(place,item);
+                rings.Insert(place, item);
                 break;
             case EquipType.Consumable:
-                consumables.Insert(place,item);
+                consumables.Insert(place, item);
                 break;
             case EquipType.Backpack:
                 break;

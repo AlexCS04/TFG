@@ -41,6 +41,9 @@ MonoBehaviour:
   bPiercing: 0
   bBounce: 0
   price: 6
+  tHealth: 6
+  rHealth: 5
+  filling: 2
   shape:
     rows:
     - array: 0100000000000000

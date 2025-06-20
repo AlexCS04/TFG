@@ -43,6 +43,10 @@ public class SCT : ScriptableObject
 
     public int price;
 
+    public float tHealth;
+    public float rHealth;
+    public float filling;
+    
 
 
     public BoolArray2D shape = new BoolArray2D(8);

@@ -161,7 +161,11 @@ public class Item : MonoBehaviour, IPointerDownHandler
     }
 
     public int GetCantidad() { return stack; }
-    public void AddCantidad(int s) { stack += s; }
+    public void AddCantidad(int s)
+    {
+        stack += s;
+        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GetCantidad().ToString();
+    }
 
     public void PickUp()
     {
