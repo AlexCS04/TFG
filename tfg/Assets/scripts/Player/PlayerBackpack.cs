@@ -52,12 +52,10 @@ public class PlayerBackpack : MonoBehaviour
     }
     public void PutItem(Item item, Vector2Int key)
     {
-        if (contents.ContainsKey(key))
+        if (!contents.ContainsKey(key))
         {
-            // Debug.Log("Stacking too much ", item);
-            return;
+            contents.Add(key, item);
         }
-        contents.Add(key, item);
         ActualizarStats();
     }
     public void RemoveItem(Vector2Int key)
@@ -267,9 +265,9 @@ public class PlayerBackpack : MonoBehaviour
         mAttackSpeed = 1;
         mSpeed = 1;
         mDefense = 1;
-        playerAttack.attackRange = 1.5f;
+        playerAttack.attackRange = 1f;
         playerAttack.attackSpeed = 2f;
-        playerAttack.attackType = AttackType.melee;
+        playerAttack.attackType = AttackType.meleeC;
         playerHealth.maxHealth = 15;
         playerHealth.rQuant = 1;
         playerHealth.cDefense = playerHealth.bDefense;
@@ -318,6 +316,7 @@ public class PlayerBackpack : MonoBehaviour
         {
             playerHealth.currentHealth = playerHealth.maxHealth;
         }
+        if (playerAttack.attackRange < 0.5f) playerAttack.attackRange = 0.5f;
         playerHealth.ActHealthVisual();
         playerAttack.damage *= tempDamageMult;
         playerControls.currentSpeed *= tempSpeedMult;

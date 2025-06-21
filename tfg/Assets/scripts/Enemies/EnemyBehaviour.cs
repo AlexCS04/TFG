@@ -10,6 +10,7 @@ public class EnemyBehaviour : MonoBehaviour
     public EnemyAttack attackState;
     public EnemyRetrieve retrieveState;
     public EnemyIdle idleState;
+    private bool attacked;
 
     [SerializeField] private float chaseDistance;
     [SerializeField] private float retrieveDistance;
@@ -40,21 +41,27 @@ public class EnemyBehaviour : MonoBehaviour
     private void SelectState()
     {
         // state = new EnemyIdle();
-        if (Vector3.Distance(player.position, transform.position) >= chaseDistance)
+        if (chaseState.followType != FollowType.random && Vector3.Distance(player.position, transform.position) >= chaseDistance)
         {
             state = chaseState;
-            Debug.Log("Chasing");
+            // Debug.Log("Chasing");
             // Debug.Log(Vector3.Distance(player.position, transform.position));
+        }
+        else if (chaseState.followType == FollowType.random && !attacked)
+        {
+            state = chaseState;
+            attacked = true;
         }
         else if (Vector3.Distance(player.position, transform.position) < retrieveDistance)
         {
             state = retrieveState;
-            Debug.Log("Retriving");
+            // Debug.Log("Retriving");
         }
         else
         {
             state = attackState;
-            Debug.Log("Attacking");
+            attacked = false;
+            // Debug.Log("Attacking");
         }
         SetUpState();
 

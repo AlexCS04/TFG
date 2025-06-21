@@ -4002,8 +4002,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.73, y: 4.71, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1328019330}
   - {fileID: 1478312402}
@@ -4120,13 +4120,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackSpeed: 0.1
   attackPoint: {fileID: 1478312402}
-  attackRange: 1.4
+  attackRange: 1
   damage: 1
   secDamage: 1
   attackLayer:
     serializedVersion: 2
     m_Bits: 256
-  attackType: 0
+  attackType: 2
   bullet: {fileID: 1117003242370999814, guid: 665117b98217f0a4f84e28200bcfd887, type: 3}
   isPlayer: 1
   bSpeed: 12
@@ -6294,7 +6294,7 @@ Transform:
   m_GameObject: {fileID: 1478312401}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.64, y: 0.04, z: 0}
+  m_LocalPosition: {x: 0.55, y: 0.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

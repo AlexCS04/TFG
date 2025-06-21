@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Equipamiento:Container
+public class Equipamiento : Container
 {
     public int place;
     public Equipamiento()
@@ -24,21 +24,26 @@ public class Equipamiento:Container
         item.GetComponent<Image>().raycastTarget = true;
         ActualizarPeso(item.sct.peso * item.GetCantidad());
         Eventmanager.OnEquipPut(item, place);
-        
+
     }
     public override void ActualizarPeso(float p)
     {
         ContainerManager.instance.mochila.GetComponent<Mochila>().ActualizarPeso(p / 2);
-        
+
     }
     protected override bool SameEquipType(EquipType et)
     {
-        return equipType==et;
+        return equipType == et;
     }
-    
+
     protected override void ReSize()
     {
-        transform.GetChild(0).GetComponent<RectTransform>().sizeDelta=GetComponent<RectTransform>().sizeDelta;
+        transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = GetComponent<RectTransform>().sizeDelta;
     }
-    public void Resize(){ReSize();}
+    public void Resize() { ReSize(); }
+    protected override void TwoItems(Item selected, Item reciving)
+    {
+        base.TwoItems(selected, reciving);
+        Eventmanager.OnEquipPut(reciving, place);
+    }
 }

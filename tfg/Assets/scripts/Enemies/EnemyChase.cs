@@ -13,35 +13,42 @@ public class EnemyChase : EnemyState
     {
         base.Enter(p, rb);
         startTime = Time.time;
+        destination = transform.position;
+        if (followType == FollowType.lateChase) destination = player.transform.position;
+        else if (followType == FollowType.random) destination = new Vector2(Random.Range(0.5f,RoomManager.WAGON_WIDHT-0.5f)+(RoomManager.instance.actualWagon*RoomManager.WAGON_WIDHT), Random.Range(0.5f,RoomManager.WAGON_HEIGHT-0.5f));
     }
     public override void Do()
     {
-        if (Vector3.Distance(player.position, transform.position) >= chaseDistance)
+
+        switch (followType)
         {
-            // completed = false;
-            switch (followType)
-            {
-                case FollowType.straight:
-                    StraightFollow();
-                    break;
-                case FollowType.random:
-                    RandomFollow();
-                    break;
-            }
+            case FollowType.straight:
+                StraightFollow();
+                break;
+            case FollowType.drunk:
+                DrunkFollow();
+                break;
+            case FollowType.lateChase:
+                LateFollow();
+                break;
+            case FollowType.random:
+                RandomFollow();
+                break;
         }
-        else Exit();
-        
+
+
+
     }
     private void StraightFollow()
     {
         Vector3 randomOffset = Random.insideUnitSphere * 2f;
         destination = player.position + randomOffset;
         FacePlayer();
+        if (Vector3.Distance(player.position, transform.position) < chaseDistance) Exit();
 
     }
-    private void RandomFollow()
+    private void DrunkFollow()
     {
-
         if (time > 0.3f)
         {
             startTime = Time.time;
@@ -52,8 +59,18 @@ public class EnemyChase : EnemyState
             Debug.Log(destination);
         }
         FacePlayer();
+        if (Vector3.Distance(player.position, transform.position) < chaseDistance) Exit();
 
-        
+
+    }
+    private void RandomFollow()
+    {
+        if (time > 3.5f || Vector2.Distance(transform.position, destination) <= 0.1f) Exit();
+    }
+    private void LateFollow()
+    {
+        if (Vector2.Distance(transform.position, destination) <= 0.1f) Exit();
+
     }
     public override void FixedDo()
     {
@@ -62,9 +79,6 @@ public class EnemyChase : EnemyState
     }
     public override void Exit()
     {
-        // Debug.Log("exit");
-
-        // destination = transform.position;
         completed = true;
     }
     private void FacePlayer()
@@ -72,9 +86,19 @@ public class EnemyChase : EnemyState
         if (player.position.x > transform.position.x) transform.eulerAngles = new Vector3(0, 180, 0);
         else transform.eulerAngles = new Vector3(0, 0, 0);
     }
+    private void FaceDir()
+    {
+        Vector2 direction = (destination - (Vector2)transform.position).normalized;
+        if (direction.x >= 0) transform.eulerAngles = new Vector3(0, 180, 0);
+        else transform.eulerAngles = new Vector3(0, 0, 0);
+    }
 }
-public enum FollowType {
+public enum FollowType
+{
 
     straight,
+    drunk,
+    lateChase, 
     random
+    
 }

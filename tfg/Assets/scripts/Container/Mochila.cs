@@ -10,8 +10,6 @@ public class Mochila : Container
     // }
     private void RevisarPeso()
     {
-        // if (peso >= .8f * maxPeso) player.GetComponent<PlayerControls>().currentSpeed = player.GetComponent<PlayerControls>().speed / 2;
-        // else player.GetComponent<PlayerControls>().currentSpeed = player.GetComponent<PlayerControls>().speed;
         player.GetComponent<PlayerControls>().mochilaMaxPeso = maxPeso;
         player.GetComponent<PlayerControls>().mochilaPeso = peso;
 
@@ -42,5 +40,10 @@ public class Mochila : Container
     {
         base.PutItem(item, gridPos, dir);
         Eventmanager.OnItemPut(item, gridPos);
+    }
+    protected override void TwoItems(Item selected, Item reciving)
+    {
+        base.TwoItems(selected, reciving);
+        Eventmanager.OnItemPut(reciving, reciving.gridPos);
     }
 }

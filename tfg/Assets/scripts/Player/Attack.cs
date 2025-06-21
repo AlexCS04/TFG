@@ -6,16 +6,15 @@ public class Attack : MonoBehaviour
     [SerializeField] protected Transform attackPoint; //get from weapon maybe
     public float attackRange; //modify from weapon
     public float damage; //modify from weapon
-    public float secDamage=1f; //regen attack
+    public float secDamage = 1f; //regen attack
     [SerializeField] protected LayerMask attackLayer;
     public AttackType attackType; //get from weapon
     public GameObject bullet; //change  Weapon holding. maybe
     protected float timeSinceAttack;
 
-    [SerializeField] private bool isPlayer;
 
     public float bSpeed; //change get from weapon
-    public int bPiercing=1;
+    public int bPiercing = 1;
     public bool bBounce;
 
 
@@ -35,30 +34,72 @@ public class Attack : MonoBehaviour
     private void AttackRanged(Vector3 target)
     {
         GameObject temp = Instantiate(bullet, transform.position, Quaternion.identity);
-        temp.GetComponent<Bullet>().Born(attackLayer, bSpeed, damage, bPiercing, bBounce);
-        temp.GetComponent<Bullet>().Shoot(target, isPlayer);
+        temp.GetComponent<Bullet>().Born(attackLayer, bSpeed, damage, secDamage, bPiercing, bBounce);
+        temp.GetComponent<Bullet>().Shoot(target);
     }
     private void AttackMelee()
     {
-        Collider2D[] c = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, attackLayer);
+        //characters
+        Collider2D[] c;
+        if (attackType == AttackType.meleeC)
+            c = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, attackLayer);
+        else
+            c = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(attackRange, 3f), attackLayer);
+
         foreach (Collider2D item in c)
         {
             item.GetComponent<Health>().TakeDamage(damage, secDamage);
         }
-        Collider2D[] obs = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, LayerMask.GetMask("Obstacles"));
-        foreach (Collider2D item in obs)
+        //obstaculos
+        if (attackType == AttackType.meleeC)
+            c = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, LayerMask.GetMask("Obstacles"));
+        else
+            c = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(attackRange, 3f), LayerMask.GetMask("Obstacles"));
+
+        foreach (Collider2D item in c)
         {
-            item.GetComponent<Health>().TakeDamage(damage, damage*.8f);
+            item.GetComponent<Health>().TakeDamage(damage, damage);
         }
     }
     void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        if (attackType == AttackType.meleeC)
+            Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        else Gizmos.DrawWireCube(new Vector3(attackPoint.position.x + attackRange / 2, attackPoint.position.y, 0), new Vector2(attackRange, 3f));
     }
 
+
+    public void AttackPattern(int pattern)
+    {
+        if (timeSinceAttack > 0) return;
+        if (Time.timeScale == 0) return;
+
+        timeSinceAttack = attackSpeed;
+        switch (pattern)
+        {
+            case 1:
+                GameObject temp = Instantiate(bullet, transform.position, Quaternion.identity);
+                temp.GetComponent<Bullet>().Born(attackLayer, bSpeed, damage, secDamage, bPiercing, bBounce);
+                temp.GetComponent<Bullet>().Shoot(new Vector2(transform.position.x+1, transform.position.y));
+                temp = Instantiate(bullet, transform.position, Quaternion.identity);
+                temp.GetComponent<Bullet>().Born(attackLayer, bSpeed, damage, secDamage, bPiercing, bBounce);
+                temp.GetComponent<Bullet>().Shoot(new Vector2(transform.position.x-1, transform.position.y));
+                temp = Instantiate(bullet, transform.position, Quaternion.identity);
+                temp.GetComponent<Bullet>().Born(attackLayer, bSpeed, damage, secDamage, bPiercing, bBounce);
+                temp.GetComponent<Bullet>().Shoot(new Vector2(transform.position.x, transform.position.y+1));
+                temp = Instantiate(bullet, transform.position, Quaternion.identity);
+                temp.GetComponent<Bullet>().Born(attackLayer, bSpeed, damage, secDamage, bPiercing, bBounce);
+                temp.GetComponent<Bullet>().Shoot(new Vector2(transform.position.x, transform.position.y-1));
+                break;
+        }
+        
+
+    }
+    
 }
 public enum AttackType
 {
-    melee,
-    ranged
+    meleeC,
+    ranged,
+    meleeS
 }

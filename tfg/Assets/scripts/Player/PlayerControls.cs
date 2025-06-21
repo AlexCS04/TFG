@@ -100,7 +100,7 @@ public class PlayerControls : MonoBehaviour
     {
         if (!GetComponent<Attack>()) return;
         if (openInv) return;
-        GetComponent<Attack>().AttackAction(Input.mousePosition);
+        GetComponent<Attack>().AttackAction(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
     }
 }

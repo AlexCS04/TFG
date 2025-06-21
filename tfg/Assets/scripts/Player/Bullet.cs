@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float damage;
+    public float tDamage;
+    public float rDamage;
     public LayerMask layer;
 
     public int piercing = 1;
@@ -19,21 +20,22 @@ public class Bullet : MonoBehaviour
     [SerializeField] private Transform help;
 
 
-    public void Born(LayerMask _layer, float speed, float _damage, int _piercing, bool _bouncer)
+    public void Born(LayerMask _layer, float speed, float _tDamage, float _rDamage, int _piercing, bool _bouncer)
     {
         startTime = Time.time;
         layer = _layer;
         bSpeed = speed;
         rb = gameObject.GetComponent<Rigidbody2D>();
-        damage = _damage;
+        tDamage = _tDamage;
+        rDamage = _rDamage;
         piercing = _piercing;
         bouncer = _bouncer;
     }
 
-    public void Shoot(Vector2 targetPos, bool player)
+    public void Shoot(Vector2 targetPos)
     {
         Vector2 vectorA = transform.position;
-        if (player) targetPos = Camera.main.ScreenToWorldPoint(targetPos);
+    
         Vector2 direction = new Vector2(targetPos.x - vectorA.x, targetPos.y - vectorA.y);
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
@@ -48,7 +50,7 @@ public class Bullet : MonoBehaviour
 
         if ((1 << collision.gameObject.layer) == layer.value || collision.tag.Equals("Obstacle")) //bit thingy. Move 1 coll.layers to the right and compare it with layer.value. coll.layer has a singular one on its bit form
         {
-            collision.GetComponent<Health>().TakeDamage(damage, damage);
+            collision.GetComponent<Health>().TakeDamage(tDamage, rDamage);
             piercing -= 1;
             if (piercing <= 0) KillBullet();
         }
