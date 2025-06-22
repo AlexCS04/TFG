@@ -1113,7 +1113,7 @@ MonoBehaviour:
   wagonCount: 0
   actualWagon: 0
   vagonVacio: {fileID: 4855131846647677107, guid: c38be918d179073408f4de9f3dfc3dd2, type: 3}
-  finalBoss: {fileID: 0}
+  finalBoss: {fileID: 1640615273078495394, guid: 1944e0e9c3d28cf45b3d6a480e49033b, type: 3}
   confiner: {fileID: 436031915}
   tematica: {fileID: 0}
   tematicas:
@@ -1124,14 +1124,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f0a7ea1ebb73db14fbdadc8ad53e0d52, type: 2}
   - {fileID: 11400000, guid: 27b7033bda9c0e04ea86c35b4464f85f, type: 2}
   - {fileID: 11400000, guid: 996122c888d9f3e45b96699f9dd30238, type: 2}
+  - {fileID: 11400000, guid: f21a706975d23894f9e1940f6910747d, type: 2}
   consumPool:
   - {fileID: 11400000, guid: 27b7033bda9c0e04ea86c35b4464f85f, type: 2}
   treasurePool:
   - {fileID: 11400000, guid: c69b7caebece93741acca9c7a34879d1, type: 2}
   - {fileID: 11400000, guid: f0a7ea1ebb73db14fbdadc8ad53e0d52, type: 2}
   - {fileID: 11400000, guid: 996122c888d9f3e45b96699f9dd30238, type: 2}
+  - {fileID: 11400000, guid: f21a706975d23894f9e1940f6910747d, type: 2}
   weaponPool:
   - {fileID: 11400000, guid: c69b7caebece93741acca9c7a34879d1, type: 2}
+  - {fileID: 11400000, guid: f21a706975d23894f9e1940f6910747d, type: 2}
   wagonList:
   - {fileID: 0}
   - {fileID: 0}
@@ -4113,6 +4116,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 27b7033bda9c0e04ea86c35b4464f85f, type: 2}
   - {fileID: 11400000, guid: 996122c888d9f3e45b96699f9dd30238, type: 2}
   - {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}
+  - {fileID: 11400000, guid: f21a706975d23894f9e1940f6910747d, type: 2}
   pause: {fileID: 1958875333}
   itemsArea: []
 --- !u!114 &853741646

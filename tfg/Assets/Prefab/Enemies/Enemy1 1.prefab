@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 2700205981229152195}
   - component: {fileID: -4019662768655817151}
   m_Layer: 8
-  m_Name: Enemy1
+  m_Name: Enemy1 1
   m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,9 +116,9 @@ MonoBehaviour:
   attackState: {fileID: 3098517795123953118}
   retrieveState: {fileID: 5485550064070428770}
   idleState: {fileID: -4019662768655817151}
-  chaseDistance: 0.6
+  chaseDistance: 0.9
   retrieveDistance: 0
-  speed: 4
+  speed: 5
 --- !u!114 &2753779696260078678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,15 +176,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackSpeed: 1.2
   attackPoint: {fileID: 9139146886469289946}
-  attackRange: 0.8
+  attackRange: 1
   damage: 1.2
   secDamage: 0.5
   attackLayer:
     serializedVersion: 2
     m_Bits: 512
-  attackType: 0
+  attackType: 2
   bullet: {fileID: 1117003242370999814, guid: 665117b98217f0a4f84e28200bcfd887, type: 3}
-  particlePref: {fileID: 1386330600314894861, guid: 098c9c0fd8094d7459f98b2d7bff6b83, type: 3}
+  particlePref: {fileID: 5276418872958179646, guid: 3165d5d14ca7b7942b0e44fbf35c5638, type: 3}
   rangeY: 1
   desviation: 0
   bSpeed: 5

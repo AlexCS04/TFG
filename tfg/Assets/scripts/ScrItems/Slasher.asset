@@ -10,39 +10,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb8e3f46b0c50ed4b82596c498ab1c7d, type: 3}
-  m_Name: Item1
+  m_Name: Slasher
   m_EditorClassIdentifier: 
   sprite: {fileID: -5738547799210225554, guid: 314ec396027f72444b0bcb912bb095ba, type: 3}
-  Name: Gun1
+  Name: Slasher
   equipType: 0
   maxStack: 1
-  peso: 8
-  sizeX: 1
+  peso: 6
+  sizeX: 2
   sizeY: 1
   spwnQuantity: {x: 1, y: 1}
   iDamage: 0
-  eDamage: 8
+  eDamage: 4
   mDamage: 0
   iAttackSpeed: 0
-  eAttackSpeed: 1.1
+  eAttackSpeed: 0.8
   mAttackSpeed: 0
   iSpeed: 0
-  eSpeed: 0
-  mSpeed: -0.1
+  eSpeed: -0.1
+  mSpeed: 0
   iAttackRange: 0
-  eAttackRange: 0
+  eAttackRange: 1.7
   iRQuant: 0
   eRQuant: 0
-  iHealth: 1
-  eHealth: 0
+  iHealth: 2
+  eHealth: -1.1
   iDefense: 0
-  eDefense: 1
-  mDefense: 0.04
-  attackType: 1
+  eDefense: 0
+  mDefense: 0.05
+  attackType: 2
   bSpeed: 13.2
   bPiercing: 2
   bBounce: 1
-  price: 5
+  price: 12
   tHealth: 0
   rHealth: 0
   filling: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
   shape:
     rows:
     - array: 0100000000000000
-    - array: 0000000000000000
+    - array: 0100000000000000
     - array: 0000000000000000
     - array: 0000000000000000
     - array: 0000000000000000

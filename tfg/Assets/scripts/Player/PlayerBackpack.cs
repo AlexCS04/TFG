@@ -300,7 +300,6 @@ public class PlayerBackpack : MonoBehaviour
         Equipment(chest);
         Equipment(pants);
         Equipment(boots);
-        WeaponEquip(weapon);
         Equipment(rings);
 
         playerAttack.damage *= mDamage;
@@ -319,7 +318,7 @@ public class PlayerBackpack : MonoBehaviour
         {
             playerHealth.currentHealth = playerHealth.maxHealth;
         }
-        if (playerAttack.attackRange < 0.5f) playerAttack.attackRange = 0.5f;
+        if (playerAttack.attackRange < .6f) playerAttack.attackRange = .6f;
         playerHealth.ActHealthVisual();
         playerAttack.damage *= tempDamageMult;
         playerControls.currentSpeed *= tempSpeedMult;
@@ -337,9 +336,9 @@ public class PlayerBackpack : MonoBehaviour
         int lvl = Mathf.CeilToInt(item.lvl / 10f);
         playerAttack.damage += item.sct.eDamage * stack * lvl;
         if(item.sct.mDamage!=0)mDamage += item.sct.mDamage * lvl;
-        playerAttack.attackSpeed += item.sct.eAttackSpeed * stack * lvl;
+        if(item.sct.equipType!=EquipType.PrimaryWeapon)playerAttack.attackSpeed += item.sct.eAttackSpeed * stack * lvl;
         if(item.sct.mAttackSpeed!=0)mAttackSpeed += item.sct.mAttackSpeed * lvl;
-        playerAttack.attackRange += item.sct.eAttackRange * stack * lvl;
+        if(item.sct.equipType!=EquipType.PrimaryWeapon)playerAttack.attackRange += item.sct.eAttackRange * stack * lvl;
         playerControls.currentSpeed += item.sct.eSpeed * stack * lvl;
         if(item.sct.mSpeed!=0)mSpeed += item.sct.mSpeed * lvl;
         playerHealth.maxHealth += item.sct.eHealth * stack * lvl;
@@ -360,6 +359,7 @@ public class PlayerBackpack : MonoBehaviour
         playerAttack.attackType = wep.sct.attackType;
         if (wep.sct.attackType == AttackType.meleeS) playerAttack.particlePref = slashEffect;
         playerAttack.attackSpeed = wep.sct.eAttackSpeed;
+        playerAttack.attackRange = wep.sct.eAttackRange;
         playerAttack.bSpeed = wep.sct.bSpeed;
         playerAttack.bPiercing = wep.sct.bPiercing;
         playerAttack.bBounce = wep.sct.bBounce;

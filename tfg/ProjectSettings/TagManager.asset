@@ -55,5 +55,8 @@ TagManager:
   - name: Obstacles
     uniqueID: 512528617
     locked: 0
+  - name: Part
+    uniqueID: 3628737847
+    locked: 0
   m_RenderingLayers:
   - Default

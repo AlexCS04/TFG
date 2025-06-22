@@ -56,21 +56,23 @@ public class Attack : MonoBehaviour
         }
         else //rectangle attack
         {
-            c = Physics2D.OverlapBoxAll(new Vector3(attackPoint.position.x + attackRange / 2 * (transform.eulerAngles.y == 0 ? 1 : -1), attackPoint.position.y, 0), new Vector2(attackRange, rangeY), attackLayer);
+            c = Physics2D.OverlapBoxAll(new Vector3(attackPoint.position.x + attackRange / 2 * (transform.eulerAngles.y == 0 ? 1 : -1), attackPoint.position.y, 0), new Vector2(attackRange, rangeY),0, attackLayer);
             newScale.x = attackRange;
         }
         foreach (Collider2D item in c)
         {
+            if(item.GetComponent<Health>())
             item.GetComponent<Health>().TakeDamage(damage, secDamage);
         }
         //obstaculos
         if (attackType == AttackType.meleeC)
             c = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, LayerMask.GetMask("Obstacles"));
         else
-            c = Physics2D.OverlapBoxAll(new Vector3(attackPoint.position.x + attackRange / 2 * (transform.eulerAngles.y == 0 ? 1 : -1), attackPoint.position.y, 0), new Vector2(attackRange, rangeY), LayerMask.GetMask("Obstacles"));
+            c = Physics2D.OverlapBoxAll(new Vector3(attackPoint.position.x + attackRange / 2 * (transform.eulerAngles.y == 0 ? 1 : -1), attackPoint.position.y, 0), new Vector2(attackRange, rangeY),0, LayerMask.GetMask("Obstacles"));
 
         foreach (Collider2D item in c)
         {
+            if(item.GetComponent<Health>())
             item.GetComponent<Health>().TakeDamage(damage, damage);
         }
         effect.transform.localScale = newScale;

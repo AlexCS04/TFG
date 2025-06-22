@@ -137,7 +137,7 @@ public class RoomManager : MonoBehaviour
         v.transform.GetChild(1).GetComponent<Doors>().PlaceDoor();
         v.transform.GetChild(2).GetComponent<Doors>().PlaceDoor();
         v.transform.GetChild(2).GetComponent<Doors>().SetRoomDoor(true);
-        v.transform.GetChild(4).GetComponent<RoomGrid>().GenerateGrid();
+        // v.transform.GetChild(4).GetComponent<RoomGrid>().GenerateGrid();
         b.size = new Vector2(WAGON_WIDHT + 0.5f, WAGON_HEIGHT + 2f);
         b.offset = new Vector2(WAGON_WIDHT, WAGON_HEIGHT+1f) / 2;
         Destroy(wagonList[wagonCount % WAGONS]);
@@ -328,17 +328,23 @@ public class RoomManager : MonoBehaviour
 
     private void VagonInicial()
     {
-        areasRestringidas.Add(new Bounds(new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS), WAGON_HEIGHT / 2f, 0), new Vector3(8, 5, 0)));
-        ItemSpwnManager.instance.SpawnItem(weaponPool, new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS) + 2, WAGON_HEIGHT / 2f, 0));
+        areasRestringidas.Add(new Bounds(new Vector3(WAGON_WIDHT / 2, WAGON_HEIGHT / 2f, 0), new Vector3(8, 5, 0)));
+        StartCoroutine("StartRun");
         ClearedRoom();
+    }
+    IEnumerator StartRun()
+    {
+        yield return null;
+        ItemSpwnManager.instance.SpawnItem(weaponPool, new Vector3(WAGON_WIDHT / 2, WAGON_HEIGHT / 2f, 0), roomRandom);
+
     }
     private void Shop()
     {
-        areasRestringidas.Add( new Bounds(new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS), WAGON_HEIGHT/2f, 0), new Vector3(6, 3, 0)));
-        areasRestringidas.Add( new Bounds(new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS), WAGON_HEIGHT/2f+2.5f, 0), new Vector3(1, 2, 0)));
+        areasRestringidas.Add(new Bounds(new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS), WAGON_HEIGHT / 2f, 0), new Vector3(6, 3, 0)));
+        areasRestringidas.Add(new Bounds(new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS), WAGON_HEIGHT / 2f + 2.5f, 0), new Vector3(1, 2, 0)));
         ItemSpwnManager.instance.SpawnShopItem(shopPool, new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS), WAGON_HEIGHT / 2f, 0));
-        ItemSpwnManager.instance.SpawnShopItem(shopPool, new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS)-2, WAGON_HEIGHT / 2f, 0));
-        ItemSpwnManager.instance.SpawnShopItem(consumPool, new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS)+2, WAGON_HEIGHT / 2f, 0));
+        ItemSpwnManager.instance.SpawnShopItem(shopPool, new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS) - 2, WAGON_HEIGHT / 2f, 0));
+        ItemSpwnManager.instance.SpawnShopItem(consumPool, new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS) + 2, WAGON_HEIGHT / 2f, 0));
 
         ClearedRoom();
     }
@@ -357,8 +363,8 @@ public class RoomManager : MonoBehaviour
     private void Treasure()
     {
         areasRestringidas.Add(new Bounds(new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS), WAGON_HEIGHT / 2f, 0), new Vector3(8, 5, 0)));
-        ItemSpwnManager.instance.SpawnItem(treasurePool, new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS) + 2, WAGON_HEIGHT / 2f, 0));
-        ItemSpwnManager.instance.SpawnItem(treasurePool, new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS) - 2, WAGON_HEIGHT / 2f, 0));
+        ItemSpwnManager.instance.SpawnItem(treasurePool, new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS) + 2, WAGON_HEIGHT / 2f, 0),roomRandom);
+        ItemSpwnManager.instance.SpawnItem(treasurePool, new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS) - 2, WAGON_HEIGHT / 2f, 0),roomRandom);
         ClearedRoom();
     }
     private void FinalBoss()

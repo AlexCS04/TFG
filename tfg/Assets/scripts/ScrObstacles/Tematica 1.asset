@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 544d13522f8378c42bccbfd00e7ac446, type: 3}
   m_Name: Tematica 1
   m_EditorClassIdentifier: 
-  nombre: 
+  nombre: t1
   siguientesTematicas:
   - {fileID: 11400000, guid: 522d2ad4019e86b4f967ab16fa11f585, type: 2}
   enviromentSprites:

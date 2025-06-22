@@ -26,10 +26,12 @@ public class Pause : MonoBehaviour
     }
     public void Exit()
     {
+        Time.timeScale = 1;
         Application.Quit();
     }
     public void MainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Main");
     }
     public void Options(GameObject options)

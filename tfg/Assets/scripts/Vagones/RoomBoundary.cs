@@ -15,9 +15,9 @@ public class RoomBoundary : MonoBehaviour
         bottomWall = transform.GetChild(3).gameObject;
 
         leftWall.transform.localPosition = new Vector3(0.5f, RoomManager.WAGON_HEIGHT / 2f, 0);
-        leftWall.GetComponent<BoxCollider2D>().size = new Vector2(.5f, RoomManager.WAGON_HEIGHT);
+        leftWall.GetComponent<BoxCollider2D>().size = new Vector2(.5f, RoomManager.WAGON_HEIGHT+5f);
         rightWall.transform.localPosition = new Vector3(RoomManager.WAGON_WIDHT-1f, RoomManager.WAGON_HEIGHT / 2f, 0);
-        rightWall.GetComponent<BoxCollider2D>().size = new Vector2(.5f, RoomManager.WAGON_HEIGHT);
+        rightWall.GetComponent<BoxCollider2D>().size = new Vector2(.5f, RoomManager.WAGON_HEIGHT+5f);
         topWall.transform.localPosition = new Vector3(RoomManager.WAGON_WIDHT/2f, RoomManager.WAGON_HEIGHT+1.25f, 0);
         topWall.GetComponent<BoxCollider2D>().size = new Vector2(RoomManager.WAGON_WIDHT, .5f);
         bottomWall.transform.localPosition = new Vector3(RoomManager.WAGON_WIDHT/2f, 0.5f, 0);
