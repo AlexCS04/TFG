@@ -13,6 +13,7 @@ public class ShopItem : MonoBehaviour
     public void SetUp()
     {
         priceText.text = price.ToString();
+        GetComponent<SpriteRenderer>().sprite = sct.sprite;
     }
     void OnTriggerEnter2D(Collider2D collision)
     {

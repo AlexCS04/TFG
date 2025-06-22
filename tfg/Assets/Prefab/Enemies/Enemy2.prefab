@@ -184,6 +184,8 @@ MonoBehaviour:
     m_Bits: 512
   attackType: 1
   bullet: {fileID: 1117003242370999814, guid: 665117b98217f0a4f84e28200bcfd887, type: 3}
+  rangeY: 1
+  desviation: 0
   bSpeed: 8.8
   bPiercing: 1
   bBounce: 0

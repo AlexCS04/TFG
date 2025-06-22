@@ -184,6 +184,7 @@ MonoBehaviour:
     m_Bits: 256
   piercing: 2
   bouncer: 1
+  desviation: 0
   help: {fileID: 8893931754802422405}
 --- !u!1 &7759839586458569395
 GameObject:

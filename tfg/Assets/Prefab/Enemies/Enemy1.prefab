@@ -184,7 +184,9 @@ MonoBehaviour:
     m_Bits: 512
   attackType: 0
   bullet: {fileID: 1117003242370999814, guid: 665117b98217f0a4f84e28200bcfd887, type: 3}
+  particlePref: {fileID: 1386330600314894861, guid: 098c9c0fd8094d7459f98b2d7bff6b83, type: 3}
   rangeY: 1
+  desviation: 0
   bSpeed: 5
   bPiercing: 1
   bBounce: 0

@@ -8,6 +8,8 @@ public class PlayerBackpack : MonoBehaviour
 {
     [SerializeField] private Dictionary<Vector2Int, Item> contents = new Dictionary<Vector2Int, Item>();
 
+    [SerializeField] private GameObject slashEffect;
+    [SerializeField] private GameObject poundEffect;
     [SerializeField] private Item helmet;
     [SerializeField] private Item chest;
     [SerializeField] private Item pants;
@@ -268,6 +270,7 @@ public class PlayerBackpack : MonoBehaviour
         playerAttack.attackRange = 1f;
         playerAttack.attackSpeed = 2f;
         playerAttack.attackType = AttackType.meleeC;
+        playerAttack.particlePref = poundEffect;
         playerHealth.maxHealth = 15;
         playerHealth.rQuant = 1;
         playerHealth.cDefense = playerHealth.bDefense;
@@ -355,6 +358,7 @@ public class PlayerBackpack : MonoBehaviour
     {
         if (wep == null) return;
         playerAttack.attackType = wep.sct.attackType;
+        if (wep.sct.attackType == AttackType.meleeS) playerAttack.particlePref = slashEffect;
         playerAttack.attackSpeed = wep.sct.eAttackSpeed;
         playerAttack.bSpeed = wep.sct.bSpeed;
         playerAttack.bPiercing = wep.sct.bPiercing;

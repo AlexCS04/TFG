@@ -192,6 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attack: {fileID: 7064630582580712559}
+  attackPattern: 0
 --- !u!114 &7064630582580712559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,12 +209,15 @@ MonoBehaviour:
   attackPoint: {fileID: 1717889328211129159}
   attackRange: 0
   damage: 0
+  secDamage: 1
   attackLayer:
     serializedVersion: 2
     m_Bits: 512
-  attackType: 0
+  attackType: 2
   bullet: {fileID: 1117003242370999814, guid: 665117b98217f0a4f84e28200bcfd887, type: 3}
-  isPlayer: 0
+  particlePref: {fileID: 5276418872958179646, guid: 3165d5d14ca7b7942b0e44fbf35c5638, type: 3}
+  rangeY: 1
+  desviation: 0
   bSpeed: 0
   bPiercing: 1
   bBounce: 0
@@ -234,12 +238,8 @@ MonoBehaviour:
   regenHealth: 0
   bDefense: 0
   cDefense: 0
-  rQuant: 0
-  invuFramesCount: 0
   healthSlider: {fileID: 0}
   healthSlider2: {fileID: 0}
-  regenTimer: 0
-  foodTimer: 0
   pool:
   - {fileID: 0}
   - {fileID: 0}

@@ -12,6 +12,8 @@ public class Attack : MonoBehaviour
     public GameObject bullet; //change  Weapon holding. maybe
     protected float timeSinceAttack;
 
+    public GameObject particlePref;
+
     public float rangeY = 1;
 
     public float desviation;
@@ -45,11 +47,18 @@ public class Attack : MonoBehaviour
     {
         //characters
         Collider2D[] c;
-        if (attackType == AttackType.meleeC) //circle attack
+        GameObject effect = Instantiate(particlePref, attackPoint.position, Quaternion.identity);
+        Vector3 newScale = effect.transform.localScale;
+        if (attackType == AttackType.meleeC)//circle attack
+        {
             c = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, attackLayer);
+            newScale *= attackRange;
+        }
         else //rectangle attack
+        {
             c = Physics2D.OverlapBoxAll(new Vector3(attackPoint.position.x + attackRange / 2 * (transform.eulerAngles.y == 0 ? 1 : -1), attackPoint.position.y, 0), new Vector2(attackRange, rangeY), attackLayer);
-
+            newScale.x = attackRange;
+        }
         foreach (Collider2D item in c)
         {
             item.GetComponent<Health>().TakeDamage(damage, secDamage);
@@ -64,6 +73,17 @@ public class Attack : MonoBehaviour
         {
             item.GetComponent<Health>().TakeDamage(damage, damage);
         }
+        effect.transform.localScale = newScale;
+        if (transform.eulerAngles.y == 0)
+        {
+            effect.GetComponent<ParticleSystemRenderer>().flip = Vector3.zero;
+            effect.GetComponent<ParticleSystemRenderer>().pivot = Vector3.zero;
+        }
+        else
+        {
+            effect.GetComponent<ParticleSystemRenderer>().flip = Vector3.right;
+            effect.GetComponent<ParticleSystemRenderer>().pivot = Vector3.left;
+        } 
     }
     void OnDrawGizmos()
     {
