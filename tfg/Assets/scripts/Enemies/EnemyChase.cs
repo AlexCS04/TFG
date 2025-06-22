@@ -15,7 +15,7 @@ public class EnemyChase : EnemyState
         startTime = Time.time;
         destination = transform.position;
         if (followType == FollowType.lateChase) destination = player.transform.position;
-        else if (followType == FollowType.random) destination = new Vector2(Random.Range(0.5f,RoomManager.WAGON_WIDHT-0.5f)+(RoomManager.instance.actualWagon*RoomManager.WAGON_WIDHT), Random.Range(0.5f,RoomManager.WAGON_HEIGHT-0.5f));
+        else if (followType == FollowType.random) destination = new Vector2(Random.Range(.7f,RoomManager.WAGON_WIDHT-.7f)+(RoomManager.instance.actualWagon*RoomManager.WAGON_WIDHT), Random.Range(0.7f,RoomManager.WAGON_HEIGHT-0.7f));
     }
     public override void Do()
     {
@@ -43,7 +43,7 @@ public class EnemyChase : EnemyState
     {
         Vector3 randomOffset = Random.insideUnitSphere * 2f;
         destination = player.position + randomOffset;
-        FacePlayer();
+        FaceDir();
         if (Vector3.Distance(player.position, transform.position) < chaseDistance) Exit();
 
     }
@@ -58,7 +58,7 @@ public class EnemyChase : EnemyState
             );
             Debug.Log(destination);
         }
-        FacePlayer();
+        FaceDir();
         if (Vector3.Distance(player.position, transform.position) < chaseDistance) Exit();
 
 
@@ -66,10 +66,12 @@ public class EnemyChase : EnemyState
     private void RandomFollow()
     {
         if (time > 3.5f || Vector2.Distance(transform.position, destination) <= 0.1f) Exit();
+        FaceDir();
     }
     private void LateFollow()
     {
         if (Vector2.Distance(transform.position, destination) <= 0.1f) Exit();
+        FaceDir();
 
     }
     public override void FixedDo()
@@ -81,16 +83,16 @@ public class EnemyChase : EnemyState
     {
         completed = true;
     }
-    private void FacePlayer()
-    {
-        if (player.position.x > transform.position.x) transform.eulerAngles = new Vector3(0, 180, 0);
-        else transform.eulerAngles = new Vector3(0, 0, 0);
-    }
+    // private void FacePlayer()
+    // {
+    //     if (player.position.x > transform.position.x) transform.eulerAngles = new Vector3(0, 0, 0);
+    //     else transform.eulerAngles = new Vector3(0, 180, 0);
+    // }
     private void FaceDir()
     {
         Vector2 direction = (destination - (Vector2)transform.position).normalized;
-        if (direction.x >= 0) transform.eulerAngles = new Vector3(0, 180, 0);
-        else transform.eulerAngles = new Vector3(0, 0, 0);
+        if (direction.x >= 0) transform.eulerAngles = new Vector3(0, 0, 0);
+        else transform.eulerAngles = new Vector3(0, 180, 0);
     }
 }
 public enum FollowType

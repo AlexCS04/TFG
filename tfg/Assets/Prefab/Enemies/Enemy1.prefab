@@ -161,6 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attack: {fileID: 6073998699248543313}
+  attackPattern: 0
 --- !u!114 &6073998699248543313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,8 +184,8 @@ MonoBehaviour:
     m_Bits: 512
   attackType: 0
   bullet: {fileID: 1117003242370999814, guid: 665117b98217f0a4f84e28200bcfd887, type: 3}
-  isPlayer: 0
-  bSpeed: 0
+  rangeY: 1
+  bSpeed: 5
   bPiercing: 1
   bBounce: 0
 --- !u!114 &-2659676748562977142
@@ -204,12 +205,8 @@ MonoBehaviour:
   regenHealth: 0
   bDefense: 0
   cDefense: 0
-  rQuant: 0
-  invuFramesCount: 0
   healthSlider: {fileID: 0}
   healthSlider2: {fileID: 0}
-  regenTimer: 0
-  foodTimer: 0
   pool: []
 --- !u!58 &4511114420714806598
 CircleCollider2D:

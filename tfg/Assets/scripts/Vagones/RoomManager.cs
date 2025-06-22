@@ -240,9 +240,8 @@ public class RoomManager : MonoBehaviour
                 position=new Vector3(
                     // Random.Range(WAGON_WIDHT*(wagonCount%WAGONS),.9f*WAGON_WIDHT+WAGON_WIDHT*(wagonCount%WAGONS)),
                     // Random.Range(0.25f,WAGON_HEIGHT*.9f),
-                    (float)(roomRandom.NextDouble()*(.9f*WAGON_WIDHT+WAGON_WIDHT*(wagonCount%WAGONS)-WAGON_WIDHT*(wagonCount%WAGONS))+WAGON_WIDHT*(wagonCount%WAGONS)),
+                    (float)(roomRandom.NextDouble()*(WAGON_WIDHT*.9f-WAGON_WIDHT*.1f)+WAGON_WIDHT*.1f) + WAGON_WIDHT*(wagonCount%WAGONS),
                     (float)(roomRandom.NextDouble()*(WAGON_HEIGHT*.9f-0.25f)+0.25f),
-
                     0
 
                 );

@@ -12,6 +12,7 @@ public class ItemDecription : ISendDesc
         SCT sct = item.sct;
         string description = "";
         description += "Name: <color=#ff0000>" + sct.Name + "</color>\n";
+        description += "Level: <color=#0000ff>" + Mathf.CeilToInt(item.lvl / 10f) + "</color>\n";
 
         // description += "\n";
         if (sct.equipType != EquipType.Extra && sct.equipType != EquipType.Consumable)

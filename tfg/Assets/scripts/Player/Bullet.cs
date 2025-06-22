@@ -10,6 +10,8 @@ public class Bullet : MonoBehaviour
 
     public bool bouncer;
 
+    public float desviation;
+
     private Rigidbody2D rb;
 
     private float bSpeed;
@@ -17,10 +19,10 @@ public class Bullet : MonoBehaviour
     private float startTime;
     public float time => Time.time - startTime;
 
-    [SerializeField] private Transform help;
+    [SerializeField] private Transform help; //punto detras de la bala para solucionar algunas balas atravesando muros
 
 
-    public void Born(LayerMask _layer, float speed, float _tDamage, float _rDamage, int _piercing, bool _bouncer)
+    public void Born(LayerMask _layer, float speed, float _tDamage, float _rDamage, int _piercing, bool _bouncer, float _desviation)
     {
         startTime = Time.time;
         layer = _layer;
@@ -30,18 +32,26 @@ public class Bullet : MonoBehaviour
         rDamage = _rDamage;
         piercing = _piercing;
         bouncer = _bouncer;
+        desviation = _desviation;
     }
 
     public void Shoot(Vector2 targetPos)
     {
+        Vector2 randomOffset = Random.insideUnitCircle * desviation;
         Vector2 vectorA = transform.position;
-    
-        Vector2 direction = new Vector2(targetPos.x - vectorA.x, targetPos.y - vectorA.y);
+        // targetPos += randomOffset;
+        Vector2 direction = new Vector2(targetPos.x - vectorA.x, targetPos.y - vectorA.y)*50;
+
+        direction=Vector2.ClampMagnitude(direction, 5f)+randomOffset;
+        // direction = new Vector2(direction.x - vectorA.x, direction.y - vectorA.y)+randomOffset;
+        // Debug.Log(direction);
+
+
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
         float max = Mathf.Abs(direction.x) + Mathf.Abs(direction.y);
 
-        rb.linearVelocity = new Vector2(direction.x / max * bSpeed, direction.y / max * bSpeed);
+        rb.linearVelocity = new Vector2(direction.x / max * bSpeed, direction.y / max * bSpeed);    
 
     }
 
@@ -67,6 +77,8 @@ public class Bullet : MonoBehaviour
 
         Vector2 normal = ((Vector2)help.position - contactPoint).normalized;
         Vector2 newdir = Vector2.Reflect(rb.linearVelocity.normalized, normal);
+        float angle = Mathf.Atan2(newdir.y, newdir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
         rb.linearVelocity = newdir * bSpeed;
     }
     void Update()
