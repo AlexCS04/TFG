@@ -4,7 +4,7 @@ public class EnemyBehaviour : MonoBehaviour
 {
     public EnemyState state;
     public Transform player;
-    [SerializeField]private Rigidbody2D rb;
+    [SerializeField] private Rigidbody2D rb;
 
     public EnemyChase chaseState;
     public EnemyAttack attackState;
@@ -18,6 +18,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     void Start()
     {
+        Scale(RoomManager.instance.wagonCount);
         player = RoomManager.instance.player;
         // SelectState();
         state = idleState;
@@ -35,7 +36,7 @@ public class EnemyBehaviour : MonoBehaviour
     void FixedUpdate()
     {
         rb.linearVelocity = Vector2.zero;
-        rb.angularVelocity=0f;
+        rb.angularVelocity = 0f;
         state.FixedDo();
     }
     private void SelectState()
@@ -69,6 +70,25 @@ public class EnemyBehaviour : MonoBehaviour
     private void SetUpState()
     {
         state.Enter(player, rb);
+    }
+    private void Scale(int lvl)
+    {
+
+        float progre = lvl * 0.5f;
+        int bonus = lvl / 10 * 5;
+        float aditivo = 1 + (progre + bonus)/18;
+
+        Attack attack = transform.GetComponent<Attack>();
+        Health health = transform.GetComponent<Health>();
+
+        attack.damage *= aditivo;
+        attack.secDamage *= aditivo;
+
+        health.bDefense *= aditivo;
+        health.maxHealth *= aditivo;
+        
+
+
     }
 
 

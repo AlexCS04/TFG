@@ -162,18 +162,34 @@ public class RoomManager : MonoBehaviour
         // return tematica.conjuntos[Random.Range(0, tematica.conjuntos.Count)];
         return tematica.conjuntos[roomRandom.Next(0, tematica.conjuntos.Count)];
     }
-    private void SalaEspecial(){
+    private void SalaEspecial()
+    {
 
         if (wagonCount == 0)
         {
             VagonInicial();
             spwnEnemigos = false;
         }
-        else if (wagonCount % 3 == 0)
+        else if (wagonCount == 100)
+        {
+            FinalBoss();
+            spwnEnemigos = false;
+        }
+        else if (wagonCount % 10 == 0)
+        {
+            Boss();
+            spwnEnemigos = false;
+        }
+        else if (wagonCount % 9 == 0)
+        {
+            Treasure();
+            spwnEnemigos = false;
+        }
+        else if (wagonCount % 8 == 0)
         {
             Shop();
             spwnEnemigos = false;
-        }//base para las salas especiales, 1 esta para que no de error la sintaxis
+        }
 
 
     }
@@ -320,6 +336,9 @@ public class RoomManager : MonoBehaviour
 
         ClearedRoom();
     }
+    private void Boss(){}
+    private void Treasure(){}
+    private void FinalBoss(){}
     public void ClearedRoom()
     {
         wagonList[actualWagon].transform.GetChild(1).GetComponent<Doors>().SetRoomClear(true);
