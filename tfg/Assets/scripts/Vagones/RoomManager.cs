@@ -201,7 +201,7 @@ public class RoomManager : MonoBehaviour
             Treasure();
             spwnEnemigos = false;
         }
-        else if (wagonCount % 3 == 0)
+        else if (wagonCount % 7 == 0)
         {
             Shop();
             spwnEnemigos = false;
@@ -338,7 +338,7 @@ public class RoomManager : MonoBehaviour
 
     private void VagonInicial()
     {
-        areasRestringidas.Add(new Bounds(new Vector3(WAGON_WIDHT / 2, WAGON_HEIGHT / 2f, 0), new Vector3(8, 5, 0)));
+        areasRestringidas.Add(new Bounds(new Vector3(WAGON_WIDHT / 2, WAGON_HEIGHT / 3f, 0), new Vector3(7, 7, 0)));
         StartCoroutine("StartRun");
         ClearedRoom();
     }

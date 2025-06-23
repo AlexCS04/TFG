@@ -340,12 +340,13 @@ public class PlayerBackpack : MonoBehaviour
     }
     private void ActualizarTextStats()
     {
-        textStats.text =    "Attack Speed: "+playerAttack.attackSpeed.ToString()+"\n"+
-                            "Damage: " +playerAttack.damage.ToString()+"\n"+
-                            "Range: " +playerAttack.attackRange.ToString()+"\n"+
-                            "Speed: "+playerControls.currentSpeed.ToString()+"\n"+
-                            "Max Health: "+playerHealth.maxHealth.ToString()+"\n"+
-                            "Defence: "+playerHealth.cDefense.ToString();
+        textStats.text = "Attack Speed: " + playerAttack.attackSpeed.ToString() + "\n" +
+                            "Damage: " + playerAttack.damage.ToString() + "\n" +
+                            "Range: " + playerAttack.attackRange.ToString() + "\n" +
+                            "Speed: " + playerControls.currentSpeed.ToString() + "\n" +
+                            "Max Health: " + playerHealth.maxHealth.ToString() + "\n" +
+                            "Defence: " + playerHealth.cDefense.ToString() +
+                            "Wagon: " + RoomManager.instance.wagonCount.ToString();
     }
     private void ConsumableAct()
     {
