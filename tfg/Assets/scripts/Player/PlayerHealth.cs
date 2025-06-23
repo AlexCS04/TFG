@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : Health
@@ -34,7 +35,8 @@ public class PlayerHealth : Health
 
     public override void Die()
     {
-        Debug.Log("Skill isue");
+        PlayerPrefs.SetInt("Salir", 0);
+        SceneManager.LoadScene("Huida");
     }
     IEnumerator InvuFeel()
     {

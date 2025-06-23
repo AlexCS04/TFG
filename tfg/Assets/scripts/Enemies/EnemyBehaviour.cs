@@ -48,7 +48,7 @@ public class EnemyBehaviour : MonoBehaviour
             // Debug.Log("Chasing");
             // Debug.Log(Vector3.Distance(player.position, transform.position));
         }
-        else if (chaseState.followType == FollowType.random && !attacked)
+        else if ((chaseState.followType == FollowType.random || chaseState.followType == FollowType.random) && !attacked)
         {
             state = chaseState;
             attacked = true;

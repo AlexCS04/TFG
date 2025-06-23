@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BossBehaviour : MonoBehaviour
@@ -5,14 +7,25 @@ public class BossBehaviour : MonoBehaviour
     public Attack selectedAttack { get; private set; }
     public int selectedPattern { get; private set; }
 
+    [SerializeField] private List<Attack> attacks;
+    [SerializeField] private List<int> patterns;
+    [SerializeField] private int chaseDistance;
+
     private BossState state;
     private Health health;
     [SerializeField]private BossState idleState;
+    [SerializeField]private BossState chaseState;
+    [SerializeField]private BossState attackState;
+    // [SerializeField]private BossState retrieve;
+    private Transform player;
+    private bool attacked;
+    [SerializeField]private Animator animator;
 
     void Start()
     {
         Scale(RoomManager.instance.wagonCount);
         // SelectState();
+        player = RoomManager.instance.player;
         state = idleState;
         SetUpState();
     }
@@ -27,16 +40,30 @@ public class BossBehaviour : MonoBehaviour
     }
     private void SelectState()
     {
-        if (health.currentHealth >= health.maxHealth)
+        int attPat = Random.Range(0, patterns.Count);
+        selectedAttack = attacks[attPat];
+        selectedPattern = patterns[attPat];
+        if (health.currentHealth < health.maxHealth) selectedPattern *= 10;
+        if (attacked && Vector3.Distance(player.position, transform.position) >= chaseDistance)
         {
-
+            state = chaseState;
+            attacked = false;
+            SetUpState();
         }
-        else
-        {
-            
+        else{
+
+            StartCoroutine("Attacking");
         }
 
+    }
+    IEnumerator Attacking()
+    {
+        animator.Play("ChargeAttack");
+        yield return new WaitForSeconds(0.7f);
+        state = attackState;
+        attacked = true;
         SetUpState();
+
     }
     private void SetUpState()
     {

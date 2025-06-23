@@ -34,6 +34,9 @@ public class EnemyChase : EnemyState
             case FollowType.random:
                 RandomFollow();
                 break;
+            case FollowType.noMove:
+                NoMove();
+                break;
         }
 
 
@@ -74,6 +77,10 @@ public class EnemyChase : EnemyState
         FaceDir();
 
     }
+    private void NoMove()
+    {
+        if (time > 3.5f) Exit();
+    }
     public override void FixedDo()
     {
         Vector2 direction = (destination - (Vector2)transform.position).normalized;
@@ -100,7 +107,8 @@ public enum FollowType
 
     straight,
     drunk,
-    lateChase, 
-    random
+    lateChase,
+    random,
+    noMove
     
 }

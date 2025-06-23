@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour
@@ -24,6 +25,11 @@ public class Pause : MonoBehaviour
         uSure.SetActive(false);
         pauseuuse.SetActive(true);
     }
+    public void NotCoward(GameObject uSure)
+    {
+        Time.timeScale = 1f;
+        uSure.SetActive(false);
+    }
     public void Exit()
     {
         Time.timeScale = 1;
@@ -33,6 +39,12 @@ public class Pause : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("Main");
+    }
+    public void Retrieve()
+    {
+        Time.timeScale = 1;
+        PlayerPrefs.SetInt("Salir", RoomManager.instance.winCon ? 1 : -1);
+        SceneManager.LoadScene("Huida");
     }
     public void Options(GameObject options)
     {

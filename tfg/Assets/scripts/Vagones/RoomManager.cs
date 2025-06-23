@@ -14,7 +14,7 @@ public class RoomManager : MonoBehaviour
     public System.Random roomRandom;
     public string seed;
     public bool setseed;
-    private bool winCon=false;
+    public bool winCon{ get; private set; }
 
     public int wagonCount;
     public int actualWagon;
@@ -22,6 +22,7 @@ public class RoomManager : MonoBehaviour
     [SerializeField] private GameObject finalBoss;
     [SerializeField] private GameObject bossHPSlider;
     [SerializeField] private GameObject tendero;
+    public GameObject uSure;
 
     public CinemachineConfiner2D confiner;
     public Tematica tematica;
@@ -33,7 +34,6 @@ public class RoomManager : MonoBehaviour
     
     public GameObject[] wagonList= new GameObject[WAGONS];
     public BoxCollider2D[] wagonCameraBounds= new BoxCollider2D[WAGONS];
-    public RoomGrid[] wagonGrid= new RoomGrid[WAGONS];
     private List<Bounds> areasRestringidas= new List<Bounds>{
         
     };
@@ -144,6 +144,8 @@ public class RoomManager : MonoBehaviour
         v.GetComponent<SpriteRenderer>().sprite =tematica.enviromentSprites[roomRandom.Next(0, tematica.enviromentSprites.Count)];
         v.transform.GetChild(1).GetComponent<Doors>().PlaceDoor();
         v.transform.GetChild(2).GetComponent<Doors>().PlaceDoor();
+        v.transform.GetChild(3).GetComponent<Doors>().PlaceDoor();
+        v.transform.GetChild(4).GetComponent<Doors>().PlaceDoor();
         v.transform.GetChild(2).GetComponent<Doors>().SetRoomDoor(true);
         // v.transform.GetChild(4).GetComponent<RoomGrid>().GenerateGrid();
         b.size = new Vector2(WAGON_WIDHT + 0.5f, WAGON_HEIGHT + 2f);
@@ -151,7 +153,6 @@ public class RoomManager : MonoBehaviour
         Destroy(wagonList[wagonCount % WAGONS]);
         wagonList[wagonCount % WAGONS] = v;
         wagonCameraBounds[wagonCount % WAGONS] = b;
-        wagonGrid[wagonCount % WAGONS] = v.transform.GetChild(4).GetComponent<RoomGrid>();
         Conjunto c = SeleccionConjunto();
         SalaEspecial();
         ColocarObstaculos(c);
