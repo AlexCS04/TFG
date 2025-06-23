@@ -21,6 +21,7 @@ public class RoomManager : MonoBehaviour
     public GameObject vagonVacio;
     [SerializeField] private GameObject finalBoss;
     [SerializeField] private GameObject bossHPSlider;
+    [SerializeField] private GameObject tendero;
 
     public CinemachineConfiner2D confiner;
     public Tematica tematica;
@@ -162,6 +163,7 @@ public class RoomManager : MonoBehaviour
 
     }
     private void CambioTematica(){
+        if (wagonCount < 2) return;
         if (wagonCount % CAMBIO_TEAMATICA == 0)
         {
             // tematica = tematica.siguientesTematicas[Random.Range(0, tematica.siguientesTematicas.Count)];
@@ -198,7 +200,7 @@ public class RoomManager : MonoBehaviour
             Treasure();
             spwnEnemigos = false;
         }
-        else if (wagonCount % 7 == 0)
+        else if (wagonCount % 3 == 0)
         {
             Shop();
             spwnEnemigos = false;
@@ -352,6 +354,7 @@ public class RoomManager : MonoBehaviour
         ItemSpwnManager.instance.SpawnShopItem(shopPool, new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS), WAGON_HEIGHT / 2f, 0));
         ItemSpwnManager.instance.SpawnShopItem(shopPool, new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS) - 2, WAGON_HEIGHT / 2f, 0));
         ItemSpwnManager.instance.SpawnShopItem(consumPool, new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS) + 2, WAGON_HEIGHT / 2f, 0));
+        Instantiate(tendero, new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS), WAGON_HEIGHT / 2f + 2.5f, 0), Quaternion.identity, wagonList[wagonCount%WAGONS].transform);
 
         ClearedRoom();
     }
