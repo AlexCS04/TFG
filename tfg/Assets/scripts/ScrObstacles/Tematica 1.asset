@@ -18,6 +18,7 @@ MonoBehaviour:
   enviromentSprites:
   - {fileID: 21300000, guid: 2eedfa64b48407d4da01ec5000457c6b, type: 3}
   - {fileID: 21300000, guid: 9ca83b62c8647aa4f8c065c8d71bdbe0, type: 3}
+  - {fileID: 21300000, guid: 42d1e5f2fe1428b4ca9b536de1f79679, type: 3}
   conjuntos:
   - {fileID: 11400000, guid: 7ebd5963a18dfeb42a1d96e819ac2ca7, type: 2}
   - {fileID: 11400000, guid: 0d5e877ca4d9bb34498418df7bc6376f, type: 2}
