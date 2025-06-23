@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerBackpack : MonoBehaviour
 {
@@ -16,7 +17,10 @@ public class PlayerBackpack : MonoBehaviour
     [SerializeField] private Item boots;
     [SerializeField] private Item weapon;
     [SerializeField] private List<Item> rings=new List<Item>(3);
-    [SerializeField] private List<Item> consumables=new List<Item>(2);
+    [SerializeField] private Item[] consumables=new Item[2];
+    [SerializeField] private GameObject consumable1;
+    [SerializeField] private GameObject consumable2;
+    [SerializeField] private TextMeshProUGUI textStats;
     private PlayerControls playerControls;
     private PlayerHealth playerHealth;
     private Attack playerAttack;
@@ -108,17 +112,18 @@ public class PlayerBackpack : MonoBehaviour
     }
     private void Consume(int cons)
     {
-        if (playerHealth.Consume(consumables[cons].sct.tHealth* Mathf.CeilToInt(consumables[cons].lvl / 10f), consumables[cons].sct.rHealth * Mathf.CeilToInt(consumables[cons].lvl / 10f), consumables[cons].sct.filling))
+        if (playerHealth.Consume(consumables[cons].sct.tHealth * Mathf.CeilToInt(consumables[cons].lvl / 10f), consumables[cons].sct.rHealth * Mathf.CeilToInt(consumables[cons].lvl / 10f), consumables[cons].sct.filling))
         {
             consumables[cons].AddCantidad(-1);
             CheckMult(consumables[cons].sct);
             if (consumables[cons].GetCantidad() == 0)
             {
-                ContainerManager.instance.equipment[cons + 10].RemoveAt(consumables[cons].gridPos);
+                ContainerManager.instance.equipment[cons + 8].RemoveAt(consumables[cons].gridPos);
                 Destroy(consumables[cons].gameObject);
-                // consumables[cons] = null;
-                ActualizarStats();
+                consumables[cons] = null;
             }
+            ActualizarStats();
+            ConsumableAct();
         }
     }
     #region TemporalFunctions
@@ -214,7 +219,8 @@ public class PlayerBackpack : MonoBehaviour
                 rings.Insert(place, item);
                 break;
             case EquipType.Consumable:
-                consumables.Insert(place, item);
+                consumables[place]=item;
+                ConsumableAct();
                 break;
             case EquipType.Backpack:
                 break;
@@ -224,7 +230,7 @@ public class PlayerBackpack : MonoBehaviour
         }
         ActualizarStats();
     }
-    private void RemoveEquip(Item item)
+    private void RemoveEquip(Item item,int place)
     {
         switch (item.sct.equipType)
         {
@@ -247,7 +253,8 @@ public class PlayerBackpack : MonoBehaviour
                 rings.Remove(item);
                 break;
             case EquipType.Consumable:
-                consumables.Remove(item);
+                consumables[place]=null;
+                ConsumableAct();
                 break;
             case EquipType.Backpack:
                 break;
@@ -319,15 +326,56 @@ public class PlayerBackpack : MonoBehaviour
             playerHealth.currentHealth = playerHealth.maxHealth;
         }
         if (playerAttack.attackRange < .6f) playerAttack.attackRange = .6f;
+        if (playerAttack.attackSpeed < 0) playerAttack.attackSpeed = 0;
         playerHealth.ActHealthVisual();
         playerAttack.damage *= tempDamageMult;
         playerControls.currentSpeed *= tempSpeedMult;
         playerHealth.cDefense *= tempDefenseMult;
         playerAttack.attackSpeed *= 1/tempAttackSpeedMult;
         playerHealth.rQuant *= tempRegenMult;
+        
 
+        ActualizarTextStats();
 
+    }
+    private void ActualizarTextStats()
+    {
+        textStats.text =    "Attack Speed: "+playerAttack.attackSpeed.ToString()+"\n"+
+                            "Damage: " +playerAttack.damage.ToString()+"\n"+
+                            "Range: " +playerAttack.attackRange.ToString()+"\n"+
+                            "Speed: "+playerControls.currentSpeed.ToString()+"\n"+
+                            "Max Health: "+playerHealth.maxHealth.ToString()+"\n"+
+                            "Defence: "+playerHealth.cDefense.ToString();
+    }
+    private void ConsumableAct()
+    {
+        Image srC1 = consumable1.transform.GetChild(0).GetComponent<Image>();
+        Image srC2 = consumable2.transform.GetChild(0).GetComponent<Image>();
+        TextMeshProUGUI tC1 = consumable1.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI tC2 = consumable2.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
 
+        if (consumables[0] != null)
+        {
+            srC1.enabled = true;
+            srC1.sprite = consumables[0].sct.sprite;
+            tC1.text = consumables[0].stack.ToString();
+        }
+        else
+        {
+            srC1.enabled = false;
+            tC1.text = "";
+        }
+        if (consumables[1] != null)
+        {
+            srC2.enabled = true;
+            srC2.sprite = consumables[1].sct.sprite;
+            tC2.text = consumables[1].stack.ToString();
+        }
+        else
+        {
+            srC2.enabled = false;
+            tC2.text = "";
+        }
     }
     private void Equipment(Item item)
     {
@@ -335,16 +383,16 @@ public class PlayerBackpack : MonoBehaviour
         int stack = item.stack;
         int lvl = Mathf.CeilToInt(item.lvl / 10f);
         playerAttack.damage += item.sct.eDamage * stack * lvl;
-        if(item.sct.mDamage!=0)mDamage += item.sct.mDamage * lvl;
-        if(item.sct.equipType!=EquipType.PrimaryWeapon)playerAttack.attackSpeed += item.sct.eAttackSpeed * stack * lvl;
-        if(item.sct.mAttackSpeed!=0)mAttackSpeed += item.sct.mAttackSpeed * lvl;
-        if(item.sct.equipType!=EquipType.PrimaryWeapon)playerAttack.attackRange += item.sct.eAttackRange * stack * lvl;
+        if (item.sct.mDamage != 0) mDamage += item.sct.mDamage * lvl;
+        if (item.sct.equipType != EquipType.PrimaryWeapon) playerAttack.attackSpeed += item.sct.eAttackSpeed * stack * lvl;
+        if (item.sct.mAttackSpeed != 0) mAttackSpeed += item.sct.mAttackSpeed * lvl;
+        if (item.sct.equipType != EquipType.PrimaryWeapon) playerAttack.attackRange += item.sct.eAttackRange * stack * lvl;
         playerControls.currentSpeed += item.sct.eSpeed * stack * lvl;
-        if(item.sct.mSpeed!=0)mSpeed += item.sct.mSpeed * lvl;
+        if (item.sct.mSpeed != 0) mSpeed += item.sct.mSpeed * lvl;
         playerHealth.maxHealth += item.sct.eHealth * stack * lvl;
         playerHealth.rQuant += item.sct.eRQuant * stack * lvl;
         playerHealth.cDefense += item.sct.eDefense * stack * lvl;
-        if(item.sct.mDefense!=0)mDefense += item.sct.mDefense * lvl;
+        if (item.sct.mDefense != 0) mDefense += item.sct.mDefense * lvl;
     }
     private void Equipment(List<Item> items)
     {

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Attack : MonoBehaviour
@@ -56,24 +57,24 @@ public class Attack : MonoBehaviour
         }
         else //rectangle attack
         {
-            c = Physics2D.OverlapBoxAll(new Vector3(attackPoint.position.x + attackRange / 2 * (transform.eulerAngles.y == 0 ? 1 : -1), attackPoint.position.y, 0), new Vector2(attackRange, rangeY),0, attackLayer);
+            c = Physics2D.OverlapBoxAll(new Vector3(attackPoint.position.x + attackRange / 2 * (transform.eulerAngles.y == 0 ? 1 : -1), attackPoint.position.y, 0), new Vector2(attackRange, rangeY), 0, attackLayer);
             newScale.x = attackRange;
         }
         foreach (Collider2D item in c)
         {
-            if(item.GetComponent<Health>())
-            item.GetComponent<Health>().TakeDamage(damage, secDamage);
+            if (item.GetComponent<Health>())
+                item.GetComponent<Health>().TakeDamage(damage, secDamage);
         }
         //obstaculos
         if (attackType == AttackType.meleeC)
             c = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, LayerMask.GetMask("Obstacles"));
         else
-            c = Physics2D.OverlapBoxAll(new Vector3(attackPoint.position.x + attackRange / 2 * (transform.eulerAngles.y == 0 ? 1 : -1), attackPoint.position.y, 0), new Vector2(attackRange, rangeY),0, LayerMask.GetMask("Obstacles"));
+            c = Physics2D.OverlapBoxAll(new Vector3(attackPoint.position.x + attackRange / 2 * (transform.eulerAngles.y == 0 ? 1 : -1), attackPoint.position.y, 0), new Vector2(attackRange, rangeY), 0, LayerMask.GetMask("Obstacles"));
 
         foreach (Collider2D item in c)
         {
-            if(item.GetComponent<Health>())
-            item.GetComponent<Health>().TakeDamage(damage, damage);
+            if (item.GetComponent<Health>())
+                item.GetComponent<Health>().TakeDamage(damage, damage);
         }
         effect.transform.localScale = newScale;
         if (transform.eulerAngles.y == 0)
@@ -85,7 +86,7 @@ public class Attack : MonoBehaviour
         {
             effect.GetComponent<ParticleSystemRenderer>().flip = Vector3.right;
             effect.GetComponent<ParticleSystemRenderer>().pivot = Vector3.left;
-        } 
+        }
     }
     void OnDrawGizmos()
     {
@@ -118,6 +119,24 @@ public class Attack : MonoBehaviour
                 break;
             case 5:
                 RandomShoot(6);
+                break;
+            case -1:
+                StartCoroutine("BossPAttack1");
+                break;
+            case -2:
+                StartCoroutine("BossPAttack2");
+                break;
+            case -3:
+                StartCoroutine("BossPAttack3");
+                break;
+            case -10:
+                StartCoroutine("BossPAttack10");
+                break;
+            case -20:
+                StartCoroutine("BossPAttack20");
+                break;
+            case -30:
+                StartCoroutine("BossPAttack30");
                 break;
 
         }
@@ -161,9 +180,97 @@ public class Attack : MonoBehaviour
         {
             GameObject temp = Instantiate(bullet, transform.position, Quaternion.identity);
             temp.GetComponent<Bullet>().Born(attackLayer, bSpeed, damage, secDamage, bPiercing, bBounce, desviation);
-            temp.GetComponent<Bullet>().Shoot(new Vector2(transform.position.x + Random.Range(-1f,1f), transform.position.y + Random.Range(-1f,1f)));
+            temp.GetComponent<Bullet>().Shoot(new Vector2(transform.position.x + Random.Range(-1f, 1f), transform.position.y + Random.Range(-1f, 1f)));
         }
     }
+
+
+    #region BossPatternAttacks
+
+    IEnumerator BossPAttack1()
+    {
+        yield return new WaitForSeconds(0.4f);
+        for (int i = 1; i <= 32; i++)
+        {
+            float angulo = 2 * Mathf.PI * i / 32;
+            Vector2 pos = new Vector2(Mathf.Cos(angulo), Mathf.Sin(angulo));
+            Debug.Log(pos);
+            GameObject temp = Instantiate(bullet, transform.position, Quaternion.identity);
+            temp.GetComponent<Bullet>().Born(attackLayer, bSpeed, damage, secDamage, bPiercing, bBounce, desviation);
+            temp.GetComponent<Bullet>().Shoot((Vector2)transform.position + pos);
+        }
+    }
+    IEnumerator BossPAttack2()
+    {
+        yield return new WaitForSeconds(0.4f);
+        for (int i = 0; i < 8; i++)
+        {
+
+            GameObject temp = Instantiate(bullet, transform.position, Quaternion.identity);
+            temp.GetComponent<Bullet>().Born(attackLayer, bSpeed, damage, secDamage, bPiercing, bBounce, desviation);
+            temp.GetComponent<Bullet>().Shoot(RoomManager.instance.player.position);
+        }
+    }
+    IEnumerator BossPAttack3()
+    {
+        yield return new WaitForSeconds(0.4f);
+        attackType = AttackType.meleeC;
+        attackPoint = transform;
+        AttackMelee();
+    }
+    IEnumerator BossPAttack10()
+    {
+        yield return new WaitForSeconds(0.4f);
+        for (int i = 1; i <= 32; i++)
+        {
+            float angulo = 2 * Mathf.PI * i / 32;
+            Vector2 pos = new Vector2(Mathf.Cos(angulo), Mathf.Sin(angulo));
+            Debug.Log(pos);
+            GameObject temp = Instantiate(bullet, transform.position, Quaternion.identity);
+            temp.GetComponent<Bullet>().Born(attackLayer, bSpeed, damage, secDamage, bPiercing, bBounce, desviation);
+            temp.GetComponent<Bullet>().Shoot((Vector2)transform.position + pos);
+        }
+        yield return new WaitForSeconds(0.4f);
+        for (int i = 1; i <= 9; i++)
+        {
+            float angulo = 2 * Mathf.PI * i / 32;
+            Vector2 pos = new Vector2(Mathf.Cos(angulo), Mathf.Sin(angulo));
+            Debug.Log(pos);
+            GameObject temp = Instantiate(bullet, transform.position, Quaternion.identity);
+            temp.GetComponent<Bullet>().Born(attackLayer, bSpeed, damage, secDamage, bPiercing, bBounce, desviation);
+            temp.GetComponent<Bullet>().Shoot((Vector2)transform.position + pos);
+        }
+    }
+    IEnumerator BossPAttack20()
+    {
+        yield return new WaitForSeconds(0.4f);
+        for (int i = 0; i < 8; i++)
+        {
+
+            GameObject temp = Instantiate(bullet, transform.position, Quaternion.identity);
+            temp.GetComponent<Bullet>().Born(attackLayer, bSpeed, damage, secDamage, bPiercing, bBounce, desviation);
+            temp.GetComponent<Bullet>().Shoot(RoomManager.instance.player.position);
+        }
+        yield return new WaitForSeconds(0.4f);
+        for (int i = 0; i < 8; i++)
+        {
+
+            GameObject temp = Instantiate(bullet, transform.position, Quaternion.identity);
+            temp.GetComponent<Bullet>().Born(attackLayer, bSpeed, damage, secDamage, bPiercing, bBounce, desviation);
+            temp.GetComponent<Bullet>().Shoot(RoomManager.instance.player.position);
+        }
+    }
+    IEnumerator BossPAttack30()
+    {
+        yield return new WaitForSeconds(0.4f);
+        attackType = AttackType.meleeC;
+        attackPoint = transform;
+        AttackMelee();
+        CrossAttack();
+        PlusAttack();
+    }
+
+    #endregion
 }
 
 public enum AttackType

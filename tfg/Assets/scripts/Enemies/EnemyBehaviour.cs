@@ -69,7 +69,7 @@ public class EnemyBehaviour : MonoBehaviour
     }
     private void SetUpState()
     {
-        state.Enter(player, rb);
+        state.Enter();
     }
     private void Scale(int lvl)
     {
@@ -86,9 +86,6 @@ public class EnemyBehaviour : MonoBehaviour
 
         health.bDefense *= aditivo;
         health.maxHealth *= aditivo;
-        
-
-
     }
 
 

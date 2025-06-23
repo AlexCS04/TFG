@@ -12,7 +12,7 @@ public class Health : MonoBehaviour
     public float cDefense;
     
     
-    [SerializeField] protected Slider healthSlider;
+    public Slider healthSlider;
     [SerializeField] protected Slider healthSlider2;
     public List<SCT> pool;
 

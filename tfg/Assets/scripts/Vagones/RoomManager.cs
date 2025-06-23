@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class RoomManager : MonoBehaviour
 {
@@ -18,12 +20,13 @@ public class RoomManager : MonoBehaviour
     public int actualWagon;
     public GameObject vagonVacio;
     [SerializeField] private GameObject finalBoss;
+    [SerializeField] private GameObject bossHPSlider;
 
     public CinemachineConfiner2D confiner;
     public Tematica tematica;
     [SerializeField] private List<Tematica> tematicas;
     [SerializeField] private List<SCT> shopPool;
-    [SerializeField] private List<SCT> consumPool;
+    [SerializeField] public List<SCT> consumPool;
     [SerializeField] private List<SCT> treasurePool;
     [SerializeField] private List<SCT> weaponPool;
     
@@ -53,7 +56,11 @@ public class RoomManager : MonoBehaviour
     private void EnemyDeath()
     {
         enemiesInRoom -= 1;
-        if (enemiesInRoom <= 0) ClearedRoom();
+        if (enemiesInRoom <= 0)
+        {
+            ClearedRoom();
+            bossHPSlider.SetActive(false);
+        }
         if (wagonCount == 100) winCon = true;
     }
 
@@ -178,12 +185,12 @@ public class RoomManager : MonoBehaviour
         }
         else if (wagonCount == 100)
         {
-            FinalBoss();
+            Boss(finalBoss);
             spwnEnemigos = false;
         }
         else if (wagonCount % 10 == 0)
         {
-            Boss();
+            Boss(tematica.boss);
             spwnEnemigos = false;
         }
         else if (wagonCount % 9 == 0)
@@ -348,15 +355,17 @@ public class RoomManager : MonoBehaviour
 
         ClearedRoom();
     }
-    private void Boss()
+    private void Boss(GameObject bossPrefab)
     {
         areasRestringidas.Add(new Bounds(new Vector3((WAGON_WIDHT * .75f) + WAGON_WIDHT * (wagonCount % WAGONS), WAGON_HEIGHT / 2f, 0), new Vector3(6, 4, 0)));
         GameObject boss = Instantiate(
-            tematica.boss,
+            bossPrefab,
             new Vector3((WAGON_WIDHT * .75f) + WAGON_WIDHT * (wagonCount % WAGONS), WAGON_HEIGHT / 2f, 0),
             Quaternion.identity,
             wagonList[wagonCount % WAGONS].transform
         );
+        bossHPSlider.SetActive(true);
+        boss.GetComponent<Health>().healthSlider = bossHPSlider.GetComponent<Slider>();
         enemiesInRoom++;
         
     }
@@ -367,17 +376,7 @@ public class RoomManager : MonoBehaviour
         ItemSpwnManager.instance.SpawnItem(treasurePool, new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS) - 2, WAGON_HEIGHT / 2f, 0),roomRandom);
         ClearedRoom();
     }
-    private void FinalBoss()
-    {
-        areasRestringidas.Add(new Bounds(new Vector3((WAGON_WIDHT * .75f) + WAGON_WIDHT * (wagonCount % WAGONS), WAGON_HEIGHT / 2f, 0), new Vector3(6, 4, 0)));
-        GameObject boss = Instantiate(
-            finalBoss,
-            new Vector3((WAGON_WIDHT * .75f) + WAGON_WIDHT * (wagonCount % WAGONS), WAGON_HEIGHT / 2f, 0),
-            Quaternion.identity,
-            wagonList[wagonCount % WAGONS].transform
-        );
-        enemiesInRoom++;
-    }
+    
     public void ClearedRoom()
     {
         wagonList[actualWagon].transform.GetChild(1).GetComponent<Doors>().SetRoomClear(true);

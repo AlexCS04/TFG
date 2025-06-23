@@ -9,9 +9,9 @@ public class EnemyChase : EnemyState
     public FollowType followType;
     private float startTime;
     public float time => Time.time - startTime;
-    public override void Enter(Transform p, Rigidbody2D rb)
+    public override void Enter()
     {
-        base.Enter(p, rb);
+        base.Enter();
         startTime = Time.time;
         destination = transform.position;
         if (followType == FollowType.lateChase) destination = player.transform.position;
@@ -56,7 +56,7 @@ public class EnemyChase : EnemyState
                 player.position.x > transform.position.x ? transform.position.x + Random.Range(.5f, 5) : transform.position.x + Random.Range(-5, -.5f),
                 player.position.y > transform.position.y ? transform.position.y + Random.Range(0.5f, 4) : transform.position.y + Random.Range(-4, -.5f)
             );
-            Debug.Log(destination);
+            // Debug.Log(destination);
         }
         FaceDir();
         if (Vector3.Distance(player.position, transform.position) < chaseDistance) Exit();

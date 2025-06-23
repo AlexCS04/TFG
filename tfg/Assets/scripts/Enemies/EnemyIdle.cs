@@ -4,9 +4,9 @@ public class EnemyIdle : EnemyState
 {
     private float startTime;
     public float time => Time.time - startTime;
-    public override void Enter(Transform p, Rigidbody2D rb)
+    public override void Enter()
     {
-        base.Enter(p, rb);
+        base.Enter();
         startTime = Time.time;
     }
     public override void Do()

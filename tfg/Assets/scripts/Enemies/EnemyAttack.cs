@@ -4,9 +4,9 @@ public class EnemyAttack : EnemyState
 {
     public Attack attack;
     public int attackPattern;
-    public override void Enter(Transform p, Rigidbody2D rb)
+    public override void Enter()
     {
-        base.Enter(p, rb);
+        base.Enter();
     }
     public override void Do()
     {

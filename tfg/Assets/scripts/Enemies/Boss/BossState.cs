@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class EnemyState : MonoBehaviour
+public abstract class BossState : MonoBehaviour
 {
     public bool completed{ get; protected set; }
     public Transform player{ get; protected set; }
@@ -15,5 +15,8 @@ public abstract class EnemyState : MonoBehaviour
     }
     public virtual void Do(){}
     public virtual void FixedDo(){}
-    public virtual void Exit(){}
+    public virtual void Exit()
+    {
+        completed = true;
+    }
 }

@@ -38,7 +38,7 @@ public class ContainerManager : MonoBehaviour
         itemMov.GetComponent<RectTransform>().anchorMin=new Vector2(0,1);
         itemMov.GetComponent<RectTransform>().sizeDelta=new Vector2(itemMov.sct.sizeX*cellSize,itemMov.sct.sizeY*cellSize);
         if (itemMov.container is Mochila) Eventmanager.OnItemRemoved(itemMov.gridPos);
-        else if (item.container is Equipamiento) Eventmanager.OnEquipRemoved(itemMov);
+        else if (item.container is Equipamiento equip) Eventmanager.OnEquipRemoved(itemMov,equip.place);
         itemMov.container.RemoveAt(itemMov.gridPos);
 
     }
