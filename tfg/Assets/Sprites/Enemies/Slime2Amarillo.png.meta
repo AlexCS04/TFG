@@ -103,12 +103,12 @@ TextureImporter:
       name: Slime2Amarillo_0
       rect:
         serializedVersion: 2
-        x: 259
-        y: 449
-        width: 853
+        x: 218
+        y: 450
+        width: 964
         height: 568
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8cad777e04f62714da05655d99134aaf
     internalID: 0
     vertices: []
     indices: 
@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Slime2Amarillo_0: -2372483161900380088
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
