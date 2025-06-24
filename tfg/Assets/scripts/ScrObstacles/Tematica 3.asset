@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 544d13522f8378c42bccbfd00e7ac446, type: 3}
-  m_Name: Tematica 2
+  m_Name: Tematica 3
   m_EditorClassIdentifier: 
-  nombre: t2
+  nombre: t3
   siguientesTematicas:
-  - {fileID: 11400000, guid: 88c8c66b86f870545b213f46b49cffb7, type: 2}
-  - {fileID: 11400000, guid: 512e24db33520894da0df983d0a83ace, type: 2}
+  - {fileID: 11400000, guid: 522d2ad4019e86b4f967ab16fa11f585, type: 2}
+  - {fileID: 11400000}
   enviromentSprites:
   - {fileID: 21300000, guid: 72904dd05c251f04f85a93c84fb4d1d7, type: 3}
   - {fileID: 21300000, guid: fd4ce60282ac4a149ab0be3cfe814dd1, type: 3}
   - {fileID: 21300000, guid: ce6f304b6d9ca964faa391bd5a948e55, type: 3}
   conjuntos:
+  - {fileID: 11400000, guid: 89611e4d183f87243ac6ac31a7892e11, type: 2}
   - {fileID: 11400000, guid: 11dd0b8d146d0a644a373f3f432632cd, type: 2}
-  boss: {fileID: 1640615273078495394, guid: 1944e0e9c3d28cf45b3d6a480e49033b, type: 3}
+  boss: {fileID: 5876726292582316171, guid: f7cb2ed1eb0e1b34f8b9e724dc6934f6, type: 3}

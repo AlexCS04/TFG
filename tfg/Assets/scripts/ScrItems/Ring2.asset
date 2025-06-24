@@ -10,42 +10,53 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb8e3f46b0c50ed4b82596c498ab1c7d, type: 3}
-  m_Name: SCT 1
+  m_Name: Ring2
   m_EditorClassIdentifier: 
-  sprite: {fileID: -7205218644840326792, guid: b6c11e2a44396b843a9d5042d8c27880, type: 3}
-  Name: ring1
+  sprite: {fileID: 0}
+  Name: Ring2
   equipType: 2
-  maxStack: 6
-  peso: 3
+  maxStack: 12
+  peso: 1.1
   sizeX: 3
-  sizeY: 2
-  spwnQuantity: {x: 2, y: 4}
-  iDamage: 0
-  eDamage: -0.3
-  mDamage: 0
-  iAttackSpeed: -0.03
-  eAttackSpeed: -0.09
+  sizeY: 3
+  spwnQuantity: {x: 1, y: 3}
+  iDamage: -0.2
+  eDamage: 0.8
+  mDamage: 0.02
+  iAttackSpeed: 0
+  eAttackSpeed: 0
   mAttackSpeed: 0
   iSpeed: 0
-  eSpeed: 0
+  eSpeed: -0.05
   mSpeed: 0
-  iAttackRange: 0
-  eAttackRange: -0.1
+  iAttackRange: 0.12
+  eAttackRange: 0.08
+  iRQuant: 0
+  eRQuant: 0
   iHealth: 0
-  eHealth: 3.7
-  iDefense: 0
+  eHealth: 1.5
+  iDefense: 0.3
   eDefense: 0
   mDefense: 0
   attackType: 0
   bSpeed: 0
   bPiercing: 0
   bBounce: 0
-  price: 110
+  price: 24
+  tHealth: 0
+  rHealth: 0
+  filling: 0
+  consumableExtraTime: 0
+  tempDamageMult: 1
+  tempSpeedMult: 1
+  tempDefenseMult: 1
+  tempRegenMult: 1
+  tempAttackSpeedMult: 1
   shape:
     rows:
-    - array: 0101000000000000
-    - array: 0100000000000000
-    - array: 0100000000000000
+    - array: 0101010000000000
+    - array: 0100010000000000
+    - array: 0101010000000000
     - array: 0000000000000000
     - array: 0000000000000000
     - array: 0000000000000000

@@ -10,40 +10,51 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb8e3f46b0c50ed4b82596c498ab1c7d, type: 3}
-  m_Name: Item2
+  m_Name: Gun1
   m_EditorClassIdentifier: 
-  sprite: {fileID: -4819290565171530376, guid: 4c67e9a2727caae4781f8b413028725e, type: 3}
-  Name: Helmet1
-  equipType: 4
-  maxStack: 2
-  peso: 5
+  sprite: {fileID: -5738547799210225554, guid: 314ec396027f72444b0bcb912bb095ba, type: 3}
+  Name: Gun1
+  equipType: 0
+  maxStack: 1
+  peso: 8
   sizeX: 2
-  sizeY: 2
+  sizeY: 1
   spwnQuantity: {x: 1, y: 1}
-  iDamage: 0.5
-  eDamage: 0.4
+  iDamage: 0
+  eDamage: 5.5
   mDamage: 0
   iAttackSpeed: 0
-  eAttackSpeed: -0.2
+  eAttackSpeed: 1.2
   mAttackSpeed: 0
   iSpeed: 0
-  eSpeed: 0.7
-  mSpeed: 0
+  eSpeed: 0
+  mSpeed: -0.04
   iAttackRange: 0
-  eAttackRange: -0.1
+  eAttackRange: 0
+  iRQuant: 0
+  eRQuant: 0
   iHealth: 1
-  eHealth: 3
+  eHealth: 0
   iDefense: 0
-  eDefense: 4
-  mDefense: 0.1
-  attackType: 0
-  bSpeed: 0
-  bPiercing: 0
+  eDefense: 1
+  mDefense: -0.01
+  attackType: 1
+  bSpeed: 13
+  bPiercing: 4
   bBounce: 0
-  price: 10
+  price: 54
+  tHealth: 0
+  rHealth: 0
+  filling: 0
+  consumableExtraTime: 0
+  tempDamageMult: 1
+  tempSpeedMult: 1
+  tempDefenseMult: 1
+  tempRegenMult: 1
+  tempAttackSpeedMult: 1
   shape:
     rows:
-    - array: 0101000000000000
+    - array: 0100000000000000
     - array: 0100000000000000
     - array: 0000000000000000
     - array: 0000000000000000

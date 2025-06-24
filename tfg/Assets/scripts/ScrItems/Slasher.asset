@@ -16,15 +16,15 @@ MonoBehaviour:
   Name: Slasher
   equipType: 0
   maxStack: 1
-  peso: 6
-  sizeX: 2
-  sizeY: 1
+  peso: 5
+  sizeX: 1
+  sizeY: 2
   spwnQuantity: {x: 1, y: 1}
   iDamage: 0
   eDamage: 4
   mDamage: 0
   iAttackSpeed: 0
-  eAttackSpeed: 0.8
+  eAttackSpeed: 1.1
   mAttackSpeed: 0
   iSpeed: 0
   eSpeed: -0.1
@@ -39,10 +39,10 @@ MonoBehaviour:
   eDefense: 0
   mDefense: 0.05
   attackType: 2
-  bSpeed: 13.2
-  bPiercing: 2
+  bSpeed: 1
+  bPiercing: 1
   bBounce: 1
-  price: 12
+  price: 35
   tHealth: 0
   rHealth: 0
   filling: 0
@@ -54,8 +54,8 @@ MonoBehaviour:
   tempAttackSpeedMult: 1
   shape:
     rows:
-    - array: 0100000000000000
-    - array: 0100000000000000
+    - array: 0101000000000000
+    - array: 0000000000000000
     - array: 0000000000000000
     - array: 0000000000000000
     - array: 0000000000000000

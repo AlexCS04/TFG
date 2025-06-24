@@ -35,16 +35,19 @@ public class SCT : ScriptableObject
     public float iDefense;//
     public float eDefense;//
     public float mDefense;//
+
+    public float iWeight;
+    public float eWeight;
     public AttackType attackType;//
 
-    public float bSpeed;//
+    public float bSpeed=1;//
 
-    public int bPiercing;//
+    public int bPiercing=1;//
 
     public bool bBounce;//
 
+    [Range(5,300)]
     public int price;
-
     public float tHealth;
     public float rHealth;
     public float filling;

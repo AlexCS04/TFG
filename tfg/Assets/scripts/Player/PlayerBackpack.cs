@@ -84,15 +84,7 @@ public class PlayerBackpack : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            foreach (var item in contents)
-            {
-                Debug.Log(item.Key);
-                Debug.Log(item.Value);
-                Debug.Log(item.Value.stack);
-            }
-        }
+
         if (Input.GetKeyDown(KeyCode.Alpha1) && consumables[0] != null)
         {
             Consume(0);
@@ -114,6 +106,7 @@ public class PlayerBackpack : MonoBehaviour
     {
         if (playerHealth.Consume(consumables[cons].sct.tHealth * Mathf.CeilToInt(consumables[cons].lvl / 10f), consumables[cons].sct.rHealth * Mathf.CeilToInt(consumables[cons].lvl / 10f), consumables[cons].sct.filling))
         {
+            consumables[cons].container.ActualizarPeso(-consumables[cons].sct.peso);
             consumables[cons].AddCantidad(-1);
             CheckMult(consumables[cons].sct);
             if (consumables[cons].GetCantidad() == 0)
@@ -122,7 +115,7 @@ public class PlayerBackpack : MonoBehaviour
                 Destroy(consumables[cons].gameObject);
                 consumables[cons] = null;
             }
-            ActualizarStats();
+            // ActualizarStats();
             ConsumableAct();
         }
     }
@@ -264,7 +257,7 @@ public class PlayerBackpack : MonoBehaviour
         }
         ActualizarStats();
     }
-    private void ActualizarStats()
+    public void ActualizarStats()
     {
 
 
@@ -301,6 +294,7 @@ public class PlayerBackpack : MonoBehaviour
             playerHealth.rQuant += sct.iRQuant * stack * lvl;
             playerHealth.cDefense += sct.iDefense * stack * lvl;
             if (sct.mDefense != 0) mDefense += sct.mDefense * lvl;
+            playerControls.mochilaMaxPeso += sct.iWeight * stack * lvl;
             if (sct.Name == "Money") money += stack;
         }
         Equipment(helmet);
@@ -345,7 +339,8 @@ public class PlayerBackpack : MonoBehaviour
                             "Range: " + playerAttack.attackRange.ToString() + "\n" +
                             "Speed: " + playerControls.currentSpeed.ToString() + "\n" +
                             "Max Health: " + playerHealth.maxHealth.ToString() + "\n" +
-                            "Defence: " + playerHealth.cDefense.ToString() +
+                            "Defence: " + playerHealth.cDefense.ToString() + "\n" +
+                            "Weight: " + playerControls.mochilaPeso.ToString()+" / "+playerControls.mochilaMaxPeso.ToString() + "\n" +
                             "Wagon: " + RoomManager.instance.wagonCount.ToString();
     }
     private void ConsumableAct()
@@ -394,6 +389,7 @@ public class PlayerBackpack : MonoBehaviour
         playerHealth.rQuant += item.sct.eRQuant * stack * lvl;
         playerHealth.cDefense += item.sct.eDefense * stack * lvl;
         if (item.sct.mDefense != 0) mDefense += item.sct.mDefense * lvl;
+        playerControls.mochilaMaxPeso += item.sct.eWeight * stack * lvl;
     }
     private void Equipment(List<Item> items)
     {
@@ -442,6 +438,6 @@ public class PlayerBackpack : MonoBehaviour
             }
             if (stack == 0) return;
         }
-        ActualizarStats();
+        // ActualizarStats();
     }
 }

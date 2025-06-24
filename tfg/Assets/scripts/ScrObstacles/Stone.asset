@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 482d4678476bc1d4c9669de097e2eef5, type: 3}
-  m_Name: Obstacles
+  m_Name: Stone
   m_EditorClassIdentifier: 
   prefab: {fileID: 2312246010301773940, guid: a45aa639b80c4a0419adc84c9637df71, type: 3}
   sprites:
-  - {fileID: -1829563497, guid: 66f8590ae29ded44b84dd7e7d1ba396b, type: 3}
+  - {fileID: 1725109989471928817, guid: 52c2e8257f73cd74192a10a4ffe5035e, type: 3}
   minPosition: {x: 6, y: 3}
   maxPosition: {x: 8, y: 6}
   porcentajePos: 1
   minPerPos: {x: 0.2, y: 0.2}
   maxPerPos: {x: 0.8, y: 0.8}
-  minRotation: 0
-  maxRotation: 0
+  minRotation: -3
+  maxRotation: 4
   distanciaObjetos: 0
-  health: 1
+  health: 7
   pool:
   - {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}

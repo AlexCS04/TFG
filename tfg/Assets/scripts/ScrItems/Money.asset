@@ -31,6 +31,8 @@ MonoBehaviour:
   mSpeed: 0
   iAttackRange: 0
   eAttackRange: 0
+  iRQuant: 0
+  eRQuant: 0
   iHealth: 0
   eHealth: 0
   iDefense: 0
@@ -40,6 +42,16 @@ MonoBehaviour:
   bSpeed: 0
   bPiercing: 0
   bBounce: 0
+  price: 5
+  tHealth: 0
+  rHealth: 0
+  filling: 0
+  consumableExtraTime: 0
+  tempDamageMult: 1
+  tempSpeedMult: 1
+  tempDefenseMult: 1
+  tempRegenMult: 1
+  tempAttackSpeedMult: 1
   shape:
     rows:
     - array: 0100000000000000

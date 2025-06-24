@@ -8,11 +8,13 @@ public class Tendero : MonoBehaviour
     private bool speak;
     [SerializeField] private List<string> dialogos;
     [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private GameObject highLight;
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
             speak = true;
+            highLight.SetActive(true);
         }
     }
     void OnTriggerExit2D(Collider2D collision)
@@ -20,6 +22,7 @@ public class Tendero : MonoBehaviour
         if (collision.tag == "Player")
         {
             speak = false;
+            highLight.SetActive(false);
         }
     }
     void Update()

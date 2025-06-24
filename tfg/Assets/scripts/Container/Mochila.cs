@@ -12,6 +12,7 @@ public class Mochila : Container
     {
         player.GetComponent<PlayerControls>().mochilaMaxPeso = maxPeso;
         player.GetComponent<PlayerControls>().mochilaPeso = peso;
+        player.GetComponent<PlayerBackpack>().ActualizarStats();
 
     }
 

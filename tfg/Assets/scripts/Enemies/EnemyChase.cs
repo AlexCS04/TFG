@@ -79,7 +79,7 @@ public class EnemyChase : EnemyState
     }
     private void NoMove()
     {
-        if (time > 3.5f) Exit();
+        if (time > chaseDistance) Exit();
     }
     public override void FixedDo()
     {
