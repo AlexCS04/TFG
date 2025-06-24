@@ -23,4 +23,4 @@ MonoBehaviour:
   conjuntos:
   - {fileID: 11400000, guid: 89611e4d183f87243ac6ac31a7892e11, type: 2}
   - {fileID: 11400000, guid: 11dd0b8d146d0a644a373f3f432632cd, type: 2}
-  boss: {fileID: 5876726292582316171, guid: f7cb2ed1eb0e1b34f8b9e724dc6934f6, type: 3}
+  boss: {fileID: 5088639751615371274, guid: 7ef10471d712a1a46b933da73c1e436c, type: 3}

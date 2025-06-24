@@ -22,7 +22,7 @@ public class PlayerHealth : Health
         base.Start();
         startRegenTime = Time.time;
         startFoodTime = Time.time;
-        food = maxFood * .85f;
+        food = maxFood;
         ActualizarFood();
     }
     public override void TakeDamage(float tHealth, float rHealth)

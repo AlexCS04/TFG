@@ -1,6 +1,7 @@
+using System.Collections;
 using UnityEngine;
 
-public class BossAttack : BossState
+public class BossAttack : EnemyState
 {
     private Attack attack;
     private int pattern;
@@ -8,12 +9,12 @@ public class BossAttack : BossState
     {
         base.Enter();
         GetAttack();
-    }
-    public override void Do()
-    {
+
         if (pattern == 0) attack.AttackAction(player.position);
         else attack.AttackPattern(pattern);
+        StartCoroutine("Wait");
     }
+
     public override void FixedDo()
     {
         base.FixedDo();
@@ -21,7 +22,12 @@ public class BossAttack : BossState
     private void GetAttack()
     {
         attack = GetComponent<BossBehaviour>().selectedAttack;
-        pattern=GetComponent<BossBehaviour>().selectedPattern;
+        pattern = GetComponent<BossBehaviour>().selectedPattern;
+    }
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(.66f);
+        Exit();
     }
 
 

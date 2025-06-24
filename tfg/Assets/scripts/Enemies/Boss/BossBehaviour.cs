@@ -11,21 +11,30 @@ public class BossBehaviour : MonoBehaviour
     [SerializeField] private List<int> patterns;
     [SerializeField] private int chaseDistance;
 
-    private BossState state;
+    private EnemyState state;
     private Health health;
-    [SerializeField]private BossState idleState;
-    [SerializeField]private BossState chaseState;
-    [SerializeField]private BossState attackState;
+    [SerializeField]private EnemyState idleState;
+    [SerializeField]private EnemyChase chaseState;
+    [SerializeField]private EnemyState attackState;
     // [SerializeField]private BossState retrieve;
     private Transform player;
     private bool attacked;
-    [SerializeField]private Animator animator;
+    private Animator animator;
+    private float startTime;
+    public float time => Time.time - startTime;
+    private float lastAttackTime;
+    public float attackTime => Time.time - lastAttackTime;
 
     void Start()
     {
         Scale(RoomManager.instance.wagonCount);
+        animator = GetComponent<Animator>();
+        health = GetComponent<Health>();
+        startTime = Time.time;
+        lastAttackTime = Time.time;
         // SelectState();
         player = RoomManager.instance.player;
+        chaseState.chaseDistance = chaseDistance;
         state = idleState;
         SetUpState();
     }
@@ -33,6 +42,12 @@ public class BossBehaviour : MonoBehaviour
     {
         if (state.completed) SelectState();
         state.Do();
+        if (time > 3.54f)
+        {
+            startTime = Time.time;
+            attacked = false;
+            SelectState();
+        }
     }
     void FixedUpdate()
     {
@@ -43,23 +58,28 @@ public class BossBehaviour : MonoBehaviour
         int attPat = Random.Range(0, patterns.Count);
         selectedAttack = attacks[attPat];
         selectedPattern = patterns[attPat];
-        if (health.currentHealth < health.maxHealth) selectedPattern *= 10;
+        if (health.currentHealth < health.maxHealth/2) selectedPattern *= 10;
+        
         if (attacked && Vector3.Distance(player.position, transform.position) >= chaseDistance)
         {
             state = chaseState;
             attacked = false;
             SetUpState();
         }
-        else{
-
-            StartCoroutine("Attacking");
+        else
+        {
+            if (attackTime > 1.77f)
+            {
+                lastAttackTime = Time.time;
+                Attacking();      
+            }
         }
 
     }
-    IEnumerator Attacking()
+    private void Attacking()
     {
         animator.Play("ChargeAttack");
-        yield return new WaitForSeconds(0.7f);
+        // yield return new WaitForSeconds(0.7f);
         state = attackState;
         attacked = true;
         SetUpState();

@@ -106,6 +106,8 @@ public class PlayerBackpack : MonoBehaviour
     {
         if (playerHealth.Consume(consumables[cons].sct.tHealth * Mathf.CeilToInt(consumables[cons].lvl / 10f), consumables[cons].sct.rHealth * Mathf.CeilToInt(consumables[cons].lvl / 10f), consumables[cons].sct.filling))
         {
+            
+            
             consumables[cons].container.ActualizarPeso(-consumables[cons].sct.peso);
             consumables[cons].AddCantidad(-1);
             CheckMult(consumables[cons].sct);
@@ -115,6 +117,7 @@ public class PlayerBackpack : MonoBehaviour
                 Destroy(consumables[cons].gameObject);
                 consumables[cons] = null;
             }
+
             // ActualizarStats();
             ConsumableAct();
         }
@@ -321,6 +324,7 @@ public class PlayerBackpack : MonoBehaviour
         }
         if (playerAttack.attackRange < .6f) playerAttack.attackRange = .6f;
         if (playerAttack.attackSpeed < 0) playerAttack.attackSpeed = 0;
+        if (playerControls.mochilaPeso < 0.1f) playerControls.mochilaPeso = 0;
         playerHealth.ActHealthVisual();
         playerAttack.damage *= tempDamageMult;
         playerControls.currentSpeed *= tempSpeedMult;
@@ -425,7 +429,7 @@ public class PlayerBackpack : MonoBehaviour
                 if (dar <= 0) dar = stack;
                 else dar = item.GetCantidad();
                 stack -= dar;
-                item.container.ActualizarPeso(-dar);
+                item.container.ActualizarPeso(-dar*item.sct.peso);
                 item.AddCantidad(-dar);
                 Debug.Log(item.GetCantidad());
                 item.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = item.GetCantidad().ToString();
@@ -435,6 +439,7 @@ public class PlayerBackpack : MonoBehaviour
                     RemoveItem(cont.Key);
                     Destroy(item.gameObject);
                 }
+
             }
             if (stack == 0) return;
         }

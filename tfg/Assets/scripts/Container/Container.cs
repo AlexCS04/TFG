@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -138,11 +137,11 @@ public class Container : MonoBehaviour
         {
             // peso-=remItem.GetPeso();
             List<Vector2Int> invList = remItem.GetListPos(gridPos);
+            ActualizarPeso(-remItem.sct.peso * remItem.GetCantidad()); 
             foreach (Vector2Int item in invList)
             {
                 contents.RemoveObjectAt(item.x, item.y);
             }
-            ActualizarPeso(-remItem.sct.peso * remItem.GetCantidad()); 
         }
     }
     protected virtual bool HayStack()
