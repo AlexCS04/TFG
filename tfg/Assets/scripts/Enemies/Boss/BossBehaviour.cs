@@ -29,7 +29,6 @@ public class BossBehaviour : MonoBehaviour
     {
         Scale(RoomManager.instance.wagonCount);
         animator = GetComponent<Animator>();
-        health = GetComponent<Health>();
         startTime = Time.time;
         lastAttackTime = Time.time;
         // SelectState();
@@ -96,7 +95,6 @@ public class BossBehaviour : MonoBehaviour
         int bonus = lvl / 10 * 5;
         float aditivo = 1 + (progre + bonus) / 18;
 
-        Attack[] attacks = transform.GetComponents<Attack>();
         Health health = transform.GetComponent<Health>();
 
         foreach (Attack attack in attacks)
