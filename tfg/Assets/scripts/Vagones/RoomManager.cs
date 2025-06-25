@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,6 +23,7 @@ public class RoomManager : MonoBehaviour
     [SerializeField] private GameObject finalBoss;
     [SerializeField] private GameObject bossHPSlider;
     [SerializeField] private GameObject tendero;
+    [SerializeField] private TextMeshProUGUI wagonsGen;
     public GameObject uSure;
 
     public CinemachineConfiner2D confiner;
@@ -141,7 +143,7 @@ public class RoomManager : MonoBehaviour
         };
 
         BoxCollider2D b = v.transform.GetChild(0).GetComponent<BoxCollider2D>();
-        v.GetComponent<SpriteRenderer>().sprite =tematica.enviromentSprites[roomRandom.Next(0, tematica.enviromentSprites.Count)];
+        v.GetComponent<SpriteRenderer>().sprite = tematica.enviromentSprites[roomRandom.Next(0, tematica.enviromentSprites.Count)];
         v.transform.GetChild(1).GetComponent<Doors>().PlaceDoor();
         v.transform.GetChild(2).GetComponent<Doors>().PlaceDoor();
         v.transform.GetChild(3).GetComponent<Doors>().PlaceDoor();
@@ -149,7 +151,7 @@ public class RoomManager : MonoBehaviour
         v.transform.GetChild(2).GetComponent<Doors>().SetRoomDoor(true);
         // v.transform.GetChild(4).GetComponent<RoomGrid>().GenerateGrid();
         b.size = new Vector2(WAGON_WIDHT + 0.5f, WAGON_HEIGHT + 2f);
-        b.offset = new Vector2(WAGON_WIDHT, WAGON_HEIGHT+1f) / 2;
+        b.offset = new Vector2(WAGON_WIDHT, WAGON_HEIGHT + 1f) / 2;
         Destroy(wagonList[wagonCount % WAGONS]);
         wagonList[wagonCount % WAGONS] = v;
         wagonCameraBounds[wagonCount % WAGONS] = b;
@@ -160,6 +162,7 @@ public class RoomManager : MonoBehaviour
 
         CambioTematica();
         wagonCount++;
+        wagonsGen.text = "Wagons Generated: " + wagonCount.ToString();
         
 
     }

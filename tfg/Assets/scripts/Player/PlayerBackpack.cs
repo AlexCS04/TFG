@@ -352,8 +352,7 @@ public class PlayerBackpack : MonoBehaviour
                             "Speed: " + playerControls.currentSpeed.ToString() + "\n" +
                             "Max Health: " + playerHealth.maxHealth.ToString() + "\n" +
                             "Defence: " + playerHealth.cDefense.ToString() + "\n" +
-                            "Weight: " + playerControls.mochilaPeso.ToString()+" / "+playerControls.mochilaMaxPeso.ToString() + "\n" +
-                            "Wagon: " + RoomManager.instance.wagonCount.ToString();
+                            "Weight: " + playerControls.mochilaPeso.ToString() + " / " + playerControls.mochilaMaxPeso.ToString();
     }
     private void ConsumableAct()
     {
