@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ring1
   m_EditorClassIdentifier: 
   sprite: {fileID: -7205218644840326792, guid: b6c11e2a44396b843a9d5042d8c27880, type: 3}
-  Name: ring1
+  Name: Close Up Ring
   equipType: 2
   maxStack: 5
   peso: 3
@@ -38,11 +38,13 @@ MonoBehaviour:
   iDefense: 0
   eDefense: 0
   mDefense: 0
+  iWeight: 0
+  eWeight: 0
   attackType: 0
-  bSpeed: 0
-  bPiercing: 0
+  bSpeed: 1
+  bPiercing: 1
   bBounce: 0
-  price: 110
+  price: 63
   tHealth: 0
   rHealth: 0
   filling: 0

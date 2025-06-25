@@ -10,41 +10,41 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb8e3f46b0c50ed4b82596c498ab1c7d, type: 3}
-  m_Name: Gun1
+  m_Name: Ring3
   m_EditorClassIdentifier: 
-  sprite: {fileID: -5738547799210225554, guid: 314ec396027f72444b0bcb912bb095ba, type: 3}
-  Name: Gun1
-  equipType: 0
-  maxStack: 1
-  peso: 8
-  sizeX: 2
-  sizeY: 1
-  spwnQuantity: {x: 1, y: 1}
+  sprite: {fileID: 4318735999918221047, guid: 325edd136c3b498468420740d39e2680, type: 3}
+  Name: Ring of Capacity
+  equipType: 2
+  maxStack: 5
+  peso: 1
+  sizeX: 3
+  sizeY: 3
+  spwnQuantity: {x: 1, y: 2}
   iDamage: 0
-  eDamage: 5.5
+  eDamage: 0
   mDamage: 0
   iAttackSpeed: 0
-  eAttackSpeed: 1.2
+  eAttackSpeed: 0
   mAttackSpeed: 0
   iSpeed: 0
   eSpeed: 0
-  mSpeed: -0.04
+  mSpeed: 0
   iAttackRange: 0
   eAttackRange: 0
   iRQuant: 0
   eRQuant: 0
-  iHealth: 1
+  iHealth: 0
   eHealth: 0
   iDefense: 0
-  eDefense: 1
-  mDefense: -0.01
+  eDefense: 0
+  mDefense: 0
   iWeight: 0
-  eWeight: 0
-  attackType: 1
-  bSpeed: 13
-  bPiercing: 4
+  eWeight: 3
+  attackType: 0
+  bSpeed: 1
+  bPiercing: 1
   bBounce: 0
-  price: 54
+  price: 30
   tHealth: 0
   rHealth: 0
   filling: 0
@@ -56,9 +56,9 @@ MonoBehaviour:
   tempAttackSpeedMult: 1
   shape:
     rows:
-    - array: 0100000000000000
-    - array: 0100000000000000
-    - array: 0000000000000000
+    - array: 0001000000000000
+    - array: 0100010000000000
+    - array: 0001000000000000
     - array: 0000000000000000
     - array: 0000000000000000
     - array: 0000000000000000

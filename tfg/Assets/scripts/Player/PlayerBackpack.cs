@@ -37,7 +37,13 @@ public class PlayerBackpack : MonoBehaviour
     public float tempSpeedMult=1; 
     public float tempDefenseMult=1; 
     public float tempRegenMult=1; 
-    public float tempAttackSpeedMult=1; 
+    public float tempAttackSpeedMult=1;
+
+    private Coroutine lastTDM;
+    private Coroutine lastTSM;
+    private Coroutine lastTDeM;
+    private Coroutine lastTRM;
+    private Coroutine lastTASM;
     // public float tempMult=1; //por si se me ocurren más
     #endregion
 
@@ -118,37 +124,37 @@ public class PlayerBackpack : MonoBehaviour
                 consumables[cons] = null;
             }
 
-            // ActualizarStats();
+            ActualizarStats();
             ConsumableAct();
         }
     }
     #region TemporalFunctions
     private void CheckMult(SCT sct)
     {
-        if (sct.tempDamageMult != 1 && tempDamageMult <= sct.tempDamageMult)
+        if (sct.tempDamageMult != 1)
         {
-            StopCoroutine("TempDamage");
-            StartCoroutine(TempDamage(sct.tempDamageMult, sct.consumableExtraTime));
+            if(lastTDM!=null)StopCoroutine("TempDamage");
+            lastTDM=StartCoroutine(TempDamage(sct.tempDamageMult, sct.consumableExtraTime));
         }
-        if (sct.tempDefenseMult != 1 && tempDefenseMult <= sct.tempDefenseMult)
+        if (sct.tempDefenseMult != 1)
         {
-            StopCoroutine("TempDefense");
-            StartCoroutine(TempDefense(sct.tempDefenseMult, sct.consumableExtraTime));
+            if(lastTDeM!=null)StopCoroutine("TempDefense");
+            lastTDeM=StartCoroutine(TempDefense(sct.tempDefenseMult, sct.consumableExtraTime));
         }
-        if (sct.tempSpeedMult != 1 && tempSpeedMult <= sct.tempSpeedMult)
+        if (sct.tempSpeedMult != 1)
         {
-            StopCoroutine("TempSpeed");
-            StartCoroutine(TempSpeed(sct.tempSpeedMult, sct.consumableExtraTime));
+            if(lastTSM!=null)StopCoroutine("TempSpeed");
+            lastTSM=StartCoroutine(TempSpeed(sct.tempSpeedMult, sct.consumableExtraTime));
         }
-        if (sct.tempRegenMult != 1 && tempRegenMult <= sct.tempRegenMult)
+        if (sct.tempRegenMult != 1)
         {
-            StopCoroutine("TempRegen");
-            StartCoroutine(TempRegen(sct.tempRegenMult, sct.consumableExtraTime));
+            if(lastTRM!=null)StopCoroutine(lastTRM);
+            lastTRM=StartCoroutine(TempRegen(sct.tempRegenMult, sct.consumableExtraTime));
         }
-        if (sct.tempAttackSpeedMult != 1 && tempAttackSpeedMult <= sct.tempAttackSpeedMult)
+        if (sct.tempAttackSpeedMult != 1)
         {
-            StopCoroutine("TempAttackSpeed");
-            StartCoroutine(TempAttackSpeed(sct.tempAttackSpeedMult, sct.consumableExtraTime));
+            if(lastTASM!=null)StopCoroutine("TempAttackSpeed");
+            lastTASM=StartCoroutine(TempAttackSpeed(sct.tempAttackSpeedMult, sct.consumableExtraTime));
         }
 
         ActualizarStats();
@@ -265,6 +271,7 @@ public class PlayerBackpack : MonoBehaviour
 
 
         playerControls.currentSpeed = playerControls.speed;
+        playerControls.mochilaMaxPeso = 25f;
         playerAttack.damage = 1;
         mDamage = 1;
         mAttackSpeed = 1;
@@ -330,6 +337,7 @@ public class PlayerBackpack : MonoBehaviour
         playerControls.currentSpeed *= tempSpeedMult;
         playerHealth.cDefense *= tempDefenseMult;
         playerAttack.attackSpeed *= 1/tempAttackSpeedMult;
+        Debug.Log(tempRegenMult);
         playerHealth.rQuant *= tempRegenMult;
         
 

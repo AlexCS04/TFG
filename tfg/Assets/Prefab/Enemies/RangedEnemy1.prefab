@@ -186,7 +186,7 @@ MonoBehaviour:
   bullet: {fileID: 1117003242370999814, guid: 665117b98217f0a4f84e28200bcfd887, type: 3}
   particlePref: {fileID: 0}
   rangeY: 1
-  desviation: 0.3
+  desviation: 0.5
   bSpeed: 8.4
   bPiercing: 1
   bBounce: 0
@@ -210,7 +210,7 @@ MonoBehaviour:
   healthSlider: {fileID: 0}
   healthSlider2: {fileID: 0}
   pool:
-  - {fileID: 11400000, guid: 996122c888d9f3e45b96699f9dd30238, type: 2}
+  - {fileID: 11400000, guid: 6f2175f211a114e42b36a873b4a0c70c, type: 2}
   - {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}
   - {fileID: 0}
   - {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}

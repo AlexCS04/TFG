@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Ring2
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  Name: Ring2
+  Name: Roter's Ring
   equipType: 2
-  maxStack: 12
-  peso: 1.1
+  maxStack: 15
+  peso: 3.4
   sizeX: 3
   sizeY: 3
   spwnQuantity: {x: 1, y: 3}
@@ -38,11 +38,13 @@ MonoBehaviour:
   iDefense: 0.3
   eDefense: 0
   mDefense: 0
+  iWeight: 0
+  eWeight: 0
   attackType: 0
-  bSpeed: 0
-  bPiercing: 0
+  bSpeed: 1
+  bPiercing: 1
   bBounce: 0
-  price: 24
+  price: 115
   tHealth: 0
   rHealth: 0
   filling: 0

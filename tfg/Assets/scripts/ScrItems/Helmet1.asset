@@ -38,6 +38,8 @@ MonoBehaviour:
   iDefense: 0
   eDefense: 2
   mDefense: 0.1
+  iWeight: 0
+  eWeight: 3
   attackType: 0
   bSpeed: 1
   bPiercing: 1

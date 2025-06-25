@@ -187,7 +187,7 @@ MonoBehaviour:
   bullet: {fileID: 1117003242370999814, guid: 665117b98217f0a4f84e28200bcfd887, type: 3}
   particlePref: {fileID: 0}
   rangeY: 1
-  desviation: 0.3
+  desviation: 0.6
   bSpeed: 8.8
   bPiercing: 1
   bBounce: 1
@@ -215,6 +215,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 6b8d0c488ba42534887dd40de7bcb35a, type: 2}
+  - {fileID: 11400000, guid: bfd3420f9ba9e9048b1a3a7ad573475e, type: 2}
+  - {fileID: 11400000, guid: bfd3420f9ba9e9048b1a3a7ad573475e, type: 2}
   - {fileID: 0}
 --- !u!50 &63295769267835967
 Rigidbody2D:

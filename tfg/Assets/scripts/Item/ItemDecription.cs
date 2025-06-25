@@ -11,7 +11,8 @@ public class ItemDecription : ISendDesc
         Item item = GetComponent<Item>();
         SCT sct = item.sct;
         string description = "";
-        description += "Name: <color=#ff0000>" + sct.Name + "</color>\n";
+        description += "<color=#ff0000>" + sct.Name + "</color>\n";
+        if(sct.Name!="Money")
         description += "Level: <color=#0000ff>" + Mathf.CeilToInt(item.lvl / 10f) + "</color>\n";
 
         // description += "\n";
@@ -185,7 +186,7 @@ public class ItemDecription : ISendDesc
                 description += " regen points\n";
             }
             description += "Fills ";
-            description += sct.tHealth;
+            description += sct.filling;
             description += " food points\n";
             if (sct.tempDamageMult != 1)
             {
