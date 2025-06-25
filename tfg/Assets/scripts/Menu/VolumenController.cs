@@ -7,15 +7,17 @@ public class VolumenController : MonoBehaviour
 {
     [SerializeField] private AudioMixer audioMixer;
     [SerializeField] private Slider slider;
+    [SerializeField] private string controller;
     void Start()
     {
         float volumen;
-        audioMixer.GetFloat("MusicVolumen", out volumen);
+        audioMixer.GetFloat(controller, out volumen);
         slider.value = Mathf.Pow(10, volumen / 20);
     }
     public void ControlDeVolumen(float v)
     {
-        audioMixer.SetFloat("MusicVolumen", Mathf.Log10(v) * 20);
+        audioMixer.SetFloat(controller, Mathf.Log10(v) * 20);
     }
+
     
 }

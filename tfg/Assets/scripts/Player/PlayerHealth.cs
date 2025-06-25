@@ -30,6 +30,7 @@ public class PlayerHealth : Health
         if (invuFrames > 0) return;
         base.TakeDamage(tHealth, rHealth);
         invuFrames = invuFramesCount;
+        AudioManager.PlaySound(EffectTypes.hitted);
         StartCoroutine("InvuFeel");
     }
 

@@ -40,9 +40,9 @@ public class Bullet : MonoBehaviour
         Vector2 randomOffset = Random.insideUnitCircle * desviation;
         Vector2 vectorA = transform.position;
         // targetPos += randomOffset;
-        Vector2 direction = new Vector2(targetPos.x - vectorA.x, targetPos.y - vectorA.y)*50;
+        Vector2 direction = new Vector2(targetPos.x - vectorA.x, targetPos.y - vectorA.y) * 50;
 
-        direction=Vector2.ClampMagnitude(direction, 5f)+randomOffset;
+        direction = Vector2.ClampMagnitude(direction, 5f) + randomOffset;
         // direction = new Vector2(direction.x - vectorA.x, direction.y - vectorA.y)+randomOffset;
         // Debug.Log(direction);
 
@@ -51,7 +51,8 @@ public class Bullet : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, angle);
         float max = Mathf.Abs(direction.x) + Mathf.Abs(direction.y);
 
-        rb.linearVelocity = new Vector2(direction.x / max * bSpeed, direction.y / max * bSpeed);    
+        rb.linearVelocity = new Vector2(direction.x / max * bSpeed, direction.y / max * bSpeed);
+        AudioManager.PlaySound(EffectTypes.shoot);  
 
     }
 

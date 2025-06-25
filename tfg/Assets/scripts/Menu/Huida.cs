@@ -10,13 +10,14 @@ public class Huida : MonoBehaviour
     {
         int h = PlayerPrefs.GetInt("Salir");
 
-        if (h == 0) Exit(lose);
-        else if (h == -1) Exit(leave);
-        else Exit(win);
+        if (h == 0) Exit(lose, MusicTypes.lose);
+        else if (h == -1) Exit(leave, MusicTypes.huir);
+        else Exit(win, MusicTypes.win);
     }
-    private void Exit(GameObject titulo)
+    private void Exit(GameObject titulo, MusicTypes type)
     {
         titulo.SetActive(true);
+        AudioManager.PlayMusic(type);
     }
 
     public void Back()

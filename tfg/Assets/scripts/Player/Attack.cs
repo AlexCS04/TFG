@@ -54,11 +54,14 @@ public class Attack : MonoBehaviour
         {
             c = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, attackLayer);
             newScale *= attackRange;
+            AudioManager.PlaySound(EffectTypes.pound);
         }
         else //rectangle attack
         {
             c = Physics2D.OverlapBoxAll(new Vector3(attackPoint.position.x + attackRange / 2 * (transform.eulerAngles.y == 0 ? 1 : -1), attackPoint.position.y, 0), new Vector2(attackRange, rangeY), 0, attackLayer);
             newScale.x = attackRange;
+            if (Random.Range(0, 2) == 0) AudioManager.PlaySound(EffectTypes.sword1); else AudioManager.PlaySound(EffectTypes.sword2); 
+
         }
         foreach (Collider2D item in c)
         {

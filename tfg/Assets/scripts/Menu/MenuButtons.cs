@@ -8,7 +8,7 @@ public class MenuButtons : MonoBehaviour
     {
         obj.SetActive(true);
     }
-    public void DeactivateObj (GameObject obj)
+    public void DeactivateObj(GameObject obj)
     {
         obj.SetActive(false);
     }
@@ -23,5 +23,9 @@ public class MenuButtons : MonoBehaviour
     public void GoToGame(string file)
     {
         SceneManager.LoadScene("Intermidium");
+    }
+    void Start()
+    {
+        AudioManager.PlayMusic(MusicTypes.menu);
     }
 }

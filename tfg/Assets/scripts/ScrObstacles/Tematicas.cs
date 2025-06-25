@@ -15,4 +15,7 @@ public class Tematica : ScriptableObject
 
     public GameObject boss;
 
+    public MusicTypes ambience;
+    public MusicTypes bossMus;
+
 }

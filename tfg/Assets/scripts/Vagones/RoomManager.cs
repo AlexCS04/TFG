@@ -63,8 +63,9 @@ public class RoomManager : MonoBehaviour
         {
             ClearedRoom();
             bossHPSlider.SetActive(false);
+            AudioManager.instance.musicAmbience.UnPause();
         }
-        if (wagonCount == 100) winCon = true;
+        if (wagonCount == 50) winCon = true;
     }
 
     void Awake()
@@ -156,6 +157,7 @@ public class RoomManager : MonoBehaviour
         wagonList[wagonCount % WAGONS] = v;
         wagonCameraBounds[wagonCount % WAGONS] = b;
         Conjunto c = SeleccionConjunto();
+        AudioManager.PlayMusic(tematica.ambience);
         SalaEspecial();
         ColocarObstaculos(c);
         if (spwnEnemigos) GenerarEnemigos(c);
@@ -189,14 +191,16 @@ public class RoomManager : MonoBehaviour
             VagonInicial();
             spwnEnemigos = false;
         }
-        else if (wagonCount == 100)
+        else if (wagonCount == 50)
         {
             Boss(finalBoss);
+            AudioManager.PlayMusic(MusicTypes.finalboss);
             spwnEnemigos = false;
         }
         else if (wagonCount % 10 == 0)
         {
             Boss(tematica.boss);
+            AudioManager.PlayMusic(tematica.bossMus);
             spwnEnemigos = false;
         }
         else if (wagonCount % 9 == 0)
@@ -383,11 +387,12 @@ public class RoomManager : MonoBehaviour
         ItemSpwnManager.instance.SpawnItem(treasurePool, new Vector3((WAGON_WIDHT / 2) + WAGON_WIDHT * (wagonCount % WAGONS) - 2, WAGON_HEIGHT / 2f, 0),roomRandom);
         ClearedRoom();
     }
-    
+
     public void ClearedRoom()
     {
         wagonList[actualWagon].transform.GetChild(1).GetComponent<Doors>().SetRoomClear(true);
         wagonList[actualWagon].transform.GetChild(2).GetComponent<Doors>().SetRoomClear(true);
+        AudioManager.PlaySound(EffectTypes.doorOpen);
     }
 
     void OnDrawGizmos()
