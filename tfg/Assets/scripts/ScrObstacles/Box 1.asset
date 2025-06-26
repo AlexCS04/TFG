@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482d4678476bc1d4c9669de097e2eef5, type: 3}
   m_Name: Box 1
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2312246010301773940, guid: a45aa639b80c4a0419adc84c9637df71, type: 3}
+  prefab: {fileID: 2312246010301773940, guid: 52692aa1c2149f44ab173e8c872d9186, type: 3}
   sprites:
-  - {fileID: -7205218644840326792, guid: b6c11e2a44396b843a9d5042d8c27880, type: 3}
+  - {fileID: 21300000, guid: 2a04a3f5443f6fc45b6492de902a02cc, type: 3}
+  - {fileID: 21300000, guid: b8a284c73e42b91408b1183705160852, type: 3}
   minPosition: {x: 2, y: 2}
   maxPosition: {x: 13, y: 6}
   porcentajePos: 1
-  minPerPos: {x: 0.13, y: 0.12}
-  maxPerPos: {x: 0.539, y: 0.66}
+  minPerPos: {x: 0.88, y: 0}
+  maxPerPos: {x: 0.97, y: 0.89}
   minRotation: -5
   maxRotation: 5
   distanciaObjetos: 0

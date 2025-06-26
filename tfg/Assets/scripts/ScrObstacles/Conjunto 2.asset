@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombre: c2
   obstacles:
-  - {fileID: 11400000, guid: af9769205f33a744a9be02e2838cc657, type: 2}
+  - {fileID: 11400000, guid: 190a0640d86257944859390c77e8c573, type: 2}
   enemies:
   - {fileID: 1640615273078495394, guid: ef771cc620e084e4b93c892c6de79628, type: 3}
   - {fileID: 1640615273078495394, guid: 1944e0e9c3d28cf45b3d6a480e49033b, type: 3}

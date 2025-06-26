@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482d4678476bc1d4c9669de097e2eef5, type: 3}
   m_Name: Obstacles
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2312246010301773940, guid: a45aa639b80c4a0419adc84c9637df71, type: 3}
+  prefab: {fileID: 2312246010301773940, guid: 572be7c1a27b0c141a8d1dcade5dd1cf, type: 3}
   sprites:
-  - {fileID: -1829563497, guid: 66f8590ae29ded44b84dd7e7d1ba396b, type: 3}
+  - {fileID: 21300000, guid: 91daa6822364a434882d3eb0891e2d9b, type: 3}
   minPosition: {x: 6, y: 3}
   maxPosition: {x: 8, y: 6}
   porcentajePos: 1
