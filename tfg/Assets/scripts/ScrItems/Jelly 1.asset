@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb8e3f46b0c50ed4b82596c498ab1c7d, type: 3}
   m_Name: Jelly 1
   m_EditorClassIdentifier: 
-  sprite: {fileID: 114958768295121562, guid: d2049daace4de47438c18693ead9afe5, type: 3}
+  sprite: {fileID: 21300000, guid: 0135e5f2d26406f4db25b1cff9a1c09d, type: 3}
   Name: Rotten Jelly
   equipType: 3
   maxStack: 24

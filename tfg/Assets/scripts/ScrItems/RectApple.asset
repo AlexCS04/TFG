@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb8e3f46b0c50ed4b82596c498ab1c7d, type: 3}
   m_Name: RectApple
   m_EditorClassIdentifier: 
-  sprite: {fileID: -7205218644840326792, guid: b6c11e2a44396b843a9d5042d8c27880, type: 3}
+  sprite: {fileID: 21300000, guid: 50280d80f09cac2479c131e4a3d33497, type: 3}
   Name: rectAple
   equipType: 3
   maxStack: 7

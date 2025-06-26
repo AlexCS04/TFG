@@ -64,6 +64,7 @@ public class RoomManager : MonoBehaviour
             ClearedRoom();
             bossHPSlider.SetActive(false);
             AudioManager.instance.musicAmbience.UnPause();
+            AudioManager.instance.musicBosses.Stop();
         }
         if (wagonCount == 50) winCon = true;
     }

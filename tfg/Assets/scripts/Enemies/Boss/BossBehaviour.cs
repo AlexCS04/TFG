@@ -95,7 +95,7 @@ public class BossBehaviour : MonoBehaviour
         int bonus = lvl / 10 * 5;
         float aditivo = 1 + (progre + bonus) / 18;
 
-        Health health = transform.GetComponent<Health>();
+        health = transform.GetComponent<Health>();
 
         foreach (Attack attack in attacks)
         {

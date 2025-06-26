@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb8e3f46b0c50ed4b82596c498ab1c7d, type: 3}
   m_Name: Money
   m_EditorClassIdentifier: 
-  sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  sprite: {fileID: 21300000, guid: abd627d523ec2d148b3174ae88566279, type: 3}
   Name: Money
   equipType: 9
   maxStack: 99
@@ -38,6 +38,8 @@ MonoBehaviour:
   iDefense: 0
   eDefense: 0
   mDefense: 0
+  iWeight: 0
+  eWeight: 0
   attackType: 0
   bSpeed: 0
   bPiercing: 0

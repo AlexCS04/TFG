@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb8e3f46b0c50ed4b82596c498ab1c7d, type: 3}
   m_Name: Jelly
   m_EditorClassIdentifier: 
-  sprite: {fileID: 6620212663517863923, guid: 7f7fba4bceb60f24089efeecb7ad345f, type: 3}
+  sprite: {fileID: 21300000, guid: db2e99ad1629b714c8cb634b36a885e8, type: 3}
   Name: Jelly
   equipType: 3
   maxStack: 24

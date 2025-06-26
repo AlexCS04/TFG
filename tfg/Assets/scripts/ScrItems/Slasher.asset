@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb8e3f46b0c50ed4b82596c498ab1c7d, type: 3}
   m_Name: Slasher
   m_EditorClassIdentifier: 
-  sprite: {fileID: -5738547799210225554, guid: 314ec396027f72444b0bcb912bb095ba, type: 3}
+  sprite: {fileID: 21300000, guid: ddc03dd563490374a8419f3f9d57b6b2, type: 3}
   Name: Slasher
   equipType: 0
   maxStack: 1
@@ -38,6 +38,8 @@ MonoBehaviour:
   iDefense: 0
   eDefense: 0
   mDefense: 0.05
+  iWeight: 0
+  eWeight: 0
   attackType: 2
   bSpeed: 1
   bPiercing: 1

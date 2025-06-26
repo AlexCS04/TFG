@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb8e3f46b0c50ed4b82596c498ab1c7d, type: 3}
   m_Name: Ring1
   m_EditorClassIdentifier: 
-  sprite: {fileID: -7205218644840326792, guid: b6c11e2a44396b843a9d5042d8c27880, type: 3}
+  sprite: {fileID: 21300000, guid: dbe691ea7385b114c8959e1ed51a5cae, type: 3}
   Name: Close Up Ring
   equipType: 2
   maxStack: 5

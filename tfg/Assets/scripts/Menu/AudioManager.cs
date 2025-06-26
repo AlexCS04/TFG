@@ -5,7 +5,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
     [SerializeField] public AudioSource musicAmbience;
-    [SerializeField] private AudioSource musicBosses;
+    [SerializeField] public AudioSource musicBosses;
     [SerializeField] private MusicTypes currentAmbi=MusicTypes.none;
     #region music clips
     [SerializeField] private AudioClip music1;

@@ -10,9 +10,5 @@ public class BossHealth : Health
         ItemSpwnManager.instance.SpawnItem(RoomManager.instance.consumPool, transform.position + Random.insideUnitSphere, RoomManager.instance.roomRandom);
         base.Die();
     }
-    public override void TakeDamage(float tHealth, float rHealth)
-    {
-        base.TakeDamage(tHealth, rHealth);
-        
-    }
+
 }
