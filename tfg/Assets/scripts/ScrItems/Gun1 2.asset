@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb8e3f46b0c50ed4b82596c498ab1c7d, type: 3}
+  m_Name: Gun1 2
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 89d9fb2335f62144da8cb5b1ad7be507, type: 3}
+  Name: Spikes
+  equipType: 0
+  maxStack: 3
+  peso: 3
+  sizeX: 4
+  sizeY: 1
+  spwnQuantity: {x: 1, y: 1}
+  iDamage: 0
+  eDamage: 2.3
+  mDamage: 0
+  iAttackSpeed: 0
+  eAttackSpeed: 1.1
+  mAttackSpeed: 0
+  iSpeed: 0
+  eSpeed: 0.07
+  mSpeed: 0
+  iAttackRange: 0
+  eAttackRange: 0
+  iRQuant: 0
+  eRQuant: 0
+  iHealth: -1.6
+  eHealth: -0.6
+  iDefense: 0
+  eDefense: 0
+  mDefense: -0.01
+  iWeight: 1
+  eWeight: 0
+  attackType: 1
+  bSpeed: 13
+  desviation: 0.2
+  bPiercing: 3
+  bBounce: 0
+  bulletPrefab: {fileID: 1117003242370999814, guid: 59104ea0aef1364408850c7dcf366553, type: 3}
+  price: 89
+  tHealth: 0
+  rHealth: 0
+  filling: 0
+  consumableExtraTime: 0
+  tempDamageMult: 1
+  tempSpeedMult: 1
+  tempDefenseMult: 1
+  tempRegenMult: 1
+  tempAttackSpeedMult: 1
+  shape:
+    rows:
+    - array: 0100000000000000
+    - array: 0100000000000000
+    - array: 0100000000000000
+    - array: 0100000000000000
+    - array: 0000000000000000
+    - array: 0000000000000000
+    - array: 0000000000000000
+    - array: 0000000000000000

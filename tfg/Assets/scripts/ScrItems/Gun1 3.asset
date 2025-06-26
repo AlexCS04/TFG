@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb8e3f46b0c50ed4b82596c498ab1c7d, type: 3}
+  m_Name: Gun1 3
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: d17a52f9ddb27e745aad0620db6340e5, type: 3}
+  Name: Masher
+  equipType: 0
+  maxStack: 1
+  peso: 5
+  sizeX: 4
+  sizeY: 1
+  spwnQuantity: {x: 1, y: 1}
+  iDamage: 0
+  eDamage: 0.8
+  mDamage: 0
+  iAttackSpeed: 0
+  eAttackSpeed: 0.65
+  mAttackSpeed: 0
+  iSpeed: 0
+  eSpeed: 0
+  mSpeed: 0
+  iAttackRange: 0.3
+  eAttackRange: 0
+  iRQuant: 1
+  eRQuant: 0
+  iHealth: 5
+  eHealth: 0
+  iDefense: 0
+  eDefense: 0
+  mDefense: 0
+  iWeight: 0
+  eWeight: 0
+  attackType: 1
+  bSpeed: 13
+  desviation: 5
+  bPiercing: 1
+  bBounce: 0
+  bulletPrefab: {fileID: 1117003242370999814, guid: 665117b98217f0a4f84e28200bcfd887, type: 3}
+  price: 95
+  tHealth: 0
+  rHealth: 0
+  filling: 0
+  consumableExtraTime: 0
+  tempDamageMult: 1
+  tempSpeedMult: 1
+  tempDefenseMult: 1
+  tempRegenMult: 1
+  tempAttackSpeedMult: 1
+  shape:
+    rows:
+    - array: 0100000000000000
+    - array: 0100000000000000
+    - array: 0100000000000000
+    - array: 0100000000000000
+    - array: 0000000000000000
+    - array: 0000000000000000
+    - array: 0000000000000000
+    - array: 0000000000000000

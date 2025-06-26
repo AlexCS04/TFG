@@ -12,8 +12,8 @@ public class ItemDecription : ISendDesc
         SCT sct = item.sct;
         string description = "";
         description += "<color=#ff0000>" + sct.Name + "</color>\n";
-        if(sct.Name!="Money")
-        description += "Level: <color=#0000ff>" + Mathf.CeilToInt(item.lvl / 10f) + "</color>\n";
+        if (sct.Name != "Money")
+            description += "Level: <color=#0000ff>" + Mathf.CeilToInt(item.lvl / 10f) + "</color>\n";
 
         // description += "\n";
         if (sct.equipType != EquipType.Consumable)
@@ -133,6 +133,9 @@ public class ItemDecription : ISendDesc
                     description += "Bullet Speed: ";
                     description += PosOrNeg(sct.bSpeed);
                     description += sct.bSpeed * Mathf.CeilToInt(item.lvl / 10f) + "</color>\n";
+                    description += "Desviation: ";
+                    description += Desviation(sct.desviation);
+                    description += sct.desviation + "</color>\n";
                     if (sct.bBounce)
                     {
                         description += "Bullets bounce\n";
@@ -223,21 +226,28 @@ public class ItemDecription : ISendDesc
             if (sct.tempAttackSpeedMult != 1)
             {
                 description += "Grants a attack speed multiplier\nOf ";
-                description += PosOrNeg(sct.tempAttackSpeedMult-1);
-                description += 1/sct.tempAttackSpeedMult + "</color>";
+                description += PosOrNeg(sct.tempAttackSpeedMult - 1);
+                description += 1 / sct.tempAttackSpeedMult + "</color>";
                 description += " during ";
                 description += sct.consumableExtraTime + " seconds\n";
             }
-            
+
         }
 
         description += "Weight: ";
-        description += sct.peso.ToString()+"\n";
-            desc = description;
+        description += sct.peso.ToString() + "\n";
+        desc = description;
     }
     private string PosOrNeg(float data)
     {
         if (data < 0)
+            return "<color=#E40000>";
+        else
+            return "<color=#00A200>";
+    }
+    private string Desviation(float data)
+    {
+        if (data != 0)
             return "<color=#E40000>";
         else
             return "<color=#00A200>";

@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 5072215323696193377}
   - component: {fileID: 63295769267835967}
   - component: {fileID: 6180297787797063250}
+  - component: {fileID: 6133441312046904327}
   m_Layer: 8
   m_Name: RangedEnemy1
   m_TagString: Enemies
@@ -86,7 +87,7 @@ SpriteRenderer:
   m_SortingLayerID: 951282349
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9cc59d4e255da2c4387449d27ff92dc9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -117,8 +118,8 @@ MonoBehaviour:
   retrieveState: {fileID: 1578176216470953227}
   idleState: {fileID: 6180297787797063250}
   chaseDistance: 5
-  retrieveDistance: 3.2
-  speed: 3.4
+  retrieveDistance: 0
+  speed: 4.1
 --- !u!114 &5911749779857050721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseDistance: 0
   speed: 0
-  followType: 1
+  followType: 3
 --- !u!114 &1578176216470953227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attack: {fileID: 4688587269395884203}
-  attackPattern: 0
+  attackPattern: 3
 --- !u!114 &4688587269395884203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,18 +178,18 @@ MonoBehaviour:
   attackSpeed: 0.7
   attackPoint: {fileID: 6960728745653061290}
   attackRange: 1
-  damage: 0.7
-  secDamage: 0.3
+  damage: 1.1
+  secDamage: 0.74
   attackLayer:
     serializedVersion: 2
     m_Bits: 512
   attackType: 1
-  bullet: {fileID: 1117003242370999814, guid: 665117b98217f0a4f84e28200bcfd887, type: 3}
+  bullet: {fileID: 1117003242370999814, guid: 59104ea0aef1364408850c7dcf366553, type: 3}
   particlePref: {fileID: 0}
   rangeY: 1
-  desviation: 0.5
-  bSpeed: 8.4
-  bPiercing: 1
+  desviation: 0
+  bSpeed: 7
+  bPiercing: 2
   bBounce: 0
 --- !u!114 &5518813409773207029
 MonoBehaviour:
@@ -202,11 +203,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45eca9c7697bfaa40a7b9228f6a8f2c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 9
+  maxHealth: 8
   currentHealth: 0
   regenHealth: 0
   bDefense: 0
-  cDefense: 1
+  cDefense: 0
   healthSlider: {fileID: 0}
   healthSlider2: {fileID: 0}
   pool:
@@ -290,6 +291,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73258fc2889b734797532692a601495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &6133441312046904327
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640615273078495394}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1761a87097b82b6448ba43e4c00cd9c6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6195388511844496271
 GameObject:
   m_ObjectHideFlags: 0

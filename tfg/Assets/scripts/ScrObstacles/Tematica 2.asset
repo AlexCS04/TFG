@@ -15,7 +15,8 @@ MonoBehaviour:
   nombre: t2
   siguientesTematicas:
   - {fileID: 11400000, guid: 88c8c66b86f870545b213f46b49cffb7, type: 2}
-  - {fileID: 11400000, guid: 512e24db33520894da0df983d0a83ace, type: 2}
+  - {fileID: 11400000, guid: a0a0a31a8dade634881fe100e50ba4a8, type: 2}
+  - {fileID: 11400000}
   enviromentSprites:
   - {fileID: 21300000, guid: 72904dd05c251f04f85a93c84fb4d1d7, type: 3}
   - {fileID: 21300000, guid: fd4ce60282ac4a149ab0be3cfe814dd1, type: 3}

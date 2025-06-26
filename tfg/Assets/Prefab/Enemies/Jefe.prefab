@@ -148,7 +148,7 @@ Animator:
   m_GameObject: {fileID: 5088639751615371274}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b7afd92e74a659d45ab9fabff2a418e9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 86e42c38dc7e11a419a779222fe4b4d0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2cec727dac205b4abf256b466aba466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 70
+  maxHealth: 100
   currentHealth: 0
   regenHealth: 0
   bDefense: 0
@@ -251,7 +251,7 @@ MonoBehaviour:
   - {fileID: 6102152527071966567}
   - {fileID: 3938931777765245950}
   patterns: fffffffffefffffffdffffff
-  chaseDistance: 3
+  chaseDistance: 2
   idleState: {fileID: 210076988975841834}
   chaseState: {fileID: 5862018026503008993}
   attackState: {fileID: 8882932684246633711}
@@ -340,7 +340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackSpeed: 0
   attackPoint: {fileID: 5736960812101447339}
-  attackRange: 3.7
+  attackRange: 3
   damage: 8
   secDamage: 3.6
   attackLayer:

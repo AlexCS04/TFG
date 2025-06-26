@@ -48,8 +48,8 @@ MonoBehaviour:
   tHealth: 6
   rHealth: 5
   filling: 2
-  consumableExtraTime: 20
-  tempDamageMult: 2
+  consumableExtraTime: 1
+  tempDamageMult: 1
   tempSpeedMult: 1
   tempDefenseMult: 1
   tempRegenMult: 1

@@ -41,10 +41,12 @@ public class SCT : ScriptableObject
     public AttackType attackType;//
 
     public float bSpeed=1;//
+    public float desviation=0;//
 
     public int bPiercing=1;//
 
     public bool bBounce;//
+    public GameObject bulletPrefab;//
 
     [Range(5,300)]
     public int price;

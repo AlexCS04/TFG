@@ -60,7 +60,7 @@ public class Attack : MonoBehaviour
         {
             c = Physics2D.OverlapBoxAll(new Vector3(attackPoint.position.x + attackRange / 2 * (transform.eulerAngles.y == 0 ? 1 : -1), attackPoint.position.y, 0), new Vector2(attackRange, rangeY), 0, attackLayer);
             newScale.x = attackRange;
-            if (Random.Range(0, 2) == 0) AudioManager.PlaySound(EffectTypes.sword1); else AudioManager.PlaySound(EffectTypes.sword2); 
+            if (Random.Range(0, 2) == 0) AudioManager.PlaySound(EffectTypes.sword1); else AudioManager.PlaySound(EffectTypes.sword2);
 
         }
         foreach (Collider2D item in c)
@@ -143,6 +143,7 @@ public class Attack : MonoBehaviour
                 break;
 
         }
+        if (GetComponent<Animator>()) GetComponent<Animator>().SetBool("Attack",true);
 
 
     }
@@ -274,6 +275,10 @@ public class Attack : MonoBehaviour
     }
 
     #endregion
+    public void ANim()
+    {
+        if (GetComponent<Animator>()) GetComponent<Animator>().SetBool("Attack",false);
+    }
 }
 
 public enum AttackType

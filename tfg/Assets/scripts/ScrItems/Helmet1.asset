@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Helmet1
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: e08d039547105d246a0fc0d82ae41ba7, type: 3}
-  Name: Helmet1
+  Name: Cool Glasses
   equipType: 4
-  maxStack: 2
+  maxStack: 5
   peso: 5
   sizeX: 3
   sizeY: 2
@@ -27,24 +27,25 @@ MonoBehaviour:
   eAttackSpeed: -0.12
   mAttackSpeed: 0
   iSpeed: 0
-  eSpeed: 0.6
+  eSpeed: 0.4
   mSpeed: 0
   iAttackRange: 0
-  eAttackRange: -0.1
+  eAttackRange: -0.12
   iRQuant: 0
   eRQuant: 0
   iHealth: 1
   eHealth: 4.5
   iDefense: 0
-  eDefense: 2
-  mDefense: 0.1
+  eDefense: 3
+  mDefense: 0
   iWeight: 0
-  eWeight: 3
+  eWeight: 2.5
   attackType: 0
   bSpeed: 1
   bPiercing: 1
   bBounce: 0
-  price: 68
+  bulletPrefab: {fileID: 0}
+  price: 192
   tHealth: 0
   rHealth: 0
   filling: 0

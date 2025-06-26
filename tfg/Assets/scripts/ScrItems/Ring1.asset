@@ -42,9 +42,11 @@ MonoBehaviour:
   eWeight: 0
   attackType: 0
   bSpeed: 1
+  desviation: 0
   bPiercing: 1
   bBounce: 0
-  price: 63
+  bulletPrefab: {fileID: 0}
+  price: 108
   tHealth: 0
   rHealth: 0
   filling: 0

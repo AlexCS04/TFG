@@ -1747,6 +1747,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 88c8c66b86f870545b213f46b49cffb7, type: 2}
   - {fileID: 11400000, guid: 522d2ad4019e86b4f967ab16fa11f585, type: 2}
   - {fileID: 11400000, guid: 512e24db33520894da0df983d0a83ace, type: 2}
+  - {fileID: 11400000, guid: a0a0a31a8dade634881fe100e50ba4a8, type: 2}
   shopPool:
   - {fileID: 11400000, guid: c69b7caebece93741acca9c7a34879d1, type: 2}
   - {fileID: 11400000, guid: f0a7ea1ebb73db14fbdadc8ad53e0d52, type: 2}
@@ -5374,6 +5375,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ab67e81d71de41e4c84345e08b3db30b, type: 2}
   - {fileID: 11400000, guid: 6f2175f211a114e42b36a873b4a0c70c, type: 2}
   - {fileID: 11400000, guid: f21a706975d23894f9e1940f6910747d, type: 2}
+  - {fileID: 11400000, guid: 269a92b391758094ea4e5ea09fe169bb, type: 2}
   pause: {fileID: 1958875333}
   itemsArea: []
 --- !u!114 &853741646

@@ -414,6 +414,8 @@ public class PlayerBackpack : MonoBehaviour
         if (wep == null) return;
         playerAttack.attackType = wep.sct.attackType;
         if (wep.sct.attackType == AttackType.meleeS) playerAttack.particlePref = slashEffect;
+        if (wep.sct.attackType == AttackType.ranged) playerAttack.bullet = wep.sct.bulletPrefab;
+        playerAttack.desviation = wep.sct.desviation;
         playerAttack.attackSpeed = wep.sct.eAttackSpeed;
         playerAttack.attackRange = wep.sct.eAttackRange;
         playerAttack.bSpeed = wep.sct.bSpeed;

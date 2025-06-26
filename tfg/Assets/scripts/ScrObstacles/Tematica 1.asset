@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombre: t1
   siguientesTematicas:
-  - {fileID: 11400000, guid: 522d2ad4019e86b4f967ab16fa11f585, type: 2}
+  - {fileID: 11400000, guid: 512e24db33520894da0df983d0a83ace, type: 2}
+  - {fileID: 11400000}
   enviromentSprites:
   - {fileID: 21300000, guid: 2eedfa64b48407d4da01ec5000457c6b, type: 3}
   - {fileID: 21300000, guid: 9ca83b62c8647aa4f8c065c8d71bdbe0, type: 3}

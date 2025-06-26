@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gun1
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 5c5ed0597a781394e81949aedaafe527, type: 3}
-  Name: Gun1
+  Name: Big Holer
   equipType: 0
   maxStack: 1
   peso: 8
@@ -21,14 +21,14 @@ MonoBehaviour:
   sizeY: 1
   spwnQuantity: {x: 1, y: 1}
   iDamage: 0
-  eDamage: 5.5
+  eDamage: 5.7
   mDamage: 0
   iAttackSpeed: 0
-  eAttackSpeed: 1.2
+  eAttackSpeed: 2.3
   mAttackSpeed: 0
   iSpeed: 0
   eSpeed: 0
-  mSpeed: -0.04
+  mSpeed: -0.03
   iAttackRange: 0
   eAttackRange: 0
   iRQuant: 0
@@ -36,15 +36,16 @@ MonoBehaviour:
   iHealth: 1
   eHealth: 0
   iDefense: 0
-  eDefense: 1
-  mDefense: -0.01
+  eDefense: 0.3
+  mDefense: 0.01
   iWeight: 0
   eWeight: 0
   attackType: 1
-  bSpeed: 13
+  bSpeed: 6
   bPiercing: 4
   bBounce: 0
-  price: 54
+  bulletPrefab: {fileID: 1117003242370999814, guid: 57e8a1e5da3f31c42aeaf5af7a6cbf9c, type: 3}
+  price: 90
   tHealth: 0
   rHealth: 0
   filling: 0
