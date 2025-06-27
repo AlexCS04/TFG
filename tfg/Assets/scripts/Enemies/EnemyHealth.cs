@@ -5,7 +5,8 @@ public class EnemyHealth : Health
     public override void Die()
     {
         Eventmanager.OnEnemyDeath();
-        base.Die();
+        ItemSpwnManager.instance.SpawnItem(pool, transform.position, RoomManager.instance.roomRandom);
+        Destroy(gameObject);
     }
     public override void TakeDamage(float tHealth, float rHealth)
     {

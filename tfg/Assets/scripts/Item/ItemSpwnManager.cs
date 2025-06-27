@@ -21,10 +21,11 @@ public class ItemSpwnManager : MonoBehaviour
         itemRandom = new System.Random(tSeed);
     }
 
-    public void SpawnItem(SCT sct, Vector3 pos)
+    public void SpawnItem(SCT sct, Vector3 pos, System.Random r)
     {
+        if (r == null) r = itemRandom;
         if (sct == null) return;
-        SpawnItem(sct, pos, itemRandom.Next(sct.spwnQuantity.x, sct.spwnQuantity.y));
+        SpawnItem(sct, pos, r.Next(sct.spwnQuantity.x, sct.spwnQuantity.y));
     }
     public void SpawnItem(SCT sct, Vector3 pos, int stack)
     {
@@ -40,12 +41,12 @@ public class ItemSpwnManager : MonoBehaviour
     public void SpawnItem(List<SCT> sctList, Vector3 pos)
     {
         if (sctList.Count == 0) return;
-        SpawnItem(sctList[itemRandom.Next(0, sctList.Count)], pos);
+        SpawnItem(sctList[itemRandom.Next(0, sctList.Count)], pos, null);
     }
     public void SpawnItem(List<SCT> sctList, Vector3 pos, System.Random r)
     {
         if (sctList.Count == 0) return;
-        SpawnItem(sctList[r.Next(0, sctList.Count)], pos);
+        SpawnItem(sctList[r.Next(0, sctList.Count)], pos,r);
     }
     public void SpawnShopItem(List<SCT> sctList, Vector3 pos)
     {
