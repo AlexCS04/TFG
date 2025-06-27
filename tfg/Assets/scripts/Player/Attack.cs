@@ -237,7 +237,7 @@ public class Attack : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         for (int i = 1; i <= 9; i++)
         {
-            float angulo = 2 * Mathf.PI * i / 32;
+            float angulo = 2 * Mathf.PI * i / 9;
             Vector2 pos = new Vector2(Mathf.Cos(angulo), Mathf.Sin(angulo));
             Debug.Log(pos);
             GameObject temp = Instantiate(bullet, transform.position, Quaternion.identity);
