@@ -10,43 +10,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb8e3f46b0c50ed4b82596c498ab1c7d, type: 3}
-  m_Name: Helmet1 2
+  m_Name: Slasher 1
   m_EditorClassIdentifier: 
-  sprite: {fileID: -7368531347724195804, guid: d26281aa43160d749899dd0d7eaebd5b, type: 3}
-  Name: Quacker
-  equipType: 4
-  maxStack: 3
-  peso: 1
-  sizeX: 2
+  sprite: {fileID: 21300000, guid: 8d19a78dd28ce04499a6d8e484229072, type: 3}
+  Name: Slasher
+  equipType: 0
+  maxStack: 1
+  peso: 5
+  sizeX: 1
   sizeY: 1
   spwnQuantity: {x: 1, y: 1}
-  iDamage: 0.02
-  eDamage: 0
+  iDamage: 0
+  eDamage: 3
   mDamage: 0
   iAttackSpeed: 0
-  eAttackSpeed: 0
+  eAttackSpeed: 0.9
   mAttackSpeed: 0
   iSpeed: 0
-  eSpeed: 0.3
-  mSpeed: 0.02
+  eSpeed: 0.1
+  mSpeed: 0.01
   iAttackRange: 0
-  eAttackRange: 0.2
+  eAttackRange: 1.1
   iRQuant: 0
   eRQuant: 0
-  iHealth: 6
-  eHealth: 5
+  iHealth: 1
+  eHealth: 3
   iDefense: 0
-  eDefense: 1
-  mDefense: 0
+  eDefense: 0
+  mDefense: 0.05
   iWeight: 0
-  eWeight: 0.5
-  attackType: 0
+  eWeight: 0
+  attackType: 2
   bSpeed: 1
   desviation: 0
   bPiercing: 1
-  bBounce: 0
+  bBounce: 1
   bulletPrefab: {fileID: 0}
-  price: 144
+  price: 52
   tHealth: 0
   rHealth: 0
   filling: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
   shape:
     rows:
     - array: 0100000000000000
-    - array: 0100000000000000
+    - array: 0000000000000000
     - array: 0000000000000000
     - array: 0000000000000000
     - array: 0000000000000000

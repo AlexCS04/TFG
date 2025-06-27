@@ -245,6 +245,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8757d73062846b943b81bec74d9dc976, type: 2}
   - {fileID: 11400000, guid: f21a706975d23894f9e1940f6910747d, type: 2}
   - {fileID: 11400000, guid: f21a706975d23894f9e1940f6910747d, type: 2}
+  - {fileID: 11400000, guid: 749d3980d4f4e094eba87ca2dafb53ba, type: 2}
   money: {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}
 --- !u!114 &3899590768275288799
 MonoBehaviour:

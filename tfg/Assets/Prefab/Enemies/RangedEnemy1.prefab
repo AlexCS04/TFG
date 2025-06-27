@@ -215,6 +215,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 11400000, guid: 1e8256a2bda2f5b4193f7535c4b70ac5, type: 2}
   - {fileID: 11400000, guid: 1e8256a2bda2f5b4193f7535c4b70ac5, type: 2}
   - {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}
@@ -222,6 +223,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}
   - {fileID: 11400000, guid: 8757d73062846b943b81bec74d9dc976, type: 2}
   - {fileID: 11400000, guid: 925f32a80df735c48b50f0f3398211df, type: 2}
+  - {fileID: 11400000, guid: 749d3980d4f4e094eba87ca2dafb53ba, type: 2}
 --- !u!58 &5072215323696193377
 CircleCollider2D:
   m_ObjectHideFlags: 0

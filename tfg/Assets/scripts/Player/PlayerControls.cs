@@ -10,7 +10,7 @@ public class PlayerControls : MonoBehaviour
     public float mochilaMaxPeso;
     public float mochilaPeso;
     public float currentSpeed;
-    [SerializeField] private List<SCT> testItemSpawn;
+    // [SerializeField] private List<SCT> testItemSpawn;
 
     private bool openInv;
     private Animator animator;

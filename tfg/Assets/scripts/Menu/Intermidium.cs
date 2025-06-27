@@ -12,7 +12,7 @@ public class Intermidium : MonoBehaviour
 
     void Start()
     {
-        if (PlayerPrefs.GetInt("Cine") == 0) Cine();
+        // if (PlayerPrefs.GetInt("Cine") == 0) Cine();
         AudioManager.PlayMusic(MusicTypes.intermedium);
     }
     private void Cine()
@@ -33,23 +33,23 @@ public class Intermidium : MonoBehaviour
     }
     void Update()
     {
-        if (Input.anyKey)
-        {
-            startCine += Time.deltaTime;
-            skip.value = Mathf.InverseLerp(0, 2.25f, startCine);
-        }
-        else
-        {
-            startCine = Mathf.Clamp(startCine - Time.deltaTime, 0, 2.25f);
-            skip.value = Mathf.InverseLerp(0,2.25f, startCine);
-        }
-        if (startCine >= 2.25f && !player.enabled)
-        {
-            StopCoroutine("Cinematica");
-            Debug.Log("satsr");
+        // if (Input.anyKey)
+        // {
+        //     startCine += Time.deltaTime;
+        //     skip.value = Mathf.InverseLerp(0, 2.25f, startCine);
+        // }
+        // else
+        // {
+        //     startCine = Mathf.Clamp(startCine - Time.deltaTime, 0, 2.25f);
+        //     skip.value = Mathf.InverseLerp(0,2.25f, startCine);
+        // }
+        // if (startCine >= 2.25f && !player.enabled)
+        // {
+        //     StopCoroutine("Cinematica");
+        //     Debug.Log("satsr");
 
-            cine.SetActive(false);
-            player.enabled = true;
-        }
+        //     cine.SetActive(false);
+        //     player.enabled = true;
+        // }
     }
 }

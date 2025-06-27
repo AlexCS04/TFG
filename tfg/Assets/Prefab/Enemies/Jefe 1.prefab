@@ -235,7 +235,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5c77c2865af81e14bb6c6fb77858c58e, type: 2}
   - {fileID: 11400000, guid: 6b8d0c488ba42534887dd40de7bcb35a, type: 2}
   - {fileID: 11400000, guid: 99d8e06db1b66ff47951273cac3b355c, type: 2}
-  - {fileID: 11400000, guid: 99d8e06db1b66ff47951273cac3b355c, type: 2}
+  - {fileID: 11400000, guid: 4395a06ff29d7374ab06f1849a8a0d16, type: 2}
   - {fileID: 11400000, guid: 99d8e06db1b66ff47951273cac3b355c, type: 2}
   - {fileID: 11400000, guid: 2664cf47e425d9a4399b4ff175729ace, type: 2}
   money: {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}

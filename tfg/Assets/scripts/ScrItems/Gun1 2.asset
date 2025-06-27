@@ -17,7 +17,7 @@ MonoBehaviour:
   equipType: 0
   maxStack: 3
   peso: 3
-  sizeX: 4
+  sizeX: 3
   sizeY: 1
   spwnQuantity: {x: 1, y: 1}
   iDamage: 0
@@ -61,7 +61,7 @@ MonoBehaviour:
     - array: 0100000000000000
     - array: 0100000000000000
     - array: 0100000000000000
-    - array: 0100000000000000
+    - array: 0000000000000000
     - array: 0000000000000000
     - array: 0000000000000000
     - array: 0000000000000000

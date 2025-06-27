@@ -30,7 +30,7 @@ MonoBehaviour:
   eSpeed: 0
   mSpeed: 0
   iAttackRange: 0
-  eAttackRange: 1.7
+  eAttackRange: 1.2
   iRQuant: 0
   eRQuant: 0
   iHealth: 1.2

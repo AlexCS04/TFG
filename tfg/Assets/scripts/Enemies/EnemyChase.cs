@@ -83,8 +83,11 @@ public class EnemyChase : EnemyState
     }
     public override void FixedDo()
     {
-        Vector2 direction = (destination - (Vector2)transform.position).normalized;
-        rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+        if (followType != FollowType.noMove)
+        {
+            Vector2 direction = (destination - (Vector2)transform.position).normalized;
+            rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+        }
     }
     public override void Exit()
     {

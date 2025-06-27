@@ -19,7 +19,7 @@ MonoBehaviour:
   minPosition: {x: 2, y: 2}
   maxPosition: {x: 13, y: 6}
   porcentajePos: 1
-  minPerPos: {x: 0.05, y: 0.05}
+  minPerPos: {x: 0.05, y: 0.1}
   maxPerPos: {x: 0.12, y: 0.88}
   minRotation: -5
   maxRotation: 5

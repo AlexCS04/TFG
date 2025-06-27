@@ -1772,6 +1772,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 041062a7e0ce93b41b605cf7c1cd6837, type: 2}
   - {fileID: 11400000, guid: 2664cf47e425d9a4399b4ff175729ace, type: 2}
   - {fileID: 11400000, guid: 4d354b9fabd4ae041b053e69dbfa5fef, type: 2}
+  - {fileID: 11400000, guid: b1436d89b37b0024fa52702284cbb905, type: 2}
+  - {fileID: 11400000, guid: aad2f5d9da228934f8dd423eb312f73d, type: 2}
+  - {fileID: 11400000, guid: 9a8b22fab37ff5546844efa45cb19ea1, type: 2}
+  - {fileID: 11400000, guid: d787b2b06e57bc6479402428e494a21b, type: 2}
+  - {fileID: 11400000, guid: 4395a06ff29d7374ab06f1849a8a0d16, type: 2}
+  - {fileID: 11400000, guid: 74064331771438b4093a41a99d2730d0, type: 2}
+  - {fileID: 11400000, guid: 10b4242b13c6ff2418137b3c80737fd4, type: 2}
+  - {fileID: 11400000, guid: 749d3980d4f4e094eba87ca2dafb53ba, type: 2}
+  - {fileID: 11400000, guid: 2b91fefc144729c41aed89ebc3bd5b1c, type: 2}
   consumPool:
   - {fileID: 11400000, guid: 27b7033bda9c0e04ea86c35b4464f85f, type: 2}
   - {fileID: 11400000, guid: 6b8d0c488ba42534887dd40de7bcb35a, type: 2}
@@ -1783,6 +1792,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 76ef62715268b6f4b9dfadb38a901050, type: 2}
   - {fileID: 11400000, guid: 041062a7e0ce93b41b605cf7c1cd6837, type: 2}
   - {fileID: 11400000, guid: 2664cf47e425d9a4399b4ff175729ace, type: 2}
+  - {fileID: 11400000, guid: aad2f5d9da228934f8dd423eb312f73d, type: 2}
+  - {fileID: 11400000, guid: 9a8b22fab37ff5546844efa45cb19ea1, type: 2}
   treasurePool:
   - {fileID: 11400000, guid: c69b7caebece93741acca9c7a34879d1, type: 2}
   - {fileID: 11400000, guid: f0a7ea1ebb73db14fbdadc8ad53e0d52, type: 2}
@@ -1803,6 +1814,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 76ef62715268b6f4b9dfadb38a901050, type: 2}
   - {fileID: 11400000, guid: 2664cf47e425d9a4399b4ff175729ace, type: 2}
   - {fileID: 11400000, guid: 4d354b9fabd4ae041b053e69dbfa5fef, type: 2}
+  - {fileID: 11400000, guid: b1436d89b37b0024fa52702284cbb905, type: 2}
+  - {fileID: 11400000, guid: 749d3980d4f4e094eba87ca2dafb53ba, type: 2}
+  - {fileID: 11400000, guid: 2b91fefc144729c41aed89ebc3bd5b1c, type: 2}
+  - {fileID: 11400000, guid: 74064331771438b4093a41a99d2730d0, type: 2}
+  - {fileID: 11400000, guid: 10b4242b13c6ff2418137b3c80737fd4, type: 2}
+  - {fileID: 11400000, guid: 4395a06ff29d7374ab06f1849a8a0d16, type: 2}
+  - {fileID: 11400000, guid: 4395a06ff29d7374ab06f1849a8a0d16, type: 2}
   weaponPool:
   - {fileID: 11400000, guid: c69b7caebece93741acca9c7a34879d1, type: 2}
   - {fileID: 11400000, guid: f21a706975d23894f9e1940f6910747d, type: 2}
@@ -1810,6 +1828,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1e8256a2bda2f5b4193f7535c4b70ac5, type: 2}
   - {fileID: 11400000, guid: 8e9e8fd1bb8e7b043b30b11ac9e41282, type: 2}
   - {fileID: 11400000, guid: 4d354b9fabd4ae041b053e69dbfa5fef, type: 2}
+  - {fileID: 11400000, guid: b1436d89b37b0024fa52702284cbb905, type: 2}
+  - {fileID: 11400000, guid: 2b91fefc144729c41aed89ebc3bd5b1c, type: 2}
   wagonList:
   - {fileID: 0}
   - {fileID: 0}
@@ -5406,18 +5426,6 @@ MonoBehaviour:
   mochilaMaxPeso: 25
   mochilaPeso: 0
   currentSpeed: 0
-  testItemSpawn:
-  - {fileID: 11400000, guid: c69b7caebece93741acca9c7a34879d1, type: 2}
-  - {fileID: 11400000, guid: f0a7ea1ebb73db14fbdadc8ad53e0d52, type: 2}
-  - {fileID: 11400000, guid: 6b8d0c488ba42534887dd40de7bcb35a, type: 2}
-  - {fileID: 11400000, guid: bfd3420f9ba9e9048b1a3a7ad573475e, type: 2}
-  - {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}
-  - {fileID: 11400000, guid: 27b7033bda9c0e04ea86c35b4464f85f, type: 2}
-  - {fileID: 11400000, guid: 996122c888d9f3e45b96699f9dd30238, type: 2}
-  - {fileID: 11400000, guid: ab67e81d71de41e4c84345e08b3db30b, type: 2}
-  - {fileID: 11400000, guid: 6f2175f211a114e42b36a873b4a0c70c, type: 2}
-  - {fileID: 11400000, guid: f21a706975d23894f9e1940f6910747d, type: 2}
-  - {fileID: 11400000, guid: 269a92b391758094ea4e5ea09fe169bb, type: 2}
   pause: {fileID: 1958875333}
   itemsArea: []
 --- !u!114 &853741646
@@ -5470,8 +5478,8 @@ MonoBehaviour:
   pool: []
   maxFood: 10
   foodSlider: {fileID: 210336883}
-  regenTimer: 3
-  foodTimer: 12
+  regenTimer: 5
+  foodTimer: 15
   rQuant: 1
   invuFramesCount: 2
 --- !u!114 &853741648

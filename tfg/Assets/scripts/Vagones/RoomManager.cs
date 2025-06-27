@@ -131,10 +131,10 @@ public class RoomManager : MonoBehaviour
         GameObject v = Instantiate(vagonVacio, position, Quaternion.identity);
         if (numWagons < WAGONS) numWagons += 1;
         areasRestringidas = new List<Bounds>{
-            new Bounds(new Vector3(1+WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT/2f, 0), new Vector3(2, 3, 0)),
-            new Bounds(new Vector3((WAGON_WIDHT-1)+WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT/2f, 0), new Vector3(2, 3, 0)),
-            new Bounds(new Vector3((WAGON_WIDHT/2)+WAGON_WIDHT*(wagonCount%WAGONS), 0.5f, 0), new Vector3(2, 1, 0)),
-            new Bounds(new Vector3((WAGON_WIDHT/2)+WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT-0.5f, 0), new Vector3(2, 1, 0)),
+            new Bounds(new Vector3(1+WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT/2f, 0), new Vector3(2.5f, 3.5f, 0)),
+            new Bounds(new Vector3((WAGON_WIDHT-1)+WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT/2f, 0), new Vector3(2.5f, 3.5f, 0)),
+            new Bounds(new Vector3((WAGON_WIDHT/2)+WAGON_WIDHT*(wagonCount%WAGONS), 0.5f, 0), new Vector3(2.5f, 1.5f, 0)),
+            new Bounds(new Vector3((WAGON_WIDHT/2)+WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT-0.5f, 0), new Vector3(2.5f, 1.5f, 0)),
         };
 
         BoxCollider2D b = v.transform.GetChild(0).GetComponent<BoxCollider2D>();
@@ -274,7 +274,7 @@ public class RoomManager : MonoBehaviour
                     // Random.Range(WAGON_WIDHT*(wagonCount%WAGONS),.9f*WAGON_WIDHT+WAGON_WIDHT*(wagonCount%WAGONS)),
                     // Random.Range(0.25f,WAGON_HEIGHT*.9f),
                     (float)(roomRandom.NextDouble()*(WAGON_WIDHT*.9f-WAGON_WIDHT*.1f)+WAGON_WIDHT*.1f) + WAGON_WIDHT*(wagonCount%WAGONS),
-                    (float)(roomRandom.NextDouble()*(WAGON_HEIGHT*.9f-0.25f)+0.25f),
+                    (float)(roomRandom.NextDouble()*(WAGON_HEIGHT*.9f-0.3f)+0.3f),
                     0
 
                 );
