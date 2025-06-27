@@ -337,7 +337,7 @@ public class PlayerBackpack : MonoBehaviour
         playerControls.currentSpeed *= tempSpeedMult;
         playerHealth.cDefense *= tempDefenseMult;
         playerAttack.attackSpeed *= 1/tempAttackSpeedMult;
-        Debug.Log(tempRegenMult);
+        // Debug.Log(tempRegenMult);
         playerHealth.rQuant *= tempRegenMult;
         
 

@@ -105,5 +105,6 @@ public class BossBehaviour : MonoBehaviour
 
         health.bDefense *= aditivo;
         health.maxHealth *= aditivo;
+        health.ActHealthVisual();
     }
 }

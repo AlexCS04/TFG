@@ -22,6 +22,9 @@ public class MenuButtons : MonoBehaviour
     }
     public void GoToGame(string file)
     {
+        int s = PlayerPrefs.GetInt(file);
+        if (s != 0) PlayerPrefs.SetInt("Cine", 1);
+        else PlayerPrefs.SetInt("Cine", 0);
         SceneManager.LoadScene("Intermidium");
     }
     void Start()

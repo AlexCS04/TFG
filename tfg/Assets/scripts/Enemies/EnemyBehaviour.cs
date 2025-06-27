@@ -20,7 +20,6 @@ public class EnemyBehaviour : MonoBehaviour
     {
         Scale(RoomManager.instance.wagonCount);
         player = RoomManager.instance.player;
-        // SelectState();
         state = idleState;
         chaseState.speed = speed;
         retrieveState.speed = speed;

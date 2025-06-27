@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Enemies
   - ShopItem
+  - Pet
   layers:
   - Default
   - TransparentFX

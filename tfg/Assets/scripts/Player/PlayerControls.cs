@@ -47,18 +47,18 @@ public class PlayerControls : MonoBehaviour
             if (openInv) OpenInv();
             else OpenPause();
         }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            ItemSpwnManager.instance.SpawnItem(testItemSpawn, transform.position);
-        }
+        // if (Input.GetKeyDown(KeyCode.J))
+        // {
+        //     ItemSpwnManager.instance.SpawnItem(testItemSpawn, transform.position);
+        // }
         if (Input.GetButton("Fire1"))
         {
             Attack();
         }
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            GetComponent<PlayerHealth>().TakeDamage(2, 1);
-        }
+        // if (Input.GetKeyDown(KeyCode.V))
+        // {
+        //     GetComponent<PlayerHealth>().TakeDamage(2, 1);
+        // }
 
     }
     void FixedUpdate()

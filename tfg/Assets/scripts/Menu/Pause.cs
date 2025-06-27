@@ -43,7 +43,7 @@ public class Pause : MonoBehaviour
     public void Retrieve()
     {
         Time.timeScale = 1;
-        PlayerPrefs.SetInt("Salir", RoomManager.instance.winCon ? 1 : -1);
+        PlayerPrefs.SetInt("Salir", RoomManager.instance.wagonCount);
         SceneManager.LoadScene("Huida");
     }
     public void Options(GameObject options)

@@ -36,7 +36,7 @@ public class PlayerHealth : Health
 
     public override void Die()
     {
-        PlayerPrefs.SetInt("Salir", 0);
+        PlayerPrefs.SetInt("Salir", -1);
         SceneManager.LoadScene("Huida");
     }
     IEnumerator InvuFeel()
