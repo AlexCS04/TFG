@@ -77,14 +77,20 @@ public class ItemDecription : ISendDesc
                 {
                     description += "Attack Range: ";
                     description += PosOrNeg(sct.eAttackRange);
-                    description += sct.eAttackRange * Mathf.CeilToInt(item.lvl / 10f) + "</color>\n";
+                    if (sct.equipType != EquipType.PrimaryWeapon)
+                        description += sct.eAttackRange * Mathf.CeilToInt(item.lvl / 10f) + "</color>\n";
+                    else
+                        description += sct.eAttackRange + "</color>\n";
                 }
                 if (sct.eAttackSpeed != 0)
                 {
                     description += "Attack Speed: ";
                     if (sct.equipType == EquipType.PrimaryWeapon) description += PosOrNeg(sct.eAttackSpeed);
                     else description += PosOrNeg(-sct.eAttackSpeed);
-                    description += sct.eAttackSpeed * Mathf.CeilToInt(item.lvl / 10f) + "</color>\n";
+                    if (sct.equipType != EquipType.PrimaryWeapon)
+                        description += sct.eAttackSpeed * Mathf.CeilToInt(item.lvl / 10f) + "</color>\n";
+                    else
+                        description += sct.eAttackSpeed + "</color>\n";
                 }
                 if (sct.eDamage != 0)
                 {

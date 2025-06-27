@@ -228,11 +228,23 @@ MonoBehaviour:
   healthSlider: {fileID: 0}
   healthSlider2: {fileID: 0}
   pool:
+  - {fileID: 11400000, guid: ab67e81d71de41e4c84345e08b3db30b, type: 2}
+  - {fileID: 11400000, guid: ab67e81d71de41e4c84345e08b3db30b, type: 2}
+  - {fileID: 11400000, guid: ab67e81d71de41e4c84345e08b3db30b, type: 2}
+  - {fileID: 11400000, guid: 996122c888d9f3e45b96699f9dd30238, type: 2}
+  - {fileID: 11400000, guid: 996122c888d9f3e45b96699f9dd30238, type: 2}
+  - {fileID: 11400000, guid: 6f2175f211a114e42b36a873b4a0c70c, type: 2}
+  - {fileID: 11400000, guid: 6f2175f211a114e42b36a873b4a0c70c, type: 2}
   - {fileID: 11400000, guid: f0a7ea1ebb73db14fbdadc8ad53e0d52, type: 2}
-  - {fileID: 11400000, guid: ab67e81d71de41e4c84345e08b3db30b, type: 2}
-  - {fileID: 11400000, guid: c69b7caebece93741acca9c7a34879d1, type: 2}
-  - {fileID: 11400000, guid: ab67e81d71de41e4c84345e08b3db30b, type: 2}
-  - {fileID: 11400000, guid: ab67e81d71de41e4c84345e08b3db30b, type: 2}
+  - {fileID: 11400000, guid: f0a7ea1ebb73db14fbdadc8ad53e0d52, type: 2}
+  - {fileID: 11400000, guid: 8e9e8fd1bb8e7b043b30b11ac9e41282, type: 2}
+  - {fileID: 11400000, guid: 8e9e8fd1bb8e7b043b30b11ac9e41282, type: 2}
+  - {fileID: 11400000, guid: 9bc3d23d12698804c824c7b6f5d7c42a, type: 2}
+  - {fileID: 11400000, guid: 9bc3d23d12698804c824c7b6f5d7c42a, type: 2}
+  - {fileID: 11400000, guid: 8757d73062846b943b81bec74d9dc976, type: 2}
+  - {fileID: 11400000, guid: 8757d73062846b943b81bec74d9dc976, type: 2}
+  - {fileID: 11400000, guid: f21a706975d23894f9e1940f6910747d, type: 2}
+  - {fileID: 11400000, guid: f21a706975d23894f9e1940f6910747d, type: 2}
   money: {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}
 --- !u!114 &3899590768275288799
 MonoBehaviour:

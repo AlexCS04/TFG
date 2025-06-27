@@ -212,11 +212,17 @@ MonoBehaviour:
   healthSlider2: {fileID: 0}
   pool:
   - {fileID: 0}
-  - {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 11400000, guid: f21a706975d23894f9e1940f6910747d, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}
+  - {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}
+  - {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}
+  - {fileID: 11400000, guid: bfd3420f9ba9e9048b1a3a7ad573475e, type: 2}
+  - {fileID: 11400000, guid: bfd3420f9ba9e9048b1a3a7ad573475e, type: 2}
+  - {fileID: 11400000, guid: 6b8d0c488ba42534887dd40de7bcb35a, type: 2}
+  - {fileID: 11400000, guid: 5c77c2865af81e14bb6c6fb77858c58e, type: 2}
 --- !u!58 &4511114420714806598
 CircleCollider2D:
   m_ObjectHideFlags: 0

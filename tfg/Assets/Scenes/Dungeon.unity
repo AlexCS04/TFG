@@ -1755,19 +1755,61 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 996122c888d9f3e45b96699f9dd30238, type: 2}
   - {fileID: 11400000, guid: f21a706975d23894f9e1940f6910747d, type: 2}
   - {fileID: 11400000, guid: ab67e81d71de41e4c84345e08b3db30b, type: 2}
+  - {fileID: 11400000, guid: 6f2175f211a114e42b36a873b4a0c70c, type: 2}
+  - {fileID: 11400000, guid: d4f77b9b1133ffd45aadd95964329dd3, type: 2}
+  - {fileID: 11400000, guid: 8757d73062846b943b81bec74d9dc976, type: 2}
+  - {fileID: 11400000, guid: 9bc3d23d12698804c824c7b6f5d7c42a, type: 2}
+  - {fileID: 11400000, guid: 1e8256a2bda2f5b4193f7535c4b70ac5, type: 2}
+  - {fileID: 11400000, guid: 8e9e8fd1bb8e7b043b30b11ac9e41282, type: 2}
+  - {fileID: 11400000, guid: 35897ae85330fba4f9f2c3cf79c933d1, type: 2}
+  - {fileID: 11400000, guid: 5c77c2865af81e14bb6c6fb77858c58e, type: 2}
+  - {fileID: 11400000, guid: 6b8d0c488ba42534887dd40de7bcb35a, type: 2}
+  - {fileID: 11400000, guid: 269a92b391758094ea4e5ea09fe169bb, type: 2}
+  - {fileID: 11400000, guid: 925f32a80df735c48b50f0f3398211df, type: 2}
+  - {fileID: 11400000, guid: c4c6cabaa37aee94cbccc647c5dc4b74, type: 2}
+  - {fileID: 11400000, guid: 99d8e06db1b66ff47951273cac3b355c, type: 2}
+  - {fileID: 11400000, guid: 76ef62715268b6f4b9dfadb38a901050, type: 2}
+  - {fileID: 11400000, guid: 041062a7e0ce93b41b605cf7c1cd6837, type: 2}
+  - {fileID: 11400000, guid: 2664cf47e425d9a4399b4ff175729ace, type: 2}
+  - {fileID: 11400000, guid: 4d354b9fabd4ae041b053e69dbfa5fef, type: 2}
   consumPool:
   - {fileID: 11400000, guid: 27b7033bda9c0e04ea86c35b4464f85f, type: 2}
   - {fileID: 11400000, guid: 6b8d0c488ba42534887dd40de7bcb35a, type: 2}
   - {fileID: 11400000, guid: bfd3420f9ba9e9048b1a3a7ad573475e, type: 2}
+  - {fileID: 11400000, guid: 269a92b391758094ea4e5ea09fe169bb, type: 2}
+  - {fileID: 11400000, guid: 925f32a80df735c48b50f0f3398211df, type: 2}
+  - {fileID: 11400000, guid: c4c6cabaa37aee94cbccc647c5dc4b74, type: 2}
+  - {fileID: 11400000, guid: 99d8e06db1b66ff47951273cac3b355c, type: 2}
+  - {fileID: 11400000, guid: 76ef62715268b6f4b9dfadb38a901050, type: 2}
+  - {fileID: 11400000, guid: 041062a7e0ce93b41b605cf7c1cd6837, type: 2}
+  - {fileID: 11400000, guid: 2664cf47e425d9a4399b4ff175729ace, type: 2}
   treasurePool:
   - {fileID: 11400000, guid: c69b7caebece93741acca9c7a34879d1, type: 2}
   - {fileID: 11400000, guid: f0a7ea1ebb73db14fbdadc8ad53e0d52, type: 2}
   - {fileID: 11400000, guid: 996122c888d9f3e45b96699f9dd30238, type: 2}
   - {fileID: 11400000, guid: f21a706975d23894f9e1940f6910747d, type: 2}
   - {fileID: 11400000, guid: ab67e81d71de41e4c84345e08b3db30b, type: 2}
+  - {fileID: 11400000, guid: 6f2175f211a114e42b36a873b4a0c70c, type: 2}
+  - {fileID: 11400000, guid: d4f77b9b1133ffd45aadd95964329dd3, type: 2}
+  - {fileID: 11400000, guid: 8757d73062846b943b81bec74d9dc976, type: 2}
+  - {fileID: 11400000, guid: 35897ae85330fba4f9f2c3cf79c933d1, type: 2}
+  - {fileID: 11400000, guid: 5c77c2865af81e14bb6c6fb77858c58e, type: 2}
+  - {fileID: 11400000, guid: 1e8256a2bda2f5b4193f7535c4b70ac5, type: 2}
+  - {fileID: 11400000, guid: 925f32a80df735c48b50f0f3398211df, type: 2}
+  - {fileID: 11400000, guid: 8e9e8fd1bb8e7b043b30b11ac9e41282, type: 2}
+  - {fileID: 11400000, guid: c4c6cabaa37aee94cbccc647c5dc4b74, type: 2}
+  - {fileID: 11400000, guid: 99d8e06db1b66ff47951273cac3b355c, type: 2}
+  - {fileID: 11400000, guid: 041062a7e0ce93b41b605cf7c1cd6837, type: 2}
+  - {fileID: 11400000, guid: 76ef62715268b6f4b9dfadb38a901050, type: 2}
+  - {fileID: 11400000, guid: 2664cf47e425d9a4399b4ff175729ace, type: 2}
+  - {fileID: 11400000, guid: 4d354b9fabd4ae041b053e69dbfa5fef, type: 2}
   weaponPool:
   - {fileID: 11400000, guid: c69b7caebece93741acca9c7a34879d1, type: 2}
   - {fileID: 11400000, guid: f21a706975d23894f9e1940f6910747d, type: 2}
+  - {fileID: 11400000, guid: 9bc3d23d12698804c824c7b6f5d7c42a, type: 2}
+  - {fileID: 11400000, guid: 1e8256a2bda2f5b4193f7535c4b70ac5, type: 2}
+  - {fileID: 11400000, guid: 8e9e8fd1bb8e7b043b30b11ac9e41282, type: 2}
+  - {fileID: 11400000, guid: 4d354b9fabd4ae041b053e69dbfa5fef, type: 2}
   wagonList:
   - {fileID: 0}
   - {fileID: 0}

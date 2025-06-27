@@ -228,12 +228,16 @@ MonoBehaviour:
   healthSlider: {fileID: 0}
   healthSlider2: {fileID: 0}
   pool:
-  - {fileID: 11400000, guid: f0a7ea1ebb73db14fbdadc8ad53e0d52, type: 2}
-  - {fileID: 11400000, guid: ab67e81d71de41e4c84345e08b3db30b, type: 2}
   - {fileID: 11400000, guid: c69b7caebece93741acca9c7a34879d1, type: 2}
-  - {fileID: 11400000, guid: f0a7ea1ebb73db14fbdadc8ad53e0d52, type: 2}
-  - {fileID: 11400000, guid: f0a7ea1ebb73db14fbdadc8ad53e0d52, type: 2}
+  - {fileID: 11400000, guid: c69b7caebece93741acca9c7a34879d1, type: 2}
+  - {fileID: 11400000, guid: c69b7caebece93741acca9c7a34879d1, type: 2}
+  - {fileID: 11400000, guid: 5c77c2865af81e14bb6c6fb77858c58e, type: 2}
+  - {fileID: 11400000, guid: 5c77c2865af81e14bb6c6fb77858c58e, type: 2}
   - {fileID: 11400000, guid: 6b8d0c488ba42534887dd40de7bcb35a, type: 2}
+  - {fileID: 11400000, guid: 99d8e06db1b66ff47951273cac3b355c, type: 2}
+  - {fileID: 11400000, guid: 99d8e06db1b66ff47951273cac3b355c, type: 2}
+  - {fileID: 11400000, guid: 99d8e06db1b66ff47951273cac3b355c, type: 2}
+  - {fileID: 11400000, guid: 2664cf47e425d9a4399b4ff175729ace, type: 2}
   money: {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}
 --- !u!114 &3899590768275288799
 MonoBehaviour:

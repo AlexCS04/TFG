@@ -210,11 +210,19 @@ MonoBehaviour:
   healthSlider: {fileID: 0}
   healthSlider2: {fileID: 0}
   pool:
-  - {fileID: 11400000, guid: f0a7ea1ebb73db14fbdadc8ad53e0d52, type: 2}
   - {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}
+  - {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}
+  - {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}
+  - {fileID: 11400000, guid: 76ef62715268b6f4b9dfadb38a901050, type: 2}
+  - {fileID: 11400000, guid: 76ef62715268b6f4b9dfadb38a901050, type: 2}
   - {fileID: 0}
-  - {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}
-  - {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: d4f77b9b1133ffd45aadd95964329dd3, type: 2}
+  - {fileID: 11400000, guid: 8757d73062846b943b81bec74d9dc976, type: 2}
+  - {fileID: 11400000, guid: 2664cf47e425d9a4399b4ff175729ace, type: 2}
+  - {fileID: 11400000, guid: 2664cf47e425d9a4399b4ff175729ace, type: 2}
 --- !u!50 &63295769267835967
 Rigidbody2D:
   serializedVersion: 5
