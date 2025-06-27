@@ -41,12 +41,9 @@ public class EnemyBehaviour : MonoBehaviour
     }
     private void SelectState()
     {
-        // state = new EnemyIdle();
         if (chaseState.followType != FollowType.random &&chaseState.followType != FollowType.noMove&& Vector3.Distance(player.position, transform.position) >= chaseDistance)
         {
             state = chaseState;
-            // Debug.Log("Chasing");
-            // Debug.Log(Vector3.Distance(player.position, transform.position));
         }
         else if ((chaseState.followType == FollowType.random || chaseState.followType == FollowType.noMove) && !attacked)
         {
@@ -56,13 +53,11 @@ public class EnemyBehaviour : MonoBehaviour
         else if (Vector3.Distance(player.position, transform.position) < retrieveDistance)
         {
             state = retrieveState;
-            // Debug.Log("Retriving");
         }
         else
         {
             state = attackState;
             attacked = false;
-            // Debug.Log("Attacking");
         }
         SetUpState();
 
