@@ -24,7 +24,7 @@ MonoBehaviour:
   eDamage: 0.8
   mDamage: 0
   iAttackSpeed: 0
-  eAttackSpeed: 0.65
+  eAttackSpeed: 0.55
   mAttackSpeed: 0
   iSpeed: 0
   eSpeed: 0

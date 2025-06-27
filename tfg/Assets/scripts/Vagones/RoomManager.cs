@@ -112,7 +112,7 @@ public class RoomManager : MonoBehaviour
 
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.M)) ClearedRoom();
     }
     public IEnumerator PincheCineMachine()
     {

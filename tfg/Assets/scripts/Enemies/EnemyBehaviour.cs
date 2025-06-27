@@ -70,7 +70,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         float progre = lvl * 0.5f;
         int bonus = lvl / 10 * 5;
-        float aditivo = 1 + (progre + bonus)/18;
+        float aditivo = 1 + (progre + bonus) / 18;
 
         Attack attack = transform.GetComponent<Attack>();
         Health health = transform.GetComponent<Health>();
@@ -80,6 +80,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         health.bDefense *= aditivo;
         health.maxHealth *= aditivo;
+        health.currentHealth = health.maxHealth;
     }
 
 
