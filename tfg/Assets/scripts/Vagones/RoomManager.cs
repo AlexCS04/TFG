@@ -21,7 +21,7 @@ public class RoomManager : MonoBehaviour
     public int actualWagon;
     public GameObject vagonVacio;
     [SerializeField] private GameObject finalBoss;
-    [SerializeField] private GameObject pet;
+    // [SerializeField] private GameObject pet;
     [SerializeField] private GameObject bossHPSlider;
     [SerializeField] private GameObject tendero;
     [SerializeField] private TextMeshProUGUI wagonsGen;
@@ -67,7 +67,7 @@ public class RoomManager : MonoBehaviour
             AudioManager.instance.musicAmbience.UnPause();
             AudioManager.instance.musicBosses.Stop();
         }
-        if (wagonCount == 50) { winCon = true; pet.SetActive(true); }
+        if (wagonCount == 50) { winCon = true; }
     }
 
     void Awake()

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Intermidium : MonoBehaviour
@@ -7,6 +8,7 @@ public class Intermidium : MonoBehaviour
     [SerializeField] PlayerControls player;
     [SerializeField] GameObject cine;
     [SerializeField] float startCine;
+    [SerializeField] Slider skip;
 
     void Start()
     {
@@ -23,18 +25,29 @@ public class Intermidium : MonoBehaviour
     {
         cine.SetActive(true);
         Debug.Log("Cine");
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(6.5f);
+        Debug.Log("Time");
         player.enabled = true;
+        cine.SetActive(false);
+
     }
     void Update()
     {
         if (Input.anyKey)
         {
             startCine += Time.deltaTime;
-        }else startCine = Mathf.Clamp
-        if (startCine >= 1.25f && !player.enabled)
+            skip.value = Mathf.InverseLerp(0, 2.25f, startCine);
+        }
+        else
+        {
+            startCine = Mathf.Clamp(startCine - Time.deltaTime, 0, 2.25f);
+            skip.value = Mathf.InverseLerp(0,2.25f, startCine);
+        }
+        if (startCine >= 2.25f && !player.enabled)
         {
             StopCoroutine("Cinematica");
+            Debug.Log("satsr");
+
             cine.SetActive(false);
             player.enabled = true;
         }
