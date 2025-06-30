@@ -68,9 +68,10 @@ public class EnemyBehaviour : MonoBehaviour
     private void Scale(int lvl)
     {
 
-        float progre = lvl * 0.5f;
+        float progre = lvl/1.5f * 0.5f;
         int bonus = lvl / 10 * 5;
-        float aditivo = 1 + (progre + bonus) / 18;
+        int extra = lvl / 100 * 18;
+        float aditivo = 1 + (progre + bonus + extra) / 18f;
 
         Attack attack = transform.GetComponent<Attack>();
         Health health = transform.GetComponent<Health>();
@@ -78,7 +79,7 @@ public class EnemyBehaviour : MonoBehaviour
         attack.damage *= aditivo;
         attack.secDamage *= aditivo;
 
-        health.bDefense *= aditivo;
+        // health.bDefense *= aditivo;
         health.maxHealth *= aditivo;
         health.currentHealth = health.maxHealth;
     }

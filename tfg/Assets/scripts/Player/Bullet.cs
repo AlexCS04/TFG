@@ -84,7 +84,7 @@ public class Bullet : MonoBehaviour
     }
     void Update()
     {
-        if (time > 2) KillBullet();
+        if (time > 2.4) KillBullet();
     }
 
 }

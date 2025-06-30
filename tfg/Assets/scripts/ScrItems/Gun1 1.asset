@@ -24,7 +24,7 @@ MonoBehaviour:
   eDamage: 1.1
   mDamage: -0.04
   iAttackSpeed: 0
-  eAttackSpeed: 1.2
+  eAttackSpeed: 1.15
   mAttackSpeed: 0
   iSpeed: 0
   eSpeed: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
   iWeight: 0
   eWeight: 0
   attackType: 1
-  bSpeed: 11
+  bSpeed: 13
   desviation: 0.3
   bPiercing: 2
   bBounce: 1
