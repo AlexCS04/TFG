@@ -10,20 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 482d4678476bc1d4c9669de097e2eef5, type: 3}
-  m_Name: Box
+  m_Name: ShelfR
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2312246010301773940, guid: eff08886579d2b240bb6407e525d9e11, type: 3}
+  prefab: {fileID: 2312246010301773940, guid: 52692aa1c2149f44ab173e8c872d9186, type: 3}
   sprites:
   - {fileID: 21300000, guid: 2a04a3f5443f6fc45b6492de902a02cc, type: 3}
   - {fileID: 21300000, guid: b8a284c73e42b91408b1183705160852, type: 3}
   minPosition: {x: 2, y: 2}
   maxPosition: {x: 13, y: 6}
   porcentajePos: 1
-  minPerPos: {x: 0.05, y: 0.1}
-  maxPerPos: {x: 0.12, y: 0.88}
+  minPerPos: {x: 0.91, y: 0.1}
+  maxPerPos: {x: 0.96, y: 0.89}
   minRotation: -5
   maxRotation: 5
   distanciaObjetos: 0
   health: 3
-  pool:
-  - {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}
+  pool: []

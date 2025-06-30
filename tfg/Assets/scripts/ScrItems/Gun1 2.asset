@@ -43,7 +43,7 @@ MonoBehaviour:
   attackType: 1
   bSpeed: 13
   desviation: 0.2
-  bPiercing: 3
+  bPiercing: 4
   bBounce: 0
   bulletPrefab: {fileID: 1117003242370999814, guid: 59104ea0aef1364408850c7dcf366553, type: 3}
   price: 89

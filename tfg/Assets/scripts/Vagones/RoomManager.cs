@@ -131,8 +131,8 @@ public class RoomManager : MonoBehaviour
         GameObject v = Instantiate(vagonVacio, position, Quaternion.identity);
         if (numWagons < WAGONS) numWagons += 1;
         areasRestringidas = new List<Bounds>{
-            new Bounds(new Vector3(1+WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT/2f, 0), new Vector3(2.5f, 3.5f, 0)),
-            new Bounds(new Vector3((WAGON_WIDHT-1)+WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT/2f, 0), new Vector3(2.5f, 3.5f, 0)),
+            new Bounds(new Vector3(1+WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT/2f, 0), new Vector3(3f, 4f, 0)),
+            new Bounds(new Vector3((WAGON_WIDHT-1)+WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT/2f, 0), new Vector3(3f, 4f, 0)),
             new Bounds(new Vector3((WAGON_WIDHT/2)+WAGON_WIDHT*(wagonCount%WAGONS), 0.5f, 0), new Vector3(2.5f, 1.5f, 0)),
             new Bounds(new Vector3((WAGON_WIDHT/2)+WAGON_WIDHT*(wagonCount%WAGONS), WAGON_HEIGHT-0.5f, 0), new Vector3(2.5f, 1.5f, 0)),
         };

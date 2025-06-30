@@ -344,7 +344,7 @@ public class ItemDecription : ISendDesc
         }
         else if (sct.equipType == EquipType.Consumable)
         {
-            description += "When consumed:\n";
+            description += "<b>When consumed:</b>\n";
             if (sct.tHealth != 0)
             {
                 description += "Heals ";
