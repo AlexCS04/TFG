@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb8e3f46b0c50ed4b82596c498ab1c7d, type: 3}
   m_Name: Pot1 1
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: bf33fddf9ef370a4090bda88e647fe0a, type: 3}
+  sprite: {fileID: 8079415027678571820, guid: bf33fddf9ef370a4090bda88e647fe0a, type: 3}
   Name: Haste Flask
   equipType: 3
   maxStack: 10

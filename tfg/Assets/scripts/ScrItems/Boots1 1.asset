@@ -27,16 +27,16 @@ MonoBehaviour:
   eAttackSpeed: 0
   mAttackSpeed: 0
   iSpeed: 0
-  eSpeed: -0.3
-  mSpeed: -0.01
+  eSpeed: -0.32
+  mSpeed: -0.013
   iAttackRange: 0
   eAttackRange: 0
   iRQuant: 0
   eRQuant: 0
   iHealth: 0
-  eHealth: 2.2
+  eHealth: 2.05
   iDefense: 0
-  eDefense: 3.4
+  eDefense: 3.04
   mDefense: 0.02
   iWeight: 0
   eWeight: 0

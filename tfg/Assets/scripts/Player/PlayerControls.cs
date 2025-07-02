@@ -17,6 +17,7 @@ public class PlayerControls : MonoBehaviour
 
     [SerializeField] GameObject pause;
     public List<GroundItem> itemsArea;
+    public List<IInteractable> interactables;
 
 
     void Start()
@@ -24,13 +25,19 @@ public class PlayerControls : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         currentSpeed = speed;
         animator = GetComponent<Animator>();
+        interactables = new List<IInteractable>();
     }
 
 
     void Update()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        float horizontal = 0;
+        float vertical = 0;
+        if (!openInv)
+        {
+            horizontal = Input.GetAxisRaw("Horizontal");
+            vertical = Input.GetAxisRaw("Vertical");
+        }
 
 
         m_Movement.Set(horizontal, vertical);
@@ -51,9 +58,16 @@ public class PlayerControls : MonoBehaviour
         // {
         //     ItemSpwnManager.instance.SpawnItem(testItemSpawn, transform.position);
         // }
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1") && !openInv)
         {
             Attack();
+        }
+        if (Input.GetKeyDown(KeyCode.F)&&!openInv)
+        {
+            for (int i = interactables.Count-1; i>=0; i--)
+            {
+                if (interactables[i].Interact()) interactables.RemoveAt(i); 
+            }
         }
         // if (Input.GetKeyDown(KeyCode.V))
         // {
@@ -63,10 +77,10 @@ public class PlayerControls : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (!openInv)
-        {
-            rb.MovePosition(rb.position + m_Movement * currentSpeed * Time.fixedDeltaTime);
-        }
+        // if (!openInv)
+        // {
+        rb.MovePosition(rb.position + m_Movement * currentSpeed * Time.fixedDeltaTime);
+        // }
     }
 
     private void OpenInv()
@@ -99,8 +113,8 @@ public class PlayerControls : MonoBehaviour
     private void Attack()
     {
         if (!GetComponent<Attack>()) return;
-        if (openInv) return;
         GetComponent<Attack>().AttackAction(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
     }
+
 }

@@ -24,20 +24,20 @@ MonoBehaviour:
   eDamage: 0
   mDamage: 0
   iAttackSpeed: 0
-  eAttackSpeed: -0.04
+  eAttackSpeed: -0.09
   mAttackSpeed: 0
   iSpeed: 0
-  eSpeed: -0.3
-  mSpeed: -0.04
+  eSpeed: -0.36
+  mSpeed: -0.05
   iAttackRange: 0
-  eAttackRange: -0.1
+  eAttackRange: -0.13
   iRQuant: 0
   eRQuant: 0
   iHealth: 1
   eHealth: 2
   iDefense: 1
-  eDefense: 7
-  mDefense: 0.3
+  eDefense: 6.59
+  mDefense: 0.21
   iWeight: 0
   eWeight: 0
   attackType: 0

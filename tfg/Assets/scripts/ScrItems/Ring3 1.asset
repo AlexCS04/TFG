@@ -32,11 +32,11 @@ MonoBehaviour:
   iAttackRange: 0
   eAttackRange: 0
   iRQuant: 0
-  eRQuant: 0.3
+  eRQuant: 0.24
   iHealth: 0
-  eHealth: 1.3
+  eHealth: 1.11
   iDefense: 0
-  eDefense: 1.1
+  eDefense: 1
   mDefense: 0
   iWeight: 0
   eWeight: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   bPiercing: 1
   bBounce: 0
   bulletPrefab: {fileID: 0}
-  price: 105
+  price: 115
   tHealth: 0
   rHealth: 0
   filling: 0

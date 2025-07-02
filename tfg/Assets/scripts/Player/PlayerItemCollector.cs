@@ -16,7 +16,7 @@ public class PlayerItemCollector : MonoBehaviour
         {
             player.itemsArea.Add(collision.GetComponent<GroundItem>());
         }
-        
+        if (collision.gameObject.TryGetComponent(out IInteractable s)) transform.GetComponentInParent<PlayerControls>().interactables.Add(s);
     }
     void OnTriggerExit2D(Collider2D collision)
     {
@@ -24,6 +24,7 @@ public class PlayerItemCollector : MonoBehaviour
         {
             player.itemsArea.Remove(collision.GetComponent<GroundItem>());
         }
+        if (collision.gameObject.TryGetComponent(out IInteractable s)) transform.GetComponentInParent<PlayerControls>().interactables.Remove(s);
 
     }
 }

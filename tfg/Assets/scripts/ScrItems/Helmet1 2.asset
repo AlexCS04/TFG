@@ -34,9 +34,9 @@ MonoBehaviour:
   iRQuant: 0
   eRQuant: 0
   iHealth: 6
-  eHealth: 5
+  eHealth: 4.79
   iDefense: 0
-  eDefense: 1
+  eDefense: 0.97
   mDefense: 0
   iWeight: 0
   eWeight: 0.5

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Tendero : MonoBehaviour
+public class Tendero : MonoBehaviour, IInteractable
 {
     private bool speak;
     [SerializeField] private List<string> dialogos;
@@ -25,14 +25,7 @@ public class Tendero : MonoBehaviour
             highLight.SetActive(false);
         }
     }
-    void Update()
-    {
-        if (speak && Input.GetKeyDown(KeyCode.F))
-        {
-            StopCoroutine("Hablar");
-            StartCoroutine("Hablar");
-        }
-    }
+
     IEnumerator Hablar()
     {
         text.text = "";
@@ -40,5 +33,12 @@ public class Tendero : MonoBehaviour
         text.text = dialogos[Random.Range(0, dialogos.Count)];
         yield return new WaitForSeconds(3.3f);
         text.text = "";
+    }
+
+    public bool Interact()
+    {
+        StopCoroutine("Hablar");
+        StartCoroutine("Hablar");
+        return false;
     }
 }

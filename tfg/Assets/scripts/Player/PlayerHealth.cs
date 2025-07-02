@@ -82,7 +82,11 @@ public class PlayerHealth : Health
         }
         else
         {
-            base.TakeDamage(maxHealth * .1f, 0);
+            invuFrames = invuFramesCount;
+            AudioManager.PlaySound(EffectTypes.hitted);
+            StartCoroutine("InvuFeel");
+            currentHealth -= maxHealth * .1f;
+            ActHealthVisual();
         }
         startFoodTime = Time.time;
     }

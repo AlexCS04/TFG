@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb8e3f46b0c50ed4b82596c498ab1c7d, type: 3}
   m_Name: Slasher 1
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 8d19a78dd28ce04499a6d8e484229072, type: 3}
-  Name: Slasher
+  sprite: {fileID: -2872409368766515237, guid: 8d19a78dd28ce04499a6d8e484229072, type: 3}
+  Name: Dagger
   equipType: 0
   maxStack: 1
   peso: 5
@@ -21,23 +21,23 @@ MonoBehaviour:
   sizeY: 2
   spwnQuantity: {x: 1, y: 1}
   iDamage: 0
-  eDamage: 3
+  eDamage: 2.88
   mDamage: 0
   iAttackSpeed: 0
   eAttackSpeed: 0.9
   mAttackSpeed: 0
   iSpeed: 0
-  eSpeed: 0.1
+  eSpeed: 0.08
   mSpeed: 0.01
   iAttackRange: 0
   eAttackRange: 1.1
   iRQuant: 0
   eRQuant: 0
   iHealth: 1
-  eHealth: 3
+  eHealth: 2.75
   iDefense: 0
   eDefense: 0
-  mDefense: 0.05
+  mDefense: 0.043
   iWeight: 0
   eWeight: 0
   attackType: 2

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Pet : MonoBehaviour
+public class Pet : MonoBehaviour, IInteractable
 {
     Vector2 destination;
     float distance = 2.8f;
@@ -26,9 +26,15 @@ public class Pet : MonoBehaviour
         FaceDir();
     }
     private void FaceDir()
-    { 
+    {
         Vector2 direction = (destination - (Vector2)transform.position).normalized;
         if (direction.x >= 0) transform.eulerAngles = new Vector3(0, 0, 0);
         else transform.eulerAngles = new Vector3(0, 180, 0);
+    }
+
+    public bool Interact()
+    {
+        Debug.Log("Petted");
+        return false;
     }
 }

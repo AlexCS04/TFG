@@ -24,7 +24,7 @@ MonoBehaviour:
   eDamage: 0
   mDamage: 0
   iAttackSpeed: 0
-  eAttackSpeed: -0.02
+  eAttackSpeed: -0.024
   mAttackSpeed: 0.01
   iSpeed: 0
   eSpeed: 0.05
@@ -33,10 +33,10 @@ MonoBehaviour:
   eAttackRange: -0.05
   iRQuant: 0
   eRQuant: 0
-  iHealth: 1.2
-  eHealth: 3.3
+  iHealth: 1.17
+  eHealth: 3.14
   iDefense: 0
-  eDefense: 1.2
+  eDefense: 1.19
   mDefense: 0
   iWeight: 1
   eWeight: 1.2
@@ -58,10 +58,10 @@ MonoBehaviour:
   tempAttackSpeedMult: 1
   shape:
     rows:
-    - array: 0101000000000000
+    - array: 0101010000000000
     - array: 0101010100000000
     - array: 0101010100000000
-    - array: 0101000000000000
+    - array: 0101010000000000
     - array: 0000000000000000
     - array: 0000000000000000
     - array: 0000000000000000

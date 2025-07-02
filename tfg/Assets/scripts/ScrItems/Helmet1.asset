@@ -21,27 +21,28 @@ MonoBehaviour:
   sizeY: 2
   spwnQuantity: {x: 1, y: 1}
   iDamage: 0
-  eDamage: 0.4
+  eDamage: 0.37
   mDamage: 0
   iAttackSpeed: 0
-  eAttackSpeed: -0.12
+  eAttackSpeed: -0.16
   mAttackSpeed: 0
   iSpeed: 0
   eSpeed: 0.4
   mSpeed: 0
   iAttackRange: 0
-  eAttackRange: -0.12
+  eAttackRange: -0.15
   iRQuant: 0
   eRQuant: 0
   iHealth: 1
-  eHealth: 4.5
+  eHealth: 4.38
   iDefense: 0
   eDefense: 3
   mDefense: 0
   iWeight: 0
-  eWeight: 2.5
+  eWeight: 2.35
   attackType: 0
   bSpeed: 1
+  desviation: 0
   bPiercing: 1
   bBounce: 0
   bulletPrefab: {fileID: 0}

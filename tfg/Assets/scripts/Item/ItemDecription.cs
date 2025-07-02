@@ -12,7 +12,7 @@ public class ItemDecription : ISendDesc
         SCT sct = item.sct;
         int lvl = Mathf.CeilToInt(item.lvl/10f);
         string description = "";
-        description += "<color=#ff0000>" + sct.Name + "</color>\n";
+        description += "<color=#ff0000><b>" + sct.Name + "</b></color>\n";
         if (sct.Name != "Money")
             description += "Level: <color=#0000ff>" + lvl + "</color>\n";
 
@@ -27,12 +27,12 @@ public class ItemDecription : ISendDesc
                 if (PosOrNeg(sct.iAttackRange))
                 {
                     description += "<color=#00A200>";
-                    description += sct.iAttackRange * lvl + "</color>\n";
+                    description += (sct.iAttackRange * lvl).ToString("n3") + "</color>\n";
                 }
                 else
                 {
                     description += "<color=#E40000>";
-                    description += sct.iAttackRange * (lvl * .4f + .4f) + "</color>\n";
+                    description += (sct.iAttackRange * (lvl * .4f + .4f)).ToString("n3") + "</color>\n";
                 }
                 
             }
@@ -42,12 +42,12 @@ public class ItemDecription : ISendDesc
                 if (PosOrNeg(-sct.iAttackSpeed))
                 {
                     description += "<color=#00A200>";
-                    description += sct.iAttackSpeed * lvl + "</color>\n";
+                    description += (sct.iAttackSpeed * lvl).ToString("n3") + "</color>\n";
                 }
                 else
                 {
                     description += "<color=#E40000>";
-                    description += sct.iAttackSpeed * (lvl * .4f + .4f) + "</color>\n";
+                    description += (sct.iAttackSpeed * (lvl * .4f + .4f)).ToString("n3") + "</color>\n";
                 }
                 
             }
@@ -57,12 +57,12 @@ public class ItemDecription : ISendDesc
                 if (PosOrNeg(sct.iDamage))
                 {
                     description += "<color=#00A200>";
-                    description += sct.iDamage * lvl + "</color>\n";
+                    description += (sct.iDamage * lvl).ToString("n3") + "</color>\n";
                 }
                 else
                 {
                     description += "<color=#E40000>";
-                    description += sct.iDamage * (lvl * .4f + .4f) + "</color>\n";
+                    description += (sct.iDamage * (lvl * .4f + .4f)).ToString("n3") + "</color>\n";
                 }
             }
             if (sct.iDefense != 0)
@@ -71,12 +71,12 @@ public class ItemDecription : ISendDesc
                 if (PosOrNeg(sct.iDefense))
                 {
                     description += "<color=#00A200>";
-                    description += sct.iDefense * lvl + "</color>\n";
+                    description += (sct.iDefense * lvl).ToString("n3") + "</color>\n";
                 }
                 else
                 {
                     description += "<color=#E40000>";
-                    description += sct.iDefense * (lvl * .4f + .4f) + "</color>\n";
+                    description += (sct.iDefense * (lvl * .4f + .4f)).ToString("n3") + "</color>\n";
                 }
             }
             if (sct.iHealth != 0)
@@ -85,12 +85,12 @@ public class ItemDecription : ISendDesc
                 if (PosOrNeg(sct.iHealth))
                 {
                     description += "<color=#00A200>";
-                    description += sct.iHealth * lvl + "</color>\n";
+                    description += (sct.iHealth * lvl).ToString("n3") + "</color>\n";
                 }
                 else
                 {
                     description += "<color=#E40000>";
-                    description += sct.iHealth * (lvl * .4f + .4f) + "</color>\n";
+                    description += (sct.iHealth * (lvl * .4f + .4f)).ToString("n3") + "</color>\n";
                 }
             }
             if (sct.iRQuant != 0)
@@ -99,12 +99,12 @@ public class ItemDecription : ISendDesc
                 if (PosOrNeg(sct.iRQuant))
                 {
                     description += "<color=#00A200>";
-                    description += sct.iRQuant * lvl + "</color>\n";
+                    description +=(sct.iRQuant * lvl).ToString("n3") + "</color>\n";
                 }
                 else
                 {
                     description += "<color=#E40000>";
-                    description += sct.iRQuant * (lvl * .4f + .4f) + "</color>\n";
+                    description += (sct.iRQuant * (lvl * .4f + .4f)).ToString("n3") + "</color>\n";
                 }
             }
             if (sct.iSpeed != 0)
@@ -113,12 +113,12 @@ public class ItemDecription : ISendDesc
                 if (PosOrNeg(sct.iSpeed))
                 {
                     description += "<color=#00A200>";
-                    description += sct.iSpeed * lvl + "</color>\n";
+                    description += (sct.iSpeed * lvl).ToString("n3") + "</color>\n";
                 }
                 else
                 {
                     description += "<color=#E40000>";
-                    description += sct.iSpeed * (lvl * .4f + .4f) + "</color>\n";
+                    description += (sct.iSpeed * (lvl * .4f + .4f)).ToString("n3") + "</color>\n";
                 }
             }
             if (sct.iWeight != 0)
@@ -127,12 +127,12 @@ public class ItemDecription : ISendDesc
                 if (PosOrNeg(sct.iWeight))
                 {
                     description += "<color=#00A200>";
-                    description += sct.iWeight * lvl + "</color>\n";
+                    description += (sct.iWeight * lvl).ToString("n3") + "</color>\n";
                 }
                 else
                 {
                     description += "<color=#E40000>";
-                    description += sct.iWeight * (lvl * .4f + .4f) + "</color>\n";
+                    description += (sct.iWeight * (lvl * .4f + .4f)).ToString("n3") + "</color>\n";
                 }
             }
             #endregion
@@ -148,16 +148,16 @@ public class ItemDecription : ISendDesc
                         if (PosOrNeg(sct.eAttackRange))
                         {
                             description += "<color=#00A200>";
-                            description += sct.eAttackRange * lvl + "</color>\n";
+                            description += (sct.eAttackRange * lvl).ToString("n3") + "</color>\n";
                         }
                         else
                         {
                             description += "<color=#E40000>";
-                            description += sct.eAttackRange * (lvl * .4f + .4f) + "</color>\n";
+                            description += (sct.eAttackRange * (lvl * .4f + .4f)).ToString("n3") + "</color>\n";
                         }
                     }
                     else
-                        description += sct.eAttackRange + "</color>\n";
+                        description += sct.eAttackRange.ToString("n3") + "</color>\n";
                 }
                 if (sct.eAttackSpeed != 0)
                 {
@@ -167,16 +167,16 @@ public class ItemDecription : ISendDesc
                         if (PosOrNeg(-sct.eAttackSpeed))
                         {
                             description += "<color=#00A200>";
-                            description += sct.eAttackSpeed * lvl + "</color>\n";
+                            description += (sct.eAttackSpeed * lvl).ToString("n3") + "</color>\n";
                         }
                         else
                         {
                             description += "<color=#E40000>";
-                            description += sct.eAttackSpeed * (lvl * .4f + .4f) + "</color>\n";
+                            description += (sct.eAttackSpeed * (lvl * .4f + .4f)).ToString("n3") + "</color>\n";
                         }
                     }
                     else
-                        description += sct.eAttackRange + "</color>\n";
+                        description += sct.eAttackRange.ToString("n3") + "</color>\n";
                 }
                 if (sct.eDamage != 0)
                 {
@@ -184,12 +184,12 @@ public class ItemDecription : ISendDesc
                     if (PosOrNeg(sct.eDamage))
                     {
                         description += "<color=#00A200>";
-                        description += sct.eDamage * lvl + "</color>\n";
+                        description += (sct.eDamage * lvl).ToString("n3") + "</color>\n";
                     }
                     else
                     {
                         description += "<color=#E40000>";
-                        description += sct.eDamage * (lvl * .4f + .4f) + "</color>\n";
+                        description += (sct.eDamage * (lvl * .4f + .4f)).ToString("n3") + "</color>\n";
                     }
                         
                 }
@@ -199,12 +199,12 @@ public class ItemDecription : ISendDesc
                     if (PosOrNeg(sct.eDefense))
                     {
                         description += "<color=#00A200>";
-                        description += sct.eDefense * lvl + "</color>\n";
+                        description += (sct.eDefense * lvl).ToString("n3") + "</color>\n";
                     }
                     else
                     {
                         description += "<color=#E40000>";
-                        description += sct.eDefense * (lvl * .4f + .4f) + "</color>\n";
+                        description += (sct.eDefense * (lvl * .4f + .4f)).ToString("n3") + "</color>\n";
                     }
                 }
                 if (sct.eHealth != 0)
@@ -213,12 +213,12 @@ public class ItemDecription : ISendDesc
                     if (PosOrNeg(sct.eHealth))
                     {
                         description += "<color=#00A200>";
-                        description += sct.eHealth * lvl + "</color>\n";
+                        description += (sct.eHealth * lvl).ToString("n3") + "</color>\n";
                     }
                     else
                     {
                         description += "<color=#E40000>";
-                        description += sct.eHealth * (lvl * .4f + .4f) + "</color>\n";
+                        description += (sct.eHealth * (lvl * .4f + .4f)).ToString("n3") + "</color>\n";
                     }
                 }
                 if (sct.eRQuant != 0)
@@ -227,12 +227,12 @@ public class ItemDecription : ISendDesc
                     if (PosOrNeg(sct.eRQuant))
                     {
                         description += "<color=#00A200>";
-                        description += sct.eRQuant * lvl + "</color>\n";
+                        description += (sct.eRQuant * lvl).ToString("n3") + "</color>\n";
                     }
                     else
                     {
                         description += "<color=#E40000>";
-                        description += sct.eRQuant * (lvl * .4f + .4f) + "</color>\n";
+                        description += (sct.eRQuant * (lvl * .4f + .4f)).ToString("n3") + "</color>\n";
                     }
                 }
                 if (sct.eSpeed != 0)
@@ -241,12 +241,12 @@ public class ItemDecription : ISendDesc
                     if (PosOrNeg(sct.eSpeed))
                     {
                         description += "<color=#00A200>";
-                        description += sct.eSpeed * lvl + "</color>\n";
+                        description += (sct.eSpeed * lvl).ToString("n3") + "</color>\n";
                     }
                     else
                     {
                         description += "<color=#E40000>";
-                        description += sct.eSpeed * (lvl * .4f + .4f) + "</color>\n";
+                        description += (sct.eSpeed * (lvl * .4f + .4f)).ToString("n3") + "</color>\n";
                     }
                 }
                 if (sct.eWeight != 0)
@@ -255,12 +255,12 @@ public class ItemDecription : ISendDesc
                     if (PosOrNeg(sct.eWeight))
                     {
                         description += "<color=#00A200>";
-                        description += sct.eWeight * lvl + "</color>\n";
+                        description += (sct.eWeight * lvl).ToString("n3") + "</color>\n";
                     }
                     else
                     {
                         description += "<color=#E40000>";
-                        description += sct.eWeight * (lvl * .4f + .4f) + "</color>\n";
+                        description += (sct.eWeight * (lvl * .4f + .4f)).ToString("n3") + "</color>\n";
                     }
                 }
                 if (sct.attackType == AttackType.ranged)
@@ -290,12 +290,12 @@ public class ItemDecription : ISendDesc
                 if (PosOrNeg(sct.mAttackSpeed))
                 {
                     description += "<color=#00A200>";
-                    description += sct.mAttackSpeed * lvl + "</color>\n";
+                    description += (sct.mAttackSpeed * lvl).ToString("n3") + "</color>\n";
                 }
                 else
                 {
                     description += "<color=#E40000>";
-                    description += sct.mAttackSpeed * (lvl * .4f + .4f) + "</color>\n";
+                    description += (sct.mAttackSpeed * (lvl * .4f + .4f)).ToString("n3") + "</color>\n";
                 }
             }
             if (sct.mDamage != 0)
@@ -304,12 +304,12 @@ public class ItemDecription : ISendDesc
                 if (PosOrNeg(sct.mDamage))
                 {
                     description += "<color=#00A200>";
-                    description += sct.mDamage * lvl + "</color>\n";
+                    description += (sct.mDamage * lvl).ToString("n3") + "</color>\n";
                 }
                 else
                 {
                     description += "<color=#E40000>";
-                    description += sct.mDamage * (lvl * .4f + .4f) + "</color>\n";
+                    description += (sct.mDamage * (lvl * .4f + .4f)).ToString("n3") + "</color>\n";
                 }
             }
             if (sct.mDefense != 0)
@@ -318,12 +318,12 @@ public class ItemDecription : ISendDesc
                 if (PosOrNeg(sct.mDefense))
                 {
                     description += "<color=#00A200>";
-                    description += sct.mDefense * lvl + "</color>\n";
+                    description += (sct.mDefense * lvl).ToString("n3") + "</color>\n";
                 }
                 else
                 {
                     description += "<color=#E40000>";
-                    description += sct.mDefense * (lvl * .4f + .4f) + "</color>\n";
+                    description += (sct.mDefense * (lvl * .4f + .4f)).ToString("n3") + "</color>\n";
                 }
             }
             if (sct.mSpeed != 0)
@@ -332,12 +332,12 @@ public class ItemDecription : ISendDesc
                 if (PosOrNeg(sct.mSpeed))
                 {
                     description += "<color=#00A200>";
-                    description += sct.mSpeed * lvl + "</color>\n";
+                    description += (sct.mSpeed * lvl).ToString("n3") + "</color>\n";
                 }
                 else
                 {
                     description += "<color=#E40000>";
-                    description += sct.mSpeed * (lvl * .4f + .4f) + "</color>\n";
+                    description += (sct.mSpeed * (lvl * .4f + .4f)).ToString("n3") + "</color>\n";
                 }
             }
             #endregion
@@ -351,12 +351,12 @@ public class ItemDecription : ISendDesc
                 if (PosOrNeg(sct.tHealth))
                 {
                     description += "<color=#00A200>";
-                    description += sct.tHealth * lvl + "</color>\n";
+                    description += (sct.tHealth * lvl).ToString("n3") + "</color>\n";
                 }
                 else
                 {
                     description += "<color=#E40000>";
-                    description += sct.tHealth * (lvl * .4f + .4f) + "</color>\n";
+                    description += (sct.tHealth * (lvl * .4f + .4f)).ToString("n3") + "</color>\n";
                 }
                 description += " hp\n";
             }
@@ -366,12 +366,12 @@ public class ItemDecription : ISendDesc
                 if (PosOrNeg(sct.rHealth))
                 {
                     description += "<color=#00A200>";
-                    description += sct.rHealth * lvl + "</color>\n";
+                    description += (sct.rHealth * lvl).ToString("n3") + "</color>\n";
                 }
                 else
                 {
                     description += "<color=#E40000>";
-                    description += sct.rHealth * (lvl * .4f + .4f) + "</color>\n";
+                    description += (sct.rHealth * (lvl * .4f + .4f)).ToString("n3") + "</color>\n";
                 }
                 description += " regen points\n";
             }

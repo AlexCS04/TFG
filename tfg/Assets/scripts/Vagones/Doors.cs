@@ -70,6 +70,7 @@ public class Doors : MonoBehaviour
                     else RoomManager.instance.wagonList[i].SetActive(false);
                 }
                 collision.gameObject.transform.position = newPos;
+                RoomManager.instance.pet.transform.position = newPos;
                 RoomManager.instance.StartCoroutine("PincheCineMachine");
             }
         }

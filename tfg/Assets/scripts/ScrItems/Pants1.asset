@@ -22,7 +22,7 @@ MonoBehaviour:
   spwnQuantity: {x: 1, y: 1}
   iDamage: 0
   eDamage: 0
-  mDamage: 0.2
+  mDamage: 0.14
   iAttackSpeed: 0
   eAttackSpeed: 0
   mAttackSpeed: 0
@@ -36,9 +36,9 @@ MonoBehaviour:
   iHealth: 0
   eHealth: 6
   iDefense: 0
-  eDefense: 2.2
+  eDefense: 2.07
   mDefense: 0
-  iWeight: 4
+  iWeight: 3.66
   eWeight: 0
   attackType: 0
   bSpeed: 1

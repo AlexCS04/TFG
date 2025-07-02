@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class ShopItem : MonoBehaviour
+public class ShopItem : MonoBehaviour, IInteractable
 {
     public SCT sct;
     public int lvl = 1;
@@ -40,4 +40,10 @@ public class ShopItem : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public bool Interact()
+    {
+        int money = RoomManager.instance.player.GetComponent<PlayerBackpack>().money;
+        if (money >= price) { RoomManager.instance.player.GetComponent<PlayerBackpack>().Purchase(price); Buy(); return true; }
+        return false;
+    }
 }

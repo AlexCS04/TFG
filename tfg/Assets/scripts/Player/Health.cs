@@ -52,6 +52,7 @@ public class Health : MonoBehaviour
     public void ActHealthVisual()
     {
         if (currentHealth > regenHealth) regenHealth = currentHealth;
+        if (regenHealth > maxHealth) regenHealth = maxHealth;
         if (healthSlider != null) healthSlider.value = Mathf.InverseLerp(0, maxHealth, currentHealth);
         if (healthSlider2 != null) healthSlider2.value = Mathf.InverseLerp(0, maxHealth, regenHealth);
     }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb8e3f46b0c50ed4b82596c498ab1c7d, type: 3}
   m_Name: Pot1 2
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 9a59453615ca04c4b885daed1d8092ba, type: 3}
+  sprite: {fileID: 7229187498453255555, guid: 9a59453615ca04c4b885daed1d8092ba, type: 3}
   Name: Defense Flask
   equipType: 3
   maxStack: 10

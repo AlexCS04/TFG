@@ -86,6 +86,7 @@ public class ContainerManager : MonoBehaviour
     }
     public void CloseInventory()
     {
+        if(itemMov!=null)EndDrag(Vector2Int.zero, null);
         inventario.SetActive(false);
         Descriptor.instance.Off();
     }
