@@ -18,7 +18,7 @@ MonoBehaviour:
   maxStack: 1
   peso: 5
   sizeX: 4
-  sizeY: 1
+  sizeY: 2
   spwnQuantity: {x: 1, y: 1}
   iDamage: 0
   eDamage: 0.8
@@ -58,10 +58,10 @@ MonoBehaviour:
   tempAttackSpeedMult: 1
   shape:
     rows:
-    - array: 0100000000000000
-    - array: 0100000000000000
-    - array: 0100000000000000
-    - array: 0100000000000000
+    - array: 0001000000000000
+    - array: 0101000000000000
+    - array: 0101000000000000
+    - array: 0101000000000000
     - array: 0000000000000000
     - array: 0000000000000000
     - array: 0000000000000000

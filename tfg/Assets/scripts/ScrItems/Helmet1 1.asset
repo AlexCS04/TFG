@@ -17,8 +17,8 @@ MonoBehaviour:
   equipType: 4
   maxStack: 1
   peso: 14
-  sizeX: 3
-  sizeY: 3
+  sizeX: 4
+  sizeY: 4
   spwnQuantity: {x: 1, y: 1}
   iDamage: 0
   eDamage: 0
@@ -42,6 +42,7 @@ MonoBehaviour:
   eWeight: 0
   attackType: 0
   bSpeed: 1
+  desviation: 0
   bPiercing: 1
   bBounce: 0
   bulletPrefab: {fileID: 0}
@@ -57,10 +58,10 @@ MonoBehaviour:
   tempAttackSpeedMult: 1
   shape:
     rows:
-    - array: 0101010000000000
-    - array: 0101010000000000
-    - array: 0101010000000000
-    - array: 0000000000000000
+    - array: 0101010100000000
+    - array: 0101010100000000
+    - array: 0101010100000000
+    - array: 0101010100000000
     - array: 0000000000000000
     - array: 0000000000000000
     - array: 0000000000000000

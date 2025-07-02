@@ -42,7 +42,8 @@ public class Item : MonoBehaviour, IPointerDownHandler
             g.GetComponent<RectTransform>().sizeDelta = new Vector2(ContainerManager.instance.cellSize, ContainerManager.instance.cellSize);
         }
         transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GetCantidad().ToString();
-
+        transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(ContainerManager.instance.cellSize,ContainerManager.instance.cellSize);
+        if (sct.Name == "Money") transform.GetChild(0).GetComponent<RectTransform>().sizeDelta /= 2; //new Vector2(ContainerManager.instance.cellSize,ContainerManager.instance.cellSize);
     }
 
 

@@ -17,7 +17,7 @@ MonoBehaviour:
   equipType: 0
   maxStack: 1
   peso: 7
-  sizeX: 1
+  sizeX: 2
   sizeY: 3
   spwnQuantity: {x: 1, y: 1}
   iDamage: 0
@@ -58,8 +58,8 @@ MonoBehaviour:
   tempAttackSpeedMult: 1
   shape:
     rows:
-    - array: 0101010000000000
-    - array: 0000000000000000
+    - array: 0100000000000000
+    - array: 0001010000000000
     - array: 0000000000000000
     - array: 0000000000000000
     - array: 0000000000000000
