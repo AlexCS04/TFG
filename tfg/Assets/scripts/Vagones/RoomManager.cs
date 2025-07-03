@@ -67,7 +67,7 @@ public class RoomManager : MonoBehaviour
             AudioManager.instance.musicAmbience.UnPause();
             AudioManager.instance.musicBosses.Stop();
         }
-        if (wagonCount == 50) { winCon = true; pet.SetActive(true); }
+        if (wagonCount == 50) { winCon = true; pet.SetActive(true); pet.transform.position = player.position; }
     }
 
     void Awake()

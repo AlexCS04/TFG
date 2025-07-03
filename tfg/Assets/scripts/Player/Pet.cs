@@ -35,6 +35,6 @@ public class Pet : MonoBehaviour, IInteractable
     public bool Interact()
     {
         Debug.Log("Petted");
-        return false;
+        return true;
     }
 }

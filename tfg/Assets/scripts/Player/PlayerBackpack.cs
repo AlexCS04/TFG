@@ -31,7 +31,6 @@ public class PlayerBackpack : MonoBehaviour
 
     public int money = 0;
 
-    public ShopItem shopItem;
     #region Temporal Mults
     public float tempDamageMult=1; 
     public float tempSpeedMult=1; 
@@ -98,14 +97,6 @@ public class PlayerBackpack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2) && consumables[1] != null)
         {
             Consume(1);
-        }
-        if (Input.GetKeyDown(KeyCode.F) && shopItem != null)
-        {
-
-            Purchase(shopItem.price);
-            shopItem.Buy();
-            shopItem = null;
-            
         }
     }
     private void Consume(int cons)
@@ -288,8 +279,6 @@ public class PlayerBackpack : MonoBehaviour
         WeaponEquip(weapon);
         foreach (var item in contents)
         {
-            // Debug.Log(item.Value.stack);
-
             SCT sct = item.Value.sct;
             int stack = item.Value.stack;
             int lvl = Mathf.CeilToInt(item.Value.lvl / 10f);
@@ -337,7 +326,6 @@ public class PlayerBackpack : MonoBehaviour
         playerControls.currentSpeed *= tempSpeedMult;
         playerHealth.cDefense *= tempDefenseMult;
         playerAttack.attackSpeed *= 1/tempAttackSpeedMult;
-        // Debug.Log(tempRegenMult);
         playerHealth.rQuant *= tempRegenMult;
         
 
@@ -425,13 +413,10 @@ public class PlayerBackpack : MonoBehaviour
     }
     public void Purchase(int stack)
     {
-        // Debug.Log(contents.Count);
         for (int index = contents.Count - 1; index >= 0; index--)
         {
-            // Debug.Log("hUH");
             var cont = contents.ElementAt(index);
             Item item = cont.Value;
-            // Debug.Log(item.GetCantidad());
             if (item.sct.Name == "Money")
             {
                 int dar = stack - item.GetCantidad();
@@ -440,7 +425,6 @@ public class PlayerBackpack : MonoBehaviour
                 stack -= dar;
                 item.container.ActualizarPeso(-dar*item.sct.peso);
                 item.AddCantidad(-dar);
-                Debug.Log(item.GetCantidad());
                 item.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = item.GetCantidad().ToString();
                 if (item.GetCantidad() <= 0)
                 {
@@ -452,6 +436,6 @@ public class PlayerBackpack : MonoBehaviour
             }
             if (stack == 0) return;
         }
-        // ActualizarStats();
+        ActualizarStats();
     }
 }

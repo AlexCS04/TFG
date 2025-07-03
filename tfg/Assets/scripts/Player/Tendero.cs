@@ -13,7 +13,6 @@ public class Tendero : MonoBehaviour, IInteractable
     {
         if (collision.tag == "Player")
         {
-            speak = true;
             highLight.SetActive(true);
         }
     }
@@ -21,7 +20,6 @@ public class Tendero : MonoBehaviour, IInteractable
     {
         if (collision.tag == "Player")
         {
-            speak = false;
             highLight.SetActive(false);
         }
     }

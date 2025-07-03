@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopItem : MonoBehaviour, IInteractable
 {
@@ -15,25 +16,6 @@ public class ShopItem : MonoBehaviour, IInteractable
         priceText.text = price.ToString();
         GetComponent<SpriteRenderer>().sprite = sct.sprite;
     }
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag.Equals("Player"))
-        {
-            if (collision.GetComponent<PlayerBackpack>().money >= price)
-            {
-                aviso.SetActive(true);
-                collision.GetComponent<PlayerBackpack>().shopItem = this;
-            }
-        }
-    }
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag.Equals("Player"))
-        {
-            aviso.SetActive(false);
-            collision.GetComponent<PlayerBackpack>().shopItem = null;
-        }
-    }
     public void Buy()
     {
         ItemSpwnManager.instance.SpawnItem(sct, transform.position, 1);
@@ -44,6 +26,12 @@ public class ShopItem : MonoBehaviour, IInteractable
     {
         int money = RoomManager.instance.player.GetComponent<PlayerBackpack>().money;
         if (money >= price) { RoomManager.instance.player.GetComponent<PlayerBackpack>().Purchase(price); Buy(); return true; }
+        NoMoney();
         return false;
+    }
+    private void NoMoney()
+    {
+        GameObject l = Instantiate(aviso, transform);
+        // l.transform.localPosition = Vector3.zero;
     }
 }

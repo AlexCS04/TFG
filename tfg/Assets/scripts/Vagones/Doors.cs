@@ -2,7 +2,7 @@ using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 
-public class Doors : MonoBehaviour
+public class Doors : MonoBehaviour, IInteractable
 {
 
     private CinemachineConfiner2D confiner;
@@ -10,7 +10,6 @@ public class Doors : MonoBehaviour
     [SerializeField] private Sprite openDoor;
     [SerializeField] private Sprite closeDoor;
     private GameObject uSure;
-    [SerializeField] private GameObject text;
     [SerializeField] private bool exit;
 
     private bool lastRoom;
@@ -29,13 +28,6 @@ public class Doors : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            if (dir == Direction.Up || dir == Direction.Down)
-            {
-
-                exit = true;
-                text.SetActive(true);
-                return;
-            }
             if (roomClear)
             {
                 Vector3 newPos = collision.gameObject.transform.position;
@@ -61,6 +53,9 @@ public class Doors : MonoBehaviour
                         }
 
                         break;
+                    case Direction.Up:
+                    case Direction.Down:
+                        return;
 
 
                 }
@@ -75,19 +70,13 @@ public class Doors : MonoBehaviour
             }
         }
     }
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Player" && (dir.Equals(Direction.Up) || dir.Equals(Direction.Down))) { exit = false; text.SetActive(false); }
-    }
     void Update()
     {
-        if (exit&&Input.GetKeyDown(KeyCode.F)) ExitDungeon();
     }
     private void ExitDungeon()
     {
         uSure.SetActive(true);
         Time.timeScale = 0;
-
     }
     
     public void SetRoomDoor(bool b) { lastRoom = b; }  //The door that triggers a new wagon
@@ -116,6 +105,16 @@ public class Doors : MonoBehaviour
                 break;
         }
         
+    }
+
+    public bool Interact()
+    {
+        if (dir == Direction.Up || dir == Direction.Down)
+        {
+            ExitDungeon();
+            return false;
+        }
+        return true;
     }
 }
 public enum Direction

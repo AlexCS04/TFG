@@ -64,23 +64,17 @@ public class PlayerControls : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F)&&!openInv)
         {
-            for (int i = interactables.Count-1; i>=0; i--)
+            for (int i = interactables.Count - 1; i >= 0; i--)
             {
-                if (interactables[i].Interact()) interactables.RemoveAt(i); 
+                IInteractable ii = interactables[i];
+                if (ii.Interact()){ if(interactables.Contains(ii)) interactables.RemoveAt(i); } //Necesario por ShopItem
+
             }
         }
-        // if (Input.GetKeyDown(KeyCode.V))
-        // {
-        //     GetComponent<PlayerHealth>().TakeDamage(2, 1);
-        // }
-
     }
     void FixedUpdate()
     {
-        // if (!openInv)
-        // {
         rb.MovePosition(rb.position + m_Movement * currentSpeed * Time.fixedDeltaTime);
-        // }
     }
 
     private void OpenInv()
