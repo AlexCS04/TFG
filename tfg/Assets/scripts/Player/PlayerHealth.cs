@@ -86,6 +86,7 @@ public class PlayerHealth : Health
             AudioManager.PlaySound(EffectTypes.hitted);
             StartCoroutine("InvuFeel");
             currentHealth -= maxHealth * .1f;
+            if (currentHealth <= 0) Die();
             ActHealthVisual();
         }
         startFoodTime = Time.time;

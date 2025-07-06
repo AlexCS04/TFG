@@ -117,6 +117,7 @@ public class RoomManager : MonoBehaviour
     public IEnumerator PincheCineMachine()
     {
         confiner.gameObject.SetActive(false);
+        player.gameObject.GetComponent<Health>().defenseRegen();
         yield return null;
         confiner.gameObject.SetActive(true);
     }

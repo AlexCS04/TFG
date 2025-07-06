@@ -58,7 +58,7 @@ MonoBehaviour:
   tempAttackSpeedMult: 1
   shape:
     rows:
-    - array: 0001000000000000
+    - array: 0101000000000000
     - array: 0101000000000000
     - array: 0101000000000000
     - array: 0101000000000000

@@ -423,6 +423,8 @@ public class ItemDecription : ISendDesc
 
         description += "Weight: ";
         description += sct.peso.ToString() + "\n";
+        description += "Max Stack: ";
+        description += sct.maxStack.ToString() +"\n";
         desc = description;
     }
     private bool PosOrNeg(float data)

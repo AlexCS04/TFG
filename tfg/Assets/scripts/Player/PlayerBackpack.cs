@@ -274,7 +274,7 @@ public class PlayerBackpack : MonoBehaviour
         playerAttack.particlePref = poundEffect;
         playerHealth.maxHealth = 15;
         playerHealth.rQuant = 1;
-        playerHealth.cDefense = playerHealth.bDefense;
+        playerHealth.bDefense = 0;
         money = 0;
         WeaponEquip(weapon);
         foreach (var item in contents)
@@ -291,7 +291,7 @@ public class PlayerBackpack : MonoBehaviour
             if (sct.mSpeed != 0) { if (sct.mSpeed > 0) mSpeed += sct.mSpeed * stack * lvl; else mSpeed += sct.mSpeed * stack * (lvl * .4f + .4f); }
             if (sct.iHealth > 0) playerHealth.maxHealth += sct.iHealth * stack * lvl; else playerHealth.maxHealth += sct.iHealth * stack * (lvl * .4f + .4f);
             if (sct.iRQuant > 0) playerHealth.rQuant += sct.iRQuant * stack * lvl; else playerHealth.rQuant += sct.iRQuant * stack * (lvl * .4f + .4f);
-            if (sct.iDefense > 0) playerHealth.cDefense += sct.iDefense * stack * lvl; else playerHealth.cDefense += sct.iDefense * stack * (lvl*.4f+.4f);
+            if (sct.iDefense > 0) playerHealth.bDefense += sct.iDefense * stack * lvl; else playerHealth.bDefense += sct.iDefense * stack * (lvl*.4f+.4f);
             if (sct.mDefense != 0) { if (sct.mDefense > 0) mDefense += sct.mDefense * stack * lvl; else mDefense += sct.mDefense * stack * (lvl * .4f + .4f); }
             if (sct.iWeight > 0) playerControls.mochilaMaxPeso += sct.iWeight * stack * lvl; else playerControls.mochilaMaxPeso += sct.iWeight * stack * (lvl*.4f+.4f);
             if (sct.Name == "Money") money += stack;
@@ -305,13 +305,13 @@ public class PlayerBackpack : MonoBehaviour
         playerAttack.damage *= mDamage;
         playerAttack.attackSpeed *= mAttackSpeed;
         playerControls.currentSpeed *= mSpeed;
-        playerHealth.cDefense *= mDefense;
+        playerHealth.bDefense *= mDefense;
 
         // revisar limite stats
         if (playerAttack.damage < 0.5f) playerAttack.damage = 0.5f;
         if (playerControls.currentSpeed <= 3f) playerControls.currentSpeed = 3f;
         if (playerControls.mochilaPeso >= .8f * playerControls.mochilaMaxPeso) playerControls.currentSpeed = playerControls.currentSpeed / 2f;
-        if (playerHealth.cDefense < 0) playerHealth.cDefense = 0f;
+        if (playerHealth.bDefense < 0) playerHealth.bDefense = 0f;
         if (playerHealth.maxHealth < 1) playerHealth.maxHealth = 1f;
         if (playerHealth.regenHealth > playerHealth.maxHealth) playerHealth.regenHealth = playerHealth.maxHealth;
         if (playerHealth.currentHealth > playerHealth.maxHealth)
@@ -324,7 +324,7 @@ public class PlayerBackpack : MonoBehaviour
         playerHealth.ActHealthVisual();
         playerAttack.damage *= tempDamageMult;
         playerControls.currentSpeed *= tempSpeedMult;
-        playerHealth.cDefense *= tempDefenseMult;
+        playerHealth.bDefense *= tempDefenseMult;
         playerAttack.attackSpeed *= 1/tempAttackSpeedMult;
         playerHealth.rQuant *= tempRegenMult;
         
@@ -339,7 +339,7 @@ public class PlayerBackpack : MonoBehaviour
                             "Range: " + playerAttack.attackRange.ToString("n3") + "\n" +
                             "Speed: " + playerControls.currentSpeed.ToString("n3") + "\n" +
                             "Max Health: " + playerHealth.maxHealth.ToString("n3") + "\n" +
-                            "Defence: " + playerHealth.cDefense.ToString("n3") + "\n" +
+                            "Max Defence: " + playerHealth.bDefense.ToString("n3") + "\n" +
                             "Weight: " + playerControls.mochilaPeso.ToString("n3") + " / " + playerControls.mochilaMaxPeso.ToString("n3");
     }
     private void ConsumableAct()
@@ -386,7 +386,7 @@ public class PlayerBackpack : MonoBehaviour
         if (item.sct.mSpeed != 0) { if (item.sct.mSpeed > 0) mSpeed += item.sct.mSpeed * stack * lvl; else mSpeed += item.sct.mSpeed * stack * (lvl * .4f + .4f); }
         if (item.sct.eHealth > 0) playerHealth.maxHealth += item.sct.eHealth * stack * lvl; else playerHealth.maxHealth += item.sct.eHealth * stack * (lvl * .4f + .4f);
         if (item.sct.eRQuant > 0) playerHealth.rQuant += item.sct.eRQuant * stack * lvl; else playerHealth.rQuant += item.sct.eRQuant * stack * (lvl * .4f + .4f);
-        if (item.sct.eDefense > 0) playerHealth.cDefense += item.sct.eDefense * stack * lvl; else playerHealth.cDefense += item.sct.eDefense * stack * (lvl * .4f + .4f);
+        if (item.sct.eDefense > 0) playerHealth.bDefense += item.sct.eDefense * stack * lvl; else playerHealth.bDefense += item.sct.eDefense * stack * (lvl * .4f + .4f);
         if (item.sct.mDefense != 0) { if (item.sct.mDefense > 0) mDefense += item.sct.mDefense * stack * lvl; else mDefense += item.sct.mDefense * stack * (lvl * .4f + .4f); }
         if (item.sct.eWeight > 0) playerControls.mochilaMaxPeso += item.sct.eWeight * stack * lvl; else playerControls.mochilaMaxPeso += item.sct.eWeight * stack * (lvl * .4f + .4f);
     }

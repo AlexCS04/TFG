@@ -70,9 +70,6 @@ public class Doors : MonoBehaviour, IInteractable
             }
         }
     }
-    void Update()
-    {
-    }
     private void ExitDungeon()
     {
         uSure.SetActive(true);

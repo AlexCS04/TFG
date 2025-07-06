@@ -10,10 +10,11 @@ public class Health : MonoBehaviour
     public float regenHealth;
     public float bDefense;
     public float cDefense;
-    
-    
+
+
     public Slider healthSlider;
     [SerializeField] protected Slider healthSlider2;
+    [SerializeField] protected Slider defenseSlider;
     public List<SCT> pool;
 
     protected virtual void Start()
@@ -22,19 +23,27 @@ public class Health : MonoBehaviour
         regenHealth = maxHealth;
         cDefense = bDefense;
         ActHealthVisual();
-        
-    }
-    public virtual void TakeDamage(float tHealth, float rHealth) //tHealth >= rHealth
-    {
-        
-        rHealth = tHealth * rHealth;
-        currentHealth = Mathf.Clamp(currentHealth - (tHealth - cDefense), 0, currentHealth);
-        // currentHealth -= tHealth
 
-        regenHealth = Mathf.Clamp(regenHealth - (rHealth - cDefense), 0, regenHealth);
-        // regenHealth -= rHealth;
+    }
+    public virtual void TakeDamage(float tHealth, float rHealth)
+    {
+        float t = Mathf.InverseLerp(0, cDefense, cDefense - tHealth);
+        if (t == 0)
+        {
+            tHealth -= cDefense;
+            rHealth = Mathf.Clamp(rHealth - cDefense, 0, rHealth);
+            cDefense = 0;
+        }
+        else
+        {
+            cDefense -= tHealth;
+            tHealth = 0;
+            rHealth = 0;
+        }
+        currentHealth = Mathf.Clamp(currentHealth - tHealth, 0, currentHealth);
+        regenHealth = Mathf.Clamp(regenHealth - rHealth, 0, regenHealth);
         ActHealthVisual();
-        
+
         if (currentHealth <= 0) Die();
     }
     public virtual void Die()
@@ -45,8 +54,8 @@ public class Health : MonoBehaviour
 
     public virtual void Heal(float tHealth, float rHealth) //active heal
     {
-        currentHealth = Mathf.Clamp(currentHealth+tHealth, 0, maxHealth);
-        regenHealth = Mathf.Clamp(regenHealth+rHealth, 0, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth + tHealth, 0, maxHealth);
+        regenHealth = Mathf.Clamp(regenHealth + rHealth, 0, maxHealth);
         ActHealthVisual();
     }
     public void ActHealthVisual()
@@ -55,6 +64,13 @@ public class Health : MonoBehaviour
         if (regenHealth > maxHealth) regenHealth = maxHealth;
         if (healthSlider != null) healthSlider.value = Mathf.InverseLerp(0, maxHealth, currentHealth);
         if (healthSlider2 != null) healthSlider2.value = Mathf.InverseLerp(0, maxHealth, regenHealth);
+        if (defenseSlider != null) defenseSlider.value = Mathf.InverseLerp(0, bDefense, cDefense);
+
+    }
+    public void defenseRegen()
+    {
+        cDefense = bDefense;
+        if (defenseSlider != null) defenseSlider.value = Mathf.InverseLerp(0, bDefense, cDefense);
     }
     
     
