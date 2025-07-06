@@ -36,7 +36,7 @@ MonoBehaviour:
   iHealth: 1
   eHealth: 0
   iDefense: 0
-  eDefense: 0.26
+  eDefense: 0.1
   mDefense: 0.01
   iWeight: 0
   eWeight: 0
