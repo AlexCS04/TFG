@@ -4,8 +4,6 @@ using UnityEngine;
 public class PlayerItemCollector : MonoBehaviour
 {
     private PlayerControls player;
-    private bool buying = false;
-    private ShopItem shopItem;
     void Start()
     {
         player = GetComponentInParent<PlayerControls>();

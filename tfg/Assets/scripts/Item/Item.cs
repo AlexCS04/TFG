@@ -18,6 +18,31 @@ public class Item : MonoBehaviour, IPointerDownHandler
 
     [SerializeField] private GameObject childPrefab;
 
+    void OnEnable()
+    {
+        Eventmanager.PutEquipEvent += PutEquip;
+        Eventmanager.RemoveEquipEvent += RemoveEquip;
+    }
+    void OnDisable()
+    {
+        Eventmanager.PutEquipEvent -= PutEquip;
+        Eventmanager.RemoveEquipEvent -= RemoveEquip;
+
+    }
+    private void PutEquip(Item a, int b)
+    {
+        for (int i = transform.childCount - 1; i >= 1; i--)
+        {
+            a.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+    private void RemoveEquip(Item a, int b)
+    {
+        for (int i = transform.childCount - 1; i >= 1; i--)
+        {
+            a.transform.GetChild(i).gameObject.SetActive(true);
+        }
+    }
     void Start()
     {
         SetUp();
