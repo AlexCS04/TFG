@@ -23,6 +23,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ce6f304b6d9ca964faa391bd5a948e55, type: 3}
   conjuntos:
   - {fileID: 11400000, guid: 11dd0b8d146d0a644a373f3f432632cd, type: 2}
+  - {fileID: 11400000, guid: 53c3d7345c9853744bd7fb099858e878, type: 2}
   boss: {fileID: 5088639751615371274, guid: 2f67df2ef4e84bb459b82fd00651bede, type: 3}
   ambience: 2
   bossMus: 11
