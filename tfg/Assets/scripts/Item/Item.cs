@@ -31,14 +31,14 @@ public class Item : MonoBehaviour, IPointerDownHandler
     }
     private void PutEquip(Item a, int b)
     {
-        for (int i = transform.childCount - 1; i >= 1; i--)
+        for (int i = a.transform.childCount - 1; i >= 1; i--)
         {
             a.transform.GetChild(i).gameObject.SetActive(false);
         }
     }
     private void RemoveEquip(Item a, int b)
     {
-        for (int i = transform.childCount - 1; i >= 1; i--)
+        for (int i = a.transform.childCount - 1; i >= 1; i--)
         {
             a.transform.GetChild(i).gameObject.SetActive(true);
         }
