@@ -227,6 +227,7 @@ MonoBehaviour:
   cDefense: 0
   healthSlider: {fileID: 0}
   healthSlider2: {fileID: 0}
+  defenseSlider: {fileID: 0}
   pool:
   - {fileID: 11400000, guid: f21a706975d23894f9e1940f6910747d, type: 2}
   - {fileID: 11400000, guid: f21a706975d23894f9e1940f6910747d, type: 2}

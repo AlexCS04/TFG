@@ -210,6 +210,7 @@ MonoBehaviour:
   cDefense: 1
   healthSlider: {fileID: 0}
   healthSlider2: {fileID: 0}
+  defenseSlider: {fileID: 0}
   pool:
   - {fileID: 0}
   - {fileID: 0}

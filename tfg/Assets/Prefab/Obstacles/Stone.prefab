@@ -154,4 +154,5 @@ MonoBehaviour:
   cDefense: 0
   healthSlider: {fileID: 0}
   healthSlider2: {fileID: 0}
+  defenseSlider: {fileID: 0}
   pool: []

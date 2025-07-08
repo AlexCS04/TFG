@@ -117,9 +117,9 @@ MonoBehaviour:
   attackState: {fileID: 4845458646167135861}
   retrieveState: {fileID: 1578176216470953227}
   idleState: {fileID: 6180297787797063250}
-  chaseDistance: 0
-  retrieveDistance: 0
-  speed: 3
+  chaseDistance: 6
+  retrieveDistance: 3
+  speed: 3.3
 --- !u!114 &5911749779857050721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseDistance: 0
   speed: 0
-  followType: 3
+  followType: 1
 --- !u!114 &1578176216470953227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,8 +177,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackSpeed: 0.78
   attackPoint: {fileID: 6960728745653061290}
-  attackRange: 1
-  damage: 1.2
+  attackRange: 6
+  damage: 1.3
   secDamage: 0.9
   attackLayer:
     serializedVersion: 2
@@ -188,7 +188,7 @@ MonoBehaviour:
   particlePref: {fileID: 0}
   rangeY: 1
   desviation: 0
-  bSpeed: 8.8
+  bSpeed: 8.7
   bPiercing: 1
   bBounce: 0
 --- !u!114 &5518813409773207029
@@ -210,6 +210,7 @@ MonoBehaviour:
   cDefense: 1
   healthSlider: {fileID: 0}
   healthSlider2: {fileID: 0}
+  defenseSlider: {fileID: 0}
   pool:
   - {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}
   - {fileID: 11400000, guid: ca7f89593957b7142a0888a2c3b886d2, type: 2}
