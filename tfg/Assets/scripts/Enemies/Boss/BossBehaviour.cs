@@ -93,7 +93,8 @@ public class BossBehaviour : MonoBehaviour
 
         float progre = lvl * 0.5f;
         int bonus = lvl / 10 * 5;
-        float aditivo = 1 + (progre + bonus) / 12;
+        int extra = lvl / 100 * 18;
+        float aditivo = 1 + (progre + bonus+extra) / 12;
 
         health = transform.GetComponent<Health>();
 
