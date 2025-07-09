@@ -1740,6 +1740,8 @@ MonoBehaviour:
   sword2: {fileID: 8300000, guid: b4118e0a1b531414c8e454db9a7ac008, type: 3}
   pound: {fileID: 8300000, guid: a96ef4f38c5dbbb4bb52cd1b516601e7, type: 3}
   shoot: {fileID: 8300000, guid: 112a1efa4b7d313438eb61850449bf4e, type: 3}
+  bark: {fileID: 8300000, guid: 87f2996810fd30247b951232fd610ae4, type: 3}
+  pet: {fileID: 8300000, guid: 77daa284ccad9c84d9f6ba2a66205534, type: 3}
 --- !u!1 &952315402
 GameObject:
   m_ObjectHideFlags: 0

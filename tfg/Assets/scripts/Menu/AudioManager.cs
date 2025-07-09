@@ -33,6 +33,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip sword2;
     [SerializeField] private AudioClip pound;
     [SerializeField] private AudioClip shoot;
+    [SerializeField] private AudioClip bark;
+    [SerializeField] private AudioClip pet;
     #endregion
 
     void OnEnable()
@@ -75,6 +77,13 @@ public class AudioManager : MonoBehaviour
             case EffectTypes.shoot:
                 instance.soundSources[instance.soundSourceCounter].clip = instance.shoot;
                 break;
+            case EffectTypes.bark:
+                instance.soundSources[instance.soundSourceCounter].clip = instance.bark;
+                break;
+            case EffectTypes.pet:
+                instance.soundSources[instance.soundSourceCounter].clip = instance.pet;
+                break;
+                
                 
                 
                 
@@ -168,6 +177,8 @@ public enum EffectTypes
     shoot,
     sword1,sword2,
     pound,
+    bark,
+    pet,
 
     more
 

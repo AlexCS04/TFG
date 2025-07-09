@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 6180297787797063250}
   - component: {fileID: 6133441312046904327}
   m_Layer: 8
-  m_Name: RangedEnemy1
+  m_Name: Ranged_Circle_Enemy1
   m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
