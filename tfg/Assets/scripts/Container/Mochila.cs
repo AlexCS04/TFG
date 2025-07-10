@@ -4,10 +4,6 @@ using UnityEngine;
 public class Mochila : Container
 {
     [SerializeField] private GameObject player;
-    // protected override void GroundItem(Item item)
-    // {
-    //     player.GetComponent<PlayerBackpack>().PutItem(item, item.gridPos);
-    // }
     private void RevisarPeso()
     {
         player.GetComponent<PlayerControls>().mochilaMaxPeso = maxPeso;
