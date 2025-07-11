@@ -23,9 +23,16 @@ public class MenuButtons : MonoBehaviour
     public void GoToGame(string file)
     {
         int s = PlayerPrefs.GetInt(file);
-        if (s != 0) PlayerPrefs.SetInt("Cine", 1);
-        else PlayerPrefs.SetInt("Cine", 0);
-        SceneManager.LoadScene("Intermidium");
+        if (s != 0) SceneManager.LoadScene("Intermidium");
+        else
+        {
+            PlayerPrefs.SetInt(file, 1);
+            SceneManager.LoadScene("Tutorial");
+        }
+    }
+    public void DeleteSave(string file)
+    {
+        PlayerPrefs.SetInt(file, 0);
     }
     void Start()
     {
