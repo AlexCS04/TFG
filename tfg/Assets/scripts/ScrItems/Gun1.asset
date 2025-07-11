@@ -42,7 +42,7 @@ MonoBehaviour:
   eWeight: 0
   attackType: 1
   bSpeed: 6
-  desviation: 0
+  desviation: 0.2
   bPiercing: 4
   bBounce: 0
   bulletPrefab: {fileID: 1117003242370999814, guid: 57e8a1e5da3f31c42aeaf5af7a6cbf9c, type: 3}

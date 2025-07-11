@@ -9,6 +9,8 @@ public class Eventmanager
     public static event Action<Vector2Int> RemoveItemEvent;
     public static event Action<Item, int> PutEquipEvent;
     public static event Action<Item, int> RemoveEquipEvent;
+    public static event Action OpenInvEvent;
+    public static event Action CloseInvEvent;
 
 
 
@@ -17,6 +19,14 @@ public class Eventmanager
     public static void OnEnemyDeath()
     {
         EnemyDeathEvent?.Invoke();
+    }
+    public static void OnOpenInv()
+    {
+        OpenInvEvent?.Invoke();
+    }
+    public static void OnCloseInv()
+    {
+        CloseInvEvent?.Invoke();
     }
     public static void OnItemPut(Item item, Vector2Int key)
     {

@@ -81,16 +81,19 @@ public class ContainerManager : MonoBehaviour
 
         } 
     }
-    public void OpenInventory(List<GroundItem> itemsArea){
+    public void OpenInventory(List<GroundItem> itemsArea)
+    {
         inventario.SetActive(true);
         floor.GetComponent<Suelo>().OpenFloor(itemsArea);
         StartCoroutine("Resizing");
+        Eventmanager.OnOpenInv();
     }
     public void CloseInventory()
     {
-        if(itemMov!=null)EndDrag(Vector2Int.zero, null);
+        if (itemMov != null) EndDrag(Vector2Int.zero, null);
         inventario.SetActive(false);
         Descriptor.instance.Off();
+        Eventmanager.OnCloseInv();
     }
     private IEnumerator Resizing(){
         yield return null;

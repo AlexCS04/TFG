@@ -63,11 +63,11 @@ public class PlayerHealth : Health
         if (invuFrames > 0) invuFrames -= Time.deltaTime;
         if (RegenTime > regenTimer) Regen();
         if (FoodTime > foodTimer) Hungry();
-        if (currentHealth == regenHealth && rQuant>0) startRegenTime = Time.time;
+        if (currentHealth == regenHealth && rQuant > 0) startRegenTime = Time.time;
     }
     private void Regen() //pasive heal
     {
-        if (food < maxFood * .65f && rQuant>0) return;
+        if (food < maxFood * .65f && rQuant > 0) return;
         currentHealth = Mathf.Clamp(rQuant + currentHealth, 0, regenHealth);
         startRegenTime = Time.time;
         ActHealthVisual();
@@ -100,7 +100,13 @@ public class PlayerHealth : Health
         ActualizarFood();
         return true;
     }
-    private void ActualizarFood() {
+    private void ActualizarFood()
+    {
         if (foodSlider != null) foodSlider.value = Mathf.InverseLerp(0, maxFood, food);
+    }
+    public void TutoFood()
+    {
+        food = maxFood / 2;
+        ActualizarFood();
     }
 }
